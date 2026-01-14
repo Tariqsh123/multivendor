@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link active">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="#" class="nav-link cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Products Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>All Products</h1>
+            <p>Browse products from all stores in our marketplace</p>
+        </div>
+    </section>
+
+    <!-- Products Filter & Search -->
+    <section class="products-filter">
+        <div class="container">
+            <div class="filter-container">
+                <div class="search-box">
+                    <input type="text" id="productSearch" placeholder="Search products...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="home">Home & Garden</option>
+                        <option value="sports">Sports</option>
+                    </select>
+                    <select id="storeFilter">
+                        <option value="">All Stores</option>
+                        <!-- Stores will be populated by JS -->
+                    </select>
+                    <select id="sortFilter">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+            <div class="loading" id="productsLoading">
+                <div class="spinner"></div>
+                <p>Loading products...</p>
+            </div>
+            <div class="no-products" id="noProducts" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No products found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        checkUserLogin();
+        loadProducts();
+        setupFilters();
+    });
+    
+    function checkUserLogin() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const dashboardLink = document.querySelector('.dashboard-link');
+        
+        if (currentUser) {
+            dashboardLink.style.display = 'block';
+        }
+    }
+    
+    async function loadProducts() {
+        // Show loading
+        document.getElementById('productsLoading').style.display = 'flex';
+        document.getElementById('noProducts').style.display = 'none';
+        
+        try {
+            // Load products from JSON file
+            const response = await fetch('data/product.json');
+            
+            if (!response.ok) {
+                throw new Error('Failed to load products');
+            }
+            
+            const productData = await response.json();
+            
+            // Extract products from your JSON structure
+            const warehouseProducts = productData.warehouseProducts || [];
+            const storeProducts = productData.storeProducts || [];
+            
+            // Combine all products for customers to view
+            const allProducts = [
+                ...storeProducts,
+                ...warehouseProducts.map(p => ({
+                    ...p,
+                    fromWarehouse: true,
+                    store: p.shipperName || 'Warehouse'
+                }))
+            ];
+            
+            // Store in localStorage for other pages to use
+            localStorage.setItem('warehouseProducts', JSON.stringify(warehouseProducts));
+            localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
+            
+            // Populate store filter with unique store names
+            const storeFilter = document.getElementById('storeFilter');
+            const uniqueStores = [...new Set(allProducts.map(p => p.store || p.shipperName).filter(Boolean))];
+            
+            uniqueStores.forEach(store => {
+                const option = document.createElement('option');
+                option.value = store;
+                option.textContent = store;
+                storeFilter.appendChild(option);
+            });
+            
+            // Render products
+            renderProducts(allProducts);
+            
+        } catch (error) {
+            console.error('Error loading products:', error);
+            document.getElementById('noProducts').style.display = 'block';
+            document.getElementById('noProducts').innerHTML = `
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Unable to Load Products</h3>
+                <p>Please try refreshing the page</p>
+            `;
+        } finally {
+            // Hide loading
+            document.getElementById('productsLoading').style.display = 'none';
+        }
+    }
+    
+    function renderProducts(products) {
+        const container = document.getElementById('productsGrid');
+        container.innerHTML = '';
+        
+        if (products.length === 0) {
+            document.getElementById('noProducts').style.display = 'block';
+            return;
+        }
+        
+        products.forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.className = 'product-card';
+            productElement.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" 
+                         onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                    ${product.fromWarehouse ? '<div class="warehouse-badge">Warehouse</div>' : ''}
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-store">Sold by: ${product.store || product.shipperName || 'GlobalMart'}</p>
+                    <div class="star-rating">
+                        ${generateStarRating(4.5)}
+                    </div>
+                    <p class="product-desc">${product.description || 'Premium quality product'}</p>
+                    <div class="product-price">$${product.price.toFixed(2)}</div>
+                    ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
+                    <button class="btn btn-small add-to-cart" 
+                            data-id="${product.id}" 
+                            data-name="${product.name}" 
+                            data-price="${product.price}" 
+                            data-image="${product.image}">
+                        Add to Cart
+                    </button>
+                    <a href="product-detail.html?id=${product.id}" class="btn btn-outline btn-small view-details">View Details</a>
+                </div>
+            `;
+            container.appendChild(productElement);
+        });
+        
+        // Add event listeners to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const product = {
+                    id: this.dataset.id,
+                    name: this.dataset.name,
+                    price: parseFloat(this.dataset.price),
+                    image: this.dataset.image,
+                    quantity: 1
+                };
+                addToCart(product);
+                updateCartCount();
+            });
+        });
+        
+        // Add event listeners to wishlist buttons
+        document.querySelectorAll('.wishlist-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const heartIcon = this.querySelector('i');
+                if (heartIcon.classList.contains('far')) {
+                    heartIcon.classList.remove('far');
+                    heartIcon.classList.add('fas');
+                    heartIcon.style.color = '#ff4757';
+                } else {
+                    heartIcon.classList.remove('fas');
+                    heartIcon.classList.add('far');
+                    heartIcon.style.color = '';
+                }
+            });
+        });
+    }
+    
+    function generateStarRating(rating) {
+        let stars = '';
+        for (let i = 0; i < 5; i++) {
+            if (i < Math.floor(rating)) {
+                stars += '<i class="fas fa-star"></i>';
+            } else if (i < rating) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            } else {
+                stars += '<i class="far fa-star"></i>';
+            }
+        }
+        return stars;
+    }
+    
+    function setupFilters() {
+        const searchInput = document.getElementById('productSearch');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const storeFilter = document.getElementById('storeFilter');
+        const sortFilter = document.getElementById('sortFilter');
+        
+        const filterProducts = () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+            const store = storeFilter.value;
+            const sort = sortFilter.value;
+            
+            // Get products from localStorage (loaded from JSON)
+            const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+            const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+            
+            let allProducts = [
+                ...storeProducts,
+                ...warehouseProducts.map(p => ({
+                    ...p,
+                    fromWarehouse: true,
+                    store: p.shipperName || 'Warehouse'
+                }))
+            ];
+            
+            // Filter by search
+            if (searchTerm) {
+                allProducts = allProducts.filter(p => 
+                    p.name.toLowerCase().includes(searchTerm) || 
+                    (p.description && p.description.toLowerCase().includes(searchTerm)) ||
+                    (p.store && p.store.toLowerCase().includes(searchTerm)) ||
+                    (p.shipperName && p.shipperName.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // Filter by category
+            if (category) {
+                allProducts = allProducts.filter(p => p.category === category);
+            }
+            
+            // Filter by store
+            if (store) {
+                allProducts = allProducts.filter(p => (p.store || p.shipperName) === store);
+            }
+            
+            // Sort products
+            if (sort === 'price-low') {
+                allProducts.sort((a, b) => a.price - b.price);
+            } else if (sort === 'price-high') {
+                allProducts.sort((a, b) => b.price - a.price);
+            } else if (sort === 'newest') {
+                // Sort by createdAt date if available, otherwise by ID
+                allProducts.sort((a, b) => {
+                    if (a.createdAt && b.createdAt) {
+                        return new Date(b.createdAt) - new Date(a.createdAt);
+                    }
+                    return b.id - a.id;
+                });
+            }
+            
+            renderProducts(allProducts);
+        };
+        
+        searchInput.addEventListener('input', filterProducts);
+        categoryFilter.addEventListener('change', filterProducts);
+        storeFilter.addEventListener('change', filterProducts);
+        sortFilter.addEventListener('change', filterProducts);
+    }
+</script>
+</body>
+</html>

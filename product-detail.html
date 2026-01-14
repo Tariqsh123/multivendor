@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-detail-container {
+            padding: 60px 0;
+        }
+        
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .product-images {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .main-image {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .product-info-detail h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-store-detail {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .product-price-detail {
+            font-size: 2rem;
+            color: #ff6b00;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-selector button {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .quantity-selector input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+        
+        .product-meta {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .product-images {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="#" class="nav-link cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Product Detail -->
+    <section class="product-detail-container">
+        <div class="container">
+            <div id="productDetailContent">
+                <!-- Product will be loaded here -->
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading product details...</p>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="products.html" class="btn btn-outline">Back to Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            checkUserLogin();
+            loadProductDetail();
+            
+            // Get product ID from URL
+            function getProductIdFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return parseInt(urlParams.get('id'));
+            }
+            
+            function loadProductDetail() {
+                const productId = getProductIdFromURL();
+                const container = document.getElementById('productDetailContent');
+                
+                if (!productId) {
+                    container.innerHTML = `
+                        <div class="no-products">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <h3>Product Not Found</h3>
+                            <p>Please go back to products page and select a product.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Get all products
+                let storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+                let warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+                
+                // Combine and find product
+                const allProducts = [...storeProducts, ...warehouseProducts];
+                const product = allProducts.find(p => p.id === productId);
+                
+                if (!product) {
+                    container.innerHTML = `
+                        <div class="no-products">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <h3>Product Not Found</h3>
+                            <p>The product you're looking for doesn't exist.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Generate star rating
+                function generateStarRating(rating) {
+                    let stars = '';
+                    for (let i = 0; i < 5; i++) {
+                        if (i < Math.floor(rating)) {
+                            stars += '<i class="fas fa-star"></i>';
+                        } else if (i < rating) {
+                            stars += '<i class="fas fa-star-half-alt"></i>';
+                        } else {
+                            stars += '<i class="far fa-star"></i>';
+                        }
+                    }
+                    return stars;
+                }
+                
+                // Render product details
+                container.innerHTML = `
+                    <div class="product-detail">
+                        <div class="product-images">
+                            <div class="main-image">
+                                <img src="${product.image}" alt="${product.name}">
+                            </div>
+                        </div>
+                        
+                        <div class="product-info-detail">
+                            <h1>${product.name}</h1>
+                            <p class="product-store-detail">Sold by: ${product.store || product.shipperName || 'GlobalMart'}</p>
+                            <div class="product-rating">
+                                <div class="star-rating">
+                                    ${generateStarRating(product.rating || 5)}
+                                </div>
+                                <span>5.0 (24 reviews)</span>
+                            </div>
+                            <div class="product-price-detail">$${product.price.toFixed(2)}</div>
+                            
+                            <div class="product-description">
+                                <p>${product.description || 'No description available.'}</p>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <div class="quantity-selector">
+                                    <button id="decreaseQty">-</button>
+                                    <input type="number" id="productQty" value="1" min="1" max="10">
+                                    <button id="increaseQty">+</button>
+                                </div>
+                                <button class="btn btn-primary btn-large" id="addToCartDetail">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="btn btn-outline btn-large" id="buyNowBtn">
+                                    Buy Now
+                                </button>
+                            </div>
+                            
+                            <div class="product-meta">
+                                <div class="meta-item">
+                                    <span><strong>Category:</strong></span>
+                                    <span>${product.category || 'General'}</span>
+                                </div>
+                                ${product.commission ? `
+                                <div class="meta-item">
+                                    <span><strong>Commission:</strong></span>
+                                    <span>${product.commission}%</span>
+                                </div>
+                                ` : ''}
+                                ${product.fromWarehouse ? `
+                                <div class="meta-item">
+                                    <span><strong>Source:</strong></span>
+                                    <span>Warehouse Product</span>
+                                </div>
+                                ` : ''}
+                                <div class="meta-item">
+                                    <span><strong>Shipping:</strong></span>
+                                    <span>Free shipping worldwide</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span><strong>Delivery:</strong></span>
+                                    <span>5-10 business days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners for quantity selector
+                document.getElementById('decreaseQty').addEventListener('click', function() {
+                    const qtyInput = document.getElementById('productQty');
+                    let qty = parseInt(qtyInput.value);
+                    if (qty > 1) {
+                        qtyInput.value = qty - 1;
+                    }
+                });
+                
+                document.getElementById('increaseQty').addEventListener('click', function() {
+                    const qtyInput = document.getElementById('productQty');
+                    let qty = parseInt(qtyInput.value);
+                    if (qty < 10) {
+                        qtyInput.value = qty + 1;
+                    }
+                });
+                
+                // Add to cart button
+                document.getElementById('addToCartDetail').addEventListener('click', function() {
+                    const qty = parseInt(document.getElementById('productQty').value);
+                    const cartProduct = {
+                        ...product,
+                        quantity: qty
+                    };
+                    addToCart(cartProduct);
+                    updateCartCount();
+                    
+                    // Show notification
+                    showNotification(`${product.name} added to cart!`);
+                });
+                
+                // Buy now button
+                document.getElementById('buyNowBtn').addEventListener('click', function() {
+                    const qty = parseInt(document.getElementById('productQty').value);
+                    const cartProduct = {
+                        ...product,
+                        quantity: qty
+                    };
+                    
+                    // Clear cart and add this product
+                    localStorage.setItem('cart', JSON.stringify([cartProduct]));
+                    updateCartCount();
+                    
+                    // Redirect to checkout
+                    window.location.href = 'checkout.html';
+                });
+            }
+            
+            function checkUserLogin() {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                const dashboardLink = document.querySelector('.dashboard-link');
+                
+                if (currentUser) {
+                    dashboardLink.style.display = 'block';
+                }
+            }
+            
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.textContent = message;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #28a745;
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 2000;
+                    animation: slideIn 0.3s ease;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

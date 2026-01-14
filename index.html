@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalMart - Multi-Vendor Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="#" class="nav-link cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Global Selling & Sourcing Platform</h1>
+                <p class="hero-subtitle">Connecting China to the World. A research-driven, student-friendly, entrepreneur-ready marketplace.</p>
+                <div class="hero-btns">
+                    <a href="products.html" class="btn btn-primary">Shop Now</a>
+                    <a href="account.html" class="btn btn-secondary">Start Selling</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Global E-commerce">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose GlobalMart?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3>Global Reach</h3>
+                    <p>Source from China and sell worldwide. Connect with suppliers and customers globally.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Student-Friendly</h3>
+                    <p>Perfect for students and researchers looking to understand global e-commerce dynamics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Entrepreneur-Ready</h3>
+                    <p>Launch your store quickly with our multi-vendor platform. Focus on growth, not infrastructure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Warehouse Integration</h3>
+                    <p>Shippers can upload products directly to our warehouse for store managers to sell.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid" id="featuredProducts">
+                <!-- Products will be loaded via JavaScript -->
+            </div>
+            <div class="text-center">
+                <a href="products.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Role Explanation -->
+    <section class="roles">
+        <div class="container">
+            <h2 class="section-title">Choose Your Role</h2>
+            <div class="roles-grid">
+                <div class="role-card">
+                    <div class="role-icon shipper">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Shipper</h3>
+                    <p>Upload products to warehouse. Set prices and earn commissions. Manage your inventory.</p>
+                    <a href="account.html?role=shipper" class="btn btn-small">Sign Up as Shipper</a>
+                </div>
+                <div class="role-card">
+                    <div class="role-icon manager">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Store Manager</h3>
+                    <p>Browse warehouse products. Add to your store. Manage your storefront and sales.</p>
+                    <a href="account.html?role=manager" class="btn btn-small">Sign Up as Manager</a>
+                </div>
+                <div class="role-card">
+                    <div class="role-icon customer">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Customer</h3>
+                    <p>Browse all stores. Add to cart. Checkout securely. Track your orders.</p>
+                    <a href="account.html?role=customer" class="btn btn-small">Sign Up as Customer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+       <script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script>
+    // Load featured products
+    document.addEventListener('DOMContentLoaded', function() {
+        loadFeaturedProducts();
+        updateCartCount();
+        checkUserLogin();
+    });
+    
+    async function loadFeaturedProducts() {
+        try {
+            // Load products from JSON file
+            const response = await fetch('data/product.json');
+            
+            if (!response.ok) {
+                throw new Error('Failed to load products');
+            }
+            
+            const productData = await response.json();
+            
+            // Extract products from your JSON structure
+            const warehouseProducts = productData.warehouseProducts || [];
+            const storeProducts = productData.storeProducts || [];
+            
+            // Combine all products - store products first, then warehouse
+            const allProducts = [
+                ...storeProducts,
+                ...warehouseProducts.map(p => ({
+                    ...p,
+                    fromWarehouse: true,
+                    store: p.shipperName || 'Warehouse'
+                }))
+            ];
+            
+            // Store in localStorage for other pages to use
+            localStorage.setItem('warehouseProducts', JSON.stringify(warehouseProducts));
+            localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
+            
+            // Get first 4 products for featured section
+            if (allProducts.length > 0) {
+                renderFeaturedProducts(allProducts.slice(0, 4));
+            } else {
+                showNoProductsMessage();
+            }
+            
+        } catch (error) {
+            console.error('Error loading products:', error);
+            showNoProductsMessage();
+        }
+    }
+    
+    function renderFeaturedProducts(products) {
+        const container = document.getElementById('featuredProducts');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        products.forEach(product => {
+            const productElement = document.createElement('div');
+            productElement.className = 'product-card';
+            productElement.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" 
+                         onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                    ${product.fromWarehouse ? '<div class="warehouse-badge">Warehouse</div>' : ''}
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-store">Sold by: ${product.store || product.shipperName || 'GlobalMart'}</p>
+                    <div class="star-rating">
+                        ${generateStarRating(4.5)}
+                    </div>
+                    <p class="product-desc">${product.description || 'Premium quality product'}</p>
+                    <div class="product-price">$${product.price.toFixed(2)}</div>
+                    ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
+                    <button class="btn btn-small add-to-cart" 
+                            data-id="${product.id}" 
+                            data-name="${product.name}" 
+                            data-price="${product.price}" 
+                            data-image="${product.image}">
+                        Add to Cart
+                    </button>
+                    <a href="product-detail.html?id=${product.id}" class="btn btn-outline btn-small view-details">View Details</a>
+                </div>
+            `;
+            container.appendChild(productElement);
+        });
+        
+        // Add event listeners to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const product = {
+                    id: this.dataset.id,
+                    name: this.dataset.name,
+                    price: parseFloat(this.dataset.price),
+                    image: this.dataset.image,
+                    quantity: 1
+                };
+                addToCart(product);
+                updateCartCount();
+            });
+        });
+        
+        // Add event listeners to wishlist buttons
+        document.querySelectorAll('.wishlist-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const heartIcon = this.querySelector('i');
+                if (heartIcon.classList.contains('far')) {
+                    heartIcon.classList.remove('far');
+                    heartIcon.classList.add('fas');
+                    heartIcon.style.color = '#ff4757';
+                } else {
+                    heartIcon.classList.remove('fas');
+                    heartIcon.classList.add('far');
+                    heartIcon.style.color = '';
+                }
+            });
+        });
+    }
+    
+    function generateStarRating(rating) {
+        let stars = '';
+        for (let i = 0; i < 5; i++) {
+            if (i < Math.floor(rating)) {
+                stars += '<i class="fas fa-star"></i>';
+            } else if (i < rating) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            } else {
+                stars += '<i class="far fa-star"></i>';
+            }
+        }
+        return stars;
+    }
+    
+    function showNoProductsMessage() {
+        const container = document.getElementById('featuredProducts');
+        if (!container) return;
+        
+        container.innerHTML = `
+            <div class="no-products" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                <i class="fas fa-box-open" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                <h3>No Products Available</h3>
+                <p>Check back soon for new products!</p>
+            </div>
+        `;
+    }
+    
+    function checkUserLogin() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const dashboardLink = document.querySelector('.dashboard-link');
+        
+        if (currentUser) {
+            dashboardLink.style.display = 'block';
+        }
+    }
+</script>
+</body>
+</html>

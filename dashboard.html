@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+       <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="#" class="nav-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-info">
+                <h1 id="dashboardTitle">Dashboard</h1>
+                <p id="dashboardSubtitle">Welcome to your dashboard</p>
+            </div>
+            <div class="dashboard-actions">
+                <div class="user-info">
+                    <span id="userName">User</span>
+                    <span class="user-role" id="userRole">Role</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard-content">
+        <div class="container">
+            <!-- Customer Dashboard -->
+            <div class="dashboard-section" id="customerDashboard" style="display: none;">
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="card-icon customer">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>My Orders</h3>
+                        <p>View your order history and track shipments</p>
+                        <button class="btn btn-small" id="viewOrdersBtn">View Orders</button>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon customer">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Wishlist</h3>
+                        <p>Save products you love for later</p>
+                        <button class="btn btn-small" id="viewWishlistBtn">View Wishlist</button>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon customer">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>Profile</h3>
+                        <p>Update your personal information</p>
+                        <button class="btn btn-small" id="editProfileBtn">Edit Profile</button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-main">
+                    <h2>Recent Orders</h2>
+                    <div class="orders-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customerOrders">
+                                <!-- Orders will be populated by JS -->
+                                <tr>
+                                    <td colspan="4" class="no-data">No orders yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h2>Recommended Products</h2>
+                    <div class="products-grid" id="customerProducts">
+                        <!-- Recommended products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Store Manager Dashboard -->
+            <div class="dashboard-section" id="managerDashboard" style="display: none;">
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="card-icon manager">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>My Store</h3>
+                        <p id="storeNameDisplay">Store: <span id="storeName">My Store</span></p>
+                        <button class="btn btn-small" id="editStoreBtn">Edit Store</button>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon manager">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3>Store Products</h3>
+                        <p id="productCount">Products: 0</p>
+                        <button class="btn btn-small" id="manageProductsBtn">Manage Products</button>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon manager">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Sales</h3>
+                        <p>View sales analytics</p>
+                        <button class="btn btn-small" id="viewSalesBtn">View Sales</button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-main">
+                    <div class="dashboard-tabs">
+                        <button class="dash-tab-btn active" data-tab="warehouse">Warehouse Products</button>
+                        <button class="dash-tab-btn" data-tab="mystore">My Store Products</button>
+                        <button class="dash-tab-btn" data-tab="orders">Store Orders</button>
+                    </div>
+                    
+                    <!-- Warehouse Products Tab -->
+                    <div class="dash-tab-content active" id="warehouseTab">
+                        <h3>Browse Warehouse Products</h3>
+                        <p>Select products from the warehouse to add to your store</p>
+                        <div class="products-grid" id="warehouseProductsGrid">
+                            <!-- Warehouse products will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- My Store Products Tab -->
+                    <div class="dash-tab-content" id="mystoreTab">
+                        <h3>My Store Products</h3>
+                        <button class="btn btn-small" id="addFromWarehouseBtn">Add from Warehouse</button>
+                        <div class="products-grid" id="myStoreProductsGrid">
+                            <!-- Store products will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Store Orders Tab -->
+                    <div class="dash-tab-content" id="ordersTab">
+                        <h3>Store Orders</h3>
+                        <div class="orders-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Product</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="storeOrders">
+                                    <tr>
+                                        <td colspan="5" class="no-data">No orders yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shipper Dashboard -->
+            <div class="dashboard-section" id="shipperDashboard" style="display: none;">
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="card-icon shipper">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h3>Warehouse</h3>
+                        <p>Manage products in warehouse</p>
+                        <button class="btn btn-small" id="uploadProductBtn">Upload Product</button>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon shipper">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3>My Products</h3>
+                        <p id="shipperProductCount">Products: 0</p>
+                        <button class="btn btn-small" id="viewMyProductsBtn">View Products</button>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon shipper">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Commissions</h3>
+                        <p id="totalCommission">Total: $0.00</p>
+                        <button class="btn btn-small" id="viewCommissionsBtn">View Details</button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-main">
+                    <h2>Upload Product to Warehouse</h2>
+                    <div class="upload-form">
+                        <form id="uploadProductForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="productName">Product Name</label>
+                                    <input type="text" id="productName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productPrice">Price ($)</label>
+                                    <input type="number" id="productPrice" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="productCategory">Category</label>
+                                    <select id="productCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="clothing">Clothing</option>
+                                        <option value="home">Home & Garden</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productCommission">Commission (%)</label>
+                                    <input type="number" id="productCommission" min="1" max="50" value="10" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="productDescription">Description</label>
+                                <textarea id="productDescription" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="productImage">Image URL</label>
+                                <input type="text" id="productImage" placeholder="https://example.com/image.jpg" required>
+                                <small>You can use image URLs from Unsplash or other sources</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Upload to Warehouse</button>
+                        </form>
+                    </div>
+                    
+                    <h2>My Warehouse Products</h2>
+                    <div class="products-grid" id="shipperProductsGrid">
+                        <!-- Shipper's products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Not Logged In Message -->
+            <div class="dashboard-section" id="notLoggedIn">
+                <div class="auth-message">
+                    <i class="fas fa-user-lock"></i>
+                    <h2>Access Restricted</h2>
+                    <p>You need to be logged in to access the dashboard.</p>
+                    <a href="account.html" class="btn btn-primary">Login or Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar (same as index.html) -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Modal for store name -->
+    <div class="modal" id="storeNameModal">
+        <div class="modal-content">
+            <h3>Set Your Store Name</h3>
+            <p>Enter a name for your store:</p>
+            <input type="text" id="storeNameInput" placeholder="e.g., TechZone">
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="saveStoreNameBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+        <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            loadDashboard();
+            setupDashboardTabs();
+            setupDashboardEvents();
+            
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                // Redirect to account page if not logged in
+                window.location.href = 'account.html';
+                return;
+            }
+            
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                window.location.href = 'account.html';
+            });
+        });
+    </script>
+</body>
+</html>

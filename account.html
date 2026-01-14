@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .star-rating {
+            display: flex;
+            gap: 2px;
+            margin: 8px 0;
+        }
+        .star-rating i {
+            color: #ffc107;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link active">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="#" class="nav-link cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Account Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Account</h1>
+            <p>Sign up or login to access your dashboard</p>
+        </div>
+    </section>
+
+    <!-- Account Tabs -->
+    <section class="account-tabs">
+        <div class="container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="loginTabBtn">Login</button>
+                <button class="tab-btn" id="signupTabBtn">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="tab-content active" id="loginTab">
+                <div class="auth-form">
+                    <h2>Login to Your Account</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" id="switchToSignup">Sign up here</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="tab-content" id="signupTab">
+                <div class="auth-form">
+                    <h2>Create Your Account</h2>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <input type="text" id="signupName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email Address</label>
+                            <input type="email" id="signupEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" required>
+                        </div>
+                        
+                        <!-- Role Selection -->
+                        <div class="form-group">
+                            <label>Select Your Role</label>
+                            <div class="role-selection">
+                                <div class="role-option">
+                                    <input type="radio" id="roleCustomer" name="role" value="customer" checked>
+                                    <label for="roleCustomer">
+                                        <i class="fas fa-user"></i>
+                                        <span>Customer</span>
+                                        <small>Browse and purchase products</small>
+                                    </label>
+                                </div>
+                                <div class="role-option">
+                                    <input type="radio" id="roleManager" name="role" value="manager">
+                                    <label for="roleManager">
+                                        <i class="fas fa-store"></i>
+                                        <span>Store Manager</span>
+                                        <small>Create your own store</small>
+                                    </label>
+                                </div>
+                                <div class="role-option">
+                                    <input type="radio" id="roleShipper" name="role" value="shipper">
+                                    <label for="roleShipper">
+                                        <i class="fas fa-shipping-fast"></i>
+                                        <span>Shipper</span>
+                                        <small>Upload products to warehouse</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="auth-success" id="authSuccess" style="display: none;">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Account Created Successfully!</h2>
+                <p>Your account has been created. You can now access your dashboard.</p>
+                <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+        <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            checkUserLogin();
+            setupAccountTabs();
+            setupAuthForms();
+            
+            // Check for role parameter in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const role = urlParams.get('role');
+            if (role) {
+                // Switch to signup tab
+                document.getElementById('signupTabBtn').click();
+                // Select the role
+                const roleInput = document.getElementById(`role${role.charAt(0).toUpperCase() + role.slice(1)}`);
+                if (roleInput) {
+                    roleInput.checked = true;
+                }
+            }
+        });
+        
+        function checkUserLogin() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const dashboardLink = document.querySelector('.dashboard-link');
+            
+            if (currentUser) {
+                // Redirect to dashboard if already logged in
+                window.location.href = 'dashboard.html';
+                return true;
+            }
+            return false;
+        }
+        
+        function setupAccountTabs() {
+            const loginTabBtn = document.getElementById('loginTabBtn');
+            const signupTabBtn = document.getElementById('signupTabBtn');
+            const loginTab = document.getElementById('loginTab');
+            const signupTab = document.getElementById('signupTab');
+            const switchToSignup = document.getElementById('switchToSignup');
+            const switchToLogin = document.getElementById('switchToLogin');
+            
+            if (loginTabBtn && signupTabBtn) {
+                loginTabBtn.addEventListener('click', () => {
+                    loginTabBtn.classList.add('active');
+                    signupTabBtn.classList.remove('active');
+                    loginTab.classList.add('active');
+                    signupTab.classList.remove('active');
+                });
+                
+                signupTabBtn.addEventListener('click', () => {
+                    signupTabBtn.classList.add('active');
+                    loginTabBtn.classList.remove('active');
+                    signupTab.classList.add('active');
+                    loginTab.classList.remove('active');
+                });
+            }
+            
+            if (switchToSignup) {
+                switchToSignup.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    signupTabBtn.click();
+                });
+            }
+            
+            if (switchToLogin) {
+                switchToLogin.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loginTabBtn.click();
+                });
+            }
+        }
+        
+        function setupAuthForms() {
+            // Login Form Submission
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+                    
+                    // Get users from localStorage
+                    const users = JSON.parse(localStorage.getItem('users')) || [];
+                    
+                    // Find user
+                    const user = users.find(u => u.email === email && u.password === password);
+                    
+                    if (user) {
+                        // Store current user
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                        
+                        // Redirect to dashboard
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert('Invalid email or password!');
+                    }
+                });
+            }
+            
+            // Signup Form Submission
+            const signupForm = document.getElementById('signupForm');
+            if (signupForm) {
+                signupForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('signupName').value;
+                    const email = document.getElementById('signupEmail').value;
+                    const password = document.getElementById('signupPassword').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    const role = document.querySelector('input[name="role"]:checked').value;
+                    
+                    // Validate passwords match
+                    if (password !== confirmPassword) {
+                        alert('Passwords do not match!');
+                        return;
+                    }
+                    
+                    // Get existing users
+                    const users = JSON.parse(localStorage.getItem('users')) || [];
+                    
+                    // Check if email already exists
+                    if (users.find(u => u.email === email)) {
+                        alert('Email already registered! Please use a different email.');
+                        return;
+                    }
+                    
+                    // Create user object
+                    const newUser = {
+                        id: Date.now(),
+                        name,
+                        email,
+                        password,
+                        role,
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    // Add storeId for managers
+                    if (role === 'manager') {
+                        newUser.storeId = Date.now();
+                        newUser.storeName = `${name}'s Store`;
+                    }
+                    
+                    // Add to users array
+                    users.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    
+                    // Store as current user
+                    localStorage.setItem('currentUser', JSON.stringify(newUser));
+                    
+                    // Show success message
+                    document.getElementById('signupTab').style.display = 'none';
+                    document.getElementById('authSuccess').style.display = 'block';
+                    
+                    // Automatically redirect to dashboard after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

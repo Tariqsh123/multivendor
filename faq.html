@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .faq-container {
+            padding: 80px 0;
+        }
+        
+        .faq-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .faq-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .faq-hero p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .faq-category-btn {
+            padding: 12px 25px;
+            background: var(--light);
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .faq-category-btn.active,
+        .faq-category-btn:hover {
+            background: var(--secondary);
+            color: var(--light);
+            border-color: var(--secondary);
+        }
+        
+        .faq-section {
+            margin-bottom: 50px;
+        }
+        
+        .faq-section h2 {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            color: var(--primary);
+        }
+        
+        .faq-item {
+            background: var(--light);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .faq-question:hover {
+            background: rgba(255, 107, 0, 0.05);
+        }
+        
+        .faq-question i {
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 25px 25px 25px;
+            max-height: 500px;
+        }
+        
+        .contact-support {
+            background: var(--gray);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .contact-support h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .contact-support p {
+            margin-bottom: 25px;
+            color: var(--medium-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .faq-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .faq-category-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .faq-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-support {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="#" class="nav-link cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- FAQ Hero -->
+    <section class="faq-container">
+        <div class="container">
+            <div class="faq-hero">
+                <h1>Frequently Asked Questions</h1>
+                <p>Find answers to common questions about GlobalMart platform, ordering, shipping, and account management.</p>
+            </div>
+            
+            <!-- FAQ Categories -->
+            <div class="faq-categories">
+                <button class="faq-category-btn active" data-category="all">All Questions</button>
+                <button class="faq-category-btn" data-category="general">General</button>
+                <button class="faq-category-btn" data-category="account">Account</button>
+                <button class="faq-category-btn" data-category="ordering">Ordering</button>
+                <button class="faq-category-btn" data-category="shipping">Shipping</button>
+            </div>
+            
+            <!-- FAQ Sections -->
+            <div class="faq-content">
+                <!-- General Questions -->
+                <div class="faq-section" data-category="general">
+                    <h2>General Questions</h2>
+                    
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question">
+                            <span>What is GlobalMart?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>GlobalMart is a multi-vendor B2B and B2C marketplace that connects Chinese suppliers with global markets. Our platform enables shippers to upload products to warehouses, store managers to curate stores, and customers to shop from multiple vendors in one place.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question">
+                            <span>How does the three-tier model work?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our unique three-tier model includes:<br>
+                            1. <strong>Shippers</strong>: Upload products to our warehouse with pricing and commission rates<br>
+                            2. <strong>Store Managers</strong>: Browse warehouse products and add them to their stores with markup<br>
+                            3. <strong>Customers</strong>: Shop from all stores, add to cart, and checkout seamlessly</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question">
+                            <span>Is GlobalMart free to use?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, GlobalMart is completely free for customers to browse and shop. For shippers and store managers, there are no upfront fees. Shippers earn commissions on sales, and store managers earn through markup on products sold from their stores.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Account Questions -->
+                <div class="faq-section" data-category="account">
+                    <h2>Account & Registration</h2>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <span>How do I create an account?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Click on "Account" in the navigation menu, then select "Sign Up". Choose your role (Customer, Store Manager, or Shipper), fill in your details, and click "Create Account". You'll be automatically logged in and redirected to your dashboard.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <span>Can I change my role after registration?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Currently, you cannot change your role after registration. Each role has specific permissions and dashboards. If you want to operate in a different role, you'll need to create a separate account with a different email address.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <span>I forgot my password. How can I reset it?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Go to the login page and click "Forgot Password". Enter your email address and we'll send you a password reset link. For this demo version, please contact support if you need assistance with account recovery.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <span>How do store managers set up their store?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>After registering as a store manager, go to your dashboard. You can set your store name, browse warehouse products, and add them to your store. You'll set your own prices (with markup) and manage your store inventory from the dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ordering Questions -->
+                <div class="faq-section" data-category="ordering">
+                    <h2>Ordering & Payments</h2>
+                    
+                    <div class="faq-item" data-category="ordering">
+                        <div class="faq-question">
+                            <span>How do I place an order?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>1. Browse products and click "Add to Cart"<br>
+                            2. Click the cart icon to review your items<br>
+                            3. Click "Proceed to Checkout"<br>
+                            4. Enter shipping and payment information<br>
+                            5. Click "Place Order" to complete your purchase</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="ordering">
+                        <div class="faq-question">
+                            <span>What payment methods are accepted?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and Stripe. For B2B transactions, we also offer bank transfer options (contact support for details).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="ordering">
+                        <div class="faq-question">
+                            <span>Is my payment information secure?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, all payments are processed through secure payment gateways. We use SSL encryption to protect your personal and payment information. GlobalMart does not store your credit card details on our servers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="ordering">
+                        <div class="faq-question">
+                            <span>Can I cancel or modify my order?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Orders can be cancelled or modified within 1 hour of placement if they haven't been processed for shipping. Go to your dashboard > My Orders to cancel. For modifications, contact our support team immediately.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shipping Questions -->
+                <div class="faq-section" data-category="shipping">
+                    <h2>Shipping & Delivery</h2>
+                    
+                    <div class="faq-item" data-category="shipping">
+                        <div class="faq-question">
+                            <span>Where does GlobalMart ship to?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We ship worldwide to over 50 countries. During checkout, you can select your country from the dropdown menu. Some remote locations may have shipping restrictions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="shipping">
+                        <div class="faq-question">
+                            <span>How long does shipping take?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Standard shipping takes 7-14 business days for most destinations. Express shipping (3-7 business days) is available for an additional fee. Shipping times may vary based on destination and customs clearance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="shipping">
+                        <div class="faq-question">
+                            <span>What are the shipping costs?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Standard shipping is $5.99 for most orders. Free shipping is available for orders over $100. Express shipping costs vary by destination and are calculated at checkout.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="shipping">
+                        <div class="faq-question">
+                            <span>How can I track my order?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once your order is shipped, you'll receive a tracking number via email. You can also view tracking information in your dashboard under "My Orders".</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-category="shipping">
+                        <div class="faq-question">
+                            <span>What is your return policy?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer a 30-day return policy for most items. Items must be unused, in original packaging with all tags attached. Shipping costs for returns are the responsibility of the customer unless the item is defective or incorrect.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Support -->
+            <div class="contact-support">
+                <h3>Still Have Questions?</h3>
+                <p>Can't find the answer you're looking for? Our support team is here to help.</p>
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-headset"></i> Contact Support
+                </a>
+                <p style="margin-top: 20px; font-size: 0.9rem;">
+                    <i class="fas fa-phone"></i> +86 123 456 7890 | 
+                    <i class="fas fa-envelope"></i> support@globalmart.com
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            checkUserLogin();
+            setupFAQ();
+        });
+        
+        function checkUserLogin() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const dashboardLink = document.querySelector('.dashboard-link');
+            
+            if (currentUser) {
+                dashboardLink.style.display = 'block';
+            }
+        }
+        
+        function setupFAQ() {
+            // FAQ accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // FAQ category filtering
+            const categoryButtons = document.querySelectorAll('.faq-category-btn');
+            const faqSections = document.querySelectorAll('.faq-section');
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const selectedCategory = button.dataset.category;
+                    
+                    // Show/hide FAQ items based on category
+                    if (selectedCategory === 'all') {
+                        // Show all items and sections
+                        faqSections.forEach(section => {
+                            section.style.display = 'block';
+                        });
+                        allFaqItems.forEach(item => {
+                            item.style.display = 'block';
+                        });
+                    } else {
+                        // Hide all sections first
+                        faqSections.forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        
+                        // Show sections that have items in the selected category
+                        const sectionsToShow = document.querySelectorAll(`.faq-section[data-category="${selectedCategory}"]`);
+                        sectionsToShow.forEach(section => {
+                            section.style.display = 'block';
+                        });
+                        
+                        // Hide all items not in selected category
+                        allFaqItems.forEach(item => {
+                            if (item.dataset.category === selectedCategory) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    }
+                    
+                    // Close all open items when changing category
+                    allFaqItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>

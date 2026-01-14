@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-container {
+            padding: 80px 0;
+        }
+        
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-hero p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-info-section {
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-form-section {
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title i {
+            font-size: 1.5rem;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .contact-details p {
+            color: var(--medium-gray);
+            margin-bottom: 5px;
+        }
+        
+        .contact-details a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        .office-hours {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .hours-table {
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .hours-table tr {
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .hours-table td {
+            padding: 10px 0;
+        }
+        
+        .hours-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .hours-table td:last-child {
+            color: var(--medium-gray);
+            text-align: right;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .department-select {
+            margin-bottom: 20px;
+        }
+        
+        .department-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .department-option {
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .department-option:hover {
+            border-color: var(--secondary);
+            background: rgba(255, 107, 0, 0.05);
+        }
+        
+        .department-option.active {
+            border-color: var(--secondary);
+            background: rgba(255, 107, 0, 0.1);
+        }
+        
+        .department-option i {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .department-option h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .department-option p {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .submit-btn i {
+            margin-right: 10px;
+        }
+        
+        .departments-section {
+            background: var(--gray);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            margin-bottom: 60px;
+        }
+        
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .department-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .department-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .department-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .department-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .department-card p {
+            color: var(--medium-gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .department-contact {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .response-time {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+            margin-top: 5px;
+        }
+        
+        .faq-preview {
+            background: var(--light);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-preview h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+        
+        .faq-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .faq-item {
+            background: var(--gray);
+            padding: 20px;
+            border-radius: var(--border-radius);
+        }
+        
+        .faq-item h4 {
+            margin-bottom: 10px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .faq-item h4 i {
+            color: var(--secondary);
+        }
+        
+        .faq-item p {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+        }
+        
+        .view-all-faq {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+        
+        .success-message i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .map-section {
+            margin-top: 60px;
+        }
+        
+        .map-placeholder {
+            background: var(--gray);
+            height: 400px;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .map-placeholder i {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .map-placeholder h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .map-placeholder p {
+            color: var(--medium-gray);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .departments-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-info-section,
+            .contact-form-section {
+                padding: 25px;
+            }
+            
+            .departments-section {
+                padding: 30px 20px;
+            }
+            
+            .faq-preview {
+                padding: 30px 20px;
+            }
+            
+            .faq-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .department-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="#" class="nav-link cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contact Us Hero -->
+    <section class="contact-container">
+        <div class="container">
+            <div class="contact-hero">
+                <h1>Contact GlobalMart</h1>
+                <p>We're here to help! Reach out to us for any questions, concerns, or feedback. Our global team is ready to assist you 24/7.</p>
+                <p><strong>Average Response Time:</strong> Within 2 hours during business hours</p>
+            </div>
+            
+            <!-- Main Contact Grid -->
+            <div class="contact-grid">
+                <!-- Contact Information -->
+                <div class="contact-info-section">
+                    <h2 class="section-title"><i class="fas fa-info-circle"></i> Contact Information</h2>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Phone Support</h3>
+                                <p><strong>General Inquiries:</strong> +86 123 456 7890</p>
+                                <p><strong>Customer Support:</strong> +86 123 456 7891</p>
+                                <p><strong>Sales Department:</strong> +86 123 456 7892</p>
+                                <a href="tel:+861234567890">Call Now</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email Support</h3>
+                                <p><strong>General:</strong> info@globalmart.com</p>
+                                <p><strong>Support:</strong> support@globalmart.com</p>
+                                <p><strong>Business:</strong> business@globalmart.com</p>
+                                <a href="mailto:support@globalmart.com">Email Now</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Headquarters</h3>
+                                <p>123 Business Avenue</p>
+                                <p>Shanghai Free Trade Zone</p>
+                                <p>Shanghai, China 200000</p>
+                                <a href="#map">View on Map</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Live Chat</h3>
+                                <p><strong>Available:</strong> 24/7 for urgent matters</p>
+                                <p><strong>Response Time:</strong> Within 5 minutes</p>
+                                <p><strong>Languages:</strong> English, Chinese, Spanish</p>
+                                <a href="#" id="startChat">Start Chat Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="office-hours">
+                        <h3><i class="fas fa-business-time"></i> Business Hours</h3>
+                        <table class="hours-table">
+                            <tr>
+                                <td>Monday - Friday</td>
+                                <td>9:00 AM - 6:00 PM (GMT+8)</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>10:00 AM - 4:00 PM (GMT+8)</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>Emergency Support Only</td>
+                            </tr>
+                            <tr>
+                                <td>Public Holidays</td>
+                                <td>Limited Support Available</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2 class="section-title"><i class="fas fa-paper-plane"></i> Send us a Message</h2>
+                    
+                    <div class="department-select">
+                        <label>Select Department</label>
+                        <div class="department-options">
+                            <div class="department-option active" data-department="general">
+                                <i class="fas fa-question-circle"></i>
+                                <h4>General</h4>
+                                <p>General inquiries</p>
+                            </div>
+                            <div class="department-option" data-department="support">
+                                <i class="fas fa-headset"></i>
+                                <h4>Support</h4>
+                                <p>Technical help</p>
+                            </div>
+                            <div class="department-option" data-department="sales">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>Sales</h4>
+                                <p>Business inquiries</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="orderNumber">Order Number (if applicable)</label>
+                            <input type="text" id="orderNumber" placeholder="GM-123456">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" rows="6" required placeholder="Please describe your inquiry in detail..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="attachment">Attachment (Optional)</label>
+                            <input type="file" id="attachment">
+                            <small style="color: var(--medium-gray); display: block; margin-top: 5px;">Max file size: 5MB (Images, PDF, DOC)</small>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                    
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Message Sent Successfully!</strong> We'll get back to you within 2 hours.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Departments Section -->
+            <div class="departments-section">
+                <h2 class="section-title" style="border: none; text-align: center;"><i class="fas fa-users"></i> Contact by Department</h2>
+                <p style="text-align: center; color: var(--medium-gray); max-width: 800px; margin: 0 auto 30px;">Different departments handle specific types of inquiries. Choose the right department for faster response.</p>
+                
+                <div class="departments-grid">
+                    <div class="department-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Customer Support</h3>
+                        <p>Order issues, returns, exchanges, and general customer service</p>
+                        <div class="department-contact">support@globalmart.com</div>
+                        <div class="response-time">Response: Within 2 hours</div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Shipping & Logistics</h3>
+                        <p>Delivery tracking, shipping costs, customs, and international shipping</p>
+                        <div class="department-contact">shipping@globalmart.com</div>
+                        <div class="response-time">Response: Within 4 hours</div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <i class="fas fa-store"></i>
+                        <h3>Store Manager Support</h3>
+                        <p>Store setup, product management, commission queries</p>
+                        <div class="department-contact">managers@globalmart.com</div>
+                        <div class="response-time">Response: Within 24 hours</div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <i class="fas fa-warehouse"></i>
+                        <h3>Shipper Support</h3>
+                        <p>Warehouse uploads, commission payments, product listings</p>
+                        <div class="department-contact">shippers@globalmart.com</div>
+                        <div class="response-time">Response: Within 24 hours</div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Business Development</h3>
+                        <p>Partnerships, wholesale inquiries, enterprise solutions</p>
+                        <div class="department-contact">business@globalmart.com</div>
+                        <div class="response-time">Response: Within 48 hours</div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <i class="fas fa-bug"></i>
+                        <h3>Technical Support</h3>
+                        <p>Website issues, account problems, technical errors</p>
+                        <div class="department-contact">tech@globalmart.com</div>
+                        <div class="response-time">Response: Within 6 hours</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Preview -->
+            <div class="faq-preview">
+                <h2>Frequently Asked Questions</h2>
+                <p style="text-align: center; color: var(--medium-gray); margin-bottom: 40px;">Quick answers to common questions before you contact us</p>
+                
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <h4><i class="fas fa-shipping-fast"></i> How long does shipping take?</h4>
+                        <p>Standard shipping takes 7-14 business days. Express options available (3-7 days). Delivery times vary by destination.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4><i class="fas fa-exchange-alt"></i> What's your return policy?</h4>
+                        <p>30-day return window for most items. Items must be unused with original packaging. Defective items have 90-day coverage.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4><i class="fas fa-lock"></i> Is my payment secure?</h4>
+                        <p>Yes, we use SSL encryption and secure payment gateways. We never store your credit card information on our servers.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4><i class="fas fa-globe"></i> Do you ship internationally?</h4>
+                        <p>Yes, we ship to over 50 countries worldwide. Shipping costs and times vary by destination.</p>
+                    </div>
+                </div>
+                
+                <div class="view-all-faq">
+                    <a href="faq.html" class="btn btn-outline">
+                        <i class="fas fa-question-circle"></i> View All FAQ
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+            <div class="map-section" id="map">
+                <h2 class="section-title" style="border: none; margin-bottom: 30px;"><i class="fas fa-map-marked-alt"></i> Our Location</h2>
+                
+                <div class="map-placeholder">
+                    <i class="fas fa-map"></i>
+                    <h3>GlobalMart Headquarters</h3>
+                    <p>123 Business Avenue, Shanghai Free Trade Zone, Shanghai, China 200000</p>
+                    <p style="margin-top: 15px;"><strong>Nearest Metro:</strong> Line 2 - People's Square Station</p>
+                    <p><strong>Parking:</strong> Available in building basement (first 2 hours free)</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="#" class="btn btn-outline" style="margin-right: 10px;">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="tel:+861234567890" class="btn btn-outline">
+                            <i class="fas fa-phone"></i> Call for Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM (GMT+8)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            checkUserLogin();
+            setupContactForm();
+            setupDepartmentSelection();
+            setupLiveChat();
+        });
+        
+        function checkUserLogin() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const dashboardLink = document.querySelector('.dashboard-link');
+            
+            if (currentUser) {
+                dashboardLink.style.display = 'block';
+            }
+        }
+        
+        function setupDepartmentSelection() {
+            const departmentOptions = document.querySelectorAll('.department-option');
+            
+            departmentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    departmentOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update hidden department field if exists
+                    const departmentInput = document.getElementById('department');
+                    if (departmentInput) {
+                        departmentInput.value = this.dataset.department;
+                    }
+                });
+            });
+        }
+        
+        function setupContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = {
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        orderNumber: document.getElementById('orderNumber').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value,
+                        department: document.querySelector('.department-option.active').dataset.department,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // Get existing messages from localStorage
+                    const messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+                    
+                    // Add new message
+                    messages.push(formData);
+                    localStorage.setItem('contactMessages', JSON.stringify(messages));
+                    
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Reset department selection
+                    document.querySelectorAll('.department-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    document.querySelector('.department-option[data-department="general"]').classList.add('active');
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            }
+        }
+        
+        function setupLiveChat() {
+            const startChatBtn = document.getElementById('startChat');
+            
+            if (startChatBtn) {
+                startChatBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Check if user is logged in
+                    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                    
+                    if (currentUser) {
+                        // In a real app, this would connect to a live chat service
+                        alert('Live chat feature is currently in development. Please use email or phone support for immediate assistance.');
+                    } else {
+                        // Prompt login for chat
+                        if (confirm('To use live chat, you need to be logged in. Would you like to login now?')) {
+                            window.location.href = 'account.html';
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Add smooth scrolling for map link
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

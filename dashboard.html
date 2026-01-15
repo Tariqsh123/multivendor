@@ -554,145 +554,182 @@
 
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/wishlist.js"></script>
     <script src="js/cart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartCount();
-            loadDashboard();
-            setupDashboardTabs();
-            setupDashboardEvents();
-            setupOverlayEvents();
-            
-            // Check if user is logged in
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser) {
-                window.location.href = 'account.html';
-                return;
-            }
-            
-            // Logout button
-            document.getElementById('logoutBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                localStorage.removeItem('currentUser');
-                window.location.href = 'account.html';
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        loadDashboard();
+        setupDashboardTabs();
+        setupDashboardEvents();
+        setupOverlayEvents();
+        
+        // Initialize wishlist
+        if (typeof initWishlist === 'function') {
+            initWishlist();
+        }
+        
+        // Update wishlist count
+        if (typeof updateWishlistCount === 'function') {
+            updateWishlistCount();
+        }
+        
+        // Check if user is logged in
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'account.html';
+            return;
+        }
+        
+        // Logout button
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = 'account.html';
+        });
+    });
+    
+    // 通用辅助函数
+    function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+    
+    function setupOverlayEvents() {
+        // 关闭覆盖层按钮
+        document.querySelectorAll('.close-overlay').forEach(button => {
+            button.addEventListener('click', function() {
+                const overlayId = this.dataset.overlay;
+                closeOverlay(overlayId);
             });
         });
         
-        // 通用辅助函数
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+        // 点击背景关闭覆盖层
+        document.getElementById('overlayBackdrop').addEventListener('click', closeAllOverlays);
+        
+        // ESC键关闭覆盖层
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAllOverlays();
+        });
+    }
+    
+    function openOverlay(overlayId) {
+        // 根据覆盖层类型加载内容
+        switch(overlayId) {
+            case 'wishlist':
+                loadWishlist();
+                break;
+            case 'profile':
+                loadProfile();
+                break;
+            case 'commission':
+                loadCommissionDetails();
+                break;
         }
         
-        function setupOverlayEvents() {
-            // 关闭覆盖层按钮
-            document.querySelectorAll('.close-overlay').forEach(button => {
-                button.addEventListener('click', function() {
-                    const overlayId = this.dataset.overlay;
-                    closeOverlay(overlayId);
-                });
-            });
-            
-            // 点击背景关闭覆盖层
-            document.getElementById('overlayBackdrop').addEventListener('click', closeAllOverlays);
-            
-            // ESC键关闭覆盖层
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeAllOverlays();
-            });
+        document.getElementById(`${overlayId}Overlay`).classList.add('active');
+        document.getElementById('overlayBackdrop').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeOverlay(overlayId) {
+        document.getElementById(`${overlayId}Overlay`).classList.remove('active');
+        document.getElementById('overlayBackdrop').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    function closeAllOverlays() {
+        document.querySelectorAll('.overlay-panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+        document.getElementById('overlayBackdrop').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // 加载愿望清单
+    function loadWishlist() {
+        // Use getWishlistItems from wishlist.js if available
+        const wishlist = typeof getWishlistItems === 'function' ? getWishlistItems() : JSON.parse(localStorage.getItem('wishlist')) || [];
+        const container = document.getElementById('wishlistContent');
+        
+        if (!container) return;
+        
+        // Update wishlist count in overlay header
+        const countElement = document.getElementById('wishlistCount');
+        if (countElement) {
+            countElement.textContent = wishlist.length;
         }
         
-        function openOverlay(overlayId) {
-            // 根据覆盖层类型加载内容
-            switch(overlayId) {
-                case 'wishlist':
-                    loadWishlist();
-                    break;
-                case 'profile':
-                    loadProfile();
-                    break;
-                case 'commission':
-                    loadCommissionDetails();
-                    break;
-            }
-            
-            document.getElementById(`${overlayId}Overlay`).classList.add('active');
-            document.getElementById('overlayBackdrop').classList.add('active');
-            document.body.style.overflow = 'hidden';
+        if (wishlist.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-heart" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                    <h3>Your wishlist is empty</h3>
+                    <p>Click the heart icon on any product to add it here</p>
+                    <a href="products.html" class="btn btn-primary">Browse Products</a>
+                </div>
+            `;
+            return;
         }
         
-        function closeOverlay(overlayId) {
-            document.getElementById(`${overlayId}Overlay`).classList.remove('active');
-            document.getElementById('overlayBackdrop').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        function closeAllOverlays() {
-            document.querySelectorAll('.overlay-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            document.getElementById('overlayBackdrop').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        // 加载愿望清单
-        function loadWishlist() {
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const container = document.getElementById('wishlistContent');
-            
-            if (wishlist.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 40px;">
-                        <i class="fas fa-heart" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
-                        <h3>Your wishlist is empty</h3>
-                        <p>Add products to your wishlist to see them here</p>
-                        <a href="products.html" class="btn btn-primary">Browse Products</a>
+        let html = '<div style="display: flex; flex-direction: column; gap: 15px;">';
+        wishlist.forEach(item => {
+            html += `
+                <div class="wishlist-item">
+                    <img src="${item.image}" alt="${item.name}" 
+                         style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;"
+                         onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0 0 5px 0;">${item.name}</h4>
+                        <div style="color: var(--secondary); font-weight: bold;">$${item.price.toFixed(2)}</div>
+                        <div style="font-size: 0.9rem; color: #666;">${item.store || 'GlobalMart'}</div>
+                        <div style="font-size: 0.8rem; color: #999;">Added ${new Date(item.addedAt).toLocaleDateString()}</div>
                     </div>
-                `;
-                return;
-            }
-            
-            let html = '<div style="display: flex; flex-direction: column; gap: 15px;">';
-            wishlist.forEach(item => {
-                html += `
-                    <div class="wishlist-item">
-                        <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                        <div style="flex: 1;">
-                            <h4 style="margin: 0 0 5px 0;">${item.name}</h4>
-                            <div style="color: var(--secondary); font-weight: bold;">$${item.price.toFixed(2)}</div>
-                            <div style="font-size: 0.9rem; color: #666;">${item.category || 'General'}</div>
-                        </div>
-                        <button class="remove-wishlist" onclick="removeFromWishlist(${item.id})" title="Remove from wishlist">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <div class="action-buttons">
-                            <button class="btn btn-small" onclick="addToCartFromWishlist(${item.id})">Add to Cart</button>
-                            <a href="product-detail.html?id=${item.id}" class="btn btn-outline btn-small">View Details</a>
-                        </div>
+                    <button class="remove-wishlist" onclick="removeFromWishlistById(${item.id})" title="Remove from wishlist">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="action-buttons">
+                        <button class="btn btn-small" onclick="addToCartFromWishlist(${item.id})">Add to Cart</button>
+                        <a href="products.html" class="btn btn-outline btn-small">View Similar</a>
                     </div>
-                `;
-            });
-            html += '</div>';
-            
-            container.innerHTML = html;
-        }
+                </div>
+            `;
+        });
+        html += '</div>';
         
-        // 从愿望清单移除产品
-        function removeFromWishlist(productId) {
+        container.innerHTML = html;
+    }
+    
+    // 从愿望清单移除产品
+    function removeFromWishlist(productId) {
+        // Use removeFromWishlistById function if available
+        if (typeof removeFromWishlistById === 'function') {
+            removeFromWishlistById(productId);
+        } else {
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
             wishlist = wishlist.filter(item => item.id != productId);
             localStorage.setItem('wishlist', JSON.stringify(wishlist));
             loadWishlist();
             showToast('Product removed from wishlist');
+            
+            // Update wishlist count
+            if (typeof updateWishlistCount === 'function') {
+                updateWishlistCount();
+            }
         }
-        
-        // 从愿望清单添加到购物车
-        function addToCartFromWishlist(productId) {
+    }
+    
+    // 从愿望清单添加到购物车
+    function addToCartFromWishlist(productId) {
+        // Use addToCartFromWishlist from wishlist.js if available
+        if (typeof window.addToCartFromWishlist === 'function') {
+            window.addToCartFromWishlist(productId);
+        } else {
             const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
             const product = wishlist.find(item => item.id == productId);
             
@@ -702,309 +739,354 @@
                 showToast(`${product.name} added to cart!`);
             }
         }
+    }
+    
+    // Remove from wishlist by ID (dashboard specific)
+    function removeFromWishlistById(productId) {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        wishlist = wishlist.filter(item => item.id != productId);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
         
-        // 加载个人资料
-        function loadProfile() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
-            const container = document.getElementById('profileContent');
+        // Reload wishlist display
+        loadWishlist();
+        
+        // Update wishlist count
+        if (typeof updateWishlistCount === 'function') {
+            updateWishlistCount();
+        }
+        
+        // Update wishlist buttons on other pages
+        if (typeof updateWishlistButtons === 'function') {
+            updateWishlistButtons();
+        }
+        
+        showToast('Product removed from wishlist');
+    }
+    
+    // 加载个人资料
+    function loadProfile() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+        const container = document.getElementById('profileContent');
+        
+        container.innerHTML = `
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="width: 100px; height: 100px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>${currentUser.name || 'User'}</h3>
+                <span class="user-role" style="background: var(--secondary); color: white; padding: 5px 15px; border-radius: 20px;">
+                    ${currentUser.role ? currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1) : 'User'}
+                </span>
+            </div>
             
+            <div class="profile-info">
+                <h4><i class="fas fa-info-circle"></i> Account Information</h4>
+                <p><strong>Name:</strong> <span id="profileName">${currentUser.name || 'Not set'}</span></p>
+                <p><strong>Email:</strong> ${currentUser.email || 'Not set'}</p>
+                <p><strong>Phone:</strong> ${currentUser.phone || 'Not set'}</p>
+                <p><strong>Joined:</strong> ${currentUser.createdAt ? new Date(currentUser.createdAt).toLocaleDateString() : 'Not available'}</p>
+            </div>
+            
+            <h4><i class="fas fa-edit"></i> Edit Profile</h4>
+            <p style="color: #666; margin-bottom: 15px;">You can only change your name. Contact support for other changes.</p>
+            <div class="profile-form">
+                <input type="text" id="editUserName" value="${currentUser.name || ''}" placeholder="Enter your name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px;">
+                <button class="btn btn-primary" onclick="updateUserName()">Update Name</button>
+            </div>
+        `;
+    }
+    
+    // 更新用户名
+    function updateUserName() {
+        const newName = document.getElementById('editUserName')?.value.trim();
+        if (!newName) {
+            alert('Please enter a valid name');
+            return;
+        }
+        
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) return;
+        
+        currentUser.name = newName;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        
+        // 更新所有显示的名称
+        document.querySelectorAll('#userName, #profileName').forEach(el => {
+            el.textContent = newName;
+        });
+        
+        showToast('Name updated successfully!');
+    }
+    
+    // 加载佣金详情
+    function loadCommissionDetails() {
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        if (!currentUser || currentUser.role !== 'shipper') return;
+        
+        const shipperProducts = warehouseProducts.filter(p => p.shipperId === currentUser.id);
+        const container = document.getElementById('commissionContent');
+        
+        if (shipperProducts.length === 0) {
             container.innerHTML = `
-                <div style="text-align: center; margin-bottom: 30px;">
-                    <div style="width: 100px; height: 100px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px;">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>${currentUser.name || 'User'}</h3>
-                    <span class="user-role" style="background: var(--secondary); color: white; padding: 5px 15px; border-radius: 20px;">
-                        ${currentUser.role ? currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1) : 'User'}
-                    </span>
-                </div>
-                
-                <div class="profile-info">
-                    <h4><i class="fas fa-info-circle"></i> Account Information</h4>
-                    <p><strong>Name:</strong> <span id="profileName">${currentUser.name || 'Not set'}</span></p>
-                    <p><strong>Email:</strong> ${currentUser.email || 'Not set'}</p>
-                    <p><strong>Phone:</strong> ${currentUser.phone || 'Not set'}</p>
-                    <p><strong>Joined:</strong> ${currentUser.createdAt ? new Date(currentUser.createdAt).toLocaleDateString() : 'Not available'}</p>
-                </div>
-                
-                <h4><i class="fas fa-edit"></i> Edit Profile</h4>
-                <p style="color: #666; margin-bottom: 15px;">You can only change your name. Contact support for other changes.</p>
-                <div class="profile-form">
-                    <input type="text" id="editUserName" value="${currentUser.name || ''}" placeholder="Enter your name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px;">
-                    <button class="btn btn-primary" onclick="updateUserName()">Update Name</button>
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-money-bill-wave" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                    <h3>No commission data</h3>
+                    <p>Upload products to start earning commissions</p>
                 </div>
             `;
+            return;
         }
         
-        // 更新用户名
-        function updateUserName() {
-            const newName = document.getElementById('editUserName')?.value.trim();
-            if (!newName) {
-                alert('Please enter a valid name');
-                return;
-            }
-            
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser) return;
-            
-            currentUser.name = newName;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            // 更新所有显示的名称
-            document.querySelectorAll('#userName, #profileName').forEach(el => {
-                el.textContent = newName;
-            });
-            
-            showToast('Name updated successfully!');
-        }
+        let totalCommission = 0;
+        let totalSales = 0;
         
-        // 加载佣金详情
-        function loadCommissionDetails() {
-            const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-            const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let html = `
+            <h4>Commission Summary</h4>
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>Total Products:</span>
+                    <strong>${shipperProducts.length}</strong>
+                </div>
+        `;
+        
+        shipperProducts.forEach(product => {
+            const storeCount = storeProducts.filter(sp => sp.warehouseId === product.id).length;
+            const productSales = (product.sold || 0) * product.price;
+            const productCommission = productSales * (product.commission / 100);
             
-            if (!currentUser || currentUser.role !== 'shipper') return;
-            
-            const shipperProducts = warehouseProducts.filter(p => p.shipperId === currentUser.id);
-            const container = document.getElementById('commissionContent');
-            
-            if (shipperProducts.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 40px;">
-                        <i class="fas fa-money-bill-wave" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
-                        <h3>No commission data</h3>
-                        <p>Upload products to start earning commissions</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            let totalCommission = 0;
-            let totalSales = 0;
-            
-            let html = `
-                <h4>Commission Summary</h4>
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <span>Total Products:</span>
-                        <strong>${shipperProducts.length}</strong>
-                    </div>
-            `;
-            
-            shipperProducts.forEach(product => {
-                const storeCount = storeProducts.filter(sp => sp.warehouseId === product.id).length;
-                const productSales = (product.sold || 0) * product.price;
-                const productCommission = productSales * (product.commission / 100);
-                
-                totalSales += productSales;
-                totalCommission += productCommission;
-                
-                html += `
-                    <div style="border-bottom: 1px solid #ddd; padding: 10px 0;">
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>${product.name}</span>
-                            <strong>$${productCommission.toFixed(2)}</strong>
-                        </div>
-                        <div style="font-size: 0.9rem; color: #666;">
-                            Sold: ${product.sold || 0} units | In ${storeCount} stores
-                            <button class="btn btn-small" style="margin-left: 10px; padding: 2px 8px; font-size: 0.8rem;" 
-                                    onclick="viewProductStores(${product.id})">View Stores</button>
-                        </div>
-                    </div>
-                `;
-            });
+            totalSales += productSales;
+            totalCommission += productCommission;
             
             html += `
-                    <div style="border-top: 2px solid #ddd; margin-top: 10px; padding-top: 10px; font-weight: bold;">
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>Total Commission:</span>
-                            <strong style="color: var(--secondary);">$${totalCommission.toFixed(2)}</strong>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
-                            <span>Total Sales:</span>
-                            <span>$${totalSales.toFixed(2)}</span>
-                        </div>
+                <div style="border-bottom: 1px solid #ddd; padding: 10px 0;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>${product.name}</span>
+                        <strong>$${productCommission.toFixed(2)}</strong>
+                    </div>
+                    <div style="font-size: 0.9rem; color: #666;">
+                        Sold: ${product.sold || 0} units | In ${storeCount} stores
+                        <button class="btn btn-small" style="margin-left: 10px; padding: 2px 8px; font-size: 0.8rem;" 
+                                onclick="viewProductStores(${product.id})">View Stores</button>
                     </div>
                 </div>
             `;
-            
-            container.innerHTML = html;
-        }
+        });
         
-        // 查看哪些店铺添加了产品
-        function viewProductStores(productId) {
-            const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-            const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-            const product = warehouseProducts.find(p => p.id == productId);
-            
-            if (!product) return;
-            
-            const stores = storeProducts.filter(sp => sp.warehouseId == productId);
-            const container = document.getElementById('storesContent');
-            
-            let html = `
-                <div style="margin-bottom: 20px;">
-                    <h4>${product.name}</h4>
-                    <p style="color: #666;">Original Price: $${product.price.toFixed(2)} | Commission: ${product.commission}%</p>
+        html += `
+                <div style="border-top: 2px solid #ddd; margin-top: 10px; padding-top: 10px; font-weight: bold;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Total Commission:</span>
+                        <strong style="color: var(--secondary);">$${totalCommission.toFixed(2)}</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span>Total Sales:</span>
+                        <span>$${totalSales.toFixed(2)}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+    }
+    
+    // 查看哪些店铺添加了产品
+    function viewProductStores(productId) {
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const product = warehouseProducts.find(p => p.id == productId);
+        
+        if (!product) return;
+        
+        const stores = storeProducts.filter(sp => sp.warehouseId == productId);
+        const container = document.getElementById('storesContent');
+        
+        let html = `
+            <div style="margin-bottom: 20px;">
+                <h4>${product.name}</h4>
+                <p style="color: #666;">Original Price: $${product.price.toFixed(2)} | Commission: ${product.commission}%</p>
+            </div>
+        `;
+        
+        if (stores.length === 0) {
+            html += `
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fas fa-store-slash" style="font-size: 2rem; color: #ccc; margin-bottom: 10px;"></i>
+                    <p>No stores have added this product yet</p>
                 </div>
             `;
+        } else {
+            html += '<h5>Stores Selling This Product:</h5>';
+            html += '<div class="store-list">';
             
-            if (stores.length === 0) {
+            stores.forEach(storeProduct => {
+                const markup = ((storeProduct.price - product.price) / product.price * 100).toFixed(1);
                 html += `
-                    <div style="text-align: center; padding: 20px;">
-                        <i class="fas fa-store-slash" style="font-size: 2rem; color: #ccc; margin-bottom: 10px;"></i>
-                        <p>No stores have added this product yet</p>
+                    <div class="store-item">
+                        <div>
+                            <strong>${storeProduct.store}</strong>
+                            <div style="font-size: 0.9rem; color: #666;">Store Price: $${storeProduct.price.toFixed(2)}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="store-price">$${storeProduct.price.toFixed(2)}</div>
+                            <div style="font-size: 0.8rem; color: #28a745;">+${markup}% markup</div>
+                        </div>
                     </div>
                 `;
-            } else {
-                html += '<h5>Stores Selling This Product:</h5>';
-                html += '<div class="store-list">';
-                
-                stores.forEach(storeProduct => {
-                    const markup = ((storeProduct.price - product.price) / product.price * 100).toFixed(1);
-                    html += `
-                        <div class="store-item">
-                            <div>
-                                <strong>${storeProduct.store}</strong>
-                                <div style="font-size: 0.9rem; color: #666;">Store Price: $${storeProduct.price.toFixed(2)}</div>
-                            </div>
-                            <div style="text-align: right;">
-                                <div class="store-price">$${storeProduct.price.toFixed(2)}</div>
-                                <div style="font-size: 0.8rem; color: #28a745;">+${markup}% markup</div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                html += '</div>';
-            }
-            
-            container.innerHTML = html;
-            openOverlay('stores');
-        }
-        
-        // 编辑产品价格（经理功能）
-        function editProductPrice(productId) {
-            const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-            const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-            
-            const storeProduct = storeProducts.find(p => p.id == productId);
-            const warehouseProduct = warehouseProducts.find(p => p.id == storeProduct?.warehouseId);
-            
-            if (!storeProduct || !warehouseProduct) return;
-            
-            const container = document.getElementById('priceEditContent');
-            container.innerHTML = `
-                <div style="margin-bottom: 20px;">
-                    <h4>${storeProduct.name}</h4>
-                    <p style="color: #666;">Warehouse Price: $${warehouseProduct.price.toFixed(2)}</p>
-                </div>
-                
-                <div class="price-edit-container">
-                    <label>Your Store Price:</label>
-                    <input type="number" id="newProductPrice" class="price-input" 
-                           value="${storeProduct.price.toFixed(2)}" step="0.01" min="${warehouseProduct.price}">
-                    <span>USD</span>
-                </div>
-                
-                <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                    <p><strong>Current Price:</strong> $${storeProduct.price.toFixed(2)}</p>
-                    <p><strong>Warehouse Price:</strong> <span class="original-price">$${warehouseProduct.price.toFixed(2)}</span></p>
-                    <p><strong>Your Markup:</strong> <span class="profit-margin" id="markupDisplay">
-                        ${(((storeProduct.price - warehouseProduct.price) / warehouseProduct.price * 100) || 0).toFixed(1)}%
-                    </span></p>
-                </div>
-                
-                <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="saveProductPrice(${productId})">Save Price</button>
-                    <button class="btn btn-outline" onclick="closeOverlay('price')">Cancel</button>
-                </div>
-            `;
-            
-            // 实时更新加价百分比
-            document.getElementById('newProductPrice').addEventListener('input', function() {
-                const newPrice = parseFloat(this.value) || warehouseProduct.price;
-                const markup = ((newPrice - warehouseProduct.price) / warehouseProduct.price * 100).toFixed(1);
-                document.getElementById('markupDisplay').textContent = `${markup}%`;
             });
             
-            openOverlay('price');
+            html += '</div>';
         }
         
-        // 保存产品价格
-        function saveProductPrice(productId) {
-            const newPrice = parseFloat(document.getElementById('newProductPrice')?.value);
-            if (!newPrice || newPrice < 0) {
-                alert('Please enter a valid price');
-                return;
-            }
-            
-            const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-            const productIndex = storeProducts.findIndex(p => p.id == productId);
-            
-            if (productIndex === -1) return;
-            
-            const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-            const warehouseProduct = warehouseProducts.find(p => p.id == storeProducts[productIndex].warehouseId);
-            
-            if (!warehouseProduct || newPrice < warehouseProduct.price) {
-                alert(`Price must be at least $${warehouseProduct.price.toFixed(2)} (warehouse price)`);
-                return;
-            }
-            
-            storeProducts[productIndex].price = newPrice;
-            localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
-            
-            // 重新加载产品列表
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser?.role === 'manager') {
-                loadManagerStoreProducts(currentUser);
-            }
-            
-            closeOverlay('price');
-            showToast('Price updated successfully!');
-        }
+        container.innerHTML = html;
+        openOverlay('stores');
+    }
+    
+    // 编辑产品价格（经理功能）
+    function editProductPrice(productId) {
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
         
-        // 显示通知
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.textContent = message;
-            toast.style.cssText = `
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background: var(--secondary);
-                color: white;
-                padding: 12px 20px;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 10000;
-                animation: slideIn 0.3s ease;
-                font-weight: 500;
-            `;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => document.body.removeChild(toast), 300);
-            }, 3000);
-        }
+        const storeProduct = storeProducts.find(p => p.id == productId);
+        const warehouseProduct = warehouseProducts.find(p => p.id == storeProduct?.warehouseId);
         
-        // 动画样式
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100px); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100px); opacity: 0; }
-            }
+        if (!storeProduct || !warehouseProduct) return;
+        
+        const container = document.getElementById('priceEditContent');
+        container.innerHTML = `
+            <div style="margin-bottom: 20px;">
+                <h4>${storeProduct.name}</h4>
+                <p style="color: #666;">Warehouse Price: $${warehouseProduct.price.toFixed(2)}</p>
+            </div>
+            
+            <div class="price-edit-container">
+                <label>Your Store Price:</label>
+                <input type="number" id="newProductPrice" class="price-input" 
+                       value="${storeProduct.price.toFixed(2)}" step="0.01" min="${warehouseProduct.price}">
+                <span>USD</span>
+            </div>
+            
+            <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <p><strong>Current Price:</strong> $${storeProduct.price.toFixed(2)}</p>
+                <p><strong>Warehouse Price:</strong> <span class="original-price">$${warehouseProduct.price.toFixed(2)}</span></p>
+                <p><strong>Your Markup:</strong> <span class="profit-margin" id="markupDisplay">
+                    ${(((storeProduct.price - warehouseProduct.price) / warehouseProduct.price * 100) || 0).toFixed(1)}%
+                </span></p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="saveProductPrice(${productId})">Save Price</button>
+                <button class="btn btn-outline" onclick="closeOverlay('price')">Cancel</button>
+            </div>
         `;
-        document.head.appendChild(style);
-    </script>
+        
+        // 实时更新加价百分比
+        document.getElementById('newProductPrice').addEventListener('input', function() {
+            const newPrice = parseFloat(this.value) || warehouseProduct.price;
+            const markup = ((newPrice - warehouseProduct.price) / warehouseProduct.price * 100).toFixed(1);
+            document.getElementById('markupDisplay').textContent = `${markup}%`;
+        });
+        
+        openOverlay('price');
+    }
+    
+    // 保存产品价格
+    function saveProductPrice(productId) {
+        const newPrice = parseFloat(document.getElementById('newProductPrice')?.value);
+        if (!newPrice || newPrice < 0) {
+            alert('Please enter a valid price');
+            return;
+        }
+        
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const productIndex = storeProducts.findIndex(p => p.id == productId);
+        
+        if (productIndex === -1) return;
+        
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+        const warehouseProduct = warehouseProducts.find(p => p.id == storeProducts[productIndex].warehouseId);
+        
+        if (!warehouseProduct || newPrice < warehouseProduct.price) {
+            alert(`Price must be at least $${warehouseProduct.price.toFixed(2)} (warehouse price)`);
+            return;
+        }
+        
+        storeProducts[productIndex].price = newPrice;
+        localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
+        
+        // 重新加载产品列表
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser?.role === 'manager') {
+            loadManagerStoreProducts(currentUser);
+        }
+        
+        closeOverlay('price');
+        showToast('Price updated successfully!');
+    }
+    
+    // 显示通知
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.textContent = message;
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            font-weight: 500;
+        `;
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => document.body.removeChild(toast), 300);
+        }, 3000);
+    }
+    
+    // Clear wishlist from dashboard
+    function clearWishlist() {
+        if (confirm('Are you sure you want to clear your entire wishlist?')) {
+            localStorage.setItem('wishlist', JSON.stringify([]));
+            
+            // Reload wishlist display
+            loadWishlist();
+            
+            // Update wishlist count
+            if (typeof updateWishlistCount === 'function') {
+                updateWishlistCount();
+            }
+            
+            // Update wishlist buttons on other pages
+            if (typeof updateWishlistButtons === 'function') {
+                updateWishlistButtons();
+            }
+            
+            showToast('Wishlist cleared');
+        }
+    }
+    
+    // 动画样式
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100px); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
 </body>
 </html>

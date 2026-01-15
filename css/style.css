@@ -953,11 +953,11 @@ a {
 }
 
 .card-icon.manager {
-    background: linear-gradient(135deg, #000, #333);
+    background: linear-gradient(135deg, #ff6b00, #ff8c42);
 }
 
 .card-icon.customer {
-    background: linear-gradient(135deg, #28a745, #5dd879);
+    background: linear-gradient(135deg, #ff6b00, #ff8c42);
 }
 
 .dashboard-main {

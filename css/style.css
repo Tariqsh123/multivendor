@@ -2199,3 +2199,13 @@ a {
 
 
 
+
+#logoutBtn{
+    height: fit-content !important;
+    width: fit-content !important;
+    color: white;
+    background-color: #e05a00 !important;
+    padding: 7px 15px ;
+    margin-top: 20px;
+
+}

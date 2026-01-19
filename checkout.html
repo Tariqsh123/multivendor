@@ -652,19 +652,30 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
             
             <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="products.html" class="nav-link">Products</a>
-                <a href="account.html" class="nav-link">Account</a>
-                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
-                <a href="#" class="nav-link cart-icon" id="cartIcon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
-            </div>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a>
+    <a href="account.html" class="nav-link">Account</a>
+    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+
+    <div id="wish-and-cart-menu">
+    <!-- Wishlist Icon manually added -->
+    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+        <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </a>
+
+    <!-- Cart Icon -->
+    <a href="#" class="nav-link cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+    </div>
+</div>
+
             
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -673,6 +684,19 @@
             </button>
         </div>
     </nav>
+
+    <!-- wishlist cart mobile floating button -->
+
+    <div class="mobile-cart-floating-button">
+      <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="mobile-wishlist-floating-button">
+      <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </div>
+
 
     <!-- Checkout Main Content -->
     <section class="checkout-container">
@@ -765,9 +789,9 @@
                                     <h4>Express Delivery</h4>
                                     <p>3-7 business days • Premium service</p>
                                     <p><small>Priority handling and fastest shipping available</small></p>
-                                    <div class="delivery-price" id="expressPrice">FREE</div>
+                                    <div class="delivery-price" id="expressPrice">$9.99</div>
                                 </div>
-                                <div class="delivery-badge">Recommended</div>
+                                <div class="delivery-badge">Fastest</div>
                             </div>
                             
                             <!-- Standard Delivery -->
@@ -779,7 +803,7 @@
                                     <h4>Standard Delivery</h4>
                                     <p>10-21 business days • Regular service</p>
                                     <p><small>Economical shipping with tracking</small></p>
-                                    <div class="delivery-price" id="standardPrice">FREE</div>
+                                    <div class="delivery-price" id="standardPrice">$4.99</div>
                                 </div>
                             </div>
                         </div>
@@ -827,10 +851,10 @@
                                 <p>Credit Card</p>
                             </div>
                             
-                            <!-- PayPal -->
-                            <div class="payment-method" data-method="paypal" id="paypalPaymentMethod">
-                                <i class="fab fa-cc-paypal"></i>
-                                <p>PayPal</p>
+                            <!-- Bank Transfer -->
+                            <div class="payment-method" data-method="bank" id="bankPaymentMethod">
+                                <i class="fas fa-university"></i>
+                                <p>Bank Transfer</p>
                             </div>
                             
                             <!-- Cash on Delivery -->
@@ -864,6 +888,28 @@
                             </form>
                         </div>
                         
+                        <!-- Bank Transfer Instructions -->
+                        <div id="bankInstructions" class="payment-form" style="display: none;">
+                            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                <h4 style="margin: 0 0 10px 0; color: #003087;">
+                                    <i class="fas fa-university"></i> Bank Transfer Details
+                                </h4>
+                                <p style="margin: 0 0 10px 0; color: #666;">
+                                    Please transfer payment to the following account:
+                                </p>
+                                <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #ddd;">
+                                    <p style="margin: 5px 0;"><strong>Bank:</strong> Global Commerce Bank</p>
+                                    <p style="margin: 5px 0;"><strong>Account Name:</strong> GlobalMart Inc.</p>
+                                    <p style="margin: 5px 0;"><strong>Account Number:</strong> 1234567890</p>
+                                    <p style="margin: 5px 0;"><strong>IBAN:</strong> GB29 NWBK 6016 1331 9268 19</p>
+                                    <p style="margin: 5px 0;"><strong>Swift/BIC:</strong> GCBKUS33</p>
+                                </div>
+                                <p style="margin: 10px 0 0 0; color: #666; font-size: 0.9rem;">
+                                    <i class="fas fa-info-circle"></i> Use your order ID as payment reference
+                                </p>
+                            </div>
+                        </div>
+                        
                         <!-- COD Instructions -->
                         <div id="codInstructions" class="payment-form">
                             <div class="cod-info">
@@ -886,18 +932,6 @@
                                         <li>Maximum COD limit: PKR 50,000</li>
                                     </ul>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- PayPal Instructions -->
-                        <div id="paypalInstructions" class="payment-form" style="display: none;">
-                            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                                <h4 style="margin: 0 0 10px 0; color: #003087;">
-                                    <i class="fab fa-paypal"></i> PayPal Payment
-                                </h4>
-                                <p style="margin: 0; color: #666;">
-                                    You will be redirected to PayPal to complete your payment securely.
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -1233,7 +1267,7 @@
                         const country = document.getElementById('country').value;
                         const deliveryType = this.dataset.delivery;
                         
-                        // Update delivery prices
+                        // Update delivery prices display
                         updateDeliveryPrices(country, deliveryType);
                         
                         // Update totals
@@ -1330,21 +1364,23 @@
                     expressOption.querySelector('.delivery-price').textContent = 'FREE';
                     standardOption.querySelector('.delivery-price').textContent = 'FREE';
                 } else {
-                    // International - calculate prices
+                    // International - calculate and display prices
                     let expressPrice = 9.99;
                     let standardPrice = 4.99;
-                    
-                    if (deliveryType === 'express') {
-                        expressPrice = expressPrice * 2;
-                    }
                     
                     const surcharge = getInternationalSurcharge(country);
                     const customsFee = getCustomsFee(country);
                     
+                    // Apply express multiplier
+                    if (deliveryType === 'express') {
+                        expressPrice = expressPrice * 2;
+                    }
+                    
+                    // Add international charges
                     expressPrice += surcharge + customsFee;
                     standardPrice += surcharge + customsFee;
                     
-                    // Update display
+                    // Update display with correct prices
                     expressOption.querySelector('.delivery-price').textContent = `$${expressPrice.toFixed(2)}`;
                     standardOption.querySelector('.delivery-price').textContent = `$${standardPrice.toFixed(2)}`;
                 }
@@ -1352,17 +1388,17 @@
             
             function updatePaymentMethods(country) {
                 const cardMethod = document.getElementById('cardPaymentMethod');
-                const paypalMethod = document.getElementById('paypalPaymentMethod');
+                const bankMethod = document.getElementById('bankPaymentMethod');
                 const codMethod = document.getElementById('codPaymentMethod');
                 
                 // Reset all methods
                 cardMethod.classList.remove('active');
-                paypalMethod.classList.remove('active');
+                bankMethod.classList.remove('active');
                 codMethod.classList.remove('active');
                 
                 // Hide all instruction forms
                 document.getElementById('cardPaymentForm').style.display = 'none';
-                document.getElementById('paypalInstructions').style.display = 'none';
+                document.getElementById('bankInstructions').style.display = 'none';
                 document.getElementById('codInstructions').style.display = 'none';
                 
                 // Update COD availability and styling
@@ -1418,9 +1454,9 @@
                 if (selectedPaymentMethod === 'cod') {
                     placeOrderBtn.innerHTML = '<i class="fas fa-hand-holding-usd"></i> Place Order (Cash on Delivery)';
                     placeOrderText.textContent = 'Place Order (Cash on Delivery)';
-                } else if (selectedPaymentMethod === 'paypal') {
-                    placeOrderBtn.innerHTML = '<i class="fab fa-paypal"></i> Pay with PayPal';
-                    placeOrderText.textContent = 'Pay with PayPal';
+                } else if (selectedPaymentMethod === 'bank') {
+                    placeOrderBtn.innerHTML = '<i class="fas fa-university"></i> Place Order (Bank Transfer)';
+                    placeOrderText.textContent = 'Place Order (Bank Transfer)';
                 } else {
                     placeOrderBtn.innerHTML = '<i class="fas fa-lock"></i> Place Order & Pay Securely';
                     placeOrderText.textContent = 'Place Order & Pay Securely';
@@ -1429,21 +1465,21 @@
             
             function setupPaymentMethodClickHandlers(country) {
                 const cardMethod = document.getElementById('cardPaymentMethod');
-                const paypalMethod = document.getElementById('paypalPaymentMethod');
+                const bankMethod = document.getElementById('bankPaymentMethod');
                 const codMethod = document.getElementById('codPaymentMethod');
                 
                 // Remove existing event listeners by cloning elements
                 const newCardMethod = cardMethod.cloneNode(true);
-                const newPaypalMethod = paypalMethod.cloneNode(true);
+                const newBankMethod = bankMethod.cloneNode(true);
                 const newCodMethod = codMethod.cloneNode(true);
                 
                 cardMethod.parentNode.replaceChild(newCardMethod, cardMethod);
-                paypalMethod.parentNode.replaceChild(newPaypalMethod, paypalMethod);
+                bankMethod.parentNode.replaceChild(newBankMethod, bankMethod);
                 codMethod.parentNode.replaceChild(newCodMethod, codMethod);
                 
                 // Get new references
                 const newCard = document.getElementById('cardPaymentMethod');
-                const newPaypal = document.getElementById('paypalPaymentMethod');
+                const newBank = document.getElementById('bankPaymentMethod');
                 const newCod = document.getElementById('codPaymentMethod');
                 
                 // Credit Card handler
@@ -1454,24 +1490,24 @@
                     this.classList.add('active');
                     
                     document.getElementById('cardPaymentForm').style.display = 'block';
-                    document.getElementById('paypalInstructions').style.display = 'none';
+                    document.getElementById('bankInstructions').style.display = 'none';
                     document.getElementById('codInstructions').style.display = 'none';
                     document.getElementById('selectedMethodText').textContent = 'Credit Card';
                     
                     updatePlaceOrderButtonText();
                 });
                 
-                // PayPal handler
-                newPaypal.addEventListener('click', function() {
+                // Bank Transfer handler
+                newBank.addEventListener('click', function() {
                     if (this.classList.contains('payment-restricted')) return;
                     
                     document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
                     this.classList.add('active');
                     
                     document.getElementById('cardPaymentForm').style.display = 'none';
-                    document.getElementById('paypalInstructions').style.display = 'block';
+                    document.getElementById('bankInstructions').style.display = 'block';
                     document.getElementById('codInstructions').style.display = 'none';
-                    document.getElementById('selectedMethodText').textContent = 'PayPal';
+                    document.getElementById('selectedMethodText').textContent = 'Bank Transfer';
                     
                     updatePlaceOrderButtonText();
                 });
@@ -1485,7 +1521,7 @@
                     this.classList.add('active');
                     
                     document.getElementById('cardPaymentForm').style.display = 'none';
-                    document.getElementById('paypalInstructions').style.display = 'none';
+                    document.getElementById('bankInstructions').style.display = 'none';
                     document.getElementById('codInstructions').style.display = 'block';
                     document.getElementById('selectedMethodText').textContent = 'Cash on Delivery';
                     
@@ -1539,9 +1575,14 @@
                 
                 // Show success modal
                 document.getElementById('orderId').textContent = `#${orderId}`;
-                document.getElementById('modalPaymentMethod').textContent = 
-                    paymentMethod === 'card' ? 'Credit Card' : 
-                    paymentMethod === 'paypal' ? 'PayPal' : 'Cash on Delivery';
+                let paymentMethodText = '';
+                switch(paymentMethod) {
+                    case 'card': paymentMethodText = 'Credit Card'; break;
+                    case 'bank': paymentMethodText = 'Bank Transfer'; break;
+                    case 'cod': paymentMethodText = 'Cash on Delivery'; break;
+                    default: paymentMethodText = 'Credit Card';
+                }
+                document.getElementById('modalPaymentMethod').textContent = paymentMethodText;
                 document.getElementById('orderSuccessModal').classList.add('active');
                 
                 // Update warehouse product sold count

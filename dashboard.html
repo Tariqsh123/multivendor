@@ -197,22 +197,30 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
             
             <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="products.html" class="nav-link">Products</a>
-                <a href="account.html" class="nav-link">Account</a>
-                <a href="dashboard.html" class="nav-link active">Dashboard</a>
-                <a href="#" class="nav-link cart-icon" id="cartIcon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
-                <a href="#" class="nav-link" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </div>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a>
+    <a href="account.html" class="nav-link">Account</a>
+    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+
+    <div id="wish-and-cart-menu">
+    <!-- Wishlist Icon manually added -->
+    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+        <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </a>
+
+    <!-- Cart Icon -->
+    <a href="#" class="nav-link cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+    </div>
+</div>
+
             
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -221,6 +229,19 @@
             </button>
         </div>
     </nav>
+
+    <!-- wishlist cart mobile floating button -->
+
+    <div class="mobile-cart-floating-button">
+      <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="mobile-wishlist-floating-button">
+      <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </div>
+
 
     <!-- Dashboard Header -->
     <section class="dashboard-header">
@@ -581,12 +602,8 @@
             return;
         }
         
-        // Logout button
-        document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('currentUser');
-            window.location.href = 'account.html';
-        });
+        // FIXED: Removed the non-existent logoutBtn event listener that was causing error
+        // If you need a logout button, add it to your HTML first
     });
     
     // 通用辅助函数
@@ -632,13 +649,20 @@
                 break;
         }
         
-        document.getElementById(`${overlayId}Overlay`).classList.add('active');
+        const overlayElement = document.getElementById(`${overlayId}Overlay`);
+        if (overlayElement) {
+            overlayElement.classList.add('active');
+        }
+        
         document.getElementById('overlayBackdrop').classList.add('active');
         document.body.style.overflow = 'hidden';
     }
     
     function closeOverlay(overlayId) {
-        document.getElementById(`${overlayId}Overlay`).classList.remove('active');
+        const overlayElement = document.getElementById(`${overlayId}Overlay`);
+        if (overlayElement) {
+            overlayElement.classList.remove('active');
+        }
         document.getElementById('overlayBackdrop').classList.remove('active');
         document.body.style.overflow = 'auto';
     }
@@ -651,7 +675,7 @@
         document.body.style.overflow = 'auto';
     }
     
-    // 加载愿望清单
+    // 加载愿望清单 - FIXED VERSION
     function loadWishlist() {
         // Use getWishlistItems from wishlist.js if available
         const wishlist = typeof getWishlistItems === 'function' ? getWishlistItems() : JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -678,23 +702,34 @@
         }
         
         let html = '<div style="display: flex; flex-direction: column; gap: 15px;">';
+        
         wishlist.forEach(item => {
+            // FIX: Handle cases where item or its properties might be undefined
+            if (!item) return;
+            
+            const itemId = item.id || Math.random().toString(36).substr(2, 9);
+            const itemName = item.name || 'Unknown Product';
+            const itemImage = item.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80';
+            const itemPrice = parseFloat(item.price) || 0;
+            const itemStore = item.store || 'GlobalMart';
+            const addedAt = item.addedAt ? new Date(item.addedAt).toLocaleDateString() : 'Recently';
+            
             html += `
                 <div class="wishlist-item">
-                    <img src="${item.image}" alt="${item.name}" 
+                    <img src="${itemImage}" alt="${itemName}" 
                          style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;"
                          onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
                     <div style="flex: 1;">
-                        <h4 style="margin: 0 0 5px 0;">${item.name}</h4>
-                        <div style="color: var(--secondary); font-weight: bold;">$${item.price.toFixed(2)}</div>
-                        <div style="font-size: 0.9rem; color: #666;">${item.store || 'GlobalMart'}</div>
-                        <div style="font-size: 0.8rem; color: #999;">Added ${new Date(item.addedAt).toLocaleDateString()}</div>
+                        <h4 style="margin: 0 0 5px 0;">${itemName}</h4>
+                        <div style="color: var(--secondary); font-weight: bold;">$${itemPrice.toFixed(2)}</div>
+                        <div style="font-size: 0.9rem; color: #666;">${itemStore}</div>
+                        <div style="font-size: 0.8rem; color: #999;">Added ${addedAt}</div>
                     </div>
-                    <button class="remove-wishlist" onclick="removeFromWishlistById(${item.id})" title="Remove from wishlist">
+                    <button class="remove-wishlist" onclick="removeFromWishlistById('${itemId}')" title="Remove from wishlist">
                         <i class="fas fa-times"></i>
                     </button>
                     <div class="action-buttons">
-                        <button class="btn btn-small" onclick="addToCartFromWishlist(${item.id})">Add to Cart</button>
+                        <button class="btn btn-small" onclick="addToCartFromWishlist('${itemId}')">Add to Cart</button>
                         <a href="products.html" class="btn btn-outline btn-small">View Similar</a>
                     </div>
                 </div>
@@ -712,7 +747,7 @@
             removeFromWishlistById(productId);
         } else {
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            wishlist = wishlist.filter(item => item.id != productId);
+            wishlist = wishlist.filter(item => item && item.id != productId);
             localStorage.setItem('wishlist', JSON.stringify(wishlist));
             loadWishlist();
             showToast('Product removed from wishlist');
@@ -731,12 +766,16 @@
             window.addToCartFromWishlist(productId);
         } else {
             const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const product = wishlist.find(item => item.id == productId);
+            const product = wishlist.find(item => item && item.id == productId);
             
             if (product) {
-                addToCart(product);
-                updateCartCount();
-                showToast(`${product.name} added to cart!`);
+                if (typeof addToCart === 'function') {
+                    addToCart(product);
+                }
+                if (typeof updateCartCount === 'function') {
+                    updateCartCount();
+                }
+                showToast(`${product.name || 'Product'} added to cart!`);
             }
         }
     }
@@ -744,7 +783,7 @@
     // Remove from wishlist by ID (dashboard specific)
     function removeFromWishlistById(productId) {
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-        wishlist = wishlist.filter(item => item.id != productId);
+        wishlist = wishlist.filter(item => item && item.id != productId);
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
         
         // Reload wishlist display
@@ -767,6 +806,8 @@
     function loadProfile() {
         const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
         const container = document.getElementById('profileContent');
+        
+        if (!container) return;
         
         container.innerHTML = `
             <div style="text-align: center; margin-bottom: 30px;">
@@ -798,7 +839,10 @@
     
     // 更新用户名
     function updateUserName() {
-        const newName = document.getElementById('editUserName')?.value.trim();
+        const newNameInput = document.getElementById('editUserName');
+        if (!newNameInput) return;
+        
+        const newName = newNameInput.value.trim();
         if (!newName) {
             alert('Please enter a valid name');
             return;
@@ -823,11 +867,22 @@
         const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
         const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-        if (!currentUser || currentUser.role !== 'shipper') return;
-        
-        const shipperProducts = warehouseProducts.filter(p => p.shipperId === currentUser.id);
         const container = document.getElementById('commissionContent');
+        
+        if (!container) return;
+        
+        if (!currentUser || currentUser.role !== 'shipper') {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-user-lock" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                    <h3>Access Denied</h3>
+                    <p>Commission details are only available for shippers</p>
+                </div>
+            `;
+            return;
+        }
+        
+        const shipperProducts = warehouseProducts.filter(p => p && p.shipperId === currentUser.id);
         
         if (shipperProducts.length === 0) {
             container.innerHTML = `
@@ -853,9 +908,12 @@
         `;
         
         shipperProducts.forEach(product => {
-            const storeCount = storeProducts.filter(sp => sp.warehouseId === product.id).length;
-            const productSales = (product.sold || 0) * product.price;
-            const productCommission = productSales * (product.commission / 100);
+            if (!product) return;
+            
+            const storeCount = storeProducts.filter(sp => sp && sp.warehouseId === product.id).length;
+            const productSales = (product.sold || 0) * (parseFloat(product.price) || 0);
+            const commissionRate = parseFloat(product.commission) || 10;
+            const productCommission = productSales * (commissionRate / 100);
             
             totalSales += productSales;
             totalCommission += productCommission;
@@ -863,13 +921,13 @@
             html += `
                 <div style="border-bottom: 1px solid #ddd; padding: 10px 0;">
                     <div style="display: flex; justify-content: space-between;">
-                        <span>${product.name}</span>
+                        <span>${product.name || 'Unknown Product'}</span>
                         <strong>$${productCommission.toFixed(2)}</strong>
                     </div>
                     <div style="font-size: 0.9rem; color: #666;">
                         Sold: ${product.sold || 0} units | In ${storeCount} stores
                         <button class="btn btn-small" style="margin-left: 10px; padding: 2px 8px; font-size: 0.8rem;" 
-                                onclick="viewProductStores(${product.id})">View Stores</button>
+                                onclick="viewProductStores('${product.id}')">View Stores</button>
                     </div>
                 </div>
             `;
@@ -896,17 +954,27 @@
     function viewProductStores(productId) {
         const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
         const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-        const product = warehouseProducts.find(p => p.id == productId);
-        
-        if (!product) return;
-        
-        const stores = storeProducts.filter(sp => sp.warehouseId == productId);
+        const product = warehouseProducts.find(p => p && p.id == productId);
         const container = document.getElementById('storesContent');
+        
+        if (!container) return;
+        
+        if (!product) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: #ccc; margin-bottom: 10px;"></i>
+                    <p>Product not found</p>
+                </div>
+            `;
+            return;
+        }
+        
+        const stores = storeProducts.filter(sp => sp && sp.warehouseId == productId);
         
         let html = `
             <div style="margin-bottom: 20px;">
-                <h4>${product.name}</h4>
-                <p style="color: #666;">Original Price: $${product.price.toFixed(2)} | Commission: ${product.commission}%</p>
+                <h4>${product.name || 'Unknown Product'}</h4>
+                <p style="color: #666;">Original Price: $${(parseFloat(product.price) || 0).toFixed(2)} | Commission: ${product.commission || 10}%</p>
             </div>
         `;
         
@@ -922,15 +990,20 @@
             html += '<div class="store-list">';
             
             stores.forEach(storeProduct => {
-                const markup = ((storeProduct.price - product.price) / product.price * 100).toFixed(1);
+                if (!storeProduct) return;
+                
+                const warehousePrice = parseFloat(product.price) || 0;
+                const storePrice = parseFloat(storeProduct.price) || 0;
+                const markup = warehousePrice > 0 ? ((storePrice - warehousePrice) / warehousePrice * 100).toFixed(1) : '0.0';
+                
                 html += `
                     <div class="store-item">
                         <div>
-                            <strong>${storeProduct.store}</strong>
-                            <div style="font-size: 0.9rem; color: #666;">Store Price: $${storeProduct.price.toFixed(2)}</div>
+                            <strong>${storeProduct.store || 'Unknown Store'}</strong>
+                            <div style="font-size: 0.9rem; color: #666;">Store Price: $${storePrice.toFixed(2)}</div>
                         </div>
                         <div style="text-align: right;">
-                            <div class="store-price">$${storeProduct.price.toFixed(2)}</div>
+                            <div class="store-price">$${storePrice.toFixed(2)}</div>
                             <div style="font-size: 0.8rem; color: #28a745;">+${markup}% markup</div>
                         </div>
                     </div>
@@ -948,68 +1021,95 @@
     function editProductPrice(productId) {
         const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
         const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-        
-        const storeProduct = storeProducts.find(p => p.id == productId);
-        const warehouseProduct = warehouseProducts.find(p => p.id == storeProduct?.warehouseId);
-        
-        if (!storeProduct || !warehouseProduct) return;
-        
         const container = document.getElementById('priceEditContent');
+        
+        if (!container) return;
+        
+        const storeProduct = storeProducts.find(p => p && p.id == productId);
+        const warehouseProduct = warehouseProducts.find(p => p && p.id == storeProduct?.warehouseId);
+        
+        if (!storeProduct || !warehouseProduct) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: #ccc; margin-bottom: 10px;"></i>
+                    <p>Product not found</p>
+                </div>
+            `;
+            return;
+        }
+        
+        const warehousePrice = parseFloat(warehouseProduct.price) || 0;
+        const currentPrice = parseFloat(storeProduct.price) || warehousePrice;
+        
         container.innerHTML = `
             <div style="margin-bottom: 20px;">
-                <h4>${storeProduct.name}</h4>
-                <p style="color: #666;">Warehouse Price: $${warehouseProduct.price.toFixed(2)}</p>
+                <h4>${storeProduct.name || 'Unknown Product'}</h4>
+                <p style="color: #666;">Warehouse Price: $${warehousePrice.toFixed(2)}</p>
             </div>
             
             <div class="price-edit-container">
                 <label>Your Store Price:</label>
                 <input type="number" id="newProductPrice" class="price-input" 
-                       value="${storeProduct.price.toFixed(2)}" step="0.01" min="${warehouseProduct.price}">
+                       value="${currentPrice.toFixed(2)}" step="0.01" min="${warehousePrice}">
                 <span>USD</span>
             </div>
             
             <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                <p><strong>Current Price:</strong> $${storeProduct.price.toFixed(2)}</p>
-                <p><strong>Warehouse Price:</strong> <span class="original-price">$${warehouseProduct.price.toFixed(2)}</span></p>
+                <p><strong>Current Price:</strong> $${currentPrice.toFixed(2)}</p>
+                <p><strong>Warehouse Price:</strong> <span class="original-price">$${warehousePrice.toFixed(2)}</span></p>
                 <p><strong>Your Markup:</strong> <span class="profit-margin" id="markupDisplay">
-                    ${(((storeProduct.price - warehouseProduct.price) / warehouseProduct.price * 100) || 0).toFixed(1)}%
+                    ${warehousePrice > 0 ? (((currentPrice - warehousePrice) / warehousePrice * 100) || 0).toFixed(1) : '0.0'}%
                 </span></p>
             </div>
             
             <div class="action-buttons">
-                <button class="btn btn-primary" onclick="saveProductPrice(${productId})">Save Price</button>
+                <button class="btn btn-primary" onclick="saveProductPrice('${productId}')">Save Price</button>
                 <button class="btn btn-outline" onclick="closeOverlay('price')">Cancel</button>
             </div>
         `;
         
         // 实时更新加价百分比
-        document.getElementById('newProductPrice').addEventListener('input', function() {
-            const newPrice = parseFloat(this.value) || warehouseProduct.price;
-            const markup = ((newPrice - warehouseProduct.price) / warehouseProduct.price * 100).toFixed(1);
-            document.getElementById('markupDisplay').textContent = `${markup}%`;
-        });
+        const priceInput = document.getElementById('newProductPrice');
+        if (priceInput) {
+            priceInput.addEventListener('input', function() {
+                const newPrice = parseFloat(this.value) || warehousePrice;
+                const markup = warehousePrice > 0 ? ((newPrice - warehousePrice) / warehousePrice * 100).toFixed(1) : '0.0';
+                const markupDisplay = document.getElementById('markupDisplay');
+                if (markupDisplay) {
+                    markupDisplay.textContent = `${markup}%`;
+                }
+            });
+        }
         
         openOverlay('price');
     }
     
     // 保存产品价格
     function saveProductPrice(productId) {
-        const newPrice = parseFloat(document.getElementById('newProductPrice')?.value);
+        const priceInput = document.getElementById('newProductPrice');
+        if (!priceInput) return;
+        
+        const newPrice = parseFloat(priceInput.value);
         if (!newPrice || newPrice < 0) {
             alert('Please enter a valid price');
             return;
         }
         
         const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-        const productIndex = storeProducts.findIndex(p => p.id == productId);
+        const productIndex = storeProducts.findIndex(p => p && p.id == productId);
         
-        if (productIndex === -1) return;
+        if (productIndex === -1) {
+            alert('Product not found');
+            return;
+        }
         
         const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-        const warehouseProduct = warehouseProducts.find(p => p.id == storeProducts[productIndex].warehouseId);
+        const warehouseProduct = warehouseProducts.find(p => p && p.id == storeProducts[productIndex].warehouseId);
         
-        if (!warehouseProduct || newPrice < warehouseProduct.price) {
-            alert(`Price must be at least $${warehouseProduct.price.toFixed(2)} (warehouse price)`);
+        const warehousePrice = warehouseProduct ? parseFloat(warehouseProduct.price) || 0 : 0;
+        
+        if (!warehouseProduct || newPrice < warehousePrice) {
+            alert(`Price must be at least $${warehousePrice.toFixed(2)} (warehouse price)`);
             return;
         }
         
@@ -1019,7 +1119,9 @@
         // 重新加载产品列表
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser?.role === 'manager') {
-            loadManagerStoreProducts(currentUser);
+            if (typeof loadManagerStoreProducts === 'function') {
+                loadManagerStoreProducts(currentUser);
+            }
         }
         
         closeOverlay('price');
@@ -1048,7 +1150,11 @@
         
         setTimeout(() => {
             toast.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => document.body.removeChild(toast), 300);
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    document.body.removeChild(toast);
+                }
+            }, 300);
         }, 3000);
     }
     

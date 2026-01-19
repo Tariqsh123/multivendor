@@ -8,22 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation (same as index.html) -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Global<span>Mart</span></a>
+            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
             
             <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
-                <a href="products.html" class="nav-link">Products</a>
-                <a href="account.html" class="nav-link">Account</a>
-                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
-                <a href="#" class="nav-link cart-icon" id="cartIcon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
-            </div>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a>
+    <a href="account.html" class="nav-link">Account</a>
+    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+
+    <div id="wish-and-cart-menu">
+    <!-- Wishlist Icon manually added -->
+    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+        <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </a>
+
+    <!-- Cart Icon -->
+    <a href="#" class="nav-link cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+    </div>
+</div>
+
             
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -32,6 +43,19 @@
             </button>
         </div>
     </nav>
+
+    <!-- wishlist cart mobile floating button -->
+
+    <div class="mobile-cart-floating-button">
+      <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="mobile-wishlist-floating-button">
+      <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </div>
+
 
     <!-- About Hero -->
     <section class="page-hero">

@@ -251,11 +251,13 @@
                 <p id="dashboardSubtitle">Welcome to your dashboard</p>
             </div>
             <div class="dashboard-actions">
-                <div class="user-info">
-                    <span id="userName">User</span>
-                    <span class="user-role" id="userRole">Role</span>
-                </div>
-            </div>
+    <div class="user-info">
+        <span id="userName">User</span>
+        <span class="user-role" id="userRole">Role</span>
+    </div>
+    <button class="btn btn-outline" id="logoutBtn" style="margin-left: 15px;">Logout</button>
+</div>
+
         </div>
     </section>
 
@@ -1193,6 +1195,14 @@
         }
     `;
     document.head.appendChild(style);
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('currentUser'); // clear user session
+            window.location.href = 'account.html'; // redirect to login page
+        });
+    }
 </script>
 </body>
 </html>

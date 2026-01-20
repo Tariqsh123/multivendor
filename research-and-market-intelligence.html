@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research & Market Intelligence - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
+            
+            <div class="nav-menu" id="navMenu">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a>
+    <a href="account.html" class="nav-link">Account</a>
+    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+
+    <div id="wish-and-cart-menu">
+    <!-- Wishlist Icon manually added -->
+    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+        <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </a>
+
+    <!-- Cart Icon -->
+    <a href="#" class="nav-link cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+    </div>
+</div>
+
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- wishlist cart mobile floating button -->
+
+    <div class="mobile-cart-floating-button">
+      <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="mobile-wishlist-floating-button">
+      <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </div>
+
+
+    <!-- Content -->
+     <!-- Content -->
+<main class="research-intelligence">
+    <!-- Hero Section -->
+    <section class="research-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Research & Market Intelligence</h1>
+                <p class="hero-subtitle">Data-driven insights to guide your global expansion strategy</p>
+                <p>We analyze markets, forecast trends, and assess risks to tell you <span class="highlight">what to sell, where to sell, and why</span>.</p>
+                <a href="contact-us.html" class="btn btn-primary">Contact Us</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Market analysis and research">
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Offer -->
+    <section class="services-overview" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Scope of Services</h2>
+                <p>Comprehensive market intelligence to reduce uncertainty and maximize opportunities</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Global Demand Analysis</h3>
+                    <p>Identify market gaps and emerging opportunities across 150+ countries with our proprietary demand forecasting models.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Real-time market sizing</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Regional demand patterns</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Competitive landscape mapping</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Consumer Behavior by Country</h3>
+                    <p>Understand local preferences, purchasing habits, and cultural influences that drive buying decisions in target markets.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Demographic segmentation</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Cultural preference analysis</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Seasonal buying patterns</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Trend & Lifecycle Forecasting</h3>
+                    <p>Predict product lifecycles and emerging trends before they become mainstream to stay ahead of the competition.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Trend adoption curves</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Product lifecycle projections</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Innovation opportunity spotting</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Risk Assessment for Products</h3>
+                    <p>Evaluate regulatory, logistical, and market risks associated with specific products in different regions.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Regulatory compliance checks</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Supply chain vulnerability analysis</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Market entry risk scoring</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Market Entry Strategy</h3>
+                    <p>Develop data-driven go-to-market strategies tailored to each country, minimizing risk and maximizing early traction.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Country-specific entry plans</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Pricing & positioning strategy</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Local partner identification</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data-Driven Product Validation</h3>
+                    <p>Validate product ideas using real market data before investment, reducing failure risk and improving ROI.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Demand validation metrics</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Audience fit analysis</li>
+                        <li><i class="fas fa-check" style="color: #e05a00;"></i> Revenue potential forecasting</li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Benefits You -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What This Means For Your Business</h2>
+                <p>Turn data into actionable strategies for global success</p>
+            </div>
+            
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="benefit-number">01</div>
+                    <h3>Informed Product Selection</h3>
+                    <p>Our demand analysis identifies exactly which products have the highest profit potential in your target markets, reducing guesswork and inventory risk.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-number">02</div>
+                    <h3>Targeted Market Entry</h3>
+                    <p>Consumer behavior insights help you tailor marketing, packaging, and messaging to resonate with local audiences in each country you enter.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-number">03</div>
+                    <h3>Future-Proof Strategy</h3>
+                    <p>Trend forecasting enables you to adapt to market shifts before competitors, ensuring long-term relevance and growth.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-number">04</div>
+                    <h3>Risk-Mitigated Expansion</h3>
+                    <p>Comprehensive risk assessment helps you avoid costly regulatory issues, supply chain disruptions, and market failures.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-number">05</div>
+                    <h3>Rational Buying Decisions</h3>
+                    <p>Our intelligence transforms subjective decisions into data-driven choices, maximizing ROI on every purchasing decision.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-number">06</div>
+                    <h3>Competitive Advantage</h3>
+                    <p>Access to proprietary market intelligence gives you an edge over competitors who rely on incomplete or outdated information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="methodology-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Research Methodology</h2>
+                <p>How we deliver accurate, actionable market intelligence</p>
+            </div>
+            
+            <div class="methodology-steps">
+                <div class="method-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Data Collection</h3>
+                        <p>We gather data from 50+ sources including government trade databases, consumer surveys, social media analytics, and point-of-sale systems across global markets.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Analysis & Modeling</h3>
+                        <p>Using advanced AI algorithms and statistical models, we identify patterns, correlations, and predictive indicators for market behavior.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Validation & Quality Check</h3>
+                        <p>All findings undergo rigorous validation through cross-referencing with local market experts and real-world testing scenarios.</p>
+                    </div>
+                </div>
+                
+                <div class="method-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Actionable Reporting</h3>
+                        <p>We translate complex data into clear, actionable recommendations tailored to your specific business objectives and constraints.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="research-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Make Data-Driven Decisions?</h2>
+                <p>Get personalized market intelligence reports for your products and target markets.</p>
+                <div class="cta-buttons">
+                    <a href="contact-us.html" class="btn btn-primary">Request a Consultation</a>
+                    <a href="account.html" class="btn btn-outline">Join Our Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+/* Research & Intelligence Page Styles */
+.research-intelligence {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Hero Section */
+.research-hero {
+    padding: 100px 0 80px;
+    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+}
+
+.research-hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.highlight {
+    color: #e05a00;
+    font-weight: 600;
+}
+
+.hero-image {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.hero-image:hover img {
+    transform: scale(1.03);
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Services Grid */
+.services-overview {
+    padding: 60px 0;
+    padding-bottom: 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 35px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(224, 90, 0, 0.1);
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(224, 90, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.service-icon i {
+    font-size: 28px;
+    color: #e05a00;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.service-card p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.service-features {
+    list-style: none;
+    padding-left: 0;
+}
+
+.service-features li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.service-features i {
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+/* Benefits Section */
+.benefits-section {
+    padding: 60px 0;
+    padding-bottom: 0;
+}
+
+.benefits-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.benefit-card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 35px 30px;
+    border: 2px solid #e05a00;
+    transition: background-color 0.3s ease;
+}
+
+.benefit-card:hover {
+    background-color: #ffe0ce;
+}
+
+.benefit-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.benefit-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.benefit-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Methodology Section */
+.methodology-section {
+    padding: 60px 0;
+    padding-bottom: 0;
+}
+
+.methodology-steps {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.method-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.method-step:not(:last-child):after {
+    content: '';
+    position: absolute;
+    left: 35px;
+    top: 80px;
+    width: 2px;
+    height: calc(100% + 20px);
+    background-color: #ddd;
+    z-index: 1;
+}
+
+.step-number {
+    width: 70px;
+    height: 70px;
+    background-color: #e05a00;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-right: 30px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.step-content {
+    flex: 1;
+    padding-top: 10px;
+}
+
+.step-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.step-content p {
+    color: #555;
+    line-height: 1.7;
+}
+
+/* CTA Section */
+.research-cta {
+    padding: 60px 0;
+    background-color: #000000;
+    color: white;
+    border-bottom: 1px solid white;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.cta-content p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    color: #ddd;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #e05a00;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #c44f00;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(224, 90, 0, 0.3);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #e05a00;
+}
+
+.btn-outline:hover {
+    background-color: #e05a00;
+    transform: translateY(-3px);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+        .research-hero .container {
+        flex-direction: column-reverse;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .hero-image {
+        order: -1;
+    }
+    
+    .section-header h2 {
+        font-size: 2.3rem;
+    }
+    
+    .benefits-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .research-hero, .services-overview, .benefits-section, 
+    .methodology-section, .research-cta {
+        padding: 70px 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .method-step {
+        flex-direction: column;
+    }
+    
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .method-step:not(:last-child):after {
+        left: 35px;
+        top: 70px;
+        height: calc(100% + 30px);
+    }
+    
+    .cta-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+    padding: 0;
+    }
+    .hero-content h1 {
+        font-size: 35px;
+    }
+    .hero-content p {
+    font-size: small;
+    margin: 10px 0;
+    }
+.btn {
+    padding: 10px 20px;
+    font-size: small;
+    width: fit-content;
+}
+    
+    .services-grid, .benefits-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-card, .benefit-card {
+        padding: 25px 20px;
+    }
+    
+    .cta-content h2 {
+        font-size: 1.8rem;
+    }
+        .research-hero, .services-overview, .benefits-section, .methodology-section, .research-cta {
+        padding: 60px 0;
+        padding-bottom: 0;
+    }
+    .section-header p {
+      font-size: small;
+    }
+    .service-card p ,.service-features li,.benefit-card p,.step-content p{
+    font-size: small;
+    }
+         .method-step:not(:last-child):after {
+            display: none;
+    }
+        .step-number {
+        margin-right: 0px;
+        margin-bottom: 5px;
+        margin-left: 0px;
+        width: 50px;
+        height: 50px;
+    }
+        .method-step {
+        flex-direction: column;
+        margin-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .step-content h3 {
+    font-size: 20px;
+    }
+    .cta-content p {
+    font-size: small;
+    }
+
+}
+</style>
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        checkUserLogin();
+    });
+
+    function checkUserLogin() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const dashboardLink = document.querySelector('.dashboard-link');
+
+        if (currentUser && dashboardLink) {
+            dashboardLink.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>

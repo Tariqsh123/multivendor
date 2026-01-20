@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Commerce & Logistics - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
+            
+            <div class="nav-menu" id="navMenu">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a>
+    <a href="account.html" class="nav-link">Account</a>
+    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+
+    <div id="wish-and-cart-menu">
+    <!-- Wishlist Icon manually added -->
+    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+        <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </a>
+
+    <!-- Cart Icon -->
+    <a href="#" class="nav-link cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+    </div>
+</div>
+
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- wishlist cart mobile floating button -->
+
+    <div class="mobile-cart-floating-button">
+      <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="mobile-wishlist-floating-button">
+      <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </div>
+
+
+    <!-- Content -->
+     <!-- Global Commerce & Logistics Content -->
+    <main class="global-commerce-page">
+        <!-- Hero Section -->
+        <section class="commerce-hero">
+            <div class="container hero-wrapper">
+                <div class="hero-text-content">
+                    <h1 class="hero-title">Global Commerce & Logistics</h1>
+                    <p class="hero-tagline">Connecting Markets, Delivering Worldwide</p>
+                    <p class="hero-description">Seamless cross-border trade solutions that transform global complexity into competitive advantage. From customs clearance to last-mile delivery, we orchestrate your international commerce journey.</p>
+                    <div class="hero-actions">
+                        <a href="#solutions" class="btn btn-primary">
+                            <i class="fas fa-chart-line"></i>
+                            Explore Solutions
+                        </a>
+                        <a href="contact-us.html" class="btn btn-secondary">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            Get Custom Quote
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Countries</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Shipping Lines</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99.5%</span>
+                            <span class="stat-label">On-Time Delivery</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Tracking</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="globe-container">
+                        <div class="globe">
+                            <div class="globe-inner">
+                                <div class="globe-grid"></div>
+                                <div class="globe-line americas"></div>
+                                <div class="globe-line europe"></div>
+                                <div class="globe-line asia"></div>
+                                <div class="globe-line africa"></div>
+                                <div class="connection-dots">
+                                    <div class="dot shanghai" data-city="Shanghai">
+                                        <div class="pulse"></div>
+                                    </div>
+                                    <div class="dot rotterdam" data-city="Rotterdam">
+                                        <div class="pulse"></div>
+                                    </div>
+                                    <div class="dot losangeles" data-city="Los Angeles">
+                                        <div class="pulse"></div>
+                                    </div>
+                                    <div class="dot dubai" data-city="Dubai">
+                                        <div class="pulse"></div>
+                                    </div>
+                                    <div class="dot singapore" data-city="Singapore">
+                                        <div class="pulse"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition -->
+        <section class="value-proposition">
+            <div class="container">
+                <div class="value-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h3>Borderless Commerce</h3>
+                        <p>Navigate international trade regulations, tariffs, and compliance with our expert-guided solutions.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Multi-Modal Logistics</h3>
+                        <p>Air, sea, rail, and road transportation optimized for speed, cost, and reliability.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h3>Global Warehousing</h3>
+                        <p>Strategic distribution centers worldwide for inventory management and faster delivery.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Trade Compliance</h3>
+                        <p>Automated documentation, customs clearance, and regulatory compliance management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Global Network -->
+        <section class="network-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Global Logistics Network</h2>
+                    <p class="section-subtitle">Connected infrastructure spanning the world's major trade hubs</p>
+                </div>
+                
+                <div class="network-map">
+                    <div class="map-container">
+                        <div class="map-background">
+                            <!-- Simplified world map representation -->
+                            <div class="continents">
+                                <div class="continent na">North America</div>
+                                <div class="continent sa">South America</div>
+                                <div class="continent eu">Europe</div>
+                                <div class="continent af">Africa</div>
+                                <div class="continent as">Asia</div>
+                                <div class="continent oc">Oceania</div>
+                            </div>
+                            
+                            <!-- Network nodes -->
+                            <div class="network-node la" data-city="Los Angeles">
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="network-node ny" data-city="New York">
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="network-node sh" data-city="Shanghai">
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="network-node sg" data-city="Singapore">
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="network-node du" data-city="Dubai">
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="network-node ro" data-city="Rotterdam">
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="network-node mu" data-city="Mumbai">
+                                <div class="node-pulse"></div>
+                            </div>
+                            <div class="network-node sy" data-city="Sydney">
+                                <div class="node-pulse"></div>
+                            </div>
+                            
+                            <!-- Connection lines -->
+                            <div class="connection-line la-sh"></div>
+                            <div class="connection-line sh-sg"></div>
+                            <div class="connection-line sg-du"></div>
+                            <div class="connection-line du-ro"></div>
+                            <div class="connection-line ro-ny"></div>
+                            <div class="connection-line ny-la"></div>
+                            <div class="connection-line sg-sy"></div>
+                            <div class="connection-line du-mu"></div>
+                        </div>
+                        
+                        <div class="network-stats">
+                            <div class="network-stat">
+                                <h3>15</h3>
+                                <p>Major Ports</p>
+                            </div>
+                            <div class="network-stat">
+                                <h3>25</h3>
+                                <p>Air Hubs</p>
+                            </div>
+                            <div class="network-stat">
+                                <h3>50+</h3>
+                                <p>Distribution Centers</p>
+                            </div>
+                            <div class="network-stat">
+                                <h3>2000+</h3>
+                                <p>Local Partners</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="case-studies">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Global Success Stories</h2>
+                    <p class="section-subtitle">How we've transformed international commerce for businesses worldwide</p>
+                </div>
+                
+                <div class="cases-grid">
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Fashion Retailer</h3>
+                        <p class="case-result">Reduced delivery time by 40% across Europe and North America</p>
+                        <div class="case-details">
+                            <p><strong>Challenge:</strong> Slow international shipping affecting customer satisfaction</p>
+                            <p><strong>Solution:</strong> Multi-hub warehousing and express customs clearance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>Electronics Manufacturer</h3>
+                        <p class="case-result">Saved 35% on logistics costs through optimized routing</p>
+                        <div class="case-details">
+                            <p><strong>Challenge:</strong> High transportation costs for global component sourcing</p>
+                            <p><strong>Solution:</strong> Consolidated shipping and duty optimization strategies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card">
+                        <div class="case-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <h3>Pharmaceutical Company</h3>
+                        <p class="case-result">Achieved 99.9% temperature compliance for cold chain shipments</p>
+                        <div class="case-details">
+                            <p><strong>Challenge:</strong> Maintaining product integrity across 50+ countries</p>
+                            <p><strong>Solution:</strong> Specialized cold chain logistics with real-time monitoring</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Black Background -->
+        <section class="commerce-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Streamline Your Global Commerce?</h2>
+                    <p>Join 5,000+ businesses that trust us with their international logistics and trade operations.</p>
+                    <div class="cta-buttons">
+                        <a href="contact-us.html" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Start Your Journey
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <i class="fas fa-calendar-alt"></i>
+                            Schedule Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality - Fixed
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and panes
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+                    
+                    tabPanes.forEach(pane => {
+                        pane.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button and corresponding pane
+                    button.classList.add('active');
+                    button.setAttribute('aria-selected', 'true');
+                    
+                    const activePane = document.getElementById(tabId);
+                    if (activePane) {
+                        activePane.classList.add('active');
+                    }
+                });
+            });
+            
+            // Animate globe lines on scroll
+            const observerOptions = {
+                threshold: 0.3
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const globeLines = entry.target.querySelectorAll('.globe-line');
+                    if (entry.isIntersecting) {
+                        globeLines.forEach(line => {
+                            line.style.animationPlayState = 'running';
+                        });
+                    } else {
+                        globeLines.forEach(line => {
+                            line.style.animationPlayState = 'paused';
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            const globeSection = document.querySelector('.globe-container');
+            if (globeSection) {
+                observer.observe(globeSection);
+            }
+            
+            // Network node hover effects
+            const networkNodes = document.querySelectorAll('.network-node');
+            networkNodes.forEach(node => {
+                node.addEventListener('mouseenter', () => {
+                    const city = node.getAttribute('data-city');
+                    // Highlight corresponding connections
+                    document.querySelectorAll('.connection-line').forEach(line => {
+                        const lineClass = city.toLowerCase().replace(' ', '');
+                        if (line.classList.contains(lineClass)) {
+                            line.style.background = 'var(--primary-color)';
+                            line.style.boxShadow = '0 0 10px var(--primary-color)';
+                        }
+                    });
+                });
+                
+                node.addEventListener('mouseleave', () => {
+                    // Reset connection lines
+                    document.querySelectorAll('.connection-line').forEach(line => {
+                        line.style.background = 'linear-gradient(90deg, var(--primary-color), transparent)';
+                        line.style.boxShadow = 'none';
+                    });
+                });
+            });
+            
+            // Animate stats on scroll
+            const statElements = document.querySelectorAll('.stat-number, .network-stat h3');
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const finalValue = parseInt(element.textContent);
+                        const duration = 1500;
+                        const step = finalValue / (duration / 16); // 60fps
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= finalValue) {
+                                element.textContent = finalValue + (element.textContent.includes('+') ? '+' : '');
+                                clearInterval(timer);
+                            } else {
+                                element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '');
+                            }
+                        }, 16);
+                        
+                        statsObserver.unobserve(element);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statElements.forEach(stat => {
+                statsObserver.observe(stat);
+            });
+            
+            // Add smooth hover effects to all cards
+            const cards = document.querySelectorAll('.value-card, .feature-card, .case-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+        });
+    </script>
+    <style>
+        /* Global Commerce & Logistics Enhanced Styles */
+        :root {
+            --primary-color: #e05a00;
+            --secondary-color: #000000;
+            --accent-blue: #0066cc;
+            --accent-green: #00a86b;
+            --accent-purple: #7c3aed;
+            --light-bg: #f8fafc;
+            --text-dark: #000000;
+            --text-medium: #334155;
+            --text-light: #64748b;
+            --gradient-primary: linear-gradient(135deg, #e05a00 0%, #ff7b2c 100%);
+            --gradient-dark: linear-gradient(135deg, #000000 0%, #2d3748 100%);
+            --gradient-blue: linear-gradient(135deg, #0066cc 0%, #00a8ff 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .commerce-hero {
+            padding: 140px 0 100px;
+            background: var(--gradient-dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .commerce-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(224, 90, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 102, 204, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .hero-wrapper {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 58px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #e05a00 50%, #ff9d5c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero-tagline {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+        
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+        
+        .btn {
+            padding: 16px 36px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 25px rgba(224, 90, 0, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #c44f00 0%, #e05a00 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(224, 90, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 20px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat:hover {
+            background: rgba(224, 90, 0, 0.1);
+            border-color: rgba(224, 90, 0, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Globe Visualization */
+        .globe-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .globe {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #1a202c, #0f172a);
+            box-shadow: 
+                0 0 100px rgba(224, 90, 0, 0.3),
+                inset 0 0 60px rgba(0, 0, 0, 0.8);
+        }
+        
+        .globe-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .globe-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, transparent 60%, rgba(224, 90, 0, 0.05) 100%),
+                linear-gradient(0deg, transparent 49%, rgba(224, 90, 0, 0.1) 50%, transparent 51%),
+                linear-gradient(90deg, transparent 49%, rgba(224, 90, 0, 0.1) 50%, transparent 51%),
+                linear-gradient(45deg, transparent 49%, rgba(224, 90, 0, 0.05) 50%, transparent 51%),
+                linear-gradient(135deg, transparent 49%, rgba(224, 90, 0, 0.05) 50%, transparent 51%);
+        }
+        
+        .globe-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(224, 90, 0, 0.4), transparent);
+            height: 1px;
+            transform-origin: 50% 50%;
+            animation: rotateGlobe 20s linear infinite;
+        }
+        
+        .globe-line.americas { top: 50%; left: 0; width: 100%; transform: rotate(30deg); }
+        .globe-line.europe { top: 50%; left: 0; width: 100%; transform: rotate(60deg); animation-delay: -5s; }
+        .globe-line.asia { top: 50%; left: 0; width: 100%; transform: rotate(120deg); animation-delay: -10s; }
+        .globe-line.africa { top: 50%; left: 0; width: 100%; transform: rotate(150deg); animation-delay: -15s; }
+        
+        @keyframes rotateGlobe {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .connection-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .dot {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+        
+        .dot::after {
+            content: attr(data-city);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: var(--text-dark);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dot:hover::after {
+            opacity: 1;
+        }
+        
+        .pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--primary-color);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+        
+        .dot.shanghai { top: 40%; left: 70%; animation-delay: 0s; }
+        .dot.rotterdam { top: 35%; left: 45%; animation-delay: 0.5s; }
+        .dot.losangeles { top: 40%; left: 20%; animation-delay: 1s; }
+        .dot.dubai { top: 50%; left: 55%; animation-delay: 1.5s; }
+        .dot.singapore { top: 55%; left: 70%; animation-delay: 2s; }
+        
+        /* Value Proposition */
+        .value-proposition {
+            padding: 100px 0;
+            background: var(--light-bg);
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 40px 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid #f1f5f9;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(224, 90, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+        
+        .value-icon {
+            font-size: 52px;
+            margin-bottom: 25px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .value-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .value-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        /* Solutions Section */
+        .solutions-section {
+            padding: 120px 0;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-header h2 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .solutions-tabs {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            background: var(--light-bg);
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-btn {
+            padding: 16px 32px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tab-btn i {
+            font-size: 20px;
+        }
+        
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(224, 90, 0, 0.2);
+        }
+        
+        .tab-content {
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .tab-pane {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .tab-pane.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(224, 90, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 42px;
+            margin-bottom: 25px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .feature-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: var(--text-medium);
+            position: relative;
+            padding-left: 28px;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* Network Section */
+        .network-section {
+            padding: 120px 0;
+            background: var(--gradient-dark);
+            color: white;
+        }
+        
+        .network-section .section-header h2 {
+            color: white;
+        }
+        
+        .network-section .section-subtitle {
+            color: #cbd5e1;
+        }
+        
+        .network-map {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .map-container {
+            position: relative;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .map-background {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+        
+        .continents {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .continent {
+            position: absolute;
+            background: rgba(224, 90, 0, 0.08);
+            border: 1px solid rgba(224, 90, 0, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 12px;
+            color: rgba(224, 90, 0, 0.8);
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+        
+        .continent.na { top: 20%; left: 20%; width: 25%; height: 30%; }
+        .continent.sa { top: 50%; left: 25%; width: 20%; height: 30%; }
+        .continent.eu { top: 25%; left: 45%; width: 15%; height: 20%; }
+        .continent.af { top: 40%; left: 45%; width: 15%; height: 25%; }
+        .continent.as { top: 25%; left: 65%; width: 25%; height: 40%; }
+        .continent.oc { top: 60%; left: 80%; width: 15%; height: 20%; }
+        
+        .network-node {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+        
+        .network-node::after {
+            content: attr(data-city);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: var(--text-dark);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .network-node:hover::after {
+            opacity: 1;
+        }
+        
+        .node-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--primary-color);
+            animation: pulse 2s infinite;
+        }
+        
+        .network-node.la { top: 40%; left: 20%; }
+        .network-node.ny { top: 35%; left: 30%; }
+        .network-node.sh { top: 45%; left: 75%; }
+        .network-node.sg { top: 55%; left: 70%; }
+        .network-node.du { top: 50%; left: 55%; }
+        .network-node.ro { top: 30%; left: 48%; }
+        .network-node.mu { top: 55%; left: 65%; }
+        .network-node.sy { top: 65%; left: 85%; }
+        
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            transform-origin: left center;
+            z-index: 1;
+        }
+        
+        .connection-line.la-sh { top: 42%; left: 21%; width: 54%; transform: rotate(5deg); }
+        .connection-line.sh-sg { top: 50%; left: 76%; width: 6%; transform: rotate(160deg); }
+        .connection-line.sg-du { top: 53%; left: 71%; width: 16%; transform: rotate(280deg); }
+        .connection-line.du-ro { top: 40%; left: 56%; width: 8%; transform: rotate(340deg); }
+        .connection-line.ro-ny { top: 33%; left: 49%; width: 19%; transform: rotate(285deg); }
+        .connection-line.ny-la { top: 38%; left: 31%; width: 11%; transform: rotate(240deg); }
+        .connection-line.sg-sy { top: 60%; left: 71%; width: 14%; transform: rotate(145deg); }
+        .connection-line.du-mu { top: 53%; left: 66%; width: 1%; transform: rotate(180deg); }
+        
+        .network-stats {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            display: flex;
+            justify-content: space-around;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .network-stat {
+            text-align: center;
+        }
+        
+        .network-stat h3 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .network-stat p {
+            font-size: 14px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Case Studies */
+        .case-studies {
+            padding: 120px 0;
+            background: var(--light-bg);
+        }
+        
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .case-card {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .case-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(224, 90, 0, 0.1);
+        }
+        
+        .case-icon {
+            font-size: 54px;
+            margin-bottom: 30px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .case-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .case-result {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding: 15px 0;
+            border-bottom: 2px solid rgba(224, 90, 0, 0.2);
+        }
+        
+        .case-details p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .case-details strong {
+            color: var(--text-dark);
+        }
+        
+        /* CTA Section - Updated to Black Background */
+        .commerce-cta {
+            padding: 120px 0;
+            background: #000000;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-content h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .cta-content p {
+            font-size: 22px;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-wrapper {
+                gap: 60px;
+            }
+            
+            .hero-title {
+                font-size: 50px;
+            }
+            
+            .hero-tagline {
+                font-size: 34px;
+            }
+            
+            .globe-container {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .section-header h2 {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+            
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-actions {
+                justify-content: center;
+            }
+            
+            .globe-container {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .tab-buttons {
+                padding: 8px;
+            }
+            
+            .tab-btn {
+                flex: 1;
+                min-width: 160px;
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+            
+            .cases-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .commerce-hero {
+                padding: 100px 0 70px;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .hero-tagline {
+                font-size: 28px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+            }
+            
+            .section-header h2 {
+                font-size: 36px;
+            }
+            
+            .section-subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .btn {
+                padding: 14px 28px;
+                font-size: 16px;
+            }
+            
+            .stat-number {
+                font-size: 30px;
+            }
+            
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-content h2 {
+                font-size: 36px;
+            }
+            
+            .cta-content p {
+                font-size: 18px;
+            }
+            
+            .network-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .network-stat {
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            .network-stat h3 {
+                font-size: 36px;
+            }
+            
+            .solutions-section,
+            .network-section,
+            .case-studies,
+            .commerce-cta {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 34px;
+            }
+            
+            .hero-tagline {
+                font-size: 24px;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .value-grid,
+            .tab-content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .globe-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .map-container {
+                height: 350px;
+                padding: 20px;
+            }
+            
+            .network-stats {
+                position: relative;
+                bottom: auto;
+                margin-top: 20px;
+            }
+            
+            .tab-btn {
+                min-width: 140px;
+                justify-content: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .hero-tagline {
+                font-size: 22px;
+            }
+            
+            .hero-description {
+                font-size: 15px;
+            }
+            
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .section-subtitle {
+                font-size: 16px;
+            }
+            
+            .tab-btn {
+                min-width: 120px;
+                padding: 12px 15px;
+                font-size: 15px;
+            }
+            
+            .feature-card,
+            .case-card {
+                padding: 25px 20px;
+            }
+            
+            .cta-content h2 {
+                font-size: 30px;
+            }
+            
+            .cta-content p {
+                font-size: 16px;
+            }
+            
+            .globe-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+     
+
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            checkUserLogin();
+            setupFAQ();
+        });
+        
+        function checkUserLogin() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const dashboardLink = document.querySelector('.dashboard-link');
+            
+            if (currentUser) {
+                dashboardLink.style.display = 'block';
+            }
+        }
+        
+        function setupFAQ() {
+            // FAQ accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // FAQ category filtering
+            const categoryButtons = document.querySelectorAll('.faq-category-btn');
+            const faqSections = document.querySelectorAll('.faq-section');
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const selectedCategory = button.dataset.category;
+                    
+                    // Show/hide FAQ items based on category
+                    if (selectedCategory === 'all') {
+                        // Show all items and sections
+                        faqSections.forEach(section => {
+                            section.style.display = 'block';
+                        });
+                        allFaqItems.forEach(item => {
+                            item.style.display = 'block';
+                        });
+                    } else {
+                        // Hide all sections first
+                        faqSections.forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        
+                        // Show sections that have items in the selected category
+                        const sectionsToShow = document.querySelectorAll(`.faq-section[data-category="${selectedCategory}"]`);
+                        sectionsToShow.forEach(section => {
+                            section.style.display = 'block';
+                        });
+                        
+                        // Hide all items not in selected category
+                        allFaqItems.forEach(item => {
+                            if (item.dataset.category === selectedCategory) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    }
+                    
+                    // Close all open items when changing category
+                    allFaqItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>

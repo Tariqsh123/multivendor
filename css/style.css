@@ -510,6 +510,10 @@ a {
   border:1px solid rgb(204, 204, 204);
   position:relative;
   overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .why-choose-us-card:hover{

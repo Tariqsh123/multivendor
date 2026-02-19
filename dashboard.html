@@ -3,33 +3,945 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - GlobalMart</title>
+    <title>GlobalMart | Premium Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 覆盖层面板样式 */
+        /* ==================== MODERN VARIABLES ==================== */
+        :root {
+            --primary: #000000;
+            --secondary: #ff6b00;
+            --secondary-light: #ff8c42;
+            --secondary-glow: rgba(255, 107, 0, 0.3);
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #eeeeee;
+            --gray-300: #e0e0e0;
+            --gray-400: #bdbdbd;
+            --gray-500: #9e9e9e;
+            --gray-600: #757575;
+            --gray-700: #616161;
+            --gray-800: #424242;
+            --gray-900: #212121;
+            
+            --border-radius-sm: 12px;
+            --border-radius-md: 20px;
+            --border-radius-lg: 30px;
+            --border-radius-xl: 40px;
+            
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 50px -10px rgba(0,0,0,0.2);
+            --shadow-xl: 0 30px 60px rgba(0,0,0,0.15);
+            --shadow-glow: 0 0 30px var(--secondary-glow);
+            
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --glass-blur: blur(10px);
+        }
+
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+            color: var(--gray-900);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Import Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 30px;
+            width: 100%;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 var(--secondary-glow); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 107, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ==================== NAVBAR UPGRADE ==================== */
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 40px;
+            transition: var(--transition-base);
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-base);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition-base);
+        }
+
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--secondary);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        #wish-and-cart-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .wishlist-icon, .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+            padding: 8px 12px;
+            background: var(--gray-100);
+            border-radius: 30px;
+            transition: var(--transition-base);
+        }
+
+        .wishlist-icon:hover, .cart-icon:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .wishlist-count, .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--gray-800);
+            transition: var(--transition-base);
+        }
+
+        /* ==================== DASHBOARD HEADER - PREMIUM ==================== */
+        .dashboard-header {
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, #2d2d2d 100%);
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,0,0.2) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .dashboard-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+
+        .dashboard-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-info {
+            animation: slideIn 0.6s ease;
+        }
+
+        .dashboard-info h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, white 0%, var(--secondary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .dashboard-info p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dashboard-info p i {
+            color: var(--secondary);
+        }
+
+        .dashboard-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: slideIn 0.6s ease 0.2s both;
+        }
+
+        .user-info {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 30px;
+            border-radius: 50px;
+            transition: var(--transition-base);
+        }
+
+        .user-info:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,107,0,0.5);
+        }
+
+        #userName {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+            text-align: right;
+        }
+
+        .user-role {
+            background: var(--secondary);
+            color: white;
+            padding: 4px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 5px;
+            box-shadow: 0 2px 10px rgba(255,107,0,0.3);
+        }
+
+        #logoutBtn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-weight: 600;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #logoutBtn:hover {
+            background: rgba(255,107,0,0.3);
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ==================== DASHBOARD CARDS - PREMIUM ==================== */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .dashboard-card {
+            background: var(--light);
+            padding: 35px 25px;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            transition: var(--transition-bounce);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            animation: scaleIn 0.5s ease;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
+            transform: scaleX(0);
+            transition: var(--transition-base);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--secondary);
+        }
+
+        .dashboard-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            box-shadow: 0 10px 30px rgba(255,107,0,0.3);
+            transition: var(--transition-base);
+            position: relative;
+        }
+
+        .card-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,107,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .dashboard-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .dashboard-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--gray-900);
+        }
+
+        .dashboard-card p {
+            color: var(--gray-600);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .dashboard-card .btn-small {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-base);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card .btn-small::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,107,0,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .dashboard-card .btn-small:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,107,0,0.4);
+        }
+
+        .dashboard-card .btn-small:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* ==================== DASHBOARD MAIN - PREMIUM ==================== */
+        .dashboard-main {
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 60px;
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light), var(--secondary));
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+
+        .dashboard-main h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--gray-900);
+            position: relative;
+            padding-bottom: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        .dashboard-main h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
+            border-radius: 2px;
+        }
+
+        /* ==================== TABS - PREMIUM ==================== */
+        .dashboard-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--gray-200);
+            padding-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .dash-tab-btn {
+            padding: 12px 30px;
+            background: transparent;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-base);
+            color: var(--gray-600);
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--secondary);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .dash-tab-btn:hover {
+            color: var(--secondary);
+        }
+
+        .dash-tab-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .dash-tab-btn.active {
+            color: white;
+            background: var(--secondary);
+            box-shadow: 0 5px 20px rgba(255,107,0,0.3);
+        }
+
+        .dash-tab-btn.active::before {
+            display: none;
+        }
+
+        .dash-tab-content {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .dash-tab-content.active {
+            display: block;
+        }
+
+        /* ==================== PRODUCTS GRID - PREMIUM ==================== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .product-card {
+            background: var(--light);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-bounce);
+            border: 1px solid var(--gray-200);
+            position: relative;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--secondary);
+        }
+
+        .product-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: var(--gray-100);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.15);
+        }
+
+        .warehouse-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: white;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(255,107,0,0.3);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-bounce);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--gray-700);
+        }
+
+        .wishlist-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--gray-900);
+        }
+
+        .product-store {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-store i {
+            color: var(--secondary);
+        }
+
+        .star-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-price::before {
+            content: '$';
+            font-size: 1rem;
+            color: var(--gray-500);
+        }
+
+        .commission-badge {
+            display: inline-block;
+            background: rgba(255,107,0,0.1);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,107,0,0.2);
+        }
+
+        /* ==================== TABLES - PREMIUM ==================== */
+        .orders-table {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--gray-200);
+            background: white;
+        }
+
+        .orders-table table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .orders-table th {
+            background: var(--gray-100);
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .orders-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .orders-table tr {
+            transition: var(--transition-base);
+        }
+
+        .orders-table tr:hover {
+            background: rgba(255,107,0,0.05);
+        }
+
+        .orders-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .no-data {
+            text-align: center;
+            color: var(--gray-500);
+            padding: 60px !important;
+            font-size: 1.1rem;
+        }
+
+        /* ==================== FORMS - PREMIUM ==================== */
+        .upload-form {
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 50px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius-sm);
+            font-size: 1rem;
+            transition: var(--transition-base);
+            background: white;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(255,107,0,0.1);
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 8px;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(255,107,0,0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255,107,0,0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        /* ==================== OVERLAY PANELS - PREMIUM ==================== */
         .overlay-panel {
             position: fixed;
             top: 0;
             right: 0;
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             height: 100%;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            box-shadow: var(--shadow-xl);
             z-index: 1100;
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             overflow-y: auto;
+            border-left: 1px solid var(--glass-border);
         }
-        
+
+        @media (max-width: 768px) {
+            .overlay-panel {
+                max-width: 100%;
+            }
+        }
+
         .overlay-panel.active {
             transform: translateX(0);
         }
-        
+
         .overlay-header {
-            padding: 20px;
-            background: var(--secondary);
+            padding: 25px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--gray-900));
             color: white;
             display: flex;
             justify-content: space-between;
@@ -38,189 +950,665 @@
             top: 0;
             z-index: 1;
         }
-        
-        .overlay-content {
-            padding: 20px;
+
+        .overlay-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        
+
+        .overlay-header h3 i {
+            color: var(--secondary);
+        }
+
+        .close-overlay {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition-bounce);
+            backdrop-filter: blur(5px);
+        }
+
+        .close-overlay:hover {
+            background: var(--secondary);
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        .overlay-content {
+            padding: 30px;
+        }
+
         .overlay-backdrop {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             z-index: 1099;
             display: none;
+            backdrop-filter: blur(8px);
+            transition: var(--transition-base);
         }
-        
+
         .overlay-backdrop.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
-        
-        /* 白色关闭按钮 */
-        .close-overlay {
-            background: none;
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ==================== WISHLIST ITEMS - PREMIUM ==================== */
+        .wishlist-item {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-md);
+            margin-bottom: 20px;
+            position: relative;
+            transition: var(--transition-bounce);
+            background: white;
+            animation: slideIn 0.5s ease;
+        }
+
+        .wishlist-item:hover {
+            border-color: var(--secondary);
+            transform: translateX(-5px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .wishlist-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-md);
+        }
+
+        .wishlist-item-details {
+            flex: 1;
+        }
+
+        .wishlist-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--gray-900);
+        }
+
+        .remove-wishlist {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(220,53,69,0.1);
             border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
+            color: #dc3545;
             width: 40px;
             height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition-bounce);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease;
+            font-size: 1.2rem;
         }
-        
-        .close-overlay:hover {
-            transform: scale(1.1);
+
+        .remove-wishlist:hover {
+            background: #dc3545;
+            color: white;
+            transform: rotate(90deg) scale(1.1);
         }
-        
-        /* 产品价格编辑 */
-        .price-edit-container {
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons .btn-small {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 10px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-base);
+            cursor: pointer;
+        }
+
+        .action-buttons .btn-small:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,0,0.3);
+        }
+
+        /* ==================== MODAL - PREMIUM ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1200;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 50px;
+            border-radius: var(--border-radius-lg);
+            max-width: 450px;
+            width: 90%;
+            animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--gray-900);
+        }
+
+        .modal-content p {
+            color: var(--gray-600);
+            margin-bottom: 25px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius-sm);
+            margin: 20px 0;
+            font-size: 1rem;
+            transition: var(--transition-base);
+        }
+
+        .modal-content input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(255,107,0,0.1);
+            outline: none;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        /* ==================== PROFILE SECTION ==================== */
+        .profile-info {
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            padding: 30px;
+            border-radius: var(--border-radius-md);
+            margin-bottom: 40px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .profile-info h4 {
+            margin-bottom: 25px;
+            color: var(--gray-900);
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin: 10px 0;
+            gap: 12px;
+            font-size: 1.3rem;
         }
-        
+
+        .profile-info h4 i {
+            color: var(--secondary);
+        }
+
+        .profile-info p {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-info p:last-child {
+            border-bottom: none;
+        }
+
+        .profile-info p strong {
+            color: var(--gray-700);
+        }
+
+        .profile-info p span {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .profile-form {
+            margin-top: 25px;
+        }
+
+        .profile-form input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            transition: var(--transition-base);
+        }
+
+        .profile-form input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(255,107,0,0.1);
+            outline: none;
+        }
+
+        /* ==================== PRICE EDIT ==================== */
+        .price-edit-container {
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            padding: 30px;
+            border-radius: var(--border-radius-md);
+            margin: 25px 0;
+            border: 1px solid var(--gray-200);
+        }
+
         .price-input {
-            width: 100px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            width: 180px;
+            padding: 15px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius-sm);
             text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: var(--transition-base);
         }
-        
+
+        .price-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(255,107,0,0.1);
+            outline: none;
+        }
+
         .original-price {
             text-decoration: line-through;
-            color: #999;
-            font-size: 0.9rem;
+            color: var(--gray-500);
+            font-size: 1rem;
         }
-        
+
         .profit-margin {
             color: #28a745;
-            font-size: 0.9rem;
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 1.3rem;
         }
-        
-        /* 店铺列表 */
+
+        /* ==================== STORE LIST ==================== */
         .store-list {
-            margin: 15px 0;
+            margin: 25px 0;
         }
-        
+
         .store-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
+            padding: 20px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-md);
+            margin-bottom: 15px;
+            transition: var(--transition-bounce);
+            background: white;
         }
-        
-        .store-item:last-child {
-            border-bottom: none;
+
+        .store-item:hover {
+            border-color: var(--secondary);
+            transform: translateX(-5px);
+            box-shadow: var(--shadow-lg);
         }
-        
+
         .store-price {
             color: var(--secondary);
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 1.3rem;
         }
-        
-        /* 佣金详情表格 */
+
+        /* ==================== COMMISSION TABLE ==================== */
         .commission-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            margin: 25px 0;
         }
-        
+
         .commission-table th {
-            background: #f8f9fa;
-            padding: 10px;
-            text-align: left;
-            border-bottom: 2px solid #ddd;
-        }
-        
-        .commission-table td {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .commission-table tr:hover {
-            background: #f8f9fa;
-        }
-        
-        /* 愿望清单项目 */
-        .wishlist-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            background: var(--gray-100);
             padding: 15px;
-            border-bottom: 1px solid #eee;
-            position: relative;
+            text-align: left;
+            font-weight: 700;
+            color: var(--gray-800);
+            border-bottom: 2px solid var(--secondary);
         }
-        
-        .remove-wishlist {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            color: #dc3545;
-            cursor: pointer;
+
+        .commission-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        /* ==================== AUTH MESSAGE ==================== */
+        .auth-message {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, white 0%, var(--gray-100) 100%);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+        }
+
+        .auth-message i {
+            font-size: 6rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .auth-message h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--gray-900);
+        }
+
+        .auth-message p {
+            color: var(--gray-600);
+            margin-bottom: 35px;
             font-size: 1.2rem;
         }
+
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .dashboard-info h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--glass-bg);
+                backdrop-filter: var(--glass-blur);
+                -webkit-backdrop-filter: var(--glass-blur);
+                flex-direction: column;
+                padding: 40px;
+                transition: var(--transition-base);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .dashboard-header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .dashboard-info h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard-info p {
+                justify-content: center;
+            }
+
+            .dashboard-actions {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .user-info {
+                width: 100%;
+                text-align: center;
+            }
+
+            #userName {
+                text-align: center;
+            }
+
+            .dashboard-main {
+                padding: 25px;
+            }
+
+            .dashboard-main h2 {
+                font-size: 1.8rem;
+            }
+
+            .dashboard-tabs {
+                justify-content: center;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 20px;
+            }
+
+            .wishlist-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .wishlist-item img {
+                margin: 0 auto;
+            }
+
+            .action-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-info h1 {
+                font-size: 1.8rem;
+            }
+
+            .dashboard-card {
+                padding: 25px;
+            }
+
+            .card-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .dashboard-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 200px;
+            }
+
+            .modal-content {
+                padding: 30px;
+            }
+
+            .modal-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-buttons .btn-small {
+                width: 100%;
+            }
+        }
+
+        /* ==================== UTILITY CLASSES ==================== */
+        .text-center { text-align: center; }
+        .mt-5 { margin-top: 50px; }
+        .mb-4 { margin-bottom: 40px; }
+        .btn-block { width: 100%; }
         
-        /* 平滑滚动 */
+        /* Smooth scroll */
         html {
             scroll-behavior: smooth;
         }
-        
-        .dashboard-card {
-            cursor: pointer;
-            transition: transform 0.3s ease;
+
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 60px;
         }
-        
-        .dashboard-card:hover {
-            transform: translateY(-5px);
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--gray-200);
+            border-top-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
         }
-        
-        /* 弹窗中的按钮组 */
-        .action-buttons {
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-xl);
+            z-index: 10000;
+            animation: slideInRight 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-weight: 600;
             display: flex;
+            align-items: center;
             gap: 10px;
-            margin-top: 15px;
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px) scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Floating animation for icons */
+        .float-animation {
+            animation: float 3s infinite ease-in-out;
+        }
+
+        /* Pulse animation for badges */
+        .pulse-animation {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation with Glassmorphism -->
     <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt="GlobalMart"></a>
             
             <div class="nav-menu" id="navMenu">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="products.html" class="nav-link">Products</a>
-    <a href="account.html" class="nav-link">Account</a>
-    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
 
-    <div id="wish-and-cart-menu">
-    <!-- Wishlist Icon manually added -->
-    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
-        <i class="fas fa-heart"></i>
-        <span class="wishlist-count">0</span>
-    </a>
-
-    <!-- Cart Icon -->
-    <a href="#" class="nav-link cart-icon" id="cartIcon">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </a>
-    </div>
-</div>
-
+                <div id="wish-and-cart-menu">
+                    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
+                    <a href="#" class="nav-link cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
             
             <button class="hamburger" id="hamburger">
                 <span></span>
@@ -230,34 +1618,37 @@
         </div>
     </nav>
 
-    <!-- wishlist cart mobile floating button -->
-
+    <!-- Floating Action Buttons -->
     <div class="mobile-cart-floating-button">
-      <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">0</span>
     </div>
 
     <div class="mobile-wishlist-floating-button">
-      <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
         <span class="wishlist-count">0</span>
     </div>
 
-
-    <!-- Dashboard Header -->
+    <!-- Premium Dashboard Header -->
     <section class="dashboard-header">
         <div class="container">
             <div class="dashboard-info">
                 <h1 id="dashboardTitle">Dashboard</h1>
-                <p id="dashboardSubtitle">Welcome to your dashboard</p>
+                <p>
+                    <i class="fas fa-sparkles"></i>
+                    <span id="dashboardSubtitle">Welcome to your premium dashboard</span>
+                </p>
             </div>
             <div class="dashboard-actions">
-    <div class="user-info">
-        <span id="userName">User</span>
-        <span class="user-role" id="userRole">Role</span>
-    </div>
-    <button class="btn btn-outline" id="logoutBtn" style="margin-left: 15px;">Logout</button>
-</div>
-
+                <div class="user-info">
+                    <span id="userName">User</span>
+                    <span class="user-role" id="userRole">Role</span>
+                </div>
+                <button class="btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
         </div>
     </section>
 
@@ -268,28 +1659,28 @@
             <div class="dashboard-section" id="customerDashboard" style="display: none;">
                 <div class="dashboard-cards">
                     <div class="dashboard-card" onclick="scrollToSection('recentOrdersSection')">
-                        <div class="card-icon customer">
+                        <div class="card-icon">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
                         <h3>My Orders</h3>
-                        <p>View your order history and track shipments</p>
-                        <button class="btn btn-small">View Orders</button>
+                        <p>View your order history and track shipments in real-time</p>
+                        <button class="btn-small">View Orders</button>
                     </div>
                     <div class="dashboard-card" onclick="openOverlay('wishlist')">
-                        <div class="card-icon customer">
+                        <div class="card-icon">
                             <i class="fas fa-heart"></i>
                         </div>
                         <h3>Wishlist</h3>
-                        <p>Save products you love for later</p>
-                        <button class="btn btn-small">View Wishlist</button>
+                        <p>Save your favorite products and get notified of deals</p>
+                        <button class="btn-small">View Wishlist</button>
                     </div>
                     <div class="dashboard-card" onclick="openOverlay('profile')">
-                        <div class="card-icon customer">
+                        <div class="card-icon">
                             <i class="fas fa-user-circle"></i>
                         </div>
                         <h3>Profile</h3>
-                        <p>Update your personal information</p>
-                        <button class="btn btn-small">Edit Profile</button>
+                        <p>Manage your personal information and preferences</p>
+                        <button class="btn-small">Edit Profile</button>
                     </div>
                 </div>
                 
@@ -308,13 +1699,16 @@
                             </thead>
                             <tbody id="customerOrders">
                                 <tr>
-                                    <td colspan="5" class="no-data">No orders yet</td>
+                                    <td colspan="5" class="no-data">
+                                        <i class="fas fa-box-open" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                                        No orders yet. Start shopping!
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     
-                    <h2>Recommended Products</h2>
+                    <h2>Recommended For You</h2>
                     <div class="products-grid" id="customerProducts">
                         <!-- Recommended products will be loaded here -->
                     </div>
@@ -325,42 +1719,51 @@
             <div class="dashboard-section" id="managerDashboard" style="display: none;">
                 <div class="dashboard-cards">
                     <div class="dashboard-card" id="editStoreCard">
-                        <div class="card-icon manager">
+                        <div class="card-icon">
                             <i class="fas fa-store"></i>
                         </div>
                         <h3>My Store</h3>
                         <p id="storeNameDisplay">Store: <span id="storeName">My Store</span></p>
-                        <button class="btn btn-small" id="editStoreBtn">Edit Store</button>
+                        <button class="btn-small" id="editStoreBtn">Edit Store</button>
                     </div>
                     <div class="dashboard-card" onclick="scrollToSection('mystoreTab')">
-                        <div class="card-icon manager">
+                        <div class="card-icon">
                             <i class="fas fa-boxes"></i>
                         </div>
                         <h3>Manage Products</h3>
                         <p id="productCount">Products: 0</p>
-                        <button class="btn btn-small">Manage Products</button>
+                        <button class="btn-small">Manage Products</button>
                     </div>
                     <div class="dashboard-card" onclick="scrollToSection('ordersTab')">
-                        <div class="card-icon manager">
+                        <div class="card-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <h3>Sales</h3>
-                        <p>View sales analytics</p>
-                        <button class="btn btn-small">View Sales</button>
+                        <h3>Sales Analytics</h3>
+                        <p>View detailed sales reports and insights</p>
+                        <button class="btn-small">View Sales</button>
                     </div>
                 </div>
                 
                 <div class="dashboard-main">
                     <div class="dashboard-tabs">
-                        <button class="dash-tab-btn active" data-tab="warehouse">Warehouse Products</button>
-                        <button class="dash-tab-btn" data-tab="mystore" id="mystoreTabBtn">My Store Products</button>
-                        <button class="dash-tab-btn" data-tab="orders" id="ordersTabBtn">Store Orders</button>
+                        <button class="dash-tab-btn active" data-tab="warehouse">
+                            <i class="fas fa-warehouse"></i>
+                            Warehouse Products
+                        </button>
+                        <button class="dash-tab-btn" data-tab="mystore" id="mystoreTabBtn">
+                            <i class="fas fa-store"></i>
+                            My Store Products
+                        </button>
+                        <button class="dash-tab-btn" data-tab="orders" id="ordersTabBtn">
+                            <i class="fas fa-shopping-bag"></i>
+                            Store Orders
+                        </button>
                     </div>
                     
                     <!-- Warehouse Products Tab -->
                     <div class="dash-tab-content active" id="warehouseTab">
                         <h3>Browse Warehouse Products</h3>
-                        <p>Select products from the warehouse to add to your store</p>
+                        <p>Select products from the warehouse to add to your store with custom pricing</p>
                         <div class="products-grid" id="warehouseProductsGrid">
                             <!-- Warehouse products will be loaded here -->
                         </div>
@@ -369,7 +1772,10 @@
                     <!-- My Store Products Tab -->
                     <div class="dash-tab-content" id="mystoreTab">
                         <h3>My Store Products</h3>
-                        <button class="btn btn-small" onclick="scrollToSection('warehouseTab')">Add from Warehouse</button>
+                        <button class="btn-primary" onclick="scrollToSection('warehouseTab')">
+                            <i class="fas fa-plus"></i>
+                            Add from Warehouse
+                        </button>
                         <div class="products-grid" id="myStoreProductsGrid">
                             <!-- Store products will be loaded here -->
                         </div>
@@ -392,7 +1798,10 @@
                                 </thead>
                                 <tbody id="storeOrders">
                                     <tr>
-                                        <td colspan="6" class="no-data">No orders yet</td>
+                                        <td colspan="6" class="no-data">
+                                            <i class="fas fa-box-open" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                                            No orders yet
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -405,43 +1814,46 @@
             <div class="dashboard-section" id="shipperDashboard" style="display: none;">
                 <div class="dashboard-cards">
                     <div class="dashboard-card" onclick="scrollToSection('uploadFormSection')">
-                        <div class="card-icon shipper">
+                        <div class="card-icon">
                             <i class="fas fa-warehouse"></i>
                         </div>
                         <h3>Warehouse</h3>
-                        <p>Manage products in warehouse</p>
-                        <button class="btn btn-small">Upload Product</button>
+                        <p>Upload and manage your products in the warehouse</p>
+                        <button class="btn-small">Upload Product</button>
                     </div>
                     <div class="dashboard-card" onclick="scrollToSection('myProductsSection')">
-                        <div class="card-icon shipper">
+                        <div class="card-icon">
                             <i class="fas fa-boxes"></i>
                         </div>
                         <h3>My Products</h3>
                         <p id="shipperProductCount">Products: 0</p>
-                        <button class="btn btn-small">View Products</button>
+                        <button class="btn-small">View Products</button>
                     </div>
                     <div class="dashboard-card" onclick="openOverlay('commission')">
-                        <div class="card-icon shipper">
+                        <div class="card-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h3>Commissions</h3>
                         <p id="totalCommission">Total: $0.00</p>
-                        <button class="btn btn-small">View Details</button>
+                        <button class="btn-small">View Details</button>
                     </div>
                 </div>
                 
                 <div class="dashboard-main">
-                    <h2>Upload Product to Warehouse</h2>
+                    <h2>
+                        <i class="fas fa-cloud-upload-alt" style="color: var(--secondary); margin-right: 15px;"></i>
+                        Upload Product to Warehouse
+                    </h2>
                     <div class="upload-form" id="uploadFormSection">
                         <form id="uploadProductForm">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="productName">Product Name</label>
-                                    <input type="text" id="productName" required>
+                                    <input type="text" id="productName" placeholder="e.g., iPhone 15 Pro Max" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="productPrice">Price ($)</label>
-                                    <input type="number" id="productPrice" step="0.01" required>
+                                    <input type="number" id="productPrice" step="0.01" placeholder="999.99" required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -449,11 +1861,11 @@
                                     <label for="productCategory">Category</label>
                                     <select id="productCategory" required>
                                         <option value="">Select Category</option>
-                                        <option value="electronics">Electronics</option>
-                                        <option value="clothing">Clothing</option>
-                                        <option value="home">Home & Garden</option>
-                                        <option value="sports">Sports</option>
-                                        <option value="other">Other</option>
+                                        <option value="electronics">📱 Electronics</option>
+                                        <option value="clothing">👕 Clothing</option>
+                                        <option value="home">🏠 Home & Garden</option>
+                                        <option value="sports">⚽ Sports</option>
+                                        <option value="other">📦 Other</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -463,18 +1875,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="productDescription">Description</label>
-                                <textarea id="productDescription" rows="3" required></textarea>
+                                <textarea id="productDescription" rows="4" placeholder="Describe your product in detail..." required></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="productImage">Image URL</label>
                                 <input type="text" id="productImage" placeholder="https://example.com/image.jpg" required>
-                                <small>You can use image URLs from Unsplash or other sources</small>
+                                <small>Use high-quality images for better sales</small>
                             </div>
-                            <button type="submit" class="btn btn-primary">Upload to Warehouse</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                Upload to Warehouse
+                            </button>
                         </form>
                     </div>
                     
-                    <h2 id="myProductsSection">My Warehouse Products</h2>
+                    <h2 id="myProductsSection">
+                        <i class="fas fa-boxes" style="color: var(--secondary); margin-right: 15px;"></i>
+                        My Warehouse Products
+                    </h2>
                     <div class="products-grid" id="shipperProductsGrid">
                         <!-- Shipper's products will be loaded here -->
                     </div>
@@ -484,29 +1902,88 @@
             <!-- Not Logged In Message -->
             <div class="dashboard-section" id="notLoggedIn">
                 <div class="auth-message">
-                    <i class="fas fa-user-lock"></i>
+                    <i class="fas fa-user-lock float-animation"></i>
                     <h2>Access Restricted</h2>
-                    <p>You need to be logged in to access the dashboard.</p>
-                    <a href="account.html" class="btn btn-primary">Login or Sign Up</a>
+                    <p>You need to be logged in to access the premium dashboard.</p>
+                    <a href="account.html" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login or Sign Up
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Premium Footer -->
     <footer class="footer">
-        <!-- Keep original footer -->
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Premium multi-vendor marketplace connecting global sellers with buyers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GlobalMart. All rights reserved. | Premium Dashboard v2.0</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- Cart Sidebar -->
+    <!-- Premium Cart Sidebar -->
     <div class="cart-sidebar" id="cartSidebar">
-        <!-- Keep original cart -->
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
     </div>
     <div class="cart-overlay" id="cartOverlay"></div>
 
-    <!-- 覆盖层面板 -->
-    
-    <!-- 愿望清单覆盖层 -->
+    <!-- Premium Overlay Panels -->
     <div class="overlay-panel" id="wishlistOverlay">
         <div class="overlay-header">
             <h3><i class="fas fa-heart"></i> My Wishlist</h3>
@@ -517,7 +1994,6 @@
         </div>
     </div>
     
-    <!-- 个人资料覆盖层 -->
     <div class="overlay-panel" id="profileOverlay">
         <div class="overlay-header">
             <h3><i class="fas fa-user-circle"></i> My Profile</h3>
@@ -528,7 +2004,6 @@
         </div>
     </div>
     
-    <!-- 佣金详情覆盖层 -->
     <div class="overlay-panel" id="commissionOverlay">
         <div class="overlay-header">
             <h3><i class="fas fa-money-bill-wave"></i> Commission Details</h3>
@@ -539,7 +2014,6 @@
         </div>
     </div>
     
-    <!-- 产品价格编辑覆盖层 -->
     <div class="overlay-panel" id="priceEditOverlay">
         <div class="overlay-header">
             <h3><i class="fas fa-tag"></i> Edit Product Price</h3>
@@ -550,7 +2024,6 @@
         </div>
     </div>
     
-    <!-- 店铺详情覆盖层 -->
     <div class="overlay-panel" id="storesOverlay">
         <div class="overlay-header">
             <h3><i class="fas fa-store"></i> Stores Selling This Product</h3>
@@ -563,14 +2036,14 @@
     
     <div class="overlay-backdrop" id="overlayBackdrop"></div>
 
-    <!-- Modal for store name -->
+    <!-- Premium Modal -->
     <div class="modal" id="storeNameModal">
         <div class="modal-content">
             <h3>Set Your Store Name</h3>
-            <p>Enter a name for your store:</p>
+            <p>Choose a unique name for your store that customers will remember.</p>
             <input type="text" id="storeNameInput" placeholder="e.g., TechZone">
             <div class="modal-buttons">
-                <button class="btn btn-primary" id="saveStoreNameBtn">Save</button>
+                <button class="btn-primary" id="saveStoreNameBtn">Save</button>
             </div>
         </div>
     </div>
@@ -586,6 +2059,17 @@
         setupDashboardTabs();
         setupDashboardEvents();
         setupOverlayEvents();
+        
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
         
         // Initialize wishlist
         if (typeof initWishlist === 'function') {
@@ -604,11 +2088,18 @@
             return;
         }
         
-        // FIXED: Removed the non-existent logoutBtn event listener that was causing error
-        // If you need a logout button, add it to your HTML first
+        // Set user name and role in header with animation
+        document.getElementById('userName').textContent = currentUser.name || 'User';
+        document.getElementById('userRole').textContent = currentUser.role ? 
+            currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1) : 'User';
+        document.getElementById('dashboardTitle').textContent = 
+            currentUser.role ? `${currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1)} Dashboard` : 'Dashboard';
+        document.getElementById('dashboardSubtitle').textContent = 
+            `Welcome back, ${currentUser.name || 'User'}! Your premium dashboard is ready.`;
     });
     
-    // 通用辅助函数
+    // ==================== PREMIUM FUNCTIONS ====================
+    
     function scrollToSection(sectionId) {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -616,11 +2107,17 @@
                 behavior: 'smooth',
                 block: 'start'
             });
+            
+            // Add highlight effect
+            element.style.transition = 'background-color 0.5s ease';
+            element.style.backgroundColor = 'rgba(255,107,0,0.1)';
+            setTimeout(() => {
+                element.style.backgroundColor = 'transparent';
+            }, 1000);
         }
     }
     
     function setupOverlayEvents() {
-        // 关闭覆盖层按钮
         document.querySelectorAll('.close-overlay').forEach(button => {
             button.addEventListener('click', function() {
                 const overlayId = this.dataset.overlay;
@@ -628,17 +2125,14 @@
             });
         });
         
-        // 点击背景关闭覆盖层
         document.getElementById('overlayBackdrop').addEventListener('click', closeAllOverlays);
         
-        // ESC键关闭覆盖层
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeAllOverlays();
         });
     }
     
     function openOverlay(overlayId) {
-        // 根据覆盖层类型加载内容
         switch(overlayId) {
             case 'wishlist':
                 loadWishlist();
@@ -654,6 +2148,9 @@
         const overlayElement = document.getElementById(`${overlayId}Overlay`);
         if (overlayElement) {
             overlayElement.classList.add('active');
+            
+            // Add entrance animation
+            overlayElement.style.animation = 'slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
         }
         
         document.getElementById('overlayBackdrop').classList.add('active');
@@ -663,7 +2160,11 @@
     function closeOverlay(overlayId) {
         const overlayElement = document.getElementById(`${overlayId}Overlay`);
         if (overlayElement) {
-            overlayElement.classList.remove('active');
+            overlayElement.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                overlayElement.classList.remove('active');
+                overlayElement.style.animation = '';
+            }, 300);
         }
         document.getElementById('overlayBackdrop').classList.remove('active');
         document.body.style.overflow = 'auto';
@@ -671,42 +2172,42 @@
     
     function closeAllOverlays() {
         document.querySelectorAll('.overlay-panel').forEach(panel => {
-            panel.classList.remove('active');
+            panel.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                panel.classList.remove('active');
+                panel.style.animation = '';
+            }, 300);
         });
         document.getElementById('overlayBackdrop').classList.remove('active');
         document.body.style.overflow = 'auto';
     }
     
-    // 加载愿望清单 - FIXED VERSION
+    // Premium Wishlist Loader
     function loadWishlist() {
-        // Use getWishlistItems from wishlist.js if available
-        const wishlist = typeof getWishlistItems === 'function' ? getWishlistItems() : JSON.parse(localStorage.getItem('wishlist')) || [];
+        const wishlist = typeof getWishlistItems === 'function' ? getWishlistItems() : 
+            JSON.parse(localStorage.getItem('wishlist')) || [];
         const container = document.getElementById('wishlistContent');
         
         if (!container) return;
         
-        // Update wishlist count in overlay header
-        const countElement = document.getElementById('wishlistCount');
-        if (countElement) {
-            countElement.textContent = wishlist.length;
-        }
-        
         if (wishlist.length === 0) {
             container.innerHTML = `
-                <div style="text-align: center; padding: 40px;">
-                    <i class="fas fa-heart" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
-                    <h3>Your wishlist is empty</h3>
-                    <p>Click the heart icon on any product to add it here</p>
-                    <a href="products.html" class="btn btn-primary">Browse Products</a>
+                <div class="text-center" style="padding: 60px;">
+                    <i class="fas fa-heart" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 25px;"></i>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Your wishlist is empty</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 30px;">Start adding your favorite products!</p>
+                    <a href="products.html" class="btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Browse Products
+                    </a>
                 </div>
             `;
             return;
         }
         
-        let html = '<div style="display: flex; flex-direction: column; gap: 15px;">';
+        let html = '<div style="display: flex; flex-direction: column; gap: 20px;">';
         
-        wishlist.forEach(item => {
-            // FIX: Handle cases where item or its properties might be undefined
+        wishlist.forEach((item, index) => {
             if (!item) return;
             
             const itemId = item.id || Math.random().toString(36).substr(2, 9);
@@ -717,22 +2218,30 @@
             const addedAt = item.addedAt ? new Date(item.addedAt).toLocaleDateString() : 'Recently';
             
             html += `
-                <div class="wishlist-item">
+                <div class="wishlist-item" style="animation: slideIn 0.5s ease ${index * 0.1}s both;">
                     <img src="${itemImage}" alt="${itemName}" 
-                         style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;"
                          onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
-                    <div style="flex: 1;">
-                        <h4 style="margin: 0 0 5px 0;">${itemName}</h4>
-                        <div style="color: var(--secondary); font-weight: bold;">$${itemPrice.toFixed(2)}</div>
-                        <div style="font-size: 0.9rem; color: #666;">${itemStore}</div>
-                        <div style="font-size: 0.8rem; color: #999;">Added ${addedAt}</div>
-                    </div>
-                    <button class="remove-wishlist" onclick="removeFromWishlistById('${itemId}')" title="Remove from wishlist">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <div class="action-buttons">
-                        <button class="btn btn-small" onclick="addToCartFromWishlist('${itemId}')">Add to Cart</button>
-                        <a href="products.html" class="btn btn-outline btn-small">View Similar</a>
+                    <div class="wishlist-item-details">
+                        <h4>${itemName}</h4>
+                        <div style="color: var(--secondary); font-weight: 800; font-size: 1.5rem; margin: 10px 0;">
+                            $${itemPrice.toFixed(2)}
+                        </div>
+                        <div style="color: var(--gray-600);">
+                            <i class="fas fa-store" style="color: var(--secondary);"></i> ${itemStore}
+                        </div>
+                        <div style="font-size: 0.9rem; color: var(--gray-500); margin: 10px 0;">
+                            Added ${addedAt}
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn-small" onclick="addToCartFromWishlist('${itemId}')">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                            <button class="btn-small" onclick="removeFromWishlistById('${itemId}')">
+                                <i class="fas fa-trash"></i>
+                                Remove
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -742,28 +2251,410 @@
         container.innerHTML = html;
     }
     
-    // 从愿望清单移除产品
-    function removeFromWishlist(productId) {
-        // Use removeFromWishlistById function if available
-        if (typeof removeFromWishlistById === 'function') {
-            removeFromWishlistById(productId);
-        } else {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            wishlist = wishlist.filter(item => item && item.id != productId);
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            loadWishlist();
-            showToast('Product removed from wishlist');
+    // Premium Profile Loader
+    function loadProfile() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+        const container = document.getElementById('profileContent');
+        
+        if (!container) return;
+        
+        container.innerHTML = `
+            <div class="text-center" style="margin-bottom: 40px;">
+                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); 
+                    color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+                    font-size: 3rem; margin: 0 auto 25px; box-shadow: var(--shadow-xl);">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px;">${currentUser.name || 'User'}</h3>
+                <span class="user-role" style="background: var(--secondary); color: white; padding: 8px 25px; 
+                    border-radius: 40px; display: inline-block; font-size: 1rem;">
+                    ${currentUser.role ? currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1) : 'User'}
+                </span>
+            </div>
             
-            // Update wishlist count
-            if (typeof updateWishlistCount === 'function') {
-                updateWishlistCount();
-            }
-        }
+            <div class="profile-info">
+                <h4><i class="fas fa-id-card"></i> Account Information</h4>
+                <p><strong>Full Name</strong> <span id="profileName">${currentUser.name || 'Not set'}</span></p>
+                <p><strong>Email Address</strong> <span>${currentUser.email || 'Not set'}</span></p>
+                <p><strong>Phone Number</strong> <span>${currentUser.phone || 'Not set'}</span></p>
+                <p><strong>Member Since</strong> <span>${currentUser.createdAt ? new Date(currentUser.createdAt).toLocaleDateString() : 'Not available'}</span></p>
+            </div>
+            
+            <h4 style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-edit" style="color: var(--secondary);"></i>
+                Edit Profile
+            </h4>
+            <p style="color: var(--gray-600); margin-bottom: 20px;">Update your display name below. For other changes, please contact support.</p>
+            <div class="profile-form">
+                <input type="text" id="editUserName" value="${currentUser.name || ''}" placeholder="Enter your name">
+                <button class="btn-primary" onclick="updateUserName()">
+                    <i class="fas fa-save"></i>
+                    Update Name
+                </button>
+            </div>
+        `;
     }
     
-    // 从愿望清单添加到购物车
+    // Update user name with animation
+    function updateUserName() {
+        const newNameInput = document.getElementById('editUserName');
+        if (!newNameInput) return;
+        
+        const newName = newNameInput.value.trim();
+        if (!newName) {
+            showToast('Please enter a valid name', 'error');
+            return;
+        }
+        
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) return;
+        
+        currentUser.name = newName;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        
+        document.querySelectorAll('#userName, #profileName').forEach(el => {
+            el.textContent = newName;
+        });
+        
+        showToast('Name updated successfully!', 'success');
+    }
+    
+    // Premium Commission Loader
+    function loadCommissionDetails() {
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const container = document.getElementById('commissionContent');
+        
+        if (!container) return;
+        
+        if (!currentUser || currentUser.role !== 'shipper') {
+            container.innerHTML = `
+                <div class="text-center" style="padding: 60px;">
+                    <i class="fas fa-user-lock" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 25px;"></i>
+                    <h3 style="font-size: 1.8rem;">Access Denied</h3>
+                    <p style="color: var(--gray-600);">Commission details are only available for shippers</p>
+                </div>
+            `;
+            return;
+        }
+        
+        const shipperProducts = warehouseProducts.filter(p => p && p.shipperId === currentUser.id);
+        
+        if (shipperProducts.length === 0) {
+            container.innerHTML = `
+                <div class="text-center" style="padding: 60px;">
+                    <i class="fas fa-money-bill-wave" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 25px;"></i>
+                    <h3 style="font-size: 1.8rem;">No commission data</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 30px;">Upload products to start earning commissions</p>
+                    <button class="btn-primary" onclick="scrollToSection('uploadFormSection')">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        Upload Product
+                    </button>
+                </div>
+            `;
+            return;
+        }
+        
+        let totalCommission = 0;
+        let totalSales = 0;
+        
+        let html = `
+            <div style="background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); 
+                padding: 30px; border-radius: var(--border-radius-md); color: white; margin-bottom: 30px;">
+                <h4 style="font-size: 1.3rem; margin-bottom: 20px; opacity: 0.9;">Total Earnings</h4>
+                <div style="font-size: 3rem; font-weight: 800; margin-bottom: 10px;">
+                    $${shipperProducts.reduce((sum, p) => {
+                        const productSales = (p.sold || 0) * (parseFloat(p.price) || 0);
+                        const commissionRate = parseFloat(p.commission) || 10;
+                        return sum + (productSales * (commissionRate / 100));
+                    }, 0).toFixed(2)}
+                </div>
+                <p>Across ${shipperProducts.length} products</p>
+            </div>
+        `;
+        
+        shipperProducts.forEach(product => {
+            if (!product) return;
+            
+            const storeCount = storeProducts.filter(sp => sp && sp.warehouseId === product.id).length;
+            const productSales = (product.sold || 0) * (parseFloat(product.price) || 0);
+            const commissionRate = parseFloat(product.commission) || 10;
+            const productCommission = productSales * (commissionRate / 100);
+            
+            totalSales += productSales;
+            totalCommission += productCommission;
+            
+            html += `
+                <div style="background: white; padding: 20px; border-radius: var(--border-radius-md); 
+                    margin-bottom: 15px; border: 1px solid var(--gray-200); transition: var(--transition-base);"
+                    onmouseover="this.style.transform='translateX(5px)'; this.style.borderColor='var(--secondary)';"
+                    onmouseout="this.style.transform='translateX(0)'; this.style.borderColor='var(--gray-200)';">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <h4 style="font-size: 1.2rem;">${product.name || 'Unknown Product'}</h4>
+                        <span style="color: var(--secondary); font-weight: 800; font-size: 1.3rem;">
+                            $${productCommission.toFixed(2)}
+                        </span>
+                    </div>
+                    <div style="display: flex; gap: 20px; color: var(--gray-600); font-size: 0.95rem;">
+                        <span><i class="fas fa-chart-line"></i> Sold: ${product.sold || 0} units</span>
+                        <span><i class="fas fa-store"></i> In ${storeCount} stores</span>
+                        <span><i class="fas fa-percent"></i> Commission: ${commissionRate}%</span>
+                    </div>
+                    <button class="btn-small" style="margin-top: 15px;" onclick="viewProductStores('${product.id}')">
+                        <i class="fas fa-eye"></i>
+                        View Stores
+                    </button>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+    }
+    
+    // Premium Store Viewer
+    function viewProductStores(productId) {
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const product = warehouseProducts.find(p => p && p.id == productId);
+        const container = document.getElementById('storesContent');
+        
+        if (!container) return;
+        
+        if (!product) {
+            container.innerHTML = `
+                <div class="text-center" style="padding: 60px;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 25px;"></i>
+                    <h3>Product not found</h3>
+                </div>
+            `;
+            return;
+        }
+        
+        const stores = storeProducts.filter(sp => sp && sp.warehouseId == productId);
+        
+        let html = `
+            <div style="margin-bottom: 30px;">
+                <h4 style="font-size: 1.5rem; margin-bottom: 15px;">${product.name || 'Unknown Product'}</h4>
+                <div style="background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); 
+                    padding: 20px; border-radius: var(--border-radius-md); color: white;">
+                    <p><strong>Base Price:</strong> $${(parseFloat(product.price) || 0).toFixed(2)}</p>
+                    <p><strong>Commission Rate:</strong> ${product.commission || 10}%</p>
+                </div>
+            </div>
+        `;
+        
+        if (stores.length === 0) {
+            html += `
+                <div class="text-center" style="padding: 60px;">
+                    <i class="fas fa-store-slash" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 25px;"></i>
+                    <h3>No stores yet</h3>
+                    <p style="color: var(--gray-600);">No stores have added this product yet</p>
+                </div>
+            `;
+        } else {
+            html += '<h4 style="margin-bottom: 20px;">Stores Selling This Product:</h4>';
+            
+            stores.forEach(storeProduct => {
+                if (!storeProduct) return;
+                
+                const warehousePrice = parseFloat(product.price) || 0;
+                const storePrice = parseFloat(storeProduct.price) || 0;
+                const markup = warehousePrice > 0 ? ((storePrice - warehousePrice) / warehousePrice * 100).toFixed(1) : '0.0';
+                
+                html += `
+                    <div class="store-item">
+                        <div>
+                            <strong style="font-size: 1.2rem;">${storeProduct.store || 'Unknown Store'}</strong>
+                            <div style="color: var(--gray-600); margin-top: 5px;">
+                                Store Price: $${storePrice.toFixed(2)}
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="store-price">$${storePrice.toFixed(2)}</div>
+                            <div style="color: #28a745; font-weight: 600; margin-top: 5px;">
+                                +${markup}% markup
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        container.innerHTML = html;
+        openOverlay('stores');
+    }
+    
+    // Premium Price Editor
+    function editProductPrice(productId) {
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+        const container = document.getElementById('priceEditContent');
+        
+        if (!container) return;
+        
+        const storeProduct = storeProducts.find(p => p && p.id == productId);
+        const warehouseProduct = warehouseProducts.find(p => p && p.id == storeProduct?.warehouseId);
+        
+        if (!storeProduct || !warehouseProduct) {
+            container.innerHTML = `
+                <div class="text-center" style="padding: 60px;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 25px;"></i>
+                    <p>Product not found</p>
+                </div>
+            `;
+            return;
+        }
+        
+        const warehousePrice = parseFloat(warehouseProduct.price) || 0;
+        const currentPrice = parseFloat(storeProduct.price) || warehousePrice;
+        
+        container.innerHTML = `
+            <div style="margin-bottom: 30px;">
+                <h4 style="font-size: 1.5rem;">${storeProduct.name || 'Unknown Product'}</h4>
+                <p style="color: var(--gray-600);">Warehouse Price: $${warehousePrice.toFixed(2)}</p>
+            </div>
+            
+            <div class="price-edit-container">
+                <label style="display: block; margin-bottom: 15px; font-weight: 600;">Your Store Price:</label>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <input type="number" id="newProductPrice" class="price-input" 
+                           value="${currentPrice.toFixed(2)}" step="0.01" min="${warehousePrice}">
+                    <span style="font-size: 1.3rem;">USD</span>
+                </div>
+            </div>
+            
+            <div style="margin: 30px 0; padding: 25px; background: var(--gray-100); border-radius: var(--border-radius-md);">
+                <p style="margin-bottom: 15px;"><strong>Current Price:</strong> $${currentPrice.toFixed(2)}</p>
+                <p style="margin-bottom: 15px;"><strong>Warehouse Price:</strong> <span class="original-price">$${warehousePrice.toFixed(2)}</span></p>
+                <p><strong>Your Markup:</strong> <span class="profit-margin" id="markupDisplay">
+                    ${warehousePrice > 0 ? (((currentPrice - warehousePrice) / warehousePrice * 100) || 0).toFixed(1) : '0.0'}%
+                </span></p>
+            </div>
+            
+            <div class="action-buttons" style="justify-content: flex-end;">
+                <button class="btn-primary" onclick="saveProductPrice('${productId}')">
+                    <i class="fas fa-save"></i>
+                    Save Price
+                </button>
+                <button class="btn-small" onclick="closeOverlay('price')">Cancel</button>
+            </div>
+        `;
+        
+        const priceInput = document.getElementById('newProductPrice');
+        if (priceInput) {
+            priceInput.addEventListener('input', function() {
+                const newPrice = parseFloat(this.value) || warehousePrice;
+                const markup = warehousePrice > 0 ? ((newPrice - warehousePrice) / warehousePrice * 100).toFixed(1) : '0.0';
+                const markupDisplay = document.getElementById('markupDisplay');
+                if (markupDisplay) {
+                    markupDisplay.textContent = `${markup}%`;
+                }
+            });
+        }
+        
+        openOverlay('price');
+    }
+    
+    // Save Product Price
+    function saveProductPrice(productId) {
+        const priceInput = document.getElementById('newProductPrice');
+        if (!priceInput) return;
+        
+        const newPrice = parseFloat(priceInput.value);
+        if (!newPrice || newPrice < 0) {
+            showToast('Please enter a valid price', 'error');
+            return;
+        }
+        
+        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+        const productIndex = storeProducts.findIndex(p => p && p.id == productId);
+        
+        if (productIndex === -1) {
+            showToast('Product not found', 'error');
+            return;
+        }
+        
+        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+        const warehouseProduct = warehouseProducts.find(p => p && p.id == storeProducts[productIndex].warehouseId);
+        
+        const warehousePrice = warehouseProduct ? parseFloat(warehouseProduct.price) || 0 : 0;
+        
+        if (!warehouseProduct || newPrice < warehousePrice) {
+            showToast(`Price must be at least $${warehousePrice.toFixed(2)}`, 'error');
+            return;
+        }
+        
+        storeProducts[productIndex].price = newPrice;
+        localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
+        
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser?.role === 'manager') {
+            if (typeof loadManagerStoreProducts === 'function') {
+                loadManagerStoreProducts(currentUser);
+            }
+        }
+        
+        closeOverlay('price');
+        showToast('Price updated successfully!', 'success');
+    }
+    
+    // Premium Toast Notification
+    function showToast(message, type = 'success') {
+        const existingToast = document.querySelector('.toast');
+        if (existingToast) {
+            existingToast.remove();
+        }
+        
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        
+        const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+        const color = type === 'success' ? '#28a745' : '#dc3545';
+        
+        toast.innerHTML = `
+            <i class="fas ${icon}" style="color: white;"></i>
+            <span>${message}</span>
+        `;
+        
+        toast.style.background = type === 'success' ? 
+            'linear-gradient(135deg, var(--secondary), var(--secondary-light))' : 
+            'linear-gradient(135deg, #dc3545, #ff6b6b)';
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.remove();
+                    }
+                }, 300);
+            }
+        }, 3000);
+    }
+    
+    // Wishlist Functions
+    function removeFromWishlistById(productId) {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        wishlist = wishlist.filter(item => item && item.id != productId);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        
+        loadWishlist();
+        
+        if (typeof updateWishlistCount === 'function') {
+            updateWishlistCount();
+        }
+        
+        if (typeof updateWishlistButtons === 'function') {
+            updateWishlistButtons();
+        }
+        
+        showToast('Product removed from wishlist');
+    }
+    
     function addToCartFromWishlist(productId) {
-        // Use addToCartFromWishlist from wishlist.js if available
         if (typeof window.addToCartFromWishlist === 'function') {
             window.addToCartFromWishlist(productId);
         } else {
@@ -782,398 +2673,15 @@
         }
     }
     
-    // Remove from wishlist by ID (dashboard specific)
-    function removeFromWishlistById(productId) {
-        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-        wishlist = wishlist.filter(item => item && item.id != productId);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        
-        // Reload wishlist display
-        loadWishlist();
-        
-        // Update wishlist count
-        if (typeof updateWishlistCount === 'function') {
-            updateWishlistCount();
-        }
-        
-        // Update wishlist buttons on other pages
-        if (typeof updateWishlistButtons === 'function') {
-            updateWishlistButtons();
-        }
-        
-        showToast('Product removed from wishlist');
-    }
-    
-    // 加载个人资料
-    function loadProfile() {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
-        const container = document.getElementById('profileContent');
-        
-        if (!container) return;
-        
-        container.innerHTML = `
-            <div style="text-align: center; margin-bottom: 30px;">
-                <div style="width: 100px; height: 100px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px;">
-                    <i class="fas fa-user"></i>
-                </div>
-                <h3>${currentUser.name || 'User'}</h3>
-                <span class="user-role" style="background: var(--secondary); color: white; padding: 5px 15px; border-radius: 20px;">
-                    ${currentUser.role ? currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1) : 'User'}
-                </span>
-            </div>
-            
-            <div class="profile-info">
-                <h4><i class="fas fa-info-circle"></i> Account Information</h4>
-                <p><strong>Name:</strong> <span id="profileName">${currentUser.name || 'Not set'}</span></p>
-                <p><strong>Email:</strong> ${currentUser.email || 'Not set'}</p>
-                <p><strong>Phone:</strong> ${currentUser.phone || 'Not set'}</p>
-                <p><strong>Joined:</strong> ${currentUser.createdAt ? new Date(currentUser.createdAt).toLocaleDateString() : 'Not available'}</p>
-            </div>
-            
-            <h4><i class="fas fa-edit"></i> Edit Profile</h4>
-            <p style="color: #666; margin-bottom: 15px;">You can only change your name. Contact support for other changes.</p>
-            <div class="profile-form">
-                <input type="text" id="editUserName" value="${currentUser.name || ''}" placeholder="Enter your name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px;">
-                <button class="btn btn-primary" onclick="updateUserName()">Update Name</button>
-            </div>
-        `;
-    }
-    
-    // 更新用户名
-    function updateUserName() {
-        const newNameInput = document.getElementById('editUserName');
-        if (!newNameInput) return;
-        
-        const newName = newNameInput.value.trim();
-        if (!newName) {
-            alert('Please enter a valid name');
-            return;
-        }
-        
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (!currentUser) return;
-        
-        currentUser.name = newName;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        
-        // 更新所有显示的名称
-        document.querySelectorAll('#userName, #profileName').forEach(el => {
-            el.textContent = newName;
-        });
-        
-        showToast('Name updated successfully!');
-    }
-    
-    // 加载佣金详情
-    function loadCommissionDetails() {
-        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        const container = document.getElementById('commissionContent');
-        
-        if (!container) return;
-        
-        if (!currentUser || currentUser.role !== 'shipper') {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px;">
-                    <i class="fas fa-user-lock" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
-                    <h3>Access Denied</h3>
-                    <p>Commission details are only available for shippers</p>
-                </div>
-            `;
-            return;
-        }
-        
-        const shipperProducts = warehouseProducts.filter(p => p && p.shipperId === currentUser.id);
-        
-        if (shipperProducts.length === 0) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px;">
-                    <i class="fas fa-money-bill-wave" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
-                    <h3>No commission data</h3>
-                    <p>Upload products to start earning commissions</p>
-                </div>
-            `;
-            return;
-        }
-        
-        let totalCommission = 0;
-        let totalSales = 0;
-        
-        let html = `
-            <h4>Commission Summary</h4>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                    <span>Total Products:</span>
-                    <strong>${shipperProducts.length}</strong>
-                </div>
-        `;
-        
-        shipperProducts.forEach(product => {
-            if (!product) return;
-            
-            const storeCount = storeProducts.filter(sp => sp && sp.warehouseId === product.id).length;
-            const productSales = (product.sold || 0) * (parseFloat(product.price) || 0);
-            const commissionRate = parseFloat(product.commission) || 10;
-            const productCommission = productSales * (commissionRate / 100);
-            
-            totalSales += productSales;
-            totalCommission += productCommission;
-            
-            html += `
-                <div style="border-bottom: 1px solid #ddd; padding: 10px 0;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>${product.name || 'Unknown Product'}</span>
-                        <strong>$${productCommission.toFixed(2)}</strong>
-                    </div>
-                    <div style="font-size: 0.9rem; color: #666;">
-                        Sold: ${product.sold || 0} units | In ${storeCount} stores
-                        <button class="btn btn-small" style="margin-left: 10px; padding: 2px 8px; font-size: 0.8rem;" 
-                                onclick="viewProductStores('${product.id}')">View Stores</button>
-                    </div>
-                </div>
-            `;
-        });
-        
-        html += `
-                <div style="border-top: 2px solid #ddd; margin-top: 10px; padding-top: 10px; font-weight: bold;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>Total Commission:</span>
-                        <strong style="color: var(--secondary);">$${totalCommission.toFixed(2)}</strong>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
-                        <span>Total Sales:</span>
-                        <span>$${totalSales.toFixed(2)}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        container.innerHTML = html;
-    }
-    
-    // 查看哪些店铺添加了产品
-    function viewProductStores(productId) {
-        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-        const product = warehouseProducts.find(p => p && p.id == productId);
-        const container = document.getElementById('storesContent');
-        
-        if (!container) return;
-        
-        if (!product) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 20px;">
-                    <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: #ccc; margin-bottom: 10px;"></i>
-                    <p>Product not found</p>
-                </div>
-            `;
-            return;
-        }
-        
-        const stores = storeProducts.filter(sp => sp && sp.warehouseId == productId);
-        
-        let html = `
-            <div style="margin-bottom: 20px;">
-                <h4>${product.name || 'Unknown Product'}</h4>
-                <p style="color: #666;">Original Price: $${(parseFloat(product.price) || 0).toFixed(2)} | Commission: ${product.commission || 10}%</p>
-            </div>
-        `;
-        
-        if (stores.length === 0) {
-            html += `
-                <div style="text-align: center; padding: 20px;">
-                    <i class="fas fa-store-slash" style="font-size: 2rem; color: #ccc; margin-bottom: 10px;"></i>
-                    <p>No stores have added this product yet</p>
-                </div>
-            `;
-        } else {
-            html += '<h5>Stores Selling This Product:</h5>';
-            html += '<div class="store-list">';
-            
-            stores.forEach(storeProduct => {
-                if (!storeProduct) return;
-                
-                const warehousePrice = parseFloat(product.price) || 0;
-                const storePrice = parseFloat(storeProduct.price) || 0;
-                const markup = warehousePrice > 0 ? ((storePrice - warehousePrice) / warehousePrice * 100).toFixed(1) : '0.0';
-                
-                html += `
-                    <div class="store-item">
-                        <div>
-                            <strong>${storeProduct.store || 'Unknown Store'}</strong>
-                            <div style="font-size: 0.9rem; color: #666;">Store Price: $${storePrice.toFixed(2)}</div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div class="store-price">$${storePrice.toFixed(2)}</div>
-                            <div style="font-size: 0.8rem; color: #28a745;">+${markup}% markup</div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += '</div>';
-        }
-        
-        container.innerHTML = html;
-        openOverlay('stores');
-    }
-    
-    // 编辑产品价格（经理功能）
-    function editProductPrice(productId) {
-        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-        const container = document.getElementById('priceEditContent');
-        
-        if (!container) return;
-        
-        const storeProduct = storeProducts.find(p => p && p.id == productId);
-        const warehouseProduct = warehouseProducts.find(p => p && p.id == storeProduct?.warehouseId);
-        
-        if (!storeProduct || !warehouseProduct) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px;">
-                    <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: #ccc; margin-bottom: 10px;"></i>
-                    <p>Product not found</p>
-                </div>
-            `;
-            return;
-        }
-        
-        const warehousePrice = parseFloat(warehouseProduct.price) || 0;
-        const currentPrice = parseFloat(storeProduct.price) || warehousePrice;
-        
-        container.innerHTML = `
-            <div style="margin-bottom: 20px;">
-                <h4>${storeProduct.name || 'Unknown Product'}</h4>
-                <p style="color: #666;">Warehouse Price: $${warehousePrice.toFixed(2)}</p>
-            </div>
-            
-            <div class="price-edit-container">
-                <label>Your Store Price:</label>
-                <input type="number" id="newProductPrice" class="price-input" 
-                       value="${currentPrice.toFixed(2)}" step="0.01" min="${warehousePrice}">
-                <span>USD</span>
-            </div>
-            
-            <div style="margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                <p><strong>Current Price:</strong> $${currentPrice.toFixed(2)}</p>
-                <p><strong>Warehouse Price:</strong> <span class="original-price">$${warehousePrice.toFixed(2)}</span></p>
-                <p><strong>Your Markup:</strong> <span class="profit-margin" id="markupDisplay">
-                    ${warehousePrice > 0 ? (((currentPrice - warehousePrice) / warehousePrice * 100) || 0).toFixed(1) : '0.0'}%
-                </span></p>
-            </div>
-            
-            <div class="action-buttons">
-                <button class="btn btn-primary" onclick="saveProductPrice('${productId}')">Save Price</button>
-                <button class="btn btn-outline" onclick="closeOverlay('price')">Cancel</button>
-            </div>
-        `;
-        
-        // 实时更新加价百分比
-        const priceInput = document.getElementById('newProductPrice');
-        if (priceInput) {
-            priceInput.addEventListener('input', function() {
-                const newPrice = parseFloat(this.value) || warehousePrice;
-                const markup = warehousePrice > 0 ? ((newPrice - warehousePrice) / warehousePrice * 100).toFixed(1) : '0.0';
-                const markupDisplay = document.getElementById('markupDisplay');
-                if (markupDisplay) {
-                    markupDisplay.textContent = `${markup}%`;
-                }
-            });
-        }
-        
-        openOverlay('price');
-    }
-    
-    // 保存产品价格
-    function saveProductPrice(productId) {
-        const priceInput = document.getElementById('newProductPrice');
-        if (!priceInput) return;
-        
-        const newPrice = parseFloat(priceInput.value);
-        if (!newPrice || newPrice < 0) {
-            alert('Please enter a valid price');
-            return;
-        }
-        
-        const storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-        const productIndex = storeProducts.findIndex(p => p && p.id == productId);
-        
-        if (productIndex === -1) {
-            alert('Product not found');
-            return;
-        }
-        
-        const warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-        const warehouseProduct = warehouseProducts.find(p => p && p.id == storeProducts[productIndex].warehouseId);
-        
-        const warehousePrice = warehouseProduct ? parseFloat(warehouseProduct.price) || 0 : 0;
-        
-        if (!warehouseProduct || newPrice < warehousePrice) {
-            alert(`Price must be at least $${warehousePrice.toFixed(2)} (warehouse price)`);
-            return;
-        }
-        
-        storeProducts[productIndex].price = newPrice;
-        localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
-        
-        // 重新加载产品列表
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser?.role === 'manager') {
-            if (typeof loadManagerStoreProducts === 'function') {
-                loadManagerStoreProducts(currentUser);
-            }
-        }
-        
-        closeOverlay('price');
-        showToast('Price updated successfully!');
-    }
-    
-    // 显示通知
-    function showToast(message) {
-        const toast = document.createElement('div');
-        toast.textContent = message;
-        toast.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--secondary);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 10000;
-            animation: slideIn 0.3s ease;
-            font-weight: 500;
-        `;
-        
-        document.body.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    document.body.removeChild(toast);
-                }
-            }, 300);
-        }, 3000);
-    }
-    
-    // Clear wishlist from dashboard
     function clearWishlist() {
         if (confirm('Are you sure you want to clear your entire wishlist?')) {
             localStorage.setItem('wishlist', JSON.stringify([]));
-            
-            // Reload wishlist display
             loadWishlist();
             
-            // Update wishlist count
             if (typeof updateWishlistCount === 'function') {
                 updateWishlistCount();
             }
             
-            // Update wishlist buttons on other pages
             if (typeof updateWishlistButtons === 'function') {
                 updateWishlistButtons();
             }
@@ -1181,26 +2689,16 @@
             showToast('Wishlist cleared');
         }
     }
-    
-    // 动画样式
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100px); opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
 
+    // Logout
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('currentUser'); // clear user session
-            window.location.href = 'account.html'; // redirect to login page
+            showToast('Logging out...');
+            setTimeout(() => {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'account.html';
+            }, 1000);
         });
     }
 </script>

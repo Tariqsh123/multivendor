@@ -257,6 +257,11 @@
             const dashboardLink = document.querySelector('.dashboard-link');
             
             if (currentUser) {
+                // Don't redirect admin to dashboard
+                if (currentUser.email === 'admin@gmail.com') {
+                    window.location.href = 'admin.html';
+                    return true;
+                }
                 // Redirect to dashboard if already logged in
                 window.location.href = 'dashboard.html';
                 return true;
@@ -312,6 +317,26 @@
                     
                     const email = document.getElementById('loginEmail').value;
                     const password = document.getElementById('loginPassword').value;
+                    
+                    // Check for admin login
+                    if (email === 'admin@gmail.com' && password === 'admin123') {
+                        // Create admin user object
+                        const adminUser = {
+                            id: 'admin',
+                            name: 'Administrator',
+                            email: 'admin@gmail.com',
+                            password: 'admin123',
+                            role: 'admin',
+                            createdAt: new Date().toISOString()
+                        };
+                        
+                        // Store admin as current user
+                        localStorage.setItem('currentUser', JSON.stringify(adminUser));
+                        
+                        // Redirect to admin.html
+                        window.location.href = 'admin.html';
+                        return;
+                    }
                     
                     // Get users from localStorage
                     const users = JSON.parse(localStorage.getItem('users')) || [];

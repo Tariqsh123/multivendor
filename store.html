@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Details - GlobalMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Store Page Specific Styles - Premium Visual Design */
+        :root {
+            --primary: #f57224;
+            --primary-dark: #e35b0f;
+            --primary-light: #fff0e6;
+            --secondary: #ffb916;
+            --success: #00a650;
+            --text-dark: #212121;
+            --text-light: #757575;
+            --border: #f0f0f0;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-hover: 0 15px 40px rgba(245,114,36,0.15);
+        }
+
+        /* Store Header - Premium Design */
+        .store-header {
+            background: linear-gradient(135deg, #f57224 0%, #ffb916 100%);
+            padding: 50px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: rotate(25deg);
+        }
+
+        .store-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .store-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: white;
+            transition: transform 0.3s;
+        }
+
+        .store-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .store-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .store-details {
+            flex: 1;
+        }
+
+        .store-details h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .store-details h1 i {
+            font-size: 28px;
+            color: #ffd700;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .store-meta {
+            display: flex;
+            gap: 35px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .store-meta span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .store-meta i {
+            color: #ffd700;
+            font-size: 16px;
+        }
+
+        .store-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .badge.verified {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge.premium {
+            background: #ffd700;
+            color: #212121;
+        }
+
+        .badge.shipping {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .badge.protection {
+            background: #6f42c1;
+            color: white;
+        }
+
+        /* Store Stats - Enhanced */
+        .store-stats {
+            padding: 40px 0;
+            background: var(--bg-light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 25px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Store Tabs - Elegant */
+        .store-tabs {
+            padding: 25px 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 12px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .tab:hover {
+            color: var(--primary);
+        }
+
+        .tab:hover::after {
+            transform: scaleX(1);
+        }
+
+        .tab.active {
+            color: var(--primary);
+        }
+
+        .tab.active::after {
+            transform: scaleX(1);
+        }
+
+        /* Store Content */
+        .store-content {
+            padding: 50px 0;
+            background: var(--bg-light);
+            min-height: 500px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-header h2 {
+            font-size: 26px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .section-header h2 span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-header h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .product-count {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* About Store - Premium */
+        .about-store {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-store h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .about-store h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .about-store p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 18px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 16px;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .info-item:hover {
+            transform: translateX(5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .info-item i {
+            width: 24px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .info-item div {
+            flex: 1;
+        }
+
+        .info-item h4 {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item p {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* Reviews Section - Enhanced */
+        .reviews-section {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .rating-large {
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .rating-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .rating-stars {
+            color: #faca51;
+            margin: 8px 0;
+            font-size: 18px;
+        }
+
+        .rating-total {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .rating-bars {
+            flex: 1;
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .rating-row .stars {
+            width: 70px;
+            color: #faca51;
+            font-size: 14px;
+        }
+
+        .rating-row .bar {
+            flex: 1;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .rating-row .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #faca51, #ffb116);
+            border-radius: 10px;
+        }
+
+        .rating-row .percent {
+            width: 50px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .review-item {
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .review-item:hover {
+            background: var(--bg-light);
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 12px;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 15px;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+        }
+
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reviewer-details h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: #9e9e9e;
+        }
+
+        .review-content {
+            padding-left: 68px;
+        }
+
+        .review-content p {
+            color: #424242;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .review-rating {
+            color: #faca51;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        /* Product Card - Consistent with homepage */
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .warehouse-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .product-info {
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.4;
+            min-height: 42px;
+        }
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-bottom: 8px;
+        }
+
+        .star-rating i {
+            color: #faca51;
+            font-size: 13px;
+        }
+
+        .star-rating span {
+            color: var(--text-light);
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .product-price .original {
+            font-size: 14px;
+            color: #9e9e9e;
+            text-decoration: line-through;
+            font-weight: normal;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 10px 0;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-small i {
+            font-size: 14px;
+        }
+
+        .btn-small.add-to-cart {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-small.add-to-cart:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245,114,36,0.3);
+        }
+
+        .btn-small.view-details {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-small.view-details:hover {
+            background: #e8e8e8;
+            transform: translateY(-2px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 0;
+            color: var(--text-light);
+            font-size: 14px;
+            background: var(--white);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-dark);
+        }
+
+        .breadcrumb i {
+            font-size: 12px;
+            color: #9e9e9e;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: var(--text-dark);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideIn 0.3s;
+            border-left: 4px solid var(--primary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast i {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* No Products */
+        .no-products {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 16px;
+        }
+
+        .no-products i {
+            font-size: 60px;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .no-products h3 {
+            font-size: 22px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .no-products p {
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .store-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .store-meta {
+                justify-content: center;
+            }
+            
+            .store-details h1 {
+                justify-content: center;
+            }
+            
+            .store-badges {
+                justify-content: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .tabs-container {
+                gap: 25px;
+                flex-wrap: wrap;
+            }
+            
+            .review-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .review-content {
+                padding-left: 0;
+            }
+            
+            .info-item {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .store-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .store-meta span {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .store-details h1 {
+                font-size: 28px;
+            }
+            
+            .store-logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .tab {
+                font-size: 16px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="research-hub.html" class="nav-link">Research Hub</a>
+                <a href="faq.html" class="nav-link">FAQs</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+
+                <div id="wish-and-cart-menu">
+                    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
+                    <a href="#" class="nav-link cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Floating Buttons -->
+    <div class="mobile-cart-floating-button">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+    <div class="mobile-wishlist-floating-button">
+        <i class="fas fa-heart"></i>
+        <span class="wishlist-count">0</span>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html">Stores</a>
+            <i class="fas fa-chevron-right"></i>
+            <span id="storeNameBreadcrumb">Store</span>
+        </div>
+    </div>
+
+    <!-- Store Header -->
+    <section class="store-header" id="storeHeader">
+        <div class="container">
+            <div class="loading" id="storeLoading">
+                <div class="spinner"></div>
+                <p>Loading store details...</p>
+            </div>
+            <div id="storeContent" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Store Stats -->
+    <section class="store-stats" id="storeStats" style="display: none;">
+        <div class="container">
+            <div class="stats-grid" id="statsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Store Tabs -->
+    <section class="store-tabs" id="storeTabs" style="display: none;">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tab active" onclick="switchTab('products', this)">Products</div>
+                <div class="tab" onclick="switchTab('about', this)">About Store</div>
+                <div class="tab" onclick="switchTab('reviews', this)">Reviews</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Content -->
+    <section class="store-content" id="storeContentSection">
+        <div class="container">
+            <div id="productsTab" class="tab-content">
+                <div class="section-header">
+                    <h2>Store <span>Products</span></h2>
+                    <span class="product-count" id="productCount"></span>
+                </div>
+                <div class="products-grid" id="storeProductsGrid"></div>
+                <div class="loading" id="productsLoading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+                <div class="no-products" id="noProducts" style="display: none;">
+                    <i class="fas fa-box-open"></i>
+                    <h3>No products found</h3>
+                    <p>This store hasn't added any products yet</p>
+                </div>
+            </div>
+
+            <div id="aboutTab" class="tab-content" style="display: none;">
+                <div class="about-store" id="aboutStoreContent"></div>
+            </div>
+
+            <div id="reviewsTab" class="tab-content" style="display: none;">
+                <div class="reviews-section" id="reviewsContent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GlobalMart</h3>
+                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="research-hub.html">Research Hub</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
+                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            checkUserLogin();
+            loadStoreDetails();
+        });
+
+        // Get store name from URL
+        function getStoreNameFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return decodeURIComponent(urlParams.get('name') || '');
+        }
+
+        async function loadStoreDetails() {
+            const storeName = getStoreNameFromURL();
+            
+            if (!storeName) {
+                showError('Store not found');
+                return;
+            }
+
+            document.getElementById('storeNameBreadcrumb').textContent = storeName;
+            document.getElementById('storeLoading').style.display = 'block';
+            document.getElementById('storeContent').style.display = 'none';
+            document.getElementById('storeStats').style.display = 'none';
+            document.getElementById('storeTabs').style.display = 'none';
+
+            try {
+                // Load products from localStorage
+                let storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+                let warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+                
+                // Get all products for this store
+                const storeItems = storeProducts.filter(p => p.store === storeName);
+                const warehouseItems = warehouseProducts.filter(p => p.shipperName === storeName).map(p => ({
+                    ...p,
+                    fromWarehouse: true,
+                    store: p.shipperName
+                }));
+
+                const allProducts = [...storeItems, ...warehouseItems];
+
+                // Store statistics
+                const totalProducts = allProducts.length;
+                const totalSales = Math.floor(Math.random() * 5000) + 1000;
+                const avgRating = (4 + Math.random()).toFixed(1);
+                const followers = Math.floor(Math.random() * 10000) + 500;
+                const memberSince = '2023';
+                const response = Math.floor(Math.random() * 60) + 30;
+                const delivery = Math.floor(Math.random() * 3) + 2;
+
+                // Render store header
+                renderStoreHeader(storeName, totalProducts, avgRating, followers, memberSince);
+                
+                // Render stats
+                renderStoreStats(totalProducts, totalSales, avgRating, followers, response, delivery);
+                
+                // Render products
+                renderStoreProducts(allProducts);
+                
+                // Render about section
+                renderAboutStore(storeName, memberSince, totalProducts, response, delivery);
+                
+                // Render reviews
+                renderStoreReviews(storeName, avgRating);
+
+                // Show sections
+                document.getElementById('storeLoading').style.display = 'none';
+                document.getElementById('storeContent').style.display = 'block';
+                document.getElementById('storeStats').style.display = 'block';
+                document.getElementById('storeTabs').style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading store:', error);
+                showError('Failed to load store details');
+            }
+        }
+
+        function renderStoreHeader(storeName, totalProducts, avgRating, followers, memberSince) {
+            const storeLogo = `https://ui-avatars.com/api/?name=${storeName.charAt(0)}&background=f57224&color=fff&size=200&bold=true&length=1`;
+            const isVerified = Math.random() > 0.3;
+            const isPremium = Math.random() > 0.5;
+
+            document.getElementById('storeContent').innerHTML = `
+                <div class="store-info">
+                    <div class="store-logo">
+                        <img src="${storeLogo}" alt="${storeName}">
+                    </div>
+                    <div class="store-details">
+                        <h1>
+                            ${storeName}
+                            ${isVerified ? '<i class="fas fa-check-circle" title="Verified Store"></i>' : ''}
+                        </h1>
+                        <div class="store-meta">
+                            <span><i class="fas fa-box"></i> ${totalProducts} Products</span>
+                            <span><i class="fas fa-star"></i> ${avgRating} (${followers}+ ratings)</span>
+                            <span><i class="fas fa-calendar"></i> Since ${memberSince}</span>
+                            <span><i class="fas fa-users"></i> ${followers.toLocaleString()} followers</span>
+                        </div>
+                        <div class="store-badges">
+                            ${isVerified ? '<span class="badge verified"><i class="fas fa-check-circle"></i> Verified Store</span>' : ''}
+                            ${isPremium ? '<span class="badge premium"><i class="fas fa-crown"></i> Premium Seller</span>' : ''}
+                            <span class="badge shipping"><i class="fas fa-truck"></i> Free Shipping</span>
+                            <span class="badge protection"><i class="fas fa-shield-alt"></i> Buyer Protection</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderStoreStats(totalProducts, totalSales, avgRating, followers, response, delivery) {
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${totalProducts}</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${totalSales.toLocaleString()}</div>
+                    <div class="stat-label">Total Sales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${avgRating}</div>
+                    <div class="stat-label">Avg. Rating</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${followers.toLocaleString()}</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${response}min</div>
+                    <div class="stat-label">Response Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${delivery} days</div>
+                    <div class="stat-label">Delivery</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">On Time</div>
+                </div>
+            `;
+        }
+
+        function renderStoreProducts(products) {
+            const container = document.getElementById('storeProductsGrid');
+            const productCount = document.getElementById('productCount');
+            const noProducts = document.getElementById('noProducts');
+            
+            container.innerHTML = '';
+            
+            if (products.length === 0) {
+                noProducts.style.display = 'block';
+                productCount.textContent = '(0 products)';
+                return;
+            }
+
+            noProducts.style.display = 'none';
+            productCount.textContent = `(${products.length} products)`;
+
+            products.forEach(product => {
+                const hasDiscount = product.originalPrice && product.originalPrice > product.price;
+                const originalPrice = product.originalPrice || (product.price * 1.2);
+                const rating = product.rating || (4 + Math.random()).toFixed(1);
+                const reviewCount = Math.floor(Math.random() * 50) + 10;
+
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" 
+                             onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        ${product.fromWarehouse ? '<div class="warehouse-badge">Warehouse</div>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="star-rating">
+                            ${generateStarRating(parseFloat(rating))}
+                            <span>(${reviewCount})</span>
+                        </div>
+                        <p class="product-desc">${product.description || 'Premium quality product'}</p>
+                        <div class="product-price">
+                            ₹${(product.price * 83).toFixed(0)}
+                            ${hasDiscount ? `<span class="original">₹${(originalPrice * 83).toFixed(0)}</span>` : ''}
+                        </div>
+                        <div class="product-buttons">
+                            <button class="btn-small add-to-cart" 
+                                    data-id="${product.id}" 
+                                    data-name="${product.name}" 
+                                    data-price="${product.price}" 
+                                    data-image="${product.image}">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <a href="product-detail.html?id=${product.id}" class="btn-small view-details">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(productCard);
+            });
+
+            // Add cart event listeners
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const product = {
+                        id: this.dataset.id,
+                        name: this.dataset.name,
+                        price: parseFloat(this.dataset.price),
+                        image: this.dataset.image,
+                        quantity: 1
+                    };
+                    
+                    if (typeof addToCart === 'function') {
+                        addToCart(product);
+                    } else {
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        const existing = cart.find(item => item.id == product.id);
+                        if (existing) {
+                            existing.quantity += 1;
+                        } else {
+                            cart.push(product);
+                        }
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                    }
+                    
+                    updateCartCount();
+                    showNotification(`${product.name} added to cart`);
+                });
+            });
+        }
+
+        function renderAboutStore(storeName, memberSince, totalProducts, response, delivery) {
+            document.getElementById('aboutStoreContent').innerHTML = `
+                <h3>About ${storeName}</h3>
+                <p>${storeName} is a trusted seller on GlobalMart marketplace, providing high-quality products to customers worldwide. We are committed to excellence, customer satisfaction, and fast delivery. Our team works tirelessly to ensure you get the best shopping experience with premium quality products and exceptional service.</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <h4>Member Since</h4>
+                            <p>${memberSince}</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-box"></i>
+                        <div>
+                            <h4>Total Products</h4>
+                            <p>${totalProducts}</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Response Time</h4>
+                            <p>${response} minutes</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-truck"></i>
+                        <div>
+                            <h4>Delivery Time</h4>
+                            <p>${delivery} business days</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Shanghai, China</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Contact</h4>
+                            <p>+86 123 456 7890</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contact@${storeName.toLowerCase().replace(/\s+/g, '')}.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <h4>Website</h4>
+                            <p>www.${storeName.toLowerCase().replace(/\s+/g, '')}.com</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderStoreReviews(storeName, avgRating) {
+            const names = ['Rajesh Kumar', 'Priya Singh', 'Amit Sharma', 'Neha Gupta', 'Vikram Mehta', 'Deepa Patel', 'Suresh Reddy', 'Anjali Desai'];
+            const reviews = [];
+
+            // Generate rating distribution
+            const distribution = [65, 20, 8, 4, 3]; // 5-star, 4-star, etc.
+            const total = distribution.reduce((a, b) => a + b, 0);
+
+            for (let i = 0; i < 8; i++) {
+                const rating = Math.random() > 0.7 ? 5 : (Math.random() > 0.5 ? 4 : 3);
+                reviews.push({
+                    name: names[Math.floor(Math.random() * names.length)],
+                    avatar: `https://ui-avatars.com/api/?name=${names[Math.floor(Math.random() * names.length)].replace(' ', '+')}&background=random&size=50`,
+                    rating: rating,
+                    date: new Date(Date.now() - Math.random() * 90 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                    comment: rating >= 4 ? 
+                        'Excellent quality! Fast delivery and great packaging. Highly recommended seller!' : 
+                        'Good product, decent quality. Delivery was on time.'
+                });
+            }
+
+            // Generate rating bars
+            let ratingBarsHtml = '';
+            for (let i = 5; i >= 1; i--) {
+                const percent = distribution[5-i];
+                ratingBarsHtml += `
+                    <div class="rating-row">
+                        <span class="stars">${i} <i class="fas fa-star"></i></span>
+                        <div class="bar">
+                            <div class="fill" style="width: ${percent}%"></div>
+                        </div>
+                        <span class="percent">${percent}%</span>
+                    </div>
+                `;
+            }
+
+            document.getElementById('reviewsContent').innerHTML = `
+                <div class="review-header">
+                    <div class="rating-large">
+                        <div class="rating-number">${avgRating}</div>
+                        <div class="rating-stars">
+                            ${generateStarRating(parseFloat(avgRating))}
+                        </div>
+                        <div class="rating-total">Based on ${total} reviews</div>
+                    </div>
+                    <div class="rating-bars">
+                        ${ratingBarsHtml}
+                    </div>
+                </div>
+                <div class="reviews-list">
+                    ${reviews.map(review => `
+                        <div class="review-item">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">
+                                    <img src="${review.avatar}" alt="${review.name}">
+                                </div>
+                                <div class="reviewer-details">
+                                    <h4>${review.name}</h4>
+                                    <div class="review-date">${review.date}</div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    ${generateStarRating(review.rating)}
+                                </div>
+                                <p>${review.comment}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function generateStarRating(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i - rating < 1 && i - rating > 0) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        function switchTab(tabName, element) {
+            // Update tab styles
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Show selected tab content
+            document.getElementById('productsTab').style.display = tabName === 'products' ? 'block' : 'none';
+            document.getElementById('aboutTab').style.display = tabName === 'about' ? 'block' : 'none';
+            document.getElementById('reviewsTab').style.display = tabName === 'reviews' ? 'block' : 'none';
+        }
+
+        function showError(message) {
+            document.getElementById('storeLoading').style.display = 'none';
+            document.getElementById('storeContent').innerHTML = `
+                <div style="text-align: center; padding: 60px; background: white; border-radius: 16px;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 60px; color: #f57224; margin-bottom: 20px;"></i>
+                    <h3 style="font-size: 24px; color: #212121; margin-bottom: 10px;">${message}</h3>
+                    <p style="color: #757575; margin-bottom: 25px;">The store you're looking for doesn't exist.</p>
+                    <a href="products.html" class="btn btn-primary" style="padding: 12px 30px; display: inline-block;">Browse Stores</a>
+                </div>
+            `;
+            document.getElementById('storeContent').style.display = 'block';
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'toast';
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        function checkUserLogin() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const dashboardLink = document.querySelector('.dashboard-link');
+            if (currentUser) dashboardLink.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

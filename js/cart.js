@@ -1,4 +1,4 @@
-// cart.js - Fixed Version
+// cart.js - Fixed Version with PKR
 
 // Initialize cart functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -66,7 +66,7 @@ function renderCart() {
             </div>
         `;
         if (checkoutBtn) checkoutBtn.style.display = 'none';
-        if (totalPriceEl) totalPriceEl.textContent = '$0.00';
+        if (totalPriceEl) totalPriceEl.textContent = 'Rs 0';
         return;
     }
     
@@ -76,7 +76,12 @@ function renderCart() {
     let total = 0;
     
     cart.forEach(item => {
-        const itemTotal = item.price * (item.quantity || 1);
+        // Convert price to PKR (assuming item.price is in USD/INR base)
+        // Using same conversion: original INR = item.price * 83, then INR * 3.4 ≈ PKR
+        const priceInINR = item.price * 83;
+        const priceInPKR = (priceInINR * 3.4).toFixed(0);
+        
+        const itemTotal = priceInPKR * (item.quantity || 1);
         total += itemTotal;
         
         cartHTML += `
@@ -86,7 +91,7 @@ function renderCart() {
                 </div>
                 <div class="cart-item-details">
                     <div class="cart-item-title">${item.name}</div>
-                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    <div class="cart-item-price">Rs ${priceInPKR}</div>
                     <div class="cart-item-actions">
                         <button class="quantity-btn decrease" data-id="${item.id}">-</button>
                         <span>${item.quantity || 1}</span>
@@ -101,7 +106,7 @@ function renderCart() {
     cartItemsContainer.innerHTML = cartHTML;
     
     if (totalPriceEl) {
-        totalPriceEl.textContent = `$${total.toFixed(2)}`;
+        totalPriceEl.textContent = `Rs ${total.toFixed(0)}`; // No decimals for PKR
     }
     
     // Add event listeners to cart buttons

@@ -175,7 +175,7 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="total-price">$0.00</span>
+                <span class="total-price">Rs 0</span>
             </div>
             <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
         </div>
@@ -304,6 +304,16 @@
                 const rating = product.rating || (4 + Math.random()).toFixed(1);
                 const reviewCount = Math.floor(Math.random() * 50) + 10;
                 
+                // --- PKR Conversion ---
+                // Original code: ₹${(product.price * 83).toFixed(0)} (INR)
+                // Convert INR to PKR: INR * 3.4 ≈ PKR
+                const priceInINR = product.price * 83;
+                const priceInPKR = (priceInINR * 3.4).toFixed(0);
+                
+                const originalInINR = originalPrice * 83;
+                const originalInPKR = (originalInINR * 3.4).toFixed(0);
+                // ----------------------
+                
                 const productElement = document.createElement('div');
                 productElement.className = 'product-card';
                 productElement.innerHTML = `
@@ -324,8 +334,8 @@
                         </div>
                         <p class="product-desc">${product.description || 'Premium quality product'}</p>
                         <div class="product-price">
-                            ₹${(product.price * 83).toFixed(0)}
-                            ${hasDiscount ? `<span class="original">₹${(originalPrice * 83).toFixed(0)}</span>` : ''}
+                            Rs ${priceInPKR}
+                            ${hasDiscount ? `<span class="original">Rs ${originalInPKR}</span>` : ''}
                         </div>
                         ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
                         <div class="product-buttons">
@@ -386,11 +396,12 @@
             const productId = productCard.querySelector('.add-to-cart')?.dataset.id;
             const productName = productCard.querySelector('.product-title')?.textContent || 'Product';
             
-            // Get price
+            // Get price (in PKR, but we want raw number for storage consistency)
             let price = 0;
             const priceElement = productCard.querySelector('.product-price');
             if (priceElement) {
-                const priceText = priceElement.textContent.replace('₹', '').trim();
+                // Extract numeric part from "Rs 1234"
+                const priceText = priceElement.textContent.replace('Rs', '').replace(/,/g, '').trim();
                 price = parseFloat(priceText) || 0;
             }
             
@@ -638,6 +649,15 @@
                     }
                 }, 300);
             }, 3000);
+        }
+        
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = count;
+            });
         }
         
         // Initialize products-specific wishlist setup

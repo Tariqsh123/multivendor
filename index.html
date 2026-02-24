@@ -442,7 +442,7 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="total-price">₹0</span>
+                <span class="total-price">Rs 0</span>
             </div>
             <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
         </div>
@@ -536,6 +536,21 @@
         const rating = product.rating || (4 + Math.random()).toFixed(1);
         const reviewCount = Math.floor(Math.random() * 50) + 10;
         
+        // Conversion rate: 1 USD ≈ 83 INR (original) ≈ 280 PKR (new)
+        // Using 1 USD = 280 PKR for approximate conversion from original USD/INR mindset
+        // Since product.price might be in USD/INR, we'll assume it's in USD for simplicity and convert to PKR.
+        // For a realistic touch, we'll treat the existing price as a base in a common unit and multiply by a factor.
+        // To show meaningful PKR values, we'll multiply the original price (which likely was in USD * 83 for INR) by 3.37 (280/83 ≈ 3.37)
+        // But to keep it clean, we'll use a fixed factor of 3.4 to convert the displayed INR to PKR.
+        // The original code used: ₹${(product.price * 83).toFixed(0)} (so price was in USD? maybe)
+        // We'll convert that final INR figure to PKR: INR * 3.4 ≈ PKR (since 1 INR = ~3.4 PKR)
+        
+        const priceInINR = product.price * 83; // as originally computed
+        const priceInPKR = (priceInINR * 3.4).toFixed(0); // approximate conversion INR to PKR
+        
+        const originalInINR = originalPrice * 83;
+        const originalInPKR = (originalInINR * 3.4).toFixed(0);
+        
         productElement.innerHTML = `
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}" 
@@ -551,8 +566,8 @@
                 </div>
                 <p class="product-desc">${product.description || 'Premium quality product'}</p>
                 <div class="product-price">
-                    ₹${(product.price * 83).toFixed(0)}
-                    ${hasDiscount ? `<span class="original">₹${(originalPrice * 83).toFixed(0)}</span>` : ''}
+                    Rs ${priceInPKR}
+                    ${hasDiscount ? `<span class="original">Rs ${originalInPKR}</span>` : ''}
                 </div>
                 ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
                 <div class="product-buttons">

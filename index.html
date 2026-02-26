@@ -3,11 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalMart - India's Biggest Multi-Vendor Marketplace</title>
+    <title>GlobalMart - Biggest Multi-Vendor Marketplace</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Additional Styles for New Sections Only */
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255,140,51,0.15);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            color: #ff8c33;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Deal Section */
+        .deal-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .deal-wrapper {
+            background: linear-gradient(135deg, #fff5e6, white);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(255,140,51,0.1);
+        }
+
+        .deal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .deal-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #ff8c33;
+            color: white;
+            border-radius: 25px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .deal-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .deal-title span {
+            color: #ff8c33;
+        }
+
+        .deal-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .deal-timer {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .timer-block {
+            text-align: center;
+        }
+
+        .timer-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff8c33;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 10px;
+            min-width: 70px;
+        }
+
+        .timer-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .deal-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .current-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ff8c33;
+        }
+
+        .original-price {
+            font-size: 20px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .deal-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ff8c33;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .deal-btn:hover {
+            background: #e67a22;
+            transform: translateY(-2px);
+        }
+
+        .deal-image {
+            position: relative;
+        }
+
+        .deal-image img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .deal-stock {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Brands Section */
+        .brands-section {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        .brands-carousel {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 15px 0;
+            scrollbar-width: none;
+        }
+
+        .brands-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .brand-item {
+            min-width: 150px;
+            height: 80px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .brand-item img {
+            max-width: 100%;
+            max-height: 40px;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .brand-item:hover img {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        /* Features Enhanced */
+        .features-enhanced {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .features-grid-enhanced {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card-enhanced {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .feature-card-enhanced:hover {
+            background: #ff8c33;
+            transform: translateY(-5px);
+        }
+
+        .feature-card-enhanced:hover h3,
+        .feature-card-enhanced:hover p {
+            color: white;
+        }
+
+        .feature-icon-enhanced {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: #ff8c33;
+            transition: 0.3s;
+        }
+
+        .feature-card-enhanced:hover .feature-icon-enhanced {
+            background: white;
+            transform: rotateY(180deg);
+        }
+
+        .feature-card-enhanced h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .feature-card-enhanced p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+            color: white;
+        }
+
+        .newsletter-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-wrapper h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-wrapper h2 span {
+            color: #ff8c33;
+        }
+
+        .newsletter-wrapper p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 5px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            background: #ff8c33;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #e67a22;
+        }
+
+        .newsletter-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .newsletter-benefits span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            color: #ff8c33;
+        }
+
+        /* Responsive for new sections */
+        @media (max-width: 1024px) {
+            .stats-grid,
+            .features-grid-enhanced {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .deal-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .deal-timer {
+                justify-content: center;
+            }
+            
+            .deal-price {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid,
+            .features-grid-enhanced {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                border-radius: 30px;
+            }
+            
+            .newsletter-benefits {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .deal-timer {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation - White -->
@@ -58,7 +456,7 @@
         <span class="wishlist-count">0</span>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Original Restored -->
     <section class="hero-carousel">
         <div class="hero-track">
             <div class="hero-slide hero-active" style="background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
@@ -127,6 +525,42 @@
         });
     </script>
 
+    <!-- ===== NEW SECTION 1: STATS COUNTER ===== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="stat-number" id="statSellers">10K+</div>
+                    <div class="stat-label">Active Sellers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="stat-number" id="statProducts">1M+</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" id="statCustomers">500K+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="stat-number" id="statDeliveries">50K+</div>
+                    <div class="stat-label">Daily Deliveries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- WOW Category Section - With Images and Overlay -->
     <section class="category-section">
         <div class="container">
@@ -135,6 +569,7 @@
                 <p>Explore millions of products from trusted sellers across 1000+ categories</p>
             </div>
             <div class="category-grid">
+                <!-- Category cards remain same -->
                 <a href="products.html?category=electronics" class="category-card">
                     <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Electronics">
                     <span class="category-badge">🔥 Hot</span>
@@ -226,7 +661,122 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- ===== NEW SECTION 2: DEAL OF THE DAY ===== -->
+    <section class="deal-section">
+        <div class="container">
+            <div class="deal-wrapper">
+                <div class="deal-content">
+                    <div class="deal-info">
+                        <span class="deal-badge"><i class="fas fa-bolt"></i> FLASH SALE</span>
+                        <h2 class="deal-title">Deal of the <span>Day</span></h2>
+                        <p class="deal-description">Premium Wireless Headphones with Active Noise Cancellation, 40H Battery Life, and Premium Sound Quality</p>
+                        
+                        <div class="deal-timer" id="dealTimer">
+                            <div class="timer-block">
+                                <div class="timer-number" id="hours">12</div>
+                                <div class="timer-label">Hours</div>
+                            </div>
+                            <div class="timer-block">
+                                <div class="timer-number" id="minutes">30</div>
+                                <div class="timer-label">Minutes</div>
+                            </div>
+                            <div class="timer-block">
+                                <div class="timer-number" id="seconds">45</div>
+                                <div class="timer-label">Seconds</div>
+                            </div>
+                        </div>
+                        
+                        <div class="deal-price">
+                            <span class="current-price">Rs 8,999</span>
+                            <span class="original-price">Rs 15,999</span>
+                        </div>
+                        
+                        <a href="products.html?deal=day" class="deal-btn">
+                            <i class="fas fa-shopping-bag"></i> Shop Now
+                        </a>
+                    </div>
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Deal Product">
+                        <div class="deal-stock">
+                            <i class="fas fa-fire"></i> Only 15 left
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEW SECTION 3: BRAND PARTNERS ===== -->
+    <section class="brands-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trusted By <span>Top Brands</span></h2>
+                <p>We partner with the world's leading brands</p>
+            </div>
+            <div class="brands-carousel">
+                <div class="brand-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Amazon">
+                </div>
+                <div class="brand-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png" alt="Samsung">
+                </div>
+                <div class="brand-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Nike_logo.svg/1280px-Nike_logo.svg.png" alt="Nike">
+                </div>
+                <div class="brand-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png" alt="Microsoft">
+                </div>
+                <div class="brand-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" alt="Adidas">
+                </div>
+                <div class="brand-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Apple_logo.svg/1024px-Apple_logo.svg.png" alt="Apple">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEW SECTION 4: ENHANCED FEATURES ===== -->
+    <section class="features-enhanced">
+        <div class="container">
+            <div class="section-header">
+                <h2>Amazing <span>Features</span></h2>
+                <p>Everything you need for seamless shopping</p>
+            </div>
+            <div class="features-grid-enhanced">
+                <div class="feature-card-enhanced">
+                    <div class="feature-icon-enhanced">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Lightning-fast shipping with real-time tracking</p>
+                </div>
+                <div class="feature-card-enhanced">
+                    <div class="feature-icon-enhanced">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>100% secure transactions with buyer protection</p>
+                </div>
+                <div class="feature-card-enhanced">
+                    <div class="feature-icon-enhanced">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer service</p>
+                </div>
+                <div class="feature-card-enhanced">
+                    <div class="feature-icon-enhanced">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>Hassle-free 14-day return policy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section - Original -->
     <section class="why-choose-us-section">
         <div class="container">
             <div class="section-header">
@@ -262,10 +812,10 @@
         </div>
     </section>
 
-    <!-- Products Grid - With New Card Design -->
-     <div class="heading-section">
-      <h2>Latest <span>Products</span></h2>
-     </div>
+    <!-- Products Grid -->
+    <div class="heading-section">
+        <h2>Latest <span>Products</span></h2>
+    </div>
     <section class="products-section">
         <div class="container">
             <div class="products-grid" id="productsGrid"></div>
@@ -281,95 +831,234 @@
         </div>
     </section>
 
-    <!-- Promo Section - Big & Professional -->
+    <!-- Enhanced Promo Section -->
     <section class="promo-section">
         <div class="container">
             <div class="section-header">
                 <h2>Limited Time <span>Offers</span></h2>
                 <p>Grab these deals before they're gone - Up to 70% off + Extra 10% off on first order</p>
             </div>
-            <div class="promo-grid">
-                <div class="promo-card">
-                    <div class="promo-img" style="background-image: url('https://images.unsplash.com/photo-1600086827875-a63b01f1335c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay">
-                        <div class="promo-discount">70% OFF</div>
-                        <div class="promo-product">Electronics Sale</div>
-                        <div class="promo-desc">Smartphones, Laptops, Accessories</div>
+            <div class="promo-grid-modern">
+                <div class="promo-card-modern">
+                    <span class="promo-badge">HOT DEAL</span>
+                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1600086827875-a63b01f1335c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="promo-overlay-modern">
+                        <div class="promo-discount-modern">70% OFF</div>
+                        <div class="promo-product-modern">Electronics</div>
+                        <div class="promo-desc-modern">Smartphones, Laptops, Accessories</div>
                     </div>
                 </div>
-                <div class="promo-card">
-                    <div class="promo-img" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay">
-                        <div class="promo-discount">50% OFF</div>
-                        <div class="promo-product">Fashion Festival</div>
-                        <div class="promo-desc">Men, Women, Kids Collection</div>
+                <div class="promo-card-modern">
+                    <span class="promo-badge">TRENDING</span>
+                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="promo-overlay-modern">
+                        <div class="promo-discount-modern">50% OFF</div>
+                        <div class="promo-product-modern">Fashion</div>
+                        <div class="promo-desc-modern">Men, Women, Kids Collection</div>
                     </div>
                 </div>
-                <div class="promo-card">
-                    <div class="promo-img" style="background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay">
-                        <div class="promo-discount">60% OFF</div>
-                        <div class="promo-product">Home Decor</div>
-                        <div class="promo-desc">Furniture, Kitchen, Garden</div>
+                <div class="promo-card-modern">
+                    <span class="promo-badge">BESTSELLER</span>
+                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="promo-overlay-modern">
+                        <div class="promo-discount-modern">60% OFF</div>
+                        <div class="promo-product-modern">Home Decor</div>
+                        <div class="promo-desc-modern">Furniture, Kitchen, Garden</div>
                     </div>
                 </div>
-                <div class="promo-card">
-                    <div class="promo-img" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay">
-                        <div class="promo-discount">40% OFF</div>
-                        <div class="promo-product">Beauty & Wellness</div>
-                        <div class="promo-desc">Makeup, Skincare, Haircare</div>
+                <div class="promo-card-modern">
+                    <span class="promo-badge">WEEKEND</span>
+                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="promo-overlay-modern">
+                        <div class="promo-discount-modern">40% OFF</div>
+                        <div class="promo-product-modern">Beauty</div>
+                        <div class="promo-desc-modern">Makeup, Skincare, Haircare</div>
                     </div>
                 </div>
-                <div class="promo-card">
-                    <div class="promo-img" style="background-image: url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay">
-                        <div class="promo-discount">55% OFF</div>
-                        <div class="promo-product">Sports Gear</div>
-                        <div class="promo-desc">Gym, Outdoor, Cycling</div>
+                <div class="promo-card-modern">
+                    <span class="promo-badge">FLASH SALE</span>
+                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="promo-overlay-modern">
+                        <div class="promo-discount-modern">55% OFF</div>
+                        <div class="promo-product-modern">Sports</div>
+                        <div class="promo-desc-modern">Gym, Outdoor, Cycling</div>
                     </div>
                 </div>
-                <div class="promo-card">
-                    <div class="promo-img" style="background-image: url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay">
-                        <div class="promo-discount">30% OFF</div>
-                        <div class="promo-product">Books & Media</div>
-                        <div class="promo-desc">Bestsellers, Academic, Fiction</div>
+                <div class="promo-card-modern">
+                    <span class="promo-badge">LIMITED</span>
+                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="promo-overlay-modern">
+                        <div class="promo-discount-modern">30% OFF</div>
+                        <div class="promo-product-modern">Books</div>
+                        <div class="promo-desc-modern">Bestsellers, Academic, Fiction</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    
+    <!-- Enhanced How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How <span>It Works</span></h2>
+                <p>Your journey to success starts here in three simple steps</p>
+            </div>
+            
+            <!-- Progress Timeline -->
+           
+            
+            <!-- 3D Steps Cards -->
+            <div class="steps-grid">
+                <div class="step-card" id="step-1">
+                    <div class="step-icon-3d">
+                        <div class="step-icon-3d-inner">
+                            <div class="step-icon-front">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="step-icon-back">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Create Account</h3>
+                    <p>Sign up in under 2 minutes as customer, store manager, or shipper with our simple registration process</p>
+                    <div class="step-features-modern">
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Free Registration</span>
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Instant Access</span>
+                    </div>
+                </div>
+                
+                <div class="step-card" id="step-2">
+                    <div class="step-icon-3d">
+                        <div class="step-icon-3d-inner">
+                            <div class="step-icon-front">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <div class="step-icon-back">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Browse & Select</h3>
+                    <p>Explore millions of products from verified sellers across 1000+ categories at the best market prices</p>
+                    <div class="step-features-modern">
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> 1000+ Categories</span>
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Verified Sellers</span>
+                    </div>
+                </div>
+                
+                <div class="step-card" id="step-3">
+                    <div class="step-icon-3d">
+                        <div class="step-icon-3d-inner">
+                            <div class="step-icon-front">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="step-icon-back">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Order & Track</h3>
+                    <p>Place orders securely with multiple payment options and track delivery in real-time with our advanced logistics</p>
+                    <div class="step-features-modern">
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Secure Payments</span>
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Real-time Tracking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Role Section - Original Styles -->
+    <!-- Enhanced Role Section -->
     <section class="roles">
         <div class="container">
             <div class="section-header">
                 <h2>Choose Your <span>Role</span></h2>
                 <p>Join GlobalMart as a customer, seller, or delivery partner</p>
             </div>
-            <div class="roles-grid">
-                <div class="role-card">
-                    <div class="role-icon"><i class="fas fa-shipping-fast"></i></div>
+            
+            <div class="role-grid-modern">
+                <div class="role-card-modern">
+                    <div class="role-icon-3d">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
                     <h3>Shipper</h3>
                     <p>Upload products to warehouse, set prices, earn commissions, and manage inventory efficiently with our smart tools.</p>
-                    <a href="account.html?role=shipper" class="btn-small">Sign Up as Shipper</a>
+                    <a href="account.html?role=shipper" class="role-btn-modern">Sign Up as Shipper</a>
                 </div>
 
-                <div class="role-card">
-                    <div class="role-icon"><i class="fas fa-store"></i></div>
+                <div class="role-card-modern">
+                    <div class="role-icon-3d">
+                        <i class="fas fa-store"></i>
+                    </div>
                     <h3>Store Manager</h3>
                     <p>Browse warehouse products, add to your store, and manage storefront and sales seamlessly with analytics.</p>
-                    <a href="account.html?role=manager" class="btn-small">Sign Up as Manager</a>
+                    <a href="account.html?role=manager" class="role-btn-modern">Sign Up as Manager</a>
                 </div>
 
-                <div class="role-card">
-                    <div class="role-icon"><i class="fas fa-user"></i></div>
+                <div class="role-card-modern">
+                    <div class="role-icon-3d">
+                        <i class="fas fa-user"></i>
+                    </div>
                     <h3>Customer</h3>
                     <p>Browse all stores, add to cart, checkout securely, and track your orders effortlessly with our app.</p>
-                    <a href="account.html?role=customer" class="btn-small">Sign Up as Customer</a>
+                    <a href="account.html?role=customer" class="role-btn-modern">Sign Up as Customer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid-modern">
+                <div class="trust-item-modern">
+                    <div class="trust-icon-wrapper">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>100% Secure Payments</h4>
+                    <p>SSL encrypted transactions</p>
+                </div>
+                <div class="trust-item-modern">
+                    <div class="trust-icon-wrapper">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4>Free Shipping</h4>
+                    <p>On orders over Rs 5000</p>
+                </div>
+                <div class="trust-item-modern">
+                    <div class="trust-icon-wrapper">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <h4>14-Day Returns</h4>
+                    <p>Easy return policy</p>
+                </div>
+                <div class="trust-item-modern">
+                    <div class="trust-icon-wrapper">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated customer service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEW SECTION 5: NEWSLETTER ===== -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-wrapper">
+                <h2>Subscribe to Our <span>Newsletter</span></h2>
+                <p>Join 50,000+ subscribers and get exclusive deals directly in your inbox!</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+                <div class="newsletter-benefits">
+                    <span><i class="fas fa-check-circle"></i> Weekly Deals</span>
+                    <span><i class="fas fa-check-circle"></i> No Spam</span>
+                    <span><i class="fas fa-check-circle"></i> Unsubscribe Anytime</span>
                 </div>
             </div>
         </div>
@@ -453,10 +1142,97 @@
     <script src="js/wishlist.js"></script>
     <script src="js/cart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        $(document).ready(function() {
             updateCartCount();
             loadProducts();
             setupFilters();
+            
+            // Step progress interaction
+            $('.step-progress-item').on('click', function() {
+                const step = $(this).data('step');
+                $('.step-progress-item').removeClass('active');
+                $(this).addClass('active');
+                
+                $('html, body').animate({
+                    scrollTop: $('#step-' + step).offset().top - 100
+                }, 500);
+            });
+
+            // NEW: Deal Timer
+            function startDealTimer() {
+                const endTime = new Date();
+                endTime.setHours(endTime.getHours() + 12);
+                endTime.setMinutes(endTime.getMinutes() + 30);
+                endTime.setSeconds(endTime.getSeconds() + 45);
+
+                function updateTimer() {
+                    const now = new Date().getTime();
+                    const distance = endTime - now;
+
+                    if (distance < 0) {
+                        document.getElementById('hours').textContent = '00';
+                        document.getElementById('minutes').textContent = '00';
+                        document.getElementById('seconds').textContent = '00';
+                        return;
+                    }
+
+                    const hours = Math.floor(distance / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                }
+
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            }
+
+            startDealTimer();
+
+            // NEW: Newsletter Form
+            $('#newsletterForm').on('submit', function(e) {
+                e.preventDefault();
+                const email = $(this).find('input[type="email"]').val();
+                alert('Thank you for subscribing! Check your email for confirmation.');
+                $(this)[0].reset();
+            });
+
+            // NEW: Animate Stats
+            function animateStats() {
+                $('.stat-number').each(function() {
+                    const $this = $(this);
+                    const target = parseInt($this.text());
+                    let current = 0;
+                    const increment = target / 50;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            $this.text(target.toLocaleString() + '+');
+                            clearInterval(timer);
+                        } else {
+                            $this.text(Math.floor(current).toLocaleString() + '+');
+                        }
+                    }, 30);
+                });
+            }
+
+            // Trigger stats animation when visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
         });
         
         async function loadProducts() {
@@ -513,109 +1289,95 @@
         }
         
         function renderProducts(products) {
-    const container = document.getElementById('productsGrid');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    if (products.length === 0) {
-        document.getElementById('noProducts').style.display = 'block';
-        return;
-    }
-    
-    // Hide no products message if products exist
-    document.getElementById('noProducts').style.display = 'none';
-    
-    // Render ALL products (removed the slice limit)
-    products.forEach(product => {
-        const productElement = document.createElement('div');
-        productElement.className = 'product-card';
-        
-        const hasDiscount = product.originalPrice && product.originalPrice > product.price;
-        const originalPrice = product.originalPrice || (product.price * 1.2);
-        const rating = product.rating || (4 + Math.random()).toFixed(1);
-        const reviewCount = Math.floor(Math.random() * 50) + 10;
-        
-        // Conversion rate: 1 USD ≈ 83 INR (original) ≈ 280 PKR (new)
-        // Using 1 USD = 280 PKR for approximate conversion from original USD/INR mindset
-        // Since product.price might be in USD/INR, we'll assume it's in USD for simplicity and convert to PKR.
-        // For a realistic touch, we'll treat the existing price as a base in a common unit and multiply by a factor.
-        // To show meaningful PKR values, we'll multiply the original price (which likely was in USD * 83 for INR) by 3.37 (280/83 ≈ 3.37)
-        // But to keep it clean, we'll use a fixed factor of 3.4 to convert the displayed INR to PKR.
-        // The original code used: ₹${(product.price * 83).toFixed(0)} (so price was in USD? maybe)
-        // We'll convert that final INR figure to PKR: INR * 3.4 ≈ PKR (since 1 INR = ~3.4 PKR)
-        
-        const priceInINR = product.price * 83; // as originally computed
-        const priceInPKR = (priceInINR * 3.4).toFixed(0); // approximate conversion INR to PKR
-        
-        const originalInINR = originalPrice * 83;
-        const originalInPKR = (originalInINR * 3.4).toFixed(0);
-        
-        productElement.innerHTML = `
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}" 
-                     onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-                ${product.fromWarehouse ? '<div class="warehouse-badge">Warehouse</div>' : ''}
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">${product.name}</h3>
-                <p class="product-store"><i class="fas fa-store"></i> Sold by: ${product.store || product.shipperName || 'GlobalMart'}</p>
-                <div class="star-rating">
-                    ${generateStarRating(parseFloat(rating))}
-                    <span>(${reviewCount})</span>
-                </div>
-                <p class="product-desc">${product.description || 'Premium quality product'}</p>
-                <div class="product-price">
-                    Rs ${priceInPKR}
-                    ${hasDiscount ? `<span class="original">Rs ${originalInPKR}</span>` : ''}
-                </div>
-                ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
-                <div class="product-buttons">
-                    <button class="btn-small add-to-cart" 
-                            data-id="${product.id}" 
-                            data-name="${product.name}" 
-                            data-price="${product.price}" 
-                            data-image="${product.image}">
-                        <i class="fas fa-shopping-cart"></i> Add
-                    </button>
-                    <a href="product-detail.html?id=${product.id}" class="btn-small view-details">
-                        <i class="fas fa-eye"></i> View
-                    </a>
-                </div>
-            </div>
-        `;
-        container.appendChild(productElement);
-    });
-    
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const product = {
-                id: this.dataset.id,
-                name: this.dataset.name,
-                price: parseFloat(this.dataset.price),
-                image: this.dataset.image,
-                quantity: 1
-            };
+            const container = document.getElementById('productsGrid');
+            if (!container) return;
             
-            if (typeof addToCart === 'function') {
-                addToCart(product);
-            } else {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const existing = cart.find(item => item.id == product.id);
-                if (existing) {
-                    existing.quantity += 1;
-                } else {
-                    cart.push(product);
-                }
-                localStorage.setItem('cart', JSON.stringify(cart));
+            container.innerHTML = '';
+            
+            if (products.length === 0) {
+                document.getElementById('noProducts').style.display = 'block';
+                return;
             }
             
-            updateCartCount();
-            showToast(`${product.name} added to cart`);
-        });
-    });
-}
+            document.getElementById('noProducts').style.display = 'none';
+            
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-card';
+                
+                const hasDiscount = product.originalPrice && product.originalPrice > product.price;
+                const originalPrice = product.originalPrice || (product.price * 1.2);
+                const rating = product.rating || (4 + Math.random()).toFixed(1);
+                const reviewCount = Math.floor(Math.random() * 50) + 10;
+                
+                const priceInINR = product.price * 83;
+                const priceInPKR = (priceInINR * 3.4).toFixed(0);
+                
+                const originalInINR = originalPrice * 83;
+                const originalInPKR = (originalInINR * 3.4).toFixed(0);
+                
+                productElement.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" 
+                             onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        ${product.fromWarehouse ? '<div class="warehouse-badge">Warehouse</div>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-store"><i class="fas fa-store"></i> Sold by: ${product.store || product.shipperName || 'GlobalMart'}</p>
+                        <div class="star-rating">
+                            ${generateStarRating(parseFloat(rating))}
+                            <span>(${reviewCount})</span>
+                        </div>
+                        <p class="product-desc">${product.description || 'Premium quality product'}</p>
+                        <div class="product-price">
+                            Rs ${priceInPKR}
+                            ${hasDiscount ? `<span class="original">Rs ${originalInPKR}</span>` : ''}
+                        </div>
+                        ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
+                        <div class="product-buttons">
+                            <button class="btn-small add-to-cart" 
+                                    data-id="${product.id}" 
+                                    data-name="${product.name}" 
+                                    data-price="${product.price}" 
+                                    data-image="${product.image}">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                            <a href="product-detail.html?id=${product.id}" class="btn-small view-details">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(productElement);
+            });
+            
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const product = {
+                        id: this.dataset.id,
+                        name: this.dataset.name,
+                        price: parseFloat(this.dataset.price),
+                        image: this.dataset.image,
+                        quantity: 1
+                    };
+                    
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const existing = cart.find(item => item.id == product.id);
+                    if (existing) {
+                        existing.quantity += 1;
+                    } else {
+                        cart.push(product);
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    
+                    updateCartCount();
+                    showToast(`${product.name} added to cart`);
+                });
+            });
+        }
+        
         function generateStarRating(rating) {
             let stars = '';
             for (let i = 1; i <= 5; i++) {

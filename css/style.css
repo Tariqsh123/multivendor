@@ -3232,3 +3232,615 @@ p,a,li,input,option,textarea{
         }
 
        
+
+         .how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fff5eb 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .how-it-works .section-header {
+            margin-bottom: 60px;
+        }
+        
+        .how-it-works .section-header h2 {
+            font-size: 2.8rem;
+            color: #222;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .how-it-works .section-header h2 span {
+            color: #ff6b00;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .how-it-works .section-header h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(255,107,0,0.2);
+            z-index: -1;
+            border-radius: 5px;
+        }
+        
+        .how-it-works .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Floating orbs animation */
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatOrb 20s infinite ease-in-out;
+        }
+        
+        .how-it-works::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,107,0,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatOrb 25s infinite ease-in-out reverse;
+        }
+        
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 30px) scale(1.1); }
+        }
+        
+        /* Timeline Progress Bar */
+       
+        /* Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 50px 30px 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,107,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        
+        .step-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 50px 80px rgba(255,107,0,0.15);
+            border-color: #ff6b00;
+        }
+        
+        .step-icon-3d {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 25px;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .step-icon-3d-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+        
+        .step-card:hover .step-icon-3d-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .step-icon-front, .step-icon-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fff5eb, white);
+            border: 2px dashed #ff6b00;
+        }
+        
+        .step-icon-back {
+            background: #ff6b00;
+            transform: rotateY(180deg);
+            border: 2px solid white;
+        }
+        
+        .step-icon-front i {
+            font-size: 3.5rem;
+            color: #ff6b00;
+        }
+        
+        .step-icon-back i {
+            font-size: 3.5rem;
+            color: white;
+        }
+        
+        .step-card h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .step-card p {
+            color: #666;
+            line-height: 1.8;
+            margin: 15px 0 20px;
+            font-size: 1rem;
+        }
+        
+        .step-features-modern {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .step-feature-modern {
+            background: rgba(255,107,0,0.1);
+            color: #ff6b00;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,107,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .step-feature-modern:hover {
+            background: #ff6b00;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .step-feature-modern i {
+            font-size: 0.8rem;
+        }
+        
+        /* Enhanced Role Section - Modern Cards */
+        .roles {
+            padding: 80px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .roles .section-header {
+            margin-bottom: 50px;
+        }
+        
+        .roles .section-header h2 {
+            font-size: 2.8rem;
+            color: #222;
+            margin-bottom: 15px;
+        }
+        
+        .roles .section-header h2 span {
+            color: #ff6b00;
+        }
+        
+        .role-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .role-card-modern {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,107,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .role-card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,107,0,0.03) 0%, transparent 100%);
+            z-index: 0;
+        }
+        
+        .role-card-modern:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 70px rgba(255,107,0,0.15);
+            border-color: #ff6b00;
+        }
+        
+        .role-icon-3d {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #fff5eb, white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #ff6b00;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        
+        .role-card-modern:hover .role-icon-3d {
+            transform: scale(1.1) rotate(10deg);
+            background: #ff6b00;
+        }
+        
+        .role-icon-3d i {
+            font-size: 3.5rem;
+            color: #ff6b00;
+            transition: all 0.4s ease;
+        }
+        
+        .role-card-modern:hover .role-icon-3d i {
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .role-card-modern h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .role-card-modern p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .role-btn-modern {
+            display: inline-block;
+            padding: 14px 35px;
+            background: transparent;
+            color: #ff6b00;
+            border: 2px solid #ff6b00;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .role-btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #ff6b00;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+        
+        .role-btn-modern:hover::before {
+            left: 0;
+        }
+        
+        .role-btn-modern:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,107,0,0.3);
+        }
+        
+        /* Enhanced Trust Section - Premium Design */
+        .trust-section {
+            padding: 70px 0;
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c33 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trust-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: rotate 60s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .trust-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .trust-item-modern {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trust-item-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .trust-item-modern:hover::before {
+            left: 100%;
+        }
+        
+        .trust-item-modern:hover {
+            transform: translateY(-15px) scale(1.03);
+            background: rgba(255,255,255,0.25);
+            border-color: white;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+        }
+        
+        .trust-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.5s ease;
+        }
+        
+        .trust-item-modern:hover .trust-icon-wrapper {
+            transform: rotateY(180deg);
+            background: white;
+        }
+        
+        .trust-icon-wrapper i {
+            font-size: 3rem;
+            color: white;
+            transition: all 0.5s ease;
+        }
+        
+        .trust-item-modern:hover .trust-icon-wrapper i {
+            color: #ff6b00;
+            transform: rotateY(180deg);
+        }
+        
+        .trust-item-modern h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .trust-item-modern p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.95);
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* Enhanced Promo Section */
+        .promo-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .promo-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .promo-card-modern {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        
+        .promo-card-modern:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 40px 70px rgba(255,107,0,0.3);
+        }
+        
+        .promo-img-modern {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s ease;
+        }
+        
+        .promo-card-modern:hover .promo-img-modern {
+            transform: scale(1.15);
+        }
+        
+        .promo-overlay-modern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,107,0,0.95) 0%, rgba(255,107,0,0.85) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            transition: all 0.5s ease;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .promo-card-modern:hover .promo-overlay-modern {
+            opacity: 1;
+        }
+        
+        .promo-discount-modern {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            transform: translateY(30px);
+            transition: transform 0.6s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .promo-card-modern:hover .promo-discount-modern {
+            transform: translateY(0);
+        }
+        
+        .promo-product-modern {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transform: translateY(30px);
+            transition: transform 0.6s ease 0.1s;
+        }
+        
+        .promo-card-modern:hover .promo-product-modern {
+            transform: translateY(0);
+        }
+        
+        .promo-desc-modern {
+            font-size: 1rem;
+            opacity: 0.9;
+            transform: translateY(30px);
+            transition: transform 0.6s ease 0.2s;
+            max-width: 80%;
+        }
+        
+        .promo-card-modern:hover .promo-desc-modern {
+            transform: translateY(0);
+        }
+        
+        .promo-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #ff6b00;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .steps-grid,
+            .role-grid-modern,
+            .trust-grid-modern,
+            .promo-grid-modern {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .steps-progress {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .steps-grid,
+            .role-grid-modern,
+            .trust-grid-modern,
+            .promo-grid-modern {
+                grid-template-columns: 1fr;
+            }
+            
+            .how-it-works .section-header h2,
+            .roles .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .step-card,
+            .role-card-modern,
+            .trust-item-modern,
+            .promo-card-modern {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .step-progress-marker {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }

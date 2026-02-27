@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Account - GlobalMart</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -181,6 +181,196 @@
             color: #f57224;
             margin-right: 5px;
         }
+
+        /* Mobile Bottom Navigation Bar */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            z-index: 9999;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .mobile-bottom-nav .nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #777;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .mobile-bottom-nav .nav-item i {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .mobile-bottom-nav .nav-item.active {
+            color: #f57224;
+        }
+
+        .mobile-bottom-nav .nav-item .badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: #f57224;
+            color: white;
+            font-size: 10px;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .mobile-bottom-nav .nav-item-wrapper {
+            position: relative;
+        }
+
+        /* Mobile Responsive Fixes */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: none !important;
+            }
+            
+            body {
+                padding-bottom: 70px;
+            }
+            
+            .mobile-bottom-nav {
+                display: block;
+            }
+            
+            .mobile-cart-floating-button,
+            .mobile-wishlist-floating-button {
+                display: none !important;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .auth-form {
+                padding: 20px;
+            }
+            
+            .role-option label {
+                padding: 12px;
+            }
+            
+            .role-option label i {
+                font-size: 1.2rem;
+            }
+            
+            .role-option label span {
+                font-size: 1rem;
+            }
+            
+            .role-option label small {
+                font-size: 0.8rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-hero p {
+                font-size: 0.9rem;
+            }
+            
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Hide hamburger on all devices */
+        .hamburger {
+            display: none !important;
+        }
+
+        /* Form styling improvements */
+        .auth-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .role-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .role-option {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .role-option input[type="radio"] {
+            display: none;
+        }
+
+        .role-option label {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            margin: 0;
+            transition: 0.3s;
+        }
+
+        .role-option label:hover {
+            background: rgba(245,114,36,0.05);
+        }
+
+        .role-option input[type="radio"]:checked + label {
+            background: rgba(245,114,36,0.1);
+            border-left: 4px solid #f57224;
+        }
+
+        .role-option label i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #f57224;
+        }
+
+        .role-option label span {
+            font-size: 1.1rem;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+
+        .role-option label small {
+            color: #777;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -190,28 +380,28 @@
             <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
             
             <div class="nav-menu" id="navMenu">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="products.html" class="nav-link">Products</a>
-    <a href="research-hub.html" class="nav-link">Research Hub</a>
-    <a href="faq.html" class="nav-link">FAQs</a>
-    <a href="account.html" class="nav-link">Account</a>
-    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="research-hub.html" class="nav-link">Research Hub</a>
+                <a href="faq.html" class="nav-link">FAQs</a>
+                <a href="account.html" class="nav-link active">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
 
-    <div id="wish-and-cart-menu">
-    <!-- Wishlist Icon manually added -->
-    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
-        <i class="fas fa-heart"></i>
-        <span class="wishlist-count">0</span>
-    </a>
+                <div id="wish-and-cart-menu">
+                    <!-- Wishlist Icon manually added -->
+                    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
 
-    <!-- Cart Icon -->
-    <a href="#" class="nav-link cart-icon" id="cartIcon">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </a>
-    </div>
-</div>
+                    <!-- Cart Icon -->
+                    <a href="#" class="nav-link cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
 
             
             <button class="hamburger" id="hamburger">
@@ -223,17 +413,15 @@
     </nav>
 
     <!-- wishlist cart mobile floating button -->
-
     <div class="mobile-cart-floating-button">
-      <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">0</span>
     </div>
 
     <div class="mobile-wishlist-floating-button">
-      <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
         <span class="wishlist-count">0</span>
     </div>
-
 
     <!-- Account Hero -->
     <section class="page-hero">
@@ -384,21 +572,6 @@
                                     <option value="other">Other</option>
                                 </select>
                             </div>
-
-                            <!-- <div class="form-group">
-                                <label><i class="fas fa-bell"></i> Notification Preferences</label>
-                                <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px;">
-                                    <label style="display: flex; align-items: center; gap: 5px;">
-                                        <input type="checkbox" id="notifyEmail" checked> Email
-                                    </label>
-                                    <label style="display: flex; align-items: center; gap: 5px;">
-                                        <input type="checkbox" id="notifySms"> SMS
-                                    </label>
-                                    <label style="display: flex; align-items: center; gap: 5px;">
-                                        <input type="checkbox" id="notifyWhatsapp" checked> WhatsApp
-                                    </label>
-                                </div>
-                            </div> -->
 
                             <div class="customer-preview">
                                 <h4><i class="fas fa-eye"></i> Profile Preview</h4>
@@ -627,8 +800,61 @@
         </div>
     </footer>
 
-        <script src="js/main.js"></script>
-        
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- MOBILE BOTTOM NAVIGATION BAR -->
+    <div class="mobile-bottom-nav">
+        <div class="nav-items">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Products</span>
+            </a>
+            <a href="#" class="nav-item" id="mobileCartBtn">
+                <div class="nav-item-wrapper">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge cart-count">0</span>
+                </div>
+                <span>Cart</span>
+            </a>
+            <a href="dashboard.html#wishlist" class="nav-item">
+                <div class="nav-item-wrapper">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge wishlist-count">0</span>
+                </div>
+                <span>Wishlist</span>
+            </a>
+            <a href="account.html" class="nav-item active">
+                <i class="fas fa-user"></i>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -640,6 +866,36 @@
             setupCustomerPreview();
             setupStorePreview();
             
+            // Mobile cart button click
+            document.getElementById('mobileCartBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('cartSidebar').classList.add('active');
+                document.getElementById('cartOverlay').classList.add('active');
+            });
+
+            // Close cart when clicking overlay
+            document.getElementById('cartOverlay').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('active');
+                this.classList.remove('active');
+            });
+
+            // Close cart with close button
+            document.getElementById('closeCart').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('active');
+                document.getElementById('cartOverlay').classList.remove('active');
+            });
+
+            // Update active state in bottom nav
+            const currentPage = window.location.pathname.split('/').pop() || 'account.html';
+            document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
+                const href = item.getAttribute('href');
+                if (href === currentPage) {
+                    item.classList.add('active');
+                } else if (currentPage === '' && href === 'index.html') {
+                    // For home page
+                }
+            });
+
             // Check for role parameter in URL
             const urlParams = new URLSearchParams(window.location.search);
             const role = urlParams.get('role');
@@ -1029,6 +1285,15 @@
                     }, 2000);
                 });
             }
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = count;
+            });
         }
     </script>
 </body>

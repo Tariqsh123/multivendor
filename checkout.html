@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Checkout - GlobalMart</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -61,7 +61,8 @@
             color: #555;
         }
         
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #ddd;
@@ -70,7 +71,8 @@
             transition: all 0.3s ease;
         }
         
-        .form-group input:focus {
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #ff6b00;
             box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
@@ -226,6 +228,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.2rem;
+            z-index: 1;
         }
         
         .country-select {
@@ -564,6 +567,66 @@
             }
         }
         
+        /* Mobile Bottom Navigation Bar */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            z-index: 9999;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .mobile-bottom-nav .nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #777;
+            font-size: 12px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .mobile-bottom-nav .nav-item i {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .mobile-bottom-nav .nav-item.active {
+            color: #ff6b00;
+        }
+
+        .mobile-bottom-nav .nav-item .badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: #ff6b00;
+            color: white;
+            font-size: 10px;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .mobile-bottom-nav .nav-item-wrapper {
+            position: relative;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .checkout-grid {
@@ -577,6 +640,27 @@
         }
         
         @media (max-width: 768px) {
+            .hamburger {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: none !important;
+            }
+            
+            body {
+                padding-bottom: 70px;
+            }
+            
+            .mobile-bottom-nav {
+                display: block;
+            }
+            
+            .mobile-cart-floating-button,
+            .mobile-wishlist-floating-button {
+                display: none !important;
+            }
+            
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 0;
@@ -584,6 +668,10 @@
             
             .checkout-section {
                 padding: 20px;
+            }
+            
+            .checkout-section h2 {
+                font-size: 1.3rem;
             }
             
             .delivery-option {
@@ -610,41 +698,128 @@
             .modal-content {
                 padding: 30px 20px;
             }
+            
+            .order-summary {
+                padding: 20px;
+            }
+            
+            .order-summary h2 {
+                font-size: 1.5rem;
+            }
+            
+            .total-row.grand-total {
+                font-size: 1.2rem;
+            }
+            
+            .place-order-btn {
+                padding: 15px;
+                font-size: 1rem;
+            }
         }
         
         @media (max-width: 480px) {
             .checkout-container {
                 padding: 40px 0;
             }
-            .checkout-container .container h1{
+            
+            .checkout-container .container h1 {
                 text-align: center;
-                font-size: 35px;
-            }
-            .checkout-section h2 {
-    font-size: 20px;
-}
-.form-group label {
-    font-size: small;
-    margin-top: 20px;
-}
-.country-select {
-    font-size: small;
-}
-
-.order-summary h2 {
-    font-size: 30px;}
-            .checkout-section {
-                padding: 15px;
+                font-size: 28px;
             }
             
-            .order-summary {
-                padding: 20px;
+            .checkout-section h2 {
+                font-size: 1.1rem;
+            }
+            
+            .form-group label {
+                font-size: 0.9rem;
+            }
+            
+            .country-select {
+                font-size: 0.9rem;
+            }
+            
+            .delivery-details h4 {
+                font-size: 1rem;
+            }
+            
+            .delivery-details p {
+                font-size: 0.85rem;
+            }
+            
+            .delivery-price {
+                font-size: 1rem;
+            }
+            
+            .payment-method p {
+                font-size: 0.85rem;
+            }
+            
+            .order-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .item-name {
+                font-size: 0.95rem;
+            }
+            
+            .total-row {
+                font-size: 0.95rem;
             }
             
             .place-order-btn {
-        padding: 15px;
-        font-size: x-small;
-    }
+                font-size: 0.9rem;
+            }
+            
+            .place-order-btn i {
+                font-size: 1rem;
+            }
+            
+            .modal-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .modal-content p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hide hamburger on all devices */
+        .hamburger {
+            display: none !important;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 1100;
+            transition: 0.3s;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            padding: 20px;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1099;
+        }
+        
+        .cart-overlay.active {
+            display: block;
         }
     </style>
 </head>
@@ -655,28 +830,28 @@
             <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
             
             <div class="nav-menu" id="navMenu">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="products.html" class="nav-link">Products</a>
-    <a href="research-hub.html" class="nav-link">Research Hub</a>
-    <a href="faq.html" class="nav-link">FAQs</a>
-    <a href="account.html" class="nav-link">Account</a>
-    <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="research-hub.html" class="nav-link">Research Hub</a>
+                <a href="faq.html" class="nav-link">FAQs</a>
+                <a href="account.html" class="nav-link">Account</a>
+                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
 
-    <div id="wish-and-cart-menu">
-    <!-- Wishlist Icon manually added -->
-    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
-        <i class="fas fa-heart"></i>
-        <span class="wishlist-count">0</span>
-    </a>
+                <div id="wish-and-cart-menu">
+                    <!-- Wishlist Icon manually added -->
+                    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
 
-    <!-- Cart Icon -->
-    <a href="#" class="nav-link cart-icon" id="cartIcon">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </a>
-    </div>
-</div>
+                    <!-- Cart Icon -->
+                    <a href="#" class="nav-link cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
 
             
             <button class="hamburger" id="hamburger">
@@ -688,17 +863,15 @@
     </nav>
 
     <!-- wishlist cart mobile floating button -->
-
     <div class="mobile-cart-floating-button">
-      <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">0</span>
     </div>
 
     <div class="mobile-wishlist-floating-button">
-      <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
         <span class="wishlist-count">0</span>
     </div>
-
 
     <!-- Checkout Main Content -->
     <section class="checkout-container">
@@ -1086,6 +1259,38 @@
     </div>
     <div class="cart-overlay" id="cartOverlay"></div>
 
+    <!-- MOBILE BOTTOM NAVIGATION BAR -->
+    <div class="mobile-bottom-nav">
+        <div class="nav-items">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Products</span>
+            </a>
+            <a href="#" class="nav-item" id="mobileCartBtn">
+                <div class="nav-item-wrapper">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge cart-count">0</span>
+                </div>
+                <span>Cart</span>
+            </a>
+            <a href="dashboard.html#wishlist" class="nav-item">
+                <div class="nav-item-wrapper">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge wishlist-count">0</span>
+                </div>
+                <span>Wishlist</span>
+            </a>
+            <a href="account.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
     <script>
@@ -1093,6 +1298,36 @@
             updateCartCount();
             checkUserLogin();
             
+            // Mobile cart button click
+            document.getElementById('mobileCartBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('cartSidebar').classList.add('active');
+                document.getElementById('cartOverlay').classList.add('active');
+            });
+
+            // Close cart when clicking overlay
+            document.getElementById('cartOverlay').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('active');
+                this.classList.remove('active');
+            });
+
+            // Close cart with close button
+            document.getElementById('closeCart').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('active');
+                document.getElementById('cartOverlay').classList.remove('active');
+            });
+
+            // Update active state in bottom nav
+            const currentPage = window.location.pathname.split('/').pop() || 'checkout.html';
+            document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
+                const href = item.getAttribute('href');
+                if (href === currentPage) {
+                    item.classList.add('active');
+                } else if (currentPage === '' && href === 'index.html') {
+                    // For home page
+                }
+            });
+
             // Load cart and initialize everything
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             if (cart.length === 0) {
@@ -1631,6 +1866,15 @@
                 }
             });
         });
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = count;
+            });
+        }
     </script>
 </body>
 </html>

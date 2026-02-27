@@ -224,9 +224,11 @@ a {
     object-fit: contain;
 }
 @media(max-width:768px){
-    #logo {
-    height: 50px;
+    .logo {
+    /* height: 50px; */
+    margin: 0 auto;
     }
+
 #wish-and-cart-menu{
     display: none;
 }
@@ -3820,9 +3822,12 @@ p,a,li,input,option,textarea{
         @media (max-width: 768px) {
             .steps-grid,
             .role-grid-modern,
-            .trust-grid-modern,
             .promo-grid-modern {
                 grid-template-columns: 1fr;
+            }
+            .trust-grid-modern{
+                grid-template-columns: repeat(2, 1fr);
+
             }
             
             .how-it-works .section-header h2,
@@ -3832,15 +3837,22 @@ p,a,li,input,option,textarea{
             
             .step-card,
             .role-card-modern,
-            .trust-item-modern,
-            .promo-card-modern {
+            .trust-item-modern
+             {
                 max-width: 400px;
                 margin: 0 auto;
+            }
+            .promo-card-modern{
+                max-width: 400px;
             }
             
             .step-progress-marker {
                 width: 60px;
                 height: 60px;
                 font-size: 1.5rem;
+            }
+            .newsletter-form button{
+                width: 90%;
+                margin: 0 auto;
             }
         }

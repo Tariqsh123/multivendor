@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* All previous styles remain */
+        :root {
+            --primary: #ff8c33;
+            --primary-dark: #e67a22;
+            --border: #f0f0f0;
+        }
+
         .checkout-container {
             padding: 60px 0;
             background: #f8f9fa;
@@ -40,7 +46,7 @@
         }
         
         .checkout-section h2 i {
-            color: #ff6b00;
+            color: var(--primary);
         }
         
         .form-row {
@@ -74,8 +80,8 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #ff6b00;
-            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 140, 51, 0.1);
         }
         
         /* Delivery Options */
@@ -99,13 +105,13 @@
         }
         
         .delivery-option:hover {
-            border-color: #ff6b00;
-            background: rgba(255, 107, 0, 0.03);
+            border-color: var(--primary);
+            background: rgba(255, 140, 51, 0.03);
         }
         
         .delivery-option.selected {
-            border-color: #ff6b00;
-            background: rgba(255, 107, 0, 0.05);
+            border-color: var(--primary);
+            background: rgba(255, 140, 51, 0.05);
         }
         
         .delivery-icon {
@@ -122,7 +128,7 @@
         }
         
         .delivery-option.selected .delivery-icon {
-            background: #ff6b00;
+            background: var(--primary);
             color: white;
         }
         
@@ -144,7 +150,7 @@
         .delivery-price {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #ff6b00;
+            color: var(--primary);
             margin-top: 5px;
         }
         
@@ -183,7 +189,7 @@
         }
         
         .warning-header i {
-            color: #ff6b00;
+            color: var(--primary);
             font-size: 1.2rem;
         }
         
@@ -246,8 +252,8 @@
         
         .country-select:focus {
             outline: none;
-            border-color: #ff6b00;
-            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 140, 51, 0.1);
         }
         
         .country-arrow {
@@ -284,13 +290,13 @@
         }
         
         .payment-method:hover {
-            border-color: #ff6b00;
-            background: rgba(255, 107, 0, 0.03);
+            border-color: var(--primary);
+            background: rgba(255, 140, 51, 0.03);
         }
         
         .payment-method.active {
-            border-color: #ff6b00;
-            background: rgba(255, 107, 0, 0.05);
+            border-color: var(--primary);
+            background: rgba(255, 140, 51, 0.05);
         }
         
         .payment-method i {
@@ -300,7 +306,7 @@
         }
         
         .payment-method.active i {
-            color: #ff6b00;
+            color: var(--primary);
         }
         
         .payment-method p {
@@ -430,10 +436,144 @@
         .total-row.grand-total {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #ff6b00;
+            color: var(--primary);
             border-top: 2px solid #eee;
             margin-top: 10px;
             padding-top: 15px;
+        }
+        
+        /* Wishlist Sidebar */
+        .wishlist-sidebar {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 1100;
+            transition: 0.3s;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .wishlist-sidebar.active {
+            right: 0;
+        }
+        
+        .wishlist-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1099;
+        }
+        
+        .wishlist-overlay.active {
+            display: block;
+        }
+
+        .wishlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .wishlist-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-wishlist {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+        }
+
+        .empty-wishlist i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: white;
+        }
+
+        .wishlist-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .wishlist-item-info {
+            flex: 1;
+        }
+
+        .wishlist-item-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+
+        .wishlist-item-price {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wishlist-item-store {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .wishlist-item-remove {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .wishlist-item-remove:hover {
+            color: #ff0000;
+        }
+
+        .wishlist-item-add-cart {
+            padding: 5px 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .wishlist-item-add-cart:hover {
+            background: var(--primary-dark);
         }
         
         /* Estimated Delivery */
@@ -456,7 +596,7 @@
             padding: 20px;
             font-size: 1.2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #ff6b00, #ff8c42);
+            background: linear-gradient(135deg, var(--primary), #ff8c42);
             border: none;
             border-radius: 10px;
             color: white;
@@ -471,7 +611,7 @@
         
         .place-order-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 140, 51, 0.3);
         }
         
         .place-order-btn:active {
@@ -549,6 +689,87 @@
             margin-top: 30px;
             justify-content: center;
         }
+
+        .btn-outline {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: white;
+            color: var(--text-dark);
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            z-index: 10000;
+            animation: slideIn 0.3s;
+            border-left: 4px solid var(--primary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
         
         /* Animations */
         @keyframes fadeIn {
@@ -604,14 +825,14 @@
         }
 
         .mobile-bottom-nav .nav-item.active {
-            color: #ff6b00;
+            color: var(--primary);
         }
 
         .mobile-bottom-nav .nav-item .badge {
             position: absolute;
             top: -5px;
             right: -8px;
-            background: #ff6b00;
+            background: var(--primary);
             color: white;
             font-size: 10px;
             min-width: 18px;
@@ -625,6 +846,80 @@
 
         .mobile-bottom-nav .nav-item-wrapper {
             position: relative;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 1100;
+            transition: 0.3s;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1099;
+        }
+        
+        .cart-overlay.active {
+            display: block;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+        }
+
+        .empty-cart i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .cart-footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
 
         /* Responsive Design */
@@ -715,6 +1010,12 @@
                 padding: 15px;
                 font-size: 1rem;
             }
+            
+            .toast {
+                left: 20px;
+                right: 20px;
+                bottom: 80px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -790,37 +1091,6 @@
         .hamburger {
             display: none !important;
         }
-
-        /* Cart Sidebar */
-        .cart-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-        }
-        
-        .cart-sidebar.active {
-            right: 0;
-        }
-        
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1099;
-        }
-        
-        .cart-overlay.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -839,8 +1109,8 @@
                 <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
 
                 <div id="wish-and-cart-menu">
-                    <!-- Wishlist Icon manually added -->
-                    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+                    <!-- Wishlist Icon - Fixed to open sidebar instead of redirect -->
+                    <a href="#" class="nav-link wishlist-icon" id="wishlistIcon">
                         <i class="fas fa-heart"></i>
                         <span class="wishlist-count">0</span>
                     </a>
@@ -964,7 +1234,7 @@
                                     <h4>Express Delivery</h4>
                                     <p>3-7 business days • Premium service</p>
                                     <p><small>Priority handling and fastest shipping available</small></p>
-                                    <div class="delivery-price" id="expressPrice">$9.99</div>
+                                    <div class="delivery-price" id="expressPrice">Rs 2,796</div>
                                 </div>
                                 <div class="delivery-badge">Fastest</div>
                             </div>
@@ -978,7 +1248,7 @@
                                     <h4>Standard Delivery</h4>
                                     <p>10-21 business days • Regular service</p>
                                     <p><small>Economical shipping with tracking</small></p>
-                                    <div class="delivery-price" id="standardPrice">$4.99</div>
+                                    <div class="delivery-price" id="standardPrice">Rs 1,398</div>
                                 </div>
                             </div>
                         </div>
@@ -994,11 +1264,11 @@
                         <div class="international-details">
                             <div class="charge-item">
                                 <span>Base Shipping:</span>
-                                <span id="baseShipping">$0.00</span>
+                                <span id="baseShipping">Rs 0</span>
                             </div>
                             <div class="charge-item">
                                 <span>International Surcharge:</span>
-                                <span id="intlSurcharge">$0.00</span>
+                                <span id="intlSurcharge">Rs 0</span>
                             </div>
                             <div class="charge-item">
                                 <span>Express Multiplier:</span>
@@ -1006,7 +1276,7 @@
                             </div>
                             <div class="charge-item">
                                 <span>Customs & Duties:</span>
-                                <span id="customsFee">$0.00</span>
+                                <span id="customsFee">Rs 0</span>
                             </div>
                         </div>
                         <p style="margin-top: 15px; font-size: 0.9rem; color: #856404;">
@@ -1124,19 +1394,19 @@
                         <div class="order-totals">
                             <div class="total-row subtotal">
                                 <span>Subtotal:</span>
-                                <span id="subtotal">$0.00</span>
+                                <span id="subtotal">Rs 0</span>
                             </div>
                             <div class="total-row delivery">
                                 <span>Delivery:</span>
-                                <span id="deliveryCharge">$0.00</span>
+                                <span id="deliveryCharge">Rs 0</span>
                             </div>
                             <div class="total-row tax">
                                 <span>Tax (8%):</span>
-                                <span id="tax">$0.00</span>
+                                <span id="tax">Rs 0</span>
                             </div>
                             <div class="total-row grand-total">
                                 <span>Total:</span>
-                                <span id="totalAmount">$0.00</span>
+                                <span id="totalAmount">Rs 0</span>
                             </div>
                         </div>
                         
@@ -1231,8 +1501,8 @@
             <p><strong>Estimated Delivery:</strong> <span id="modalDeliveryTime">5-10 days</span></p>
             <p>A confirmation email has been sent to your registered email address.</p>
             <div class="modal-buttons">
-                <a href="products.html" class="btn btn-outline">Continue Shopping</a>
-                <a href="dashboard.html" class="btn btn-primary">View Order Details</a>
+                <a href="products.html" class="btn-outline">Continue Shopping</a>
+                <a href="dashboard.html" class="btn-primary">View Order Details</a>
             </div>
         </div>
     </div>
@@ -1252,12 +1522,28 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="total-price">$0.00</span>
+                <span class="total-price">Rs 0</span>
             </div>
-            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+            <button class="btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
         </div>
     </div>
     <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Wishlist Sidebar - Fixed to open on same page without redirect -->
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+        <div class="wishlist-header">
+            <h3>Your Wishlist <i class="fas fa-heart" style="color: #ff4757;"></i></h3>
+            <button class="close-wishlist" id="closeWishlist">&times;</button>
+        </div>
+        <div class="wishlist-items" id="wishlistItems">
+            <div class="empty-wishlist">
+                <i class="fas fa-heart"></i>
+                <p>Your wishlist is empty</p>
+                <small>Click the heart icon on products to add them here</small>
+            </div>
+        </div>
+    </div>
+    <div class="wishlist-overlay" id="wishlistOverlay"></div>
 
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <div class="mobile-bottom-nav">
@@ -1277,7 +1563,7 @@
                 </div>
                 <span>Cart</span>
             </a>
-            <a href="dashboard.html#wishlist" class="nav-item">
+            <a href="#" class="nav-item" id="mobileWishlistBtn">
                 <div class="nav-item-wrapper">
                     <i class="fas fa-heart"></i>
                     <span class="badge wishlist-count">0</span>
@@ -1293,13 +1579,51 @@
 
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
+            updateWishlistCount();
             checkUserLogin();
+            loadWishlistItems();
+            
+            // Wishlist Icon Click - Open sidebar instead of redirect
+            document.getElementById('wishlistIcon').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('wishlistSidebar').classList.add('active');
+                document.getElementById('wishlistOverlay').classList.add('active');
+                loadWishlistItems();
+            });
+
+            // Mobile Wishlist Button Click
+            document.getElementById('mobileWishlistBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('wishlistSidebar').classList.add('active');
+                document.getElementById('wishlistOverlay').classList.add('active');
+                loadWishlistItems();
+            });
+
+            // Close wishlist when clicking overlay
+            document.getElementById('wishlistOverlay').addEventListener('click', function() {
+                document.getElementById('wishlistSidebar').classList.remove('active');
+                this.classList.remove('active');
+            });
+
+            // Close wishlist with close button
+            document.getElementById('closeWishlist').addEventListener('click', function() {
+                document.getElementById('wishlistSidebar').classList.remove('active');
+                document.getElementById('wishlistOverlay').classList.remove('active');
+            });
             
             // Mobile cart button click
             document.getElementById('mobileCartBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('cartSidebar').classList.add('active');
+                document.getElementById('cartOverlay').classList.add('active');
+            });
+
+            // Cart Icon Click
+            document.getElementById('cartIcon').addEventListener('click', function(e) {
                 e.preventDefault();
                 document.getElementById('cartSidebar').classList.add('active');
                 document.getElementById('cartOverlay').classList.add('active');
@@ -1379,6 +1703,7 @@
                 
                 cart.forEach(item => {
                     const itemTotal = item.price * (item.quantity || 1);
+                    const itemTotalPKR = (itemTotal * 280).toFixed(0);
                     
                     itemsHTML += `
                         <div class="order-item">
@@ -1386,7 +1711,7 @@
                                 ${item.name}
                                 <span class="item-qty">x${item.quantity || 1}</span>
                             </div>
-                            <div class="item-price">$${itemTotal.toFixed(2)}</div>
+                            <div class="item-price">Rs ${itemTotalPKR}</div>
                         </div>
                     `;
                 });
@@ -1400,11 +1725,17 @@
                 let tax = subtotal * 0.08; // 8% tax
                 let total = subtotal + deliveryCharge + tax;
                 
+                // Convert to PKR
+                const subtotalPKR = (subtotal * 280).toFixed(0);
+                const deliveryPKR = (deliveryCharge * 280).toFixed(0);
+                const taxPKR = (tax * 280).toFixed(0);
+                const totalPKR = (total * 280).toFixed(0);
+                
                 // Update display
-                document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-                document.getElementById('deliveryCharge').textContent = `$${deliveryCharge.toFixed(2)}`;
-                document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-                document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
+                document.getElementById('subtotal').textContent = `Rs ${subtotalPKR}`;
+                document.getElementById('deliveryCharge').textContent = `Rs ${deliveryPKR}`;
+                document.getElementById('tax').textContent = `Rs ${taxPKR}`;
+                document.getElementById('totalAmount').textContent = `Rs ${totalPKR}`;
                 
                 // Update estimated delivery time
                 updateDeliveryTime(deliveryType, country);
@@ -1484,10 +1815,10 @@
                     const customsFee = getCustomsFee(country);
                     const expressMultiplier = deliveryType === 'express' ? '2x' : '1x';
                     
-                    document.getElementById('baseShipping').textContent = `$${basePrice.toFixed(2)}`;
-                    document.getElementById('intlSurcharge').textContent = `$${surcharge.toFixed(2)}`;
+                    document.getElementById('baseShipping').textContent = `Rs ${(basePrice * 280).toFixed(0)}`;
+                    document.getElementById('intlSurcharge').textContent = `Rs ${(surcharge * 280).toFixed(0)}`;
                     document.getElementById('expressMultiplier').textContent = expressMultiplier;
-                    document.getElementById('customsFee').textContent = `$${customsFee.toFixed(2)}`;
+                    document.getElementById('customsFee').textContent = `Rs ${(customsFee * 280).toFixed(0)}`;
                 } else {
                     warning.classList.remove('show');
                 }
@@ -1574,9 +1905,8 @@
                         }
                         
                         // Check order amount for COD limit
-                        const total = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
-                        const pkrTotal = total * 280; // Convert to PKR (approx)
-                        if (pkrTotal > 50000) {
+                        const total = parseFloat(document.getElementById('totalAmount').textContent.replace('Rs', '').replace(/,/g, '').trim());
+                        if (total > 50000) {
                             alert('Cash on Delivery is only available for orders under PKR 50,000. Please use another payment method.');
                             return;
                         }
@@ -1618,9 +1948,13 @@
                     expressPrice += surcharge + customsFee;
                     standardPrice += surcharge + customsFee;
                     
+                    // Convert to PKR
+                    const expressPKR = (expressPrice * 280).toFixed(0);
+                    const standardPKR = (standardPrice * 280).toFixed(0);
+                    
                     // Update display with correct prices
-                    expressOption.querySelector('.delivery-price').textContent = `$${expressPrice.toFixed(2)}`;
-                    standardOption.querySelector('.delivery-price').textContent = `$${standardPrice.toFixed(2)}`;
+                    expressOption.querySelector('.delivery-price').textContent = `Rs ${expressPKR}`;
+                    standardOption.querySelector('.delivery-price').textContent = `Rs ${standardPKR}`;
                 }
             }
             
@@ -1770,21 +2104,22 @@
             function createOrder(cart, country, paymentMethod) {
                 const orderId = 'GM-' + Date.now().toString().slice(-6);
                 const subtotal = calculateCartSubtotal();
-                const delivery = parseFloat(document.getElementById('deliveryCharge').textContent.replace('$', ''));
-                const tax = parseFloat(document.getElementById('tax').textContent.replace('$', ''));
-                const total = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
+                const delivery = parseFloat(document.getElementById('deliveryCharge').textContent.replace('Rs', '').replace(/,/g, '').trim()) / 280;
+                const tax = subtotal * 0.08;
+                const total = subtotal + delivery + tax;
                 
                 const deliveryOption = document.querySelector('.delivery-option.selected');
                 const deliveryType = deliveryOption ? deliveryOption.dataset.delivery : 'standard';
                 
+                // Convert back to USD for storage consistency
                 const order = {
                     id: orderId,
                     date: new Date().toISOString(),
                     items: cart,
-                    subtotal,
-                    delivery,
-                    tax,
-                    total,
+                    subtotal: subtotal,
+                    delivery: delivery,
+                    tax: tax,
+                    total: total,
                     country,
                     deliveryType,
                     deliveryTime: document.getElementById('deliveryTime').textContent,
@@ -1875,6 +2210,118 @@
                 el.textContent = count;
             });
         }
+
+        // Wishlist Functions
+        function updateWishlistCount() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const count = wishlist.length;
+            document.querySelectorAll('.wishlist-count').forEach(el => {
+                el.textContent = count;
+                el.style.display = count > 0 ? 'inline-block' : 'none';
+            });
+        }
+
+        function loadWishlistItems() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const container = document.getElementById('wishlistItems');
+            
+            if (!container) return;
+            
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-wishlist">
+                        <i class="fas fa-heart"></i>
+                        <p>Your wishlist is empty</p>
+                        <small>Click the heart icon on products to add them here</small>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            wishlist.forEach(item => {
+                const priceInPKR = (item.price * 280).toFixed(0);
+                html += `
+                    <div class="wishlist-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
+                        <div class="wishlist-item-info">
+                            <h4 class="wishlist-item-title">${item.name}</h4>
+                            <div class="wishlist-item-price">Rs ${priceInPKR}</div>
+                            <div class="wishlist-item-store">${item.store}</div>
+                            <button class="wishlist-item-add-cart" onclick="addToCartFromWishlist('${item.id}')">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                        <button class="wishlist-item-remove" onclick="removeFromWishlist('${item.id}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function removeFromWishlist(productId) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(item => String(item.id) !== String(productId));
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            updateWishlistCount();
+            loadWishlistItems();
+            showToast('Product removed from wishlist');
+        }
+
+        function addToCartFromWishlist(productId) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const product = wishlist.find(item => String(item.id) === String(productId));
+            
+            if (!product) return;
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existing = cart.find(item => String(item.id) === String(product.id));
+            
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showToast(`${product.name} added to cart`);
+        }
+
+        function showToast(message) {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <i class="fas ${message.includes('added') ? 'fa-heart' : 'fa-times'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize wishlist count on page load
+        updateWishlistCount();
     </script>
 </body>
 </html>

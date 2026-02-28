@@ -1,13 +1,9 @@
-// Wishlist functionality - works across all pages
-
-// Initialize wishlist if not exists
 function initWishlist() {
     if (!localStorage.getItem('wishlist')) {
         localStorage.setItem('wishlist', JSON.stringify([]));
     }
 }
 
-// Toggle product in wishlist
 function toggleWishlist(product) {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const existingIndex = wishlist.findIndex(item => item.id == product.id);
@@ -15,11 +11,9 @@ function toggleWishlist(product) {
     let message = '';
 
     if (existingIndex > -1) {
-        // Remove from wishlist
         wishlist.splice(existingIndex, 1);
         message = `${product.name} removed from wishlist`;
     } else {
-        // Add to wishlist
         wishlist.push({
             id: product.id,
             name: product.name,
@@ -37,19 +31,16 @@ function toggleWishlist(product) {
     showToast(message);
     updateWishlistCount();
 
-    // Update dashboard if on dashboard page
     if (window.location.pathname.includes('dashboard.html')) {
         updateDashboardWishlist();
     }
 }
 
-// Check if product is in wishlist
 function isInWishlist(productId) {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     return wishlist.some(item => item.id == productId);
 }
 
-// Update all wishlist buttons on page
 function updateWishlistButtons() {
     document.querySelectorAll('.wishlist-btn').forEach(button => {
         const productCard = button.closest('.product-card');
@@ -74,7 +65,6 @@ function updateWishlistButtons() {
     });
 }
 
-// Extract product ID from card
 function getProductIdFromCard(productCard) {
     const addToCartBtn = productCard.querySelector('.add-to-cart');
     if (addToCartBtn && addToCartBtn.dataset.id) return addToCartBtn.dataset.id;
@@ -85,7 +75,6 @@ function getProductIdFromCard(productCard) {
     return null;
 }
 
-// Get product details from card
 function getProductDetailsFromCard(productCard) {
     const productId = getProductIdFromCard(productCard);
     const productName = productCard.querySelector('.product-title')?.textContent || 'Product';
@@ -108,7 +97,6 @@ function getProductDetailsFromCard(productCard) {
     return { id: productId, name: productName, price, image: imageUrl, store, category };
 }
 
-// Setup wishlist button click handlers
 function setupWishlistButtonListeners() {
     document.addEventListener('click', function(e) {
         const wishlistBtn = e.target.closest('.wishlist-btn');
@@ -122,13 +110,11 @@ function setupWishlistButtonListeners() {
     });
 }
 
-// Get wishlist count
 function getWishlistCount() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     return wishlist.length;
 }
 
-// Update wishlist count display
 function updateWishlistCount() {
     const countElements = document.querySelectorAll('.wishlist-count');
     const count = getWishlistCount();
@@ -139,7 +125,6 @@ function updateWishlistCount() {
     });
 }
 
-// Show toast notification
 function showToast(message) {
     const existingToast = document.querySelector('.toast');
     if (existingToast) existingToast.remove();
@@ -182,12 +167,10 @@ function showToast(message) {
     }, 3000);
 }
 
-// Get wishlist items
 function getWishlistItems() {
     return JSON.parse(localStorage.getItem('wishlist')) || [];
 }
 
-// Clear wishlist
 function clearWishlist() {
     localStorage.setItem('wishlist', JSON.stringify([]));
     updateWishlistButtons();
@@ -195,7 +178,6 @@ function clearWishlist() {
     showToast('Wishlist cleared');
 }
 
-// Update dashboard wishlist section
 function updateDashboardWishlist() {
     if (!window.location.pathname.includes('dashboard.html')) return;
     const container = document.getElementById('wishlistContent');
@@ -203,7 +185,6 @@ function updateDashboardWishlist() {
     loadWishlist();
 }
 
-// Load wishlist in dashboard
 function loadWishlist() {
     const wishlist = getWishlistItems();
     const container = document.getElementById('wishlistContent');
@@ -248,7 +229,6 @@ function loadWishlist() {
     container.innerHTML = html;
 }
 
-// Remove from wishlist by ID
 function removeFromWishlistById(productId) {
     const updated = getWishlistItems().filter(item => item.id != productId);
     localStorage.setItem('wishlist', JSON.stringify(updated));
@@ -258,7 +238,6 @@ function removeFromWishlistById(productId) {
     showToast('Product removed from wishlist');
 }
 
-// Add to cart from wishlist
 function addToCartFromWishlist(productId) {
     const product = getWishlistItems().find(item => item.id == productId);
     if (!product) return;
@@ -270,11 +249,9 @@ function addToCartFromWishlist(productId) {
     }
 }
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     initWishlist();
     setupWishlistButtonListeners();
     updateWishlistButtons();
     updateWishlistCount();
-    // Note: manual wishlist icon in HTML now; no automatic JS insertion
 });

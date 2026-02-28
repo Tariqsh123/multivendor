@@ -258,6 +258,14 @@
             color: white;
         }
 
+        .product-wishlist.active {
+            background: #fff0f0;
+        }
+
+        .product-wishlist.active i {
+            color: #ff4757;
+        }
+
         .product-info {
             padding: 20px;
         }
@@ -399,7 +407,6 @@
             gap: 30px;
             background: linear-gradient(145deg, #fff5eb, #ffffff);
             border-radius: 40px;
-            /* padding: 40px; */
             margin-bottom: 40px;
             box-shadow: 0 20px 40px rgba(255,140,51,0.15);
             border: 1px solid #ffe0cc;
@@ -1477,6 +1484,140 @@
             transform: scale(1.1);
         }
 
+        /* Wishlist Sidebar */
+        .wishlist-sidebar {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: white;
+            z-index: 1100;
+            transition: 0.3s;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .wishlist-sidebar.active {
+            right: 0;
+        }
+        
+        .wishlist-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1099;
+        }
+        
+        .wishlist-overlay.active {
+            display: block;
+        }
+
+        .wishlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .wishlist-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-wishlist {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+        }
+
+        .empty-wishlist i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: white;
+        }
+
+        .wishlist-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .wishlist-item-info {
+            flex: 1;
+        }
+
+        .wishlist-item-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+
+        .wishlist-item-price {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wishlist-item-store {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .wishlist-item-remove {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .wishlist-item-remove:hover {
+            color: #ff0000;
+        }
+
+        .wishlist-item-add-cart {
+            padding: 5px 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .wishlist-item-add-cart:hover {
+            background: var(--primary-dark);
+        }
+
         /* Mobile Bottom Navigation Bar */
         .mobile-bottom-nav {
             display: none;
@@ -1539,18 +1680,21 @@
 
         /* Cart Sidebar */
         .cart-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-        }
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: white;
+    z-index: 1100;
+    transition: 0.3s;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    
+    overflow-y: scroll;   /* Always vertical scroll */
+    overflow-x: hidden;   /* Horizontal scroll remove */
+}
         
         .cart-sidebar.active {
             right: 0;
@@ -1734,8 +1878,6 @@
                 display: none !important;
             }
             
-            
-            
             .why-choose-us-grid {
                 grid-template-columns: 1fr;
             }
@@ -1781,7 +1923,6 @@
             
             .featured-deal {
                 grid-template-columns: 1fr;
-                /* padding: 20px; */
             }
             
             .featured-deal-image {
@@ -1826,6 +1967,10 @@
                 right: 20px;
                 bottom: 80px;
             }
+            .cart-footer {
+    position: relative;
+    bottom: 40px;
+}
         }
 
         @media (max-width: 480px) {
@@ -1897,8 +2042,8 @@
                 <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
 
                 <div id="wish-and-cart-menu">
-                    <!-- Wishlist Icon manually added -->
-                    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+                    <!-- Wishlist Icon - Fixed to open sidebar instead of redirect -->
+                    <a href="#" class="nav-link wishlist-icon" id="wishlistIcon">
                         <i class="fas fa-heart"></i>
                         <span class="wishlist-count">0</span>
                     </a>
@@ -1935,7 +2080,7 @@
         <div class="hero-track">
             <div class="hero-slide hero-active" style="background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
                 <div class="hero-content">
-                    <span class="hero-badge">✨ MEGA SALE 2024</span>
+                    <span class="hero-badge">MEGA SALE 2024</span>
                     <h1 class="hero-title">Shop From Multiple<br><span>Trusted Online Stores</span></h1>
                     <p class="hero-text">Discover thousands of products from verified sellers. Enjoy secure payments, fast shipping, and a seamless multi-vendor shopping experience with 24/7 support.</p>
                     <div class="hero-btns">
@@ -1946,7 +2091,7 @@
             </div>
             <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=80');">
                 <div class="hero-content">
-                    <span class="hero-badge">🚀 FOR SELLERS</span>
+                    <span class="hero-badge">FOR SELLERS</span>
                     <h1 class="hero-title">Launch & Manage<br><span>Your Online Store</span></h1>
                     <p class="hero-text">Register as a store manager, list your products, manage orders, track sales, and grow your business on our powerful multi-vendor marketplace platform.</p>
                     <div class="hero-btns">
@@ -1957,7 +2102,7 @@
             </div>
             <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1600&q=80');">
                 <div class="hero-content">
-                    <span class="hero-badge">📦 DELIVERY PARTNERS</span>
+                    <span class="hero-badge">DELIVERY PARTNERS</span>
                     <h1 class="hero-title">Deliver Orders &<br><span>Earn With Logistics</span></h1>
                     <p class="hero-text">Join as a shipping partner to deliver orders, manage deliveries, track shipments, and earn competitive commissions through our reliable delivery network.</p>
                     <div class="hero-btns">
@@ -2043,10 +2188,8 @@
                 <p>Explore millions of products from trusted sellers across 1000+ categories</p>
             </div>
             <div class="category-grid">
-                <!-- Category cards remain same -->
                 <a href="products.html?category=electronics" class="category-card">
                     <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Electronics">
-                    <span class="category-badge">🔥 Hot</span>
                     <div class="overlay">
                         <h3>Electronics</h3>
                         <p>Smartphones, Laptops, Accessories</p>
@@ -2054,7 +2197,6 @@
                 </a>
                 <a href="products.html?category=fashion" class="category-card">
                     <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Fashion">
-                    <span class="category-badge">New</span>
                     <div class="overlay">
                         <h3>Fashion</h3>
                         <p>Men, Women, Kids, Accessories</p>
@@ -2076,7 +2218,6 @@
                 </a>
                 <a href="products.html?category=beauty" class="category-card">
                     <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Beauty">
-                    <span class="category-badge">Trending</span>
                     <div class="overlay">
                         <h3>Beauty</h3>
                         <p>Makeup, Skincare, Haircare</p>
@@ -2158,7 +2299,7 @@
     <section class="deal-section">
         <div class="container">
             <div class="section-header">
-                <h2>🔥 <span>Deals</span> of the Day</h2>
+                <h2> <span>Deals</span> of the Day</h2>
                 <p>Limited time offers - Grab them before they're gone!</p>
             </div>
             
@@ -2167,7 +2308,6 @@
                 <div class="featured-deal">
                     <div class="featured-deal-image">
                         <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Featured Deal">
-                        <span class="featured-deal-badge">⚡ MEGA DEAL</span>
                         <div class="featured-deal-timer">
                             <i class="fas fa-clock"></i> 05:30:45
                         </div>
@@ -2187,8 +2327,8 @@
                                 <div class="featured-deal-progress-fill" style="width: 80%"></div>
                             </div>
                             <div class="featured-deal-progress-text">
-                                <span>🔥 80 sold out of 100</span>
-                                <span>⏰ Only 20 left!</span>
+                                <span>80 sold out of 100</span>
+                                <span>Only 20 left!</span>
                             </div>
                         </div>
                         <a href="products.html?deal=featured" class="featured-deal-btn">
@@ -2203,7 +2343,6 @@
                     <div class="deal-card-enhanced">
                         <div class="deal-card-enhanced-image">
                             <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Running Shoes">
-                            <span class="deal-card-enhanced-badge">⚡ 60% OFF</span>
                             <div class="deal-card-enhanced-timer">
                                 <i class="fas fa-clock"></i> 03:15:22
                             </div>
@@ -2234,7 +2373,6 @@
                     <div class="deal-card-enhanced">
                         <div class="deal-card-enhanced-image">
                             <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smart Watch">
-                            <span class="deal-card-enhanced-badge">🎯 50% OFF</span>
                             <div class="deal-card-enhanced-timer">
                                 <i class="fas fa-clock"></i> 12:45:30
                             </div>
@@ -2265,7 +2403,6 @@
                     <div class="deal-card-enhanced">
                         <div class="deal-card-enhanced-image">
                             <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Backpack">
-                            <span class="deal-card-enhanced-badge">💥 55% OFF</span>
                             <div class="deal-card-enhanced-timer">
                                 <i class="fas fa-clock"></i> 08:20:15
                             </div>
@@ -2296,7 +2433,6 @@
                     <div class="deal-card-enhanced">
                         <div class="deal-card-enhanced-image">
                             <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sunglasses">
-                            <span class="deal-card-enhanced-badge">🌟 65% OFF</span>
                             <div class="deal-card-enhanced-timer">
                                 <i class="fas fa-clock"></i> 02:10:05
                             </div>
@@ -2327,7 +2463,6 @@
                     <div class="deal-card-enhanced">
                         <div class="deal-card-enhanced-image">
                             <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sneakers">
-                            <span class="deal-card-enhanced-badge">⚡ 45% OFF</span>
                             <div class="deal-card-enhanced-timer">
                                 <i class="fas fa-clock"></i> 06:40:30
                             </div>
@@ -2779,6 +2914,22 @@
     </div>
     <div class="cart-overlay" id="cartOverlay"></div>
 
+    <!-- Wishlist Sidebar - Fixed to open on same page without redirect -->
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+        <div class="wishlist-header">
+            <h3>Your Wishlist <i class="fas fa-heart" style="color: #ff4757;"></i></h3>
+            <button class="close-wishlist" id="closeWishlist">&times;</button>
+        </div>
+        <div class="wishlist-items" id="wishlistItems">
+            <div class="empty-wishlist">
+                <i class="fas fa-heart"></i>
+                <p>Your wishlist is empty</p>
+                <small>Click the heart icon on products to add them here</small>
+            </div>
+        </div>
+    </div>
+    <div class="wishlist-overlay" id="wishlistOverlay"></div>
+
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <div class="mobile-bottom-nav">
         <div class="nav-items">
@@ -2797,7 +2948,7 @@
                 </div>
                 <span>Cart</span>
             </a>
-            <a href="dashboard.html#wishlist" class="nav-item">
+            <a href="#" class="nav-item" id="mobileWishlistBtn">
                 <div class="nav-item-wrapper">
                     <i class="fas fa-heart"></i>
                     <span class="badge wishlist-count">0</span>
@@ -2817,13 +2968,35 @@
     <script>
         $(document).ready(function() {
             updateCartCount();
+            updateWishlistCount();
             loadProducts();
             
-            // Mobile cart button click
-            $('#mobileCartBtn').on('click', function(e) {
+            // Wishlist Icon Click - Open sidebar instead of redirect
+            $('#wishlistIcon, #mobileWishlistBtn').on('click', function(e) {
+                e.preventDefault();
+                $('#wishlistSidebar').addClass('active');
+                $('#wishlistOverlay').addClass('active');
+                loadWishlistItems();
+            });
+
+            // Close wishlist when clicking overlay
+            $('#wishlistOverlay').on('click', function() {
+                $('#wishlistSidebar').removeClass('active');
+                $(this).removeClass('active');
+            });
+
+            // Close wishlist with close button
+            $('#closeWishlist').on('click', function() {
+                $('#wishlistSidebar').removeClass('active');
+                $('#wishlistOverlay').removeClass('active');
+            });
+
+            // Cart Icon Click
+            $('#cartIcon, #mobileCartBtn').on('click', function(e) {
                 e.preventDefault();
                 $('#cartSidebar').addClass('active');
                 $('#cartOverlay').addClass('active');
+                loadCartItems();
             });
 
             // Close cart when clicking overlay
@@ -2838,7 +3011,6 @@
                 $('#cartOverlay').removeClass('active');
             });
 
-            // Newsletter Form
             $('#newsletterForm').on('submit', function(e) {
                 e.preventDefault();
                 const email = $(this).find('input[type="email"]').val();
@@ -2846,7 +3018,6 @@
                 $(this)[0].reset();
             });
 
-            // Animate Stats
             function animateStats() {
                 $('.stat-number').each(function() {
                     const $this = $(this);
@@ -2866,7 +3037,6 @@
                 });
             }
 
-            // Trigger stats animation when visible
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2881,6 +3051,204 @@
                 observer.observe(statsSection);
             }
         });
+        
+        function checkIfInWishlist(productId) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            return wishlist.some(item => String(item.id) === String(productId));
+        }
+
+        function updateWishlistCount() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const count = wishlist.length;
+            document.querySelectorAll('.wishlist-count').forEach(el => {
+                el.textContent = count;
+                el.style.display = count > 0 ? 'inline-block' : 'none';
+            });
+        }
+
+        function loadWishlistItems() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const container = document.getElementById('wishlistItems');
+            
+            if (!container) return;
+            
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-wishlist">
+                        <i class="fas fa-heart"></i>
+                        <p>Your wishlist is empty</p>
+                        <small>Click the heart icon on products to add them here</small>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            wishlist.forEach(item => {
+                const priceInPKR = (item.price * 83 * 3.4).toFixed(0);
+                html += `
+                    <div class="wishlist-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
+                        <div class="wishlist-item-info">
+                            <h4 class="wishlist-item-title">${item.name}</h4>
+                            <div class="wishlist-item-price">Rs ${priceInPKR}</div>
+                            <div class="wishlist-item-store">${item.store}</div>
+                            <button class="wishlist-item-add-cart" onclick="addToCartFromWishlist('${item.id}')">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                        <button class="wishlist-item-remove" onclick="removeFromWishlist('${item.id}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function removeFromWishlist(productId) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(item => String(item.id) !== String(productId));
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            // Update heart icons on products
+            const heartIcon = document.querySelector(`.product-wishlist[data-id="${productId}"] i`);
+            if (heartIcon) {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+            }
+            
+            updateWishlistCount();
+            loadWishlistItems();
+            showToast('Product removed from wishlist');
+        }
+
+        function addToCartFromWishlist(productId) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const product = wishlist.find(item => String(item.id) === String(productId));
+            
+            if (!product) return;
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existing = cart.find(item => String(item.id) === String(product.id));
+            
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showToast(`${product.name} added to cart`);
+        }
+
+        function showToast(message) {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <i class="fas ${message.includes('added') ? 'fa-heart' : 'fa-times'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        function toggleWishlist(product) {
+            if (!product.id) return;
+            
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const existingIndex = wishlist.findIndex(item => String(item.id) === String(product.id));
+            
+            let message = '';
+            
+            if (existingIndex > -1) {
+                wishlist.splice(existingIndex, 1);
+                message = `${product.name} removed from wishlist`;
+            } else {
+                wishlist.push({
+                    id: String(product.id),
+                    name: product.name,
+                    price: product.price || 0,
+                    image: product.image || '',
+                    category: product.category || 'General',
+                    store: product.store || 'GlobalMart',
+                    addedAt: new Date().toISOString()
+                });
+                message = `${product.name} added to wishlist`;
+            }
+            
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            const heartIcon = document.querySelector(`.product-wishlist[data-id="${product.id}"] i`);
+            if (heartIcon) {
+                if (existingIndex > -1) {
+                    heartIcon.classList.remove('fas');
+                    heartIcon.classList.add('far');
+                } else {
+                    heartIcon.classList.remove('far');
+                    heartIcon.classList.add('fas');
+                }
+            }
+            
+            updateWishlistCount();
+            loadWishlistItems();
+            showToast(message);
+        }
+
+        function handleWishlistClick(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const wishlistBtn = e.currentTarget;
+            const productCard = wishlistBtn.closest('.product-card');
+            
+            if (!productCard) return;
+            
+            const productId = wishlistBtn.dataset.id;
+            const productName = productCard.querySelector('.product-title')?.textContent || 'Product';
+            const productPriceText = productCard.querySelector('.product-current')?.textContent || '0';
+            const productPrice = parseFloat(productPriceText.replace('Rs', '').replace(',', '').trim()) / (83 * 3.4) || 0;
+            const productImage = productCard.querySelector('img')?.src || '';
+            const productStore = productCard.querySelector('.product-store')?.textContent.replace('Sold by:', '').trim() || 'GlobalMart';
+            const productCategory = productCard.querySelector('.product-category')?.textContent || 'General';
+            
+            const product = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                store: productStore,
+                category: productCategory
+            };
+            
+            toggleWishlist(product);
+        }
+
+        function initializeWishlistButtons() {
+            document.querySelectorAll('.product-wishlist').forEach(button => {
+                button.removeEventListener('click', handleWishlistClick);
+                button.addEventListener('click', handleWishlistClick);
+            });
+        }
         
         async function loadProducts() {
             document.getElementById('productsLoading').style.display = 'flex';
@@ -2910,7 +3278,8 @@
                 localStorage.setItem('warehouseProducts', JSON.stringify(warehouseProducts));
                 localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
                 
-                renderProducts(allProducts.slice(0, 8)); // Show first 8 products on home
+                renderProducts(allProducts.slice(0, 8));
+                setTimeout(initializeWishlistButtons, 100);
                 
             } catch (error) {
                 console.error('Error loading products:', error);
@@ -2950,13 +3319,17 @@
                 const priceInPKR = (product.price * 83 * 3.4).toFixed(0);
                 const originalInPKR = (originalPrice * 83 * 3.4).toFixed(0);
                 
+                const productId = product.id || `product-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                
+                const isInWishlist = checkIfInWishlist(productId);
+                
                 productElement.innerHTML = `
                     <div class="product-image">
                         <img src="${product.image}" alt="${product.name}" 
                              onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                         ${product.fromWarehouse ? '<span class="product-badge">Warehouse</span>' : ''}
-                        <div class="product-wishlist">
-                            <i class="far fa-heart"></i>
+                        <div class="product-wishlist" data-id="${productId}">
+                            <i class="${isInWishlist ? 'fas' : 'far'} fa-heart"></i>
                         </div>
                     </div>
                     <div class="product-info">
@@ -2975,13 +3348,13 @@
                         </div>
                         <div class="product-actions">
                             <button class="product-add-cart add-to-cart" 
-                                    data-id="${product.id}" 
+                                    data-id="${productId}" 
                                     data-name="${product.name}" 
                                     data-price="${product.price}" 
                                     data-image="${product.image}">
                                 <i class="fas fa-shopping-cart"></i> Add
                             </button>
-                            <a href="product-detail.html?id=${product.id}" class="product-view">
+                            <a href="product-detail.html?id=${productId}" class="product-view">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>
@@ -3038,29 +3411,14 @@
                 el.textContent = count;
             });
         }
-        
-        function showToast(message) {
-            const existingToast = document.querySelector('.toast');
-            if (existingToast) existingToast.remove();
-            
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `
-                <i class="fas ${message.includes('added') ? 'fa-check-circle' : 'fa-info-circle'}"></i>
-                <span>${message}</span>
-            `;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.animation = 'slideOut 0.3s';
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            }, 3000);
+
+        function loadCartItems() {
+            // Implement cart items loading here if needed
+            console.log('Cart items loaded');
         }
+
+        // Initialize wishlist count on page load
+        updateWishlistCount();
     </script>
 </body>
 </html>

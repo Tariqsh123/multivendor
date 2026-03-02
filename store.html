@@ -338,6 +338,207 @@
             margin-bottom: 40px;
         }
 
+        /* Product Card - Consistent with homepage */
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .warehouse-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 35px;
+            height: 35px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .wishlist-btn:hover {
+            background: var(--primary);
+        }
+
+        .wishlist-btn i {
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .wishlist-btn:hover i {
+            color: white;
+        }
+
+        .product-info {
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.4;
+            min-height: 42px;
+        }
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-bottom: 8px;
+        }
+
+        .star-rating i {
+            color: #faca51;
+            font-size: 13px;
+        }
+
+        .star-rating span {
+            color: var(--text-light);
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .product-price .original {
+            font-size: 14px;
+            color: #9e9e9e;
+            text-decoration: line-through;
+            font-weight: normal;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-small {
+            flex: 1;
+            padding: 10px 0;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-small i {
+            font-size: 14px;
+        }
+
+        .btn-small.add-to-cart {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-small.add-to-cart:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,140,51,0.3);
+        }
+
+        .btn-small.view-details {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-small.view-details:hover {
+            background: #e8e8e8;
+            transform: translateY(-2px);
+        }
+
         /* About Store - Premium */
         .about-store {
             background: var(--white);
@@ -566,174 +767,162 @@
             margin-bottom: 8px;
         }
 
-        /* Product Card - Consistent with homepage */
-        .product-card {
+        /* Wishlist Sidebar */
+        .wishlist-sidebar {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
             background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            height: 100%;
+            z-index: 1100;
+            transition: 0.3s;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .wishlist-sidebar.active {
+            right: 0;
+        }
+        
+        .wishlist-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1099;
+        }
+        
+        .wishlist-overlay.active {
+            display: block;
+        }
+
+        .wishlist-header {
             display: flex;
-            flex-direction: column;
-            position: relative;
-            border: 1px solid var(--border);
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary);
-        }
-
-        .product-image {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: #fafafa;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.1);
-        }
-
-        .warehouse-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            z-index: 2;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .product-info {
-            padding: 18px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            line-height: 1.4;
-            min-height: 42px;
-        }
-
-        .star-rating {
+        .wishlist-header h3 {
             display: flex;
             align-items: center;
-            gap: 2px;
-            margin-bottom: 8px;
-        }
-
-        .star-rating i {
-            color: #faca51;
-            font-size: 13px;
-        }
-
-        .star-rating span {
-            color: var(--text-light);
-            font-size: 12px;
-            margin-left: 5px;
-        }
-
-        .product-desc {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 12px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            line-height: 1.5;
-        }
-
-        .product-price {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .product-price .original {
-            font-size: 14px;
-            color: #9e9e9e;
-            text-decoration: line-through;
-            font-weight: normal;
-        }
-
-        .product-buttons {
-            display: flex;
             gap: 10px;
-            margin-top: auto;
         }
 
-        .btn-small {
-            flex: 1;
-            padding: 10px 0;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 8px;
+        .close-wishlist {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+        }
+
+        .empty-wishlist i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .wishlist-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            text-decoration: none;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: white;
         }
 
-        .btn-small i {
+        .wishlist-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .wishlist-item-info {
+            flex: 1;
+        }
+
+        .wishlist-item-title {
             font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
         }
 
-        .btn-small.add-to-cart {
+        .wishlist-item-price {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wishlist-item-store {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .wishlist-item-remove {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .wishlist-item-remove:hover {
+            color: #ff0000;
+        }
+
+        .wishlist-item-add-cart {
+            padding: 5px 10px;
             background: var(--primary);
             color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 5px;
         }
 
-        .btn-small.add-to-cart:hover {
+        .wishlist-item-add-cart:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,140,51,0.3);
         }
 
-        .btn-small.view-details {
-            background: var(--bg-light);
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: white;
             color: var(--text-dark);
-            border: 1px solid var(--border);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideIn 0.3s;
+            border-left: 4px solid var(--primary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .btn-small.view-details:hover {
-            background: #e8e8e8;
-            transform: translateY(-2px);
+        .toast i {
+            color: var(--primary);
+            font-size: 20px;
         }
 
         /* Breadcrumb */
@@ -782,52 +971,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: white;
-            color: var(--text-dark);
-            padding: 15px 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 10000;
-            animation: slideIn 0.3s;
-            border-left: 4px solid var(--primary);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .toast i {
-            color: var(--primary);
-            font-size: 20px;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
         }
 
         /* No Products */
@@ -1093,6 +1236,7 @@
             transition: 0.3s;
             box-shadow: -4px 0 20px rgba(0,0,0,0.15);
             padding: 20px;
+            overflow-y: auto;
         }
         
         .cart-sidebar.active {
@@ -1325,7 +1469,7 @@
                 <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
 
                 <div id="wish-and-cart-menu">
-                    <a href="dashboard.html#wishlist" class="nav-link wishlist-icon" id="wishlistIcon">
+                    <a href="#" class="nav-link wishlist-icon" id="wishlistIcon">
                         <i class="fas fa-heart"></i>
                         <span class="wishlist-count">0</span>
                     </a>
@@ -1494,12 +1638,28 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="total-price">$0.00</span>
+                <span class="total-price">Rs 0</span>
             </div>
             <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
         </div>
     </div>
     <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Wishlist Sidebar -->
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+        <div class="wishlist-header">
+            <h3>Your Wishlist <i class="fas fa-heart" style="color: #ff4757;"></i></h3>
+            <button class="close-wishlist" id="closeWishlist">&times;</button>
+        </div>
+        <div class="wishlist-items" id="wishlistItems">
+            <div class="empty-wishlist">
+                <i class="fas fa-heart"></i>
+                <p>Your wishlist is empty</p>
+                <small>Click the heart icon on products to add them here</small>
+            </div>
+        </div>
+    </div>
+    <div class="wishlist-overlay" id="wishlistOverlay"></div>
 
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <div class="mobile-bottom-nav">
@@ -1513,7 +1673,7 @@
                 </div>
                 <span>Cart</span>
             </a>
-            <a href="dashboard.html#wishlist" class="nav-item">
+            <a href="#" class="nav-item" id="mobileWishlistBtn">
                 <div class="nav-item-wrapper">
                     <i class="fas fa-heart"></i>
                     <span class="badge wishlist-count">0</span>
@@ -1530,11 +1690,48 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
+            updateWishlistCount();
             checkUserLogin();
             loadStoreDetails();
+            loadWishlistItems();
+            
+            // Wishlist Icon Click - Open sidebar instead of redirect
+            document.getElementById('wishlistIcon').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('wishlistSidebar').classList.add('active');
+                document.getElementById('wishlistOverlay').classList.add('active');
+                loadWishlistItems();
+            });
+
+            // Mobile Wishlist Button Click
+            document.getElementById('mobileWishlistBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('wishlistSidebar').classList.add('active');
+                document.getElementById('wishlistOverlay').classList.add('active');
+                loadWishlistItems();
+            });
+
+            // Close wishlist when clicking overlay
+            document.getElementById('wishlistOverlay').addEventListener('click', function() {
+                document.getElementById('wishlistSidebar').classList.remove('active');
+                this.classList.remove('active');
+            });
+
+            // Close wishlist with close button
+            document.getElementById('closeWishlist').addEventListener('click', function() {
+                document.getElementById('wishlistSidebar').classList.remove('active');
+                document.getElementById('wishlistOverlay').classList.remove('active');
+            });
             
             // Mobile cart button click
             document.getElementById('mobileCartBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('cartSidebar').classList.add('active');
+                document.getElementById('cartOverlay').classList.add('active');
+            });
+
+            // Cart Icon Click
+            document.getElementById('cartIcon').addEventListener('click', function(e) {
                 e.preventDefault();
                 document.getElementById('cartSidebar').classList.add('active');
                 document.getElementById('cartOverlay').classList.add('active');
@@ -1725,6 +1922,8 @@
                 const originalPrice = product.originalPrice || (product.price * 1.2);
                 const rating = product.rating || (4 + Math.random()).toFixed(1);
                 const reviewCount = Math.floor(Math.random() * 50) + 10;
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const isWishlisted = wishlist.some(item => String(item.id) === String(product.id));
 
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -1733,6 +1932,9 @@
                         <img src="${product.image}" alt="${product.name}" 
                              onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
                         ${product.fromWarehouse ? '<div class="warehouse-badge">Warehouse</div>' : ''}
+                        <button class="wishlist-btn" data-id="${product.id}">
+                            <i class="${isWishlisted ? 'fas' : 'far'} fa-heart"></i>
+                        </button>
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${product.name}</h3>
@@ -1742,8 +1944,8 @@
                         </div>
                         <p class="product-desc">${product.description || 'Premium quality product'}</p>
                         <div class="product-price">
-                            ₹${(product.price * 83).toFixed(0)}
-                            ${hasDiscount ? `<span class="original">₹${(originalPrice * 83).toFixed(0)}</span>` : ''}
+                            Rs ${(product.price * 280).toFixed(0)}
+                            ${hasDiscount ? `<span class="original">Rs ${(originalPrice * 280).toFixed(0)}</span>` : ''}
                         </div>
                         <div class="product-buttons">
                             <button class="btn-small add-to-cart" 
@@ -1778,7 +1980,7 @@
                         addToCart(product);
                     } else {
                         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                        const existing = cart.find(item => item.id == product.id);
+                        const existing = cart.find(item => String(item.id) === String(product.id));
                         if (existing) {
                             existing.quantity += 1;
                         } else {
@@ -1788,7 +1990,33 @@
                     }
                     
                     updateCartCount();
-                    showNotification(`${product.name} added to cart`);
+                    showToast(`${product.name} added to cart`);
+                });
+            });
+
+            // Add wishlist event listeners
+            document.querySelectorAll('.wishlist-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = this.dataset.id;
+                    const icon = this.querySelector('i');
+                    const productCard = this.closest('.product-card');
+                    
+                    // Get product details
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    const productPriceText = productCard.querySelector('.add-to-cart').dataset.price;
+                    const productPrice = parseFloat(productPriceText);
+                    const productImage = productCard.querySelector('.add-to-cart').dataset.image;
+                    
+                    const product = {
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                        image: productImage,
+                        store: storeName
+                    };
+                    
+                    toggleWishlist(product, icon);
                 });
             });
         }
@@ -1860,7 +2088,7 @@
         }
 
         function renderStoreReviews(storeName, avgRating) {
-            const names = ['Rajesh Kumar', 'Priya Singh', 'Amit Sharma', 'Neha Gupta', 'Vikram Mehta', 'Deepa Patel', 'Suresh Reddy', 'Anjali Desai'];
+            const names = ['Ahmed Khan', 'Fatima Ali', 'Bilal Ahmed', 'Sara Malik', 'Usman Chaudhry', 'Zainab Abbas', 'Hassan Raza', 'Ayesha Khan'];
             const reviews = [];
 
             // Generate rating distribution
@@ -1972,15 +2200,26 @@
             document.getElementById('storeContent').style.display = 'block';
         }
 
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'toast';
-            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-            document.body.appendChild(notification);
+        function showToast(message) {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <i class="fas ${message.includes('added') ? 'fa-heart' : 'fa-times'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
             
             setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
+                toast.style.animation = 'slideOut 0.3s';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
             }, 3000);
         }
 
@@ -1999,14 +2238,141 @@
             });
         }
 
+        // Wishlist Functions
         function updateWishlistCount() {
             const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
             const count = wishlist.length;
-            
             document.querySelectorAll('.wishlist-count').forEach(el => {
                 el.textContent = count;
+                el.style.display = count > 0 ? 'inline-block' : 'none';
             });
         }
+
+        function loadWishlistItems() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const container = document.getElementById('wishlistItems');
+            
+            if (!container) return;
+            
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-wishlist">
+                        <i class="fas fa-heart"></i>
+                        <p>Your wishlist is empty</p>
+                        <small>Click the heart icon on products to add them here</small>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            wishlist.forEach(item => {
+                const priceInPKR = (item.price * 280).toFixed(0);
+                html += `
+                    <div class="wishlist-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
+                        <div class="wishlist-item-info">
+                            <h4 class="wishlist-item-title">${item.name}</h4>
+                            <div class="wishlist-item-price">Rs ${priceInPKR}</div>
+                            <div class="wishlist-item-store">${item.store}</div>
+                            <button class="wishlist-item-add-cart" onclick="addToCartFromWishlist('${item.id}')">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                        <button class="wishlist-item-remove" onclick="removeFromWishlist('${item.id}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function toggleWishlist(product, iconElement) {
+            if (!product.id) return;
+            
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const existingIndex = wishlist.findIndex(item => String(item.id) === String(product.id));
+            
+            let message = '';
+            
+            if (existingIndex > -1) {
+                // Remove from wishlist
+                wishlist.splice(existingIndex, 1);
+                message = `${product.name} removed from wishlist`;
+                if (iconElement) {
+                    iconElement.classList.remove('fas');
+                    iconElement.classList.add('far');
+                }
+            } else {
+                // Add to wishlist
+                wishlist.push({
+                    id: String(product.id),
+                    name: product.name,
+                    price: product.price || 0,
+                    image: product.image || '',
+                    category: product.category || 'General',
+                    store: product.store || 'GlobalMart',
+                    addedAt: new Date().toISOString()
+                });
+                message = `${product.name} added to wishlist`;
+                if (iconElement) {
+                    iconElement.classList.remove('far');
+                    iconElement.classList.add('fas');
+                }
+            }
+            
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            updateWishlistCount();
+            loadWishlistItems();
+            showToast(message);
+        }
+
+        function removeFromWishlist(productId) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(item => String(item.id) !== String(productId));
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            // Update heart icons on all products
+            document.querySelectorAll(`.wishlist-btn[data-id="${productId}"] i`).forEach(heartIcon => {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+            });
+            
+            updateWishlistCount();
+            loadWishlistItems();
+            showToast('Product removed from wishlist');
+        }
+
+        function addToCartFromWishlist(productId) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const product = wishlist.find(item => String(item.id) === String(productId));
+            
+            if (!product) return;
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existing = cart.find(item => String(item.id) === String(product.id));
+            
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showToast(`${product.name} added to cart`);
+        }
+
+        // Initialize wishlist count on page load
+        updateWishlistCount();
     </script>
 </body>
 </html>

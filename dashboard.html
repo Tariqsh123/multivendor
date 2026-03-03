@@ -714,18 +714,6 @@
             font-weight: normal;
         }
 
-        .commission-badge {
-            background: #e8f0fe;
-            color: #1a9cb7;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            display: inline-block;
-            width: fit-content;
-        }
-
         .product-sold {
             font-size: 11px;
             color: #757575;
@@ -841,7 +829,7 @@
 
         @media (max-width: 480px) {
             .products-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -866,18 +854,6 @@
             border: 1px solid var(--gray-200);
             animation: scaleIn 0.5s ease;
         }
-
-        /* .dashboard-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
-            transform: scaleX(0);
-            transition: var(--transition-base);
-        } */
 
         .dashboard-card:hover {
             transform: translateY(-15px) scale(1.02);
@@ -946,18 +922,6 @@
             position: relative;
             overflow: hidden;
         }
-/* 
-        .dashboard-main::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--secondary-light), var(--secondary));
-            background-size: 200% 100%;
-            animation: shimmer 3s infinite linear;
-        } */
 
         .dashboard-main h2 {
             font-size: 2.2rem;
@@ -1702,6 +1666,16 @@
             .footer-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .dashboard-main h2 {
+    font-size: 25px;}
+    #userName {
+    font-size: 1rem;
+    text-align: center;
+}
+.user-info {
+    border-radius: 20px;
+}
         }
     </style>
 </head>
@@ -1950,8 +1924,8 @@
                                         <input type="text" id="addProductName" placeholder="e.g., iPhone 15 Pro Max" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Price ($)</label>
-                                        <input type="number" id="addProductPrice" step="0.01" placeholder="999.99" required>
+                                        <label>Price (PKR)</label>
+                                        <input type="number" id="addProductPrice" step="0.01" placeholder="99999.99" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -1978,10 +1952,6 @@
                                     <div class="form-group">
                                         <label>Image URL</label>
                                         <input type="text" id="addProductImage" placeholder="https://example.com/image.jpg" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Commission (%)</label>
-                                        <input type="number" id="addProductCommission" value="10" min="1" max="50" required>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn-primary">
@@ -2045,14 +2015,6 @@
                         <p id="shipperProductCount">Products: 0</p>
                         <button class="btn-small">View Products</button>
                     </div>
-                    <div class="dashboard-card" onclick="openOverlay('commission')">
-                        <div class="card-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Commissions</h3>
-                        <p id="totalCommission">Total: $0.00</p>
-                        <button class="btn-small">View Details</button>
-                    </div>
                 </div>
                 
                 <div class="dashboard-main">
@@ -2068,8 +2030,8 @@
                                     <input type="text" id="warehouseProductName" placeholder="e.g., iPhone 15 Pro Max" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Price ($)</label>
-                                    <input type="number" id="warehouseProductPrice" step="0.01" placeholder="999.99" required>
+                                    <label>Price (PKR)</label>
+                                    <input type="number" id="warehouseProductPrice" step="0.01" placeholder="99999.99" required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -2082,10 +2044,6 @@
                                         <option value="home">🏠 Home & Living</option>
                                         <option value="sports">⚽ Sports</option>
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Commission (%)</label>
-                                    <input type="number" id="warehouseProductCommission" value="10" min="1" max="50" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -2177,7 +2135,7 @@
                 </div>
                 <div class="form-group">
                     <label>Country</label>
-                    <input type="text" id="editStoreCountry" value="India">
+                    <input type="text" id="editStoreCountry" value="Pakistan">
                 </div>
                 <div class="form-group">
                     <label>Delivery Time (days)</label>
@@ -2227,7 +2185,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Price ($)</label>
+                        <label>Price (PKR)</label>
                         <input type="number" id="editProductPrice" step="0.01" required>
                     </div>
                     <div class="form-group">
@@ -2252,10 +2210,6 @@
                     <label>Image URL</label>
                     <input type="text" id="editProductImage" required>
                 </div>
-                <div class="form-group">
-                    <label>Commission (%)</label>
-                    <input type="number" id="editProductCommission" min="1" max="50" required>
-                </div>
                 <div style="display: flex; gap: 15px; justify-content: flex-end; margin-top: 30px;">
                     <button type="button" class="btn-secondary" onclick="closeEditProductModal()">Cancel</button>
                     <button type="submit" class="btn-primary">Update Product</button>
@@ -2279,24 +2233,20 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Warehouse Price</label>
+                        <label>Warehouse Price (PKR)</label>
                         <input type="text" id="warehouseBasePrice" readonly>
                     </div>
                     <div class="form-group">
-                        <label>Your Store Price ($)</label>
+                        <label>Your Store Price (PKR)</label>
                         <input type="number" id="storeSellingPrice" step="0.01" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Your Commission (%)</label>
-                    <input type="number" id="storeCommission" value="10" min="1" max="50" required>
                 </div>
                 
                 <div class="profit-calculator">
                     <p><strong>Profit Calculator:</strong></p>
-                    <p>Warehouse Price: $<span id="calcBasePrice">0.00</span></p>
-                    <p>Your Price: $<span id="calcStorePrice">0.00</span></p>
-                    <p class="profit">Your Profit: $<span id="calcProfit">0.00</span> (<span id="calcProfitPercent">0</span>%)</p>
+                    <p>Warehouse Price: PKR <span id="calcBasePrice">0.00</span></p>
+                    <p>Your Price: PKR <span id="calcStorePrice">0.00</span></p>
+                    <p class="profit">Your Profit: PKR <span id="calcProfit">0.00</span></p>
                 </div>
                 
                 <div style="display: flex; gap: 15px; justify-content: flex-end;">
@@ -2325,16 +2275,6 @@
         </div>
         <div class="overlay-content" id="profileContent">
             <!-- Profile content loaded dynamically with FIXED design -->
-        </div>
-    </div>
-    
-    <div class="overlay-panel" id="commissionOverlay">
-        <div class="overlay-header">
-            <h3><i class="fas fa-money-bill-wave"></i> Commission Details</h3>
-            <button class="close-overlay" data-overlay="commission">&times;</button>
-        </div>
-        <div class="overlay-content" id="commissionContent">
-            <!-- Commission content loaded dynamically -->
         </div>
     </div>
     
@@ -2376,9 +2316,9 @@
                 <div class="footer-col">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
-                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Karachi, Pakistan</li>
+                        <li><i class="fas fa-phone"></i> +92 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@globalmart.pk</li>
                     </ul>
                 </div>
             </div>
@@ -2403,7 +2343,7 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span class="total-price">$0.00</span>
+                <span class="total-price">PKR 0.00</span>
             </div>
             <button class="btn-primary btn-block" id="checkoutBtn">Checkout</button>
         </div>
@@ -2535,7 +2475,7 @@
                 storeAddress: '',
                 storeCity: '',
                 storeState: '',
-                storeCountry: 'India',
+                storeCountry: 'Pakistan',
                 storeDelivery: '3',
                 storeDescription: '',
                 storeBadges: ['verified', 'shipping', 'protection']
@@ -2659,10 +2599,9 @@
                     </div>
                     <p class="product-desc">${product.description || 'Premium quality product'}</p>
                     <div class="product-price">
-                        $${parseFloat(product.price).toFixed(2)}
-                        ${hasDiscount ? `<span class="original">$${(originalPrice).toFixed(2)}</span>` : ''}
+                        PKR ${parseFloat(product.price).toFixed(2)}
+                        ${hasDiscount ? `<span class="original">PKR ${(originalPrice).toFixed(2)}</span>` : ''}
                     </div>
-                    ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
                     <div class="product-sold">
                         <i class="fas fa-chart-line"></i> Sold: ${product.sold || 0} units
                     </div>
@@ -2686,8 +2625,7 @@
                     <p class="product-store">
                         <i class="fas fa-warehouse"></i> ${product.shipperName || 'Warehouse'}
                     </p>
-                    <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
-                    <div class="commission-badge">Commission: ${product.commission || 10}%</div>
+                    <div class="product-price">PKR ${parseFloat(product.price).toFixed(2)}</div>
                     ${alreadyAdded ? 
                         '<button class="btn-secondary" style="width: 100%;" disabled><i class="fas fa-check"></i> Already Added</button>' :
                         `<button class="btn-primary" style="width: 100%;" onclick="openAddFromWarehouseModal('${product.id}')">
@@ -2730,7 +2668,6 @@
                 stock: parseInt(document.getElementById('addProductStock').value),
                 description: document.getElementById('addProductDescription').value,
                 image: document.getElementById('addProductImage').value,
-                commission: parseInt(document.getElementById('addProductCommission').value),
                 sold: 0,
                 createdAt: new Date().toISOString()
             };
@@ -2753,9 +2690,8 @@
             
             document.getElementById('warehouseProductId').value = product.id;
             document.getElementById('warehouseProductNameDisplay').value = product.name;
-            document.getElementById('warehouseBasePrice').value = `$${parseFloat(product.price).toFixed(2)}`;
+            document.getElementById('warehouseBasePrice').value = `PKR ${parseFloat(product.price).toFixed(2)}`;
             document.getElementById('storeSellingPrice').value = (parseFloat(product.price) * 1.2).toFixed(2);
-            document.getElementById('storeCommission').value = product.commission || 10;
             
             updatePriceCalculator();
             
@@ -2764,15 +2700,13 @@
         
         function updatePriceCalculator() {
             const basePriceText = document.getElementById('warehouseBasePrice').value;
-            const basePrice = parseFloat(basePriceText.replace('$', '')) || 0;
+            const basePrice = parseFloat(basePriceText.replace('PKR', '')) || 0;
             const storePrice = parseFloat(document.getElementById('storeSellingPrice').value) || basePrice;
             const profit = storePrice - basePrice;
-            const profitPercent = basePrice > 0 ? ((profit / basePrice) * 100).toFixed(1) : 0;
             
             document.getElementById('calcBasePrice').textContent = basePrice.toFixed(2);
             document.getElementById('calcStorePrice').textContent = storePrice.toFixed(2);
             document.getElementById('calcProfit').textContent = profit.toFixed(2);
-            document.getElementById('calcProfitPercent').textContent = profitPercent;
         }
         
         document.getElementById('storeSellingPrice')?.addEventListener('input', updatePriceCalculator);
@@ -2798,7 +2732,6 @@
                 category: warehouseProduct.category,
                 description: warehouseProduct.description,
                 image: warehouseProduct.image,
-                commission: parseInt(document.getElementById('storeCommission').value),
                 sold: 0,
                 fromWarehouse: true,
                 createdAt: new Date().toISOString()
@@ -2828,7 +2761,6 @@
             document.getElementById('editProductCategory').value = product.category || 'electronics';
             document.getElementById('editProductDescription').value = product.description || '';
             document.getElementById('editProductImage').value = product.image || '';
-            document.getElementById('editProductCommission').value = product.commission || 10;
             
             document.getElementById('editProductModal').classList.add('active');
         }
@@ -2847,8 +2779,7 @@
                 stock: parseInt(document.getElementById('editProductStock').value),
                 category: document.getElementById('editProductCategory').value,
                 description: document.getElementById('editProductDescription').value,
-                image: document.getElementById('editProductImage').value,
-                commission: parseInt(document.getElementById('editProductCommission').value)
+                image: document.getElementById('editProductImage').value
             };
             
             let storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
@@ -2891,7 +2822,7 @@
             document.getElementById('editStoreAddress').value = store.storeAddress || '';
             document.getElementById('editStoreCity').value = store.storeCity || '';
             document.getElementById('editStoreState').value = store.storeState || '';
-            document.getElementById('editStoreCountry').value = store.storeCountry || 'India';
+            document.getElementById('editStoreCountry').value = store.storeCountry || 'Pakistan';
             document.getElementById('editStoreDelivery').value = store.storeDelivery || '3';
             document.getElementById('editStoreDescription').value = store.storeDescription || '';
             
@@ -2988,7 +2919,6 @@
                 category: document.getElementById('warehouseProductCategory').value,
                 description: document.getElementById('warehouseProductDescription').value,
                 image: document.getElementById('warehouseProductImage').value,
-                commission: parseInt(document.getElementById('warehouseProductCommission').value),
                 sold: 0,
                 createdAt: new Date().toISOString()
             };
@@ -3265,7 +3195,7 @@
                         <div class="wishlist-item-details">
                             <h4>${item.name}</h4>
                             <div style="color: var(--secondary); font-weight: 800; font-size: 1.5rem; margin: 10px 0;">
-                                $${parseFloat(item.price).toFixed(2)}
+                                PKR ${parseFloat(item.price).toFixed(2)}
                             </div>
                             <p style="color: var(--gray-600);">${item.store || 'GlobalMart'}</p>
                             <div class="action-buttons">

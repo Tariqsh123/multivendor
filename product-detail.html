@@ -2646,11 +2646,11 @@
                 }, 100);
             }
             
+            // FIXED: renderRelatedProducts function with proper structure
             function renderRelatedProducts(products) {
                 return products.map(product => {
                     const storeName = product.store || product.shipperName || 'GlobalMart';
                     const rating = (3.5 + Math.random() * 1.5).toFixed(1);
-                    const reviewCount = Math.floor(Math.random() * 50) + 10;
                     const hasDiscount = product.originalPrice && product.originalPrice > product.price;
                     const originalPrice = product.originalPrice || (product.price * 1.2);
                     const priceInPKR = (product.price * 83 * 3.4).toFixed(0);
@@ -2660,9 +2660,9 @@
                     return `
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="${product.image}" alt="${product.name}" 
+                                <img src="${product.image}" alt="${product.name}"
                                      onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-                                ${product.fromWarehouse ? '<div class="product-badge">Warehouse</div>' : ''}
+                                ${product.fromWarehouse ? '<span class="product-badge">Warehouse</span>' : ''}
                                 <div class="product-wishlist" data-id="${product.id}">
                                     <i class="${isInWishlist ? 'fas' : 'far'} fa-heart"></i>
                                 </div>
@@ -2670,24 +2670,25 @@
                             <div class="product-info">
                                 <div class="product-category">${product.category || 'Electronics'}</div>
                                 <h3 class="product-title">${product.name}</h3>
-                                <p class="product-store"><i class="fas fa-store"></i> Sold by: ${storeName}</p>
+                                <p class="product-store">
+                                    <i class="fas fa-store"></i> 
+                                    Sold by: ${storeName}
+                                </p>
                                 <div class="product-rating">
                                     <div class="product-stars">
                                         ${generateStarIcons(parseFloat(rating))}
                                     </div>
-                                    <span class="product-reviews">(${reviewCount} reviews)</span>
+                                    <span class="product-reviews">(${Math.floor(Math.random() * 50) + 10} reviews)</span>
                                 </div>
-                                <p class="product-desc">${product.description || 'Premium quality product'}</p>
                                 <div class="product-price">
-                                    <span class="product-current">Rs. ${priceInPKR}</span>
-                                    ${hasDiscount ? `<span class="product-original">Rs. ${originalInPKR}</span>` : ''}
+                                    <span class="product-current">Rs ${priceInPKR}</span>
+                                    ${hasDiscount ? `<span class="product-original">Rs ${originalInPKR}</span>` : ''}
                                 </div>
-                                ${product.commission ? `<div class="commission-badge">${product.commission}% Commission</div>` : ''}
                                 <div class="product-buttons">
-                                    <button class="btn-small add-to-cart" onclick="event.stopPropagation(); addRelatedToCart('${product.id}')">
+                                    <button class="btn-small add-to-cart" onclick="addRelatedToCart('${product.id}')">
                                         <i class="fas fa-shopping-cart"></i> Add
                                     </button>
-                                    <a href="product-detail.html?id=${product.id}" class="btn-small view-details" onclick="event.stopPropagation();">
+                                    <a href="product-detail.html?id=${product.id}" class="btn-small view-details">
                                         <i class="fas fa-eye"></i> View
                                     </a>
                                 </div>
@@ -3131,20 +3132,6 @@
                 }
             };
             
-            window.addRelatedToCart = function(productId) {
-                let storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
-                let warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
-                const allProducts = [...storeProducts, ...warehouseProducts];
-                const product = allProducts.find(p => String(p.id) === String(productId));
-                
-                if (product) {
-                    const cartProduct = {...product, quantity: 1};
-                    addToCart(cartProduct);
-                    updateCartCount();
-                    showToast(`${product.name} added to cart!`);
-                }
-            };
-            
             window.shuffleRelatedProducts = function(currentProductId) {
                 let storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
                 let warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
@@ -3156,6 +3143,30 @@
                 }
             };
         });
+
+        // ADD THIS NEW FUNCTION - For adding related products to cart
+        window.addRelatedToCart = function(productId) {
+            let storeProducts = JSON.parse(localStorage.getItem('storeProducts')) || [];
+            let warehouseProducts = JSON.parse(localStorage.getItem('warehouseProducts')) || [];
+            const allProducts = [...storeProducts, ...warehouseProducts];
+            const product = allProducts.find(p => String(p.id) === String(productId));
+            
+            if (product) {
+                const cartProduct = {...product, quantity: 1};
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => String(item.id) === String(product.id));
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push(cartProduct);
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                showToast(`${product.name} added to cart!`);
+            }
+        };
 
         // Wishlist Functions
         function checkIfInWishlist(productId) {
@@ -3369,7 +3380,7 @@
             const toast = document.createElement('div');
             toast.className = 'toast';
             toast.innerHTML = `
-                <i class="fas ${message.includes('added') ? 'fa-heart' : 'fa-times'}"></i>
+                <i class="fas ${message.includes('added') ? 'fa-check-circle' : 'fa-times-circle'}"></i>
                 <span>${message}</span>
             `;
             

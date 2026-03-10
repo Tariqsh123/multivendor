@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Research Hub - GlobalMart</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Uganda: Africa’s Emerging Investment Frontier – A Strategic Insight for Pakistani Businesses  - GlobalMart</title>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -21,129 +21,136 @@
             --shadow-hover: 0 5px 15px rgba(255,140,51,0.15);
         }
 
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(135deg, var(--primary), #ff6b00);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .page-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .page-hero p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Research Hub Cards */
-        .research-hub-card-container {
+        /* Research Article Section */
+        .research-article-section {
             width: 100%;
             padding: 60px 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            background-color: #f8f9fa;
-            max-width: 1400px;
-            margin: 0 auto;
+            background-color: var(--bg-light);
         }
 
-        /* Card */
-        .research-card {
-            width: 360px;
-            height: 420px;
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-            cursor: pointer;
-            border: 2px solid var(--primary);
-            transition: box-shadow 0.5s ease, transform 0.3s ease;
+        .research-article-container {
+            max-width: 900px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            text-decoration: none;
+            gap: 40px;
         }
 
-        /* Hover effect */
-        .research-card:hover {
-            box-shadow: 0 20px 40px rgba(255,140,51,0.3);
-            transform: translateY(-10px);
+        /* Hero Image */
+        .research-article-hero {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            height: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        /* Image */
-        .research-card img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .research-article-hero img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.7);
-            transition: filter 0.5s ease;
-            z-index: 1;
-        }
-
-        /* Hover - slightly brighten image */
-        .research-card:hover img {
-            filter: brightness(0.8);
-        }
-
-        /* Gradient overlay for text readability */
-        .research-card::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
-            z-index: 2;
-            transition: background 0.5s ease;
-        }
-
-        .card-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            z-index: 3;
-            padding: 10px;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
             transition: transform 0.5s ease;
         }
 
-        /* Hover text animation - slide up slightly */
-        .research-card:hover .card-content {
-            transform: translateY(-10px);
+        .research-article-hero:hover img {
+            transform: scale(1.05);
         }
 
-        /* Title */
-        .card-content h3 {
-            font-size: 22px;
-            margin: 0;
+        /* Overlay text */
+        .research-article-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #fff;
+            z-index: 2;
+        }
+
+        .research-article-hero-overlay h2 {
+            font-size: 36px;
             font-weight: 700;
             line-height: 1.3;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* Date */
-        .card-content .date {
-            font-size: 14px;
-            font-weight: 500;
+        .research-article-hero-overlay .research-article-author {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* Body text */
+        .research-article-body {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .research-article-body p {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .research-article-body ul {
+            margin: 10px 0 10px 30px;
+            padding-left: 20px;
+        }
+
+        .research-article-body li {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .research-article-body li strong {
             color: var(--primary);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+        }
+
+        /* References glass-effect */
+        .research-article-references {
+            background: rgba(255,140,51,0.05);
+            backdrop-filter: blur(8px);
+            border-left: 4px solid var(--primary);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .research-article-references h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .research-article-references ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .research-article-references li {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .research-article-references em {
+            color: var(--primary);
+            font-style: italic;
         }
 
         /* Wishlist Sidebar */
@@ -646,6 +653,14 @@
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .research-article-hero {
+                height: 400px;
+            }
+            
+            .research-article-hero-overlay h2 {
+                font-size: 30px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -670,22 +685,37 @@
                 display: none !important;
             }
             
-            .page-hero {
-                padding: 60px 0;
+            .research-article-section {
+                padding: 40px 15px;
             }
             
-            .page-hero h1 {
-                font-size: 2.5rem;
+            .research-article-hero {
+                height: 350px;
             }
             
-            .research-card {
-                width: 100%;
-                max-width: 400px;
-                height: 380px;
+            .research-article-hero-overlay {
+                padding: 25px;
             }
             
-            .card-content h3 {
-                font-size: 20px;
+            .research-article-hero-overlay h2 {
+                font-size: 24px;
+            }
+            
+            .research-article-hero-overlay .research-article-author {
+                font-size: 14px;
+            }
+            
+            .research-article-body {
+                padding: 30px 20px;
+            }
+            
+            .research-article-body p,
+            .research-article-body li {
+                font-size: 16px;
+            }
+            
+            .research-article-references {
+                padding: 20px;
             }
             
             .footer-grid {
@@ -699,26 +729,44 @@
             }
         }
 
+        @media (max-width: 600px) {
+            .research-article-hero {
+                height: 300px;
+            }
+            
+            .research-article-hero-overlay h2 {
+                font-size: 22px;
+            }
+            
+            .research-article-hero-overlay {
+                padding: 20px;
+            }
+        }
+
         @media (max-width: 480px) {
-            .page-hero h1 {
-                font-size: 2rem;
+            .research-article-hero {
+                height: 250px;
             }
             
-            .research-hub-card-container {
-                padding: 40px 15px;
-                gap: 20px;
+            .research-article-hero-overlay h2 {
+                font-size: 20px;
             }
             
-            .research-card {
-                height: 350px;
+            .research-article-body {
+                padding: 25px 15px;
             }
             
-            .card-content h3 {
-                font-size: 18px;
+            .research-article-body p,
+            .research-article-body li {
+                font-size: 15px;
             }
             
-            .card-content .date {
-                font-size: 12px;
+            .research-article-references h3 {
+                font-size: 20px;
+            }
+            
+            .research-article-references li {
+                font-size: 14px;
             }
             
             .footer-grid {
@@ -735,17 +783,17 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
+            <a href="../index.html" class="logo"><img src="../assets/logo.png" id="logo" alt=""></a>
             
             <div class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
-                <a href="products.html" class="nav-link">Products</a>
-                <a href="research-hub.html" class="nav-link">Research Hub</a>
-                <a href="news.html" class="nav-link">News</a>
-                <a href="faq.html" class="nav-link">FAQs</a>
-                <a href="account.html" class="nav-link">Account</a>
-                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../products.html" class="nav-link">Products</a>
+                <a href="../research-hub.html" class="nav-link active">Research Hub</a>
+                <a href="../news.html" class="nav-link active">News</a>
+                <a href="../faq.html" class="nav-link">FAQs</a>
+                <a href="../account.html" class="nav-link">Account</a>
+                <a href="../dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
 
                 <div id="wish-and-cart-menu">
                     <!-- Wishlist Icon - Fixed to open sidebar instead of redirect -->
@@ -782,69 +830,65 @@
         <span class="wishlist-count">0</span>
     </div>
 
-    <!-- About Hero -->
-    <section class="page-hero">
-        <div class="container">
-            <h1>Research Hub</h1>
-            <p>Latest insights, trends, and analysis from GlobalMart Research</p>
-        </div>
-    </section>
+    <!-- Research Article -->
 
-    <section class="research-hub-card-container">
-        <!-- 1 -->
-        <a href="research-hub/mobile-commerce-2030.html" title="mobile-commerce-2030" class="research-card">
-            <img src="assets/Mobile-Commerce-2030.webp" alt="Mobile-Commerce-2030" title="Mobile-Commerce-2030" loading="lazy">
-            <div class="card-content">
-                <h3>Mobile Commerce 2030: The Rise of the Handheld Economy</h3>
-                <p class="date">Feb 19, 2026</p>
-            </div>
-        </a>
-        <!-- 2 -->
-        <a href="research-hub/china-zero-tariff-for-africa.html" title="china-zero-tariff-for-africa" class="research-card">
-            <img src="assets/Chinas-Zero-Tariff-for-Africa.webp" alt="china-zero-tariff-for-africa" title="china-zero-tariff-for-africa" loading="lazy">
-            <div class="card-content">
-                <h3>China's Zero Tariff for Africa — A Game-Changing Opportunity Pakistan Must Harness</h3>
-                <p class="date">Feb 21, 2026</p>
-            </div>
-        </a>
+    <section class="news-view">
 
-        <!-- 3 -->
-        <a href="research-hub/m-commerce-and-its-scope.html" title="m-commerce-and-its-scope" class="research-card">
-            <img src="assets/M-Commerce-&-Its-Scope-Growth.webp" alt="m-commerce-and-its-scope" title="m-commerce-and-its-scope" loading="lazy">
-            <div class="card-content">
-                <h3>M-Commerce & Its Scope: Growth, Trends, and 2030 Projections</h3>
-                <p class="date">Feb 24, 2026</p>
-            </div>
-        </a>
+      <h1>Uganda: Africa’s Emerging Investment Frontier – A Strategic Insight for Pakistani Businesses  </h1>
+      <span class="date">March 10, 2026</span>
+      <img src="../assets/Uganda-Africa’s-Emerging-Investment-Frontier-news.webp" alt="Uganda: Africa’s Emerging Investment Frontier – A Strategic Insight for Pakistani Businesses " title="Uganda: Africa’s Emerging Investment Frontier – A Strategic Insight for Pakistani Businesses " loading="lazy">
 
-        <!-- 4 -->
-        <a href="research-hub/next-commerce.html" title="next-commerce" class="research-card">
-            <img src="assets/Next-Commerce.webp" alt="next-commerce" title="next-commerce" loading="lazy">
-            <div class="card-content">
-                <h3>AI Literacy in Schools from Grade 1 Onward: A National Priority for 2030</h3>
-                <p class="date">March 4, 2026</p>
-            </div>
-        </a>
+</section>
 
-        <!-- 5-->
-        <a href="research-hub/africa-rising.html" title="africa-rising" class="research-card">
-            <img src="assets/africa-rising.webp" alt="africa-rising" title="africa-rising" loading="lazy">
-            <div class="card-content">
-                <h3>Africa Rising: The Next Global Business Frontier Beyond 2030</h3>
-                <p class="date">March 7, 2026</p>
-            </div>
-        </a>
+<style>
+.news-view{
+  padding:60px 0px;
+  background:#f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-        <!-- 6 -->
-        <a href="research-hub/uganda-africas-emerging-investment-frontier.html" title="uganda-africas-emerging-investment-frontier" class="research-card">
-            <img src="assets/Uganda-Africa’s-Emerging-Investment-Frontier.png" alt="Uganda-Africa’s-Emerging-Investment-Frontier" title="Uganda-Africa’s-Emerging-Investment-Frontier" loading="lazy">
-            <div class="card-content">
-                <h3>Uganda: Africa’s Emerging Investment Frontier – A Strategic Insight for Pakistani Businesses </h3>
-                <p class="date">March 10, 2026</p>
-            </div>
-        </a>
+.news-view h1{
+  font-size:35px;
+  margin-bottom:10px;
+  text-align: center;
+  background-color: #e67a22;
+  color: white;
+  width: 100%;
+  padding: 10px;
+}
 
-    </section>
+.news-view .date{
+  display:block;
+  font-size:16px;
+  width: 100%;
+  text-align: left;
+  color:#777;
+  margin-bottom:15px;
+  padding-left: 20px;
+}
+
+.news-view img{
+  width:100%;
+  height:auto;
+  padding: 10px;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+/* Responsive */
+@media(max-width:768px){
+ 
+  .news-view h1{
+    font-size:24px;
+  }
+}
+</style>
+
+
+    
 
     <!-- Footer -->
     <footer class="footer">
@@ -863,21 +907,21 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="research-hub.html">Research Hub</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="account.html">Account</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../products.html">Products</a></li>
+                        <li><a href="../research-hub.html">Research Hub</a></li>
+                        <li><a href="../news.html">News</a></li>
+                        <li><a href="../account.html">Account</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
-                        <li><a href="return-policy.html">Return Policy</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="../faq.html">FAQ</a></li>
+                        <li><a href="../shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="../return-policy.html">Return Policy</a></li>
+                        <li><a href="../contact-us.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -943,8 +987,8 @@
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <div class="mobile-bottom-nav">
         <div class="nav-items">
-            <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
-            <a href="products.html" class="nav-item"><i class="fas fa-search"></i><span>Products</span></a>
+            <a href="../index.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="../products.html" class="nav-item"><i class="fas fa-search"></i><span>Products</span></a>
             <a href="#" class="nav-item" id="mobileCartBtn">
                 <div class="nav-item-wrapper">
                     <i class="fas fa-shopping-cart"></i>
@@ -959,13 +1003,13 @@
                 </div>
                 <span>Wishlist</span>
             </a>
-            <a href="account.html" class="nav-item"><i class="fas fa-user"></i><span>Account</span></a>
+            <a href="../account.html" class="nav-item"><i class="fas fa-user"></i><span>Account</span></a>
         </div>
     </div>
 
-    <script src="js/main.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/wishlist.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/wishlist.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
@@ -1028,7 +1072,7 @@
             });
 
             // Update active state in bottom nav
-            const currentPage = window.location.pathname.split('/').pop() || 'research-hub.html';
+            const currentPage = window.location.pathname.split('/').pop() || 'm-commerce-and-its-scope.html';
             document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
                 const href = item.getAttribute('href');
                 if (href === currentPage) {

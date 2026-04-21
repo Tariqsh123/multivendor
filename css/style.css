@@ -5873,3 +5873,21 @@ p,a,li,input,option,textarea{
         .hamburger {
             display: none !important;
         }
+.nav-input{
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-input input{
+    padding: 10px 20px;width: 300px; border-radius: 20px 0 0 20px;border: 1px solid rgb(179, 179, 179)
+}
+.nav-input select{
+    height: fit-content;
+    padding: 10px 05px;
+    border-radius: 0 20px 20px 0;
+    background-color: #e05a00;
+    color: white;
+    border: #e05a00;
+}

@@ -37,6 +37,34 @@ document.addEventListener('DOMContentLoaded', function() {
     setupMobileWishlistListener();
 });
 
+
+// Search functionality
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const searchType = document.getElementById('searchType');
+
+function performSearch() {
+    const query = searchInput.value.trim();
+    const type = searchType.value;
+    
+    if (query === '') return;
+    
+    if (type === 'products') {
+        window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+    } else if (type === 'sellers') {
+        window.location.href = `sellers.html?search=${encodeURIComponent(query)}`; // or wherever your sellers page is
+    }
+}
+
+// Trigger search on button click
+searchButton.addEventListener('click', performSearch);
+
+// Trigger search on Enter key
+searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        performSearch();
+    }
+});
 // ===================== CART FUNCTIONS =====================
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 

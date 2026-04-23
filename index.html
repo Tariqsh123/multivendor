@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        
-    </style>
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body>
     <!-- Navigation - White -->
@@ -71,76 +72,137 @@
     </div>
 
     <!-- Hero Section - Original Restored -->
-    <section class="hero-carousel">
-        <div class="hero-track">
-            <div class="hero-slide hero-active" style="background-image: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <div class="hero-content">
-                    <span class="hero-badge">MEGA SALE 2024</span>
-                    <h1 class="hero-title">Shop From Multiple<br><span>Trusted Online Stores</span></h1>
-                    <p class="hero-text">Discover thousands of products from verified sellers. Enjoy secure payments, fast shipping, and a seamless multi-vendor shopping experience with 24/7 support.</p>
-                    <div class="hero-btns">
-                        <a href="products.html" class="hero-btn hero-btn-primary">Start Shopping <i class="fas fa-arrow-right"></i></a>
-                        <a href="account.html" class="hero-btn hero-btn-outline">Become a Seller</a>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=80');">
-                <div class="hero-content">
-                    <span class="hero-badge">FOR SELLERS</span>
-                    <h1 class="hero-title">Launch & Manage<br><span>Your Online Store</span></h1>
-                    <p class="hero-text">Register as a store manager, list your products, manage orders, track sales, and grow your business on our powerful multi-vendor marketplace platform.</p>
-                    <div class="hero-btns">
-                        <a href="account.html" class="hero-btn hero-btn-primary">Become a Seller <i class="fas fa-arrow-right"></i></a>
-                        <a href="return-policy.html" class="hero-btn hero-btn-outline">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1600&q=80');">
-                <div class="hero-content">
-                    <span class="hero-badge">DELIVERY PARTNERS</span>
-                    <h1 class="hero-title">Deliver Orders &<br><span>Earn With Logistics</span></h1>
-                    <p class="hero-text">Join as a shipping partner to deliver orders, manage deliveries, track shipments, and earn competitive commissions through our reliable delivery network.</p>
-                    <div class="hero-btns">
-                        <a href="account.html" class="hero-btn hero-btn-primary">Join as Shipper <i class="fas fa-arrow-right"></i></a>
-                        <a href="shipping-policy.html" class="hero-btn hero-btn-outline">Shipping Policy</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-dots">
-            <span class="hero-dot hero-active"></span>
-            <span class="hero-dot"></span>
-            <span class="hero-dot"></span>
-        </div>
-    </section>
+    <section class="hero">
+  <div class="hero-inner">
+
+    <!-- LEFT CATEGORY -->
+    <div class="category-box">
+      <h3>Categories</h3>
+      <ul>
+        <li><i class="fas fa-tv"></i> Electronics</li>
+        <li><i class="fas fa-tshirt"></i> Fashion</li>
+        <li><i class="fas fa-couch"></i> Home & Living</li>
+        <li><i class="fas fa-football-ball"></i> Sports</li>
+        <li><i class="fas fa-heart"></i> Beauty</li>
+        <li><i class="fas fa-book"></i> Books</li>
+        <li><i class="fas fa-apple-alt"></i> Grocery</li>
+        <li><i class="fas fa-gamepad"></i> Toys</li>
+        <li><i class="fas fa-car"></i> Automotive</li>
+        <li><i class="fas fa-notes-medical"></i> Health</li>
+        <li><i class="fas fa-gem"></i> Jewellery</li>
+        <li><i class="fas fa-paw"></i> Pet Supplies</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT SLIDER -->
+    <div class="hero-slider">
+      <div class="track">
+        <div class="slide active" style="background-image:url('assets/banner-1.webp')"></div>
+        <div class="slide" style="background-image:url('assets/banner-2.webp')"></div>
+        <div class="slide" style="background-image:url('assets/banner-3.webp')"></div>
+      </div>
+
+      <!-- RIGHT ARROW -->
+      <button class="next">→</button>
+
+      <!-- DOTS -->
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <script>
-        const heroTrack = document.querySelector('.hero-track');
-        const heroSlides = document.querySelectorAll('.hero-slide');
-        const heroDots = document.querySelectorAll('.hero-dot');
-        let heroIndex = 0;
+        const track = document.querySelector(".track");
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+const nextBtn = document.querySelector(".next");
 
-        function heroUpdate() {
-            heroTrack.style.transform = `translateX(-${heroIndex * 100}%)`;
-            heroDots.forEach(d => d.classList.remove('hero-active'));
-            heroDots[heroIndex].classList.add('hero-active');
-        }
+let index = 0;
+let startX = 0;
+let isDragging = false;
 
-        setInterval(() => {
-            heroIndex = (heroIndex + 1) % heroSlides.length;
-            heroUpdate();
-        }, 6000);
+/* UPDATE FUNCTION */
+function update(){
+  track.style.transform = `translateX(-${index * 100}%)`;
 
-        heroDots.forEach((dot, i) => {
-            dot.onclick = () => {
-                heroIndex = i;
-                heroUpdate();
-            };
-        });
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index].classList.add("active");
+
+  dots.forEach(d => d.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+
+/* AUTO SLIDE */
+setInterval(()=>{
+  index = (index + 1) % slides.length;
+  update();
+},4000);
+
+/* NEXT BUTTON */
+nextBtn.addEventListener("click", ()=>{
+  index = (index + 1) % slides.length;
+  update();
+});
+
+/* DOT CLICK */
+dots.forEach((dot,i)=>{
+  dot.addEventListener("click", ()=>{
+    index = i;
+    update();
+  });
+});
+
+/* DRAG (MOUSE) */
+track.addEventListener("mousedown",(e)=>{
+  isDragging = true;
+  startX = e.pageX;
+  track.style.cursor = "grabbing";
+});
+
+track.addEventListener("mouseup",(e)=>{
+  if(!isDragging) return;
+
+  let diff = e.pageX - startX;
+
+  if(diff > 80) index--;
+  else if(diff < -80) index++;
+
+  index = Math.max(0, Math.min(index, slides.length - 1));
+
+  update();
+  isDragging = false;
+  track.style.cursor = "grab";
+});
+
+track.addEventListener("mouseleave",()=>{
+  isDragging = false;
+  track.style.cursor = "grab";
+});
+
+/* TOUCH SUPPORT */
+track.addEventListener("touchstart",(e)=>{
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend",(e)=>{
+  let diff = e.changedTouches[0].clientX - startX;
+
+  if(diff > 80) index--;
+  else if(diff < -80) index++;
+
+  index = Math.max(0, Math.min(index, slides.length - 1));
+
+  update();
+});
     </script>
 
     <!-- ===== SECTION 1: STATS COUNTER ===== -->
-    <section class="stats-section">
+    <!-- <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
@@ -173,7 +235,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- WOW Category Section - With Images and Overlay -->
     <section class="category-section">
@@ -184,87 +246,87 @@
             </div>
             <div class="category-grid">
                 <a href="products.html?category=electronics" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Electronics">
+                    <img src="assets/category-electronic-img.png" alt="Electronics">
                     <div class="overlay">
                         <h3>Electronics</h3>
-                        <p>Smartphones, Laptops, Accessories</p>
+                        <p>Phones, Laptops , Headphones</p>
                     </div>
                 </a>
                 <a href="products.html?category=fashion" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Fashion">
+                    <img src="assets/category-fashion-img.png" alt="Fashion">
                     <div class="overlay">
                         <h3>Fashion</h3>
                         <p>Men, Women, Kids, Accessories</p>
                     </div>
                 </a>
                 <a href="products.html?category=home" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Home">
+                    <img src="assets/category-home-img.png" alt="Home">
                     <div class="overlay">
                         <h3>Home & Living</h3>
                         <p>Furniture, Decor, Kitchenware</p>
                     </div>
                 </a>
                 <a href="products.html?category=sports" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sports">
+                    <img src="assets/category-sports-img.png" alt="Sports">
                     <div class="overlay">
                         <h3>Sports</h3>
                         <p>Gym Equipment, Outdoor Gear</p>
                     </div>
                 </a>
                 <a href="products.html?category=beauty" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Beauty">
+                    <img src="assets/category-beauty-img.png" alt="Beauty">
                     <div class="overlay">
                         <h3>Beauty</h3>
                         <p>Makeup, Skincare, Haircare</p>
                     </div>
                 </a>
                 <a href="products.html?category=books" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Books">
+                    <img src="assets/category-books-img.png" alt="Books">
                     <div class="overlay">
                         <h3>Books</h3>
                         <p>Fiction, Academic, Bestsellers</p>
                     </div>
                 </a>
                 <a href="products.html?category=grocery" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Grocery">
+                    <img src="assets/category-grocery-img.png" alt="Grocery">
                     <div class="overlay">
                         <h3>Grocery</h3>
                         <p>Fresh Food, Staples, Snacks</p>
                     </div>
                 </a>
                 <a href="products.html?category=toys" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Toys">
+                    <img src="assets/category-toys-img.png" alt="Toys">
                     <div class="overlay">
                         <h3>Toys & Games</h3>
-                        <p>Educational, Action Figures, Puzzles</p>
+                        <p>Educational, Action Figures</p>
                     </div>
                 </a>
                 <a href="products.html?category=automotive" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Automotive">
+                    <img src="assets/category-automotive-img.png" alt="Automotive">
                     <div class="overlay">
                         <h3>Automotive</h3>
                         <p>Accessories, Parts, Care</p>
                     </div>
                 </a>
                 <a href="products.html?category=health" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Health">
+                    <img src="assets/category-health-img.png" alt="Health">
                     <div class="overlay">
                         <h3>Health</h3>
                         <p>Supplements, Wellness, Medical</p>
                     </div>
                 </a>
                 <a href="products.html?category=jewelry" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jewelry">
+                    <img src="assets/category-jewellery-img.png" alt="Jewelry">
                     <div class="overlay">
                         <h3>Jewelry</h3>
                         <p>Gold, Silver, Fashion Jewelry</p>
                     </div>
                 </a>
                 <a href="products.html?category=pets" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pets">
+                    <img src="assets/category-pets-img.png" alt="Pets">
                     <div class="overlay">
                         <h3>Pet Supplies</h3>
-                        <p>Food, Toys, Accessories</p>
+                        <p>Pet Food, Soft Toys, Accessories</p>
                     </div>
                 </a>
             </div>
@@ -488,6 +550,582 @@
         </div>
     </section>
 
+    <!-- All Category Product Carousels Section -->
+<section class="home-category-product-section">
+    <div class="home-category-product-container">
+        
+        <!-- Electronics Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div>
+                        <h2>Electronics</h2>
+                        <p>Phones, Laptops, Headphones</p>
+                    </div>
+                </div>
+                <a href="products.html?category=electronics" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperElectronics">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackElectronics"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationElectronics"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextElectronics"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevElectronics"></div>
+            </div>
+        </div>
+
+        <!-- Fashion Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div>
+                        <h2>Fashion</h2>
+                        <p>Men, Women, Kids, Accessories</p>
+                    </div>
+                </div>
+                <a href="products.html?category=fashion" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperFashion">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackFashion"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationFashion"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextFashion"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevFashion"></div>
+            </div>
+        </div>
+
+        <!-- Home & Living Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div>
+                        <h2>Home & Living</h2>
+                        <p>Furniture, Decor, Kitchenware</p>
+                    </div>
+                </div>
+                <a href="products.html?category=home" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperHome">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackHome"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationHome"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextHome"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevHome"></div>
+            </div>
+        </div>
+
+        <!-- Sports Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div>
+                        <h2>Sports</h2>
+                        <p>Gym Equipment, Outdoor Gear</p>
+                    </div>
+                </div>
+                <a href="products.html?category=sports" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperSports">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackSports"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationSports"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextSports"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevSports"></div>
+            </div>
+        </div>
+
+        <!-- Beauty Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div>
+                        <h2>Beauty</h2>
+                        <p>Makeup, Skincare, Haircare</p>
+                    </div>
+                </div>
+                <a href="products.html?category=beauty" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperBeauty">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackBeauty"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationBeauty"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextBeauty"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevBeauty"></div>
+            </div>
+        </div>
+
+        <!-- Books Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h2>Books</h2>
+                        <p>Fiction, Academic, Bestsellers</p>
+                    </div>
+                </div>
+                <a href="products.html?category=books" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperBooks">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackBooks"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationBooks"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextBooks"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevBooks"></div>
+            </div>
+        </div>
+
+        <!-- Grocery Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <div>
+                        <h2>Grocery</h2>
+                        <p>Fresh Food, Staples, Snacks</p>
+                    </div>
+                </div>
+                <a href="products.html?category=grocery" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperGrocery">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackGrocery"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationGrocery"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextGrocery"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevGrocery"></div>
+            </div>
+        </div>
+
+        <!-- Toys Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div>
+                        <h2>Toys & Games</h2>
+                        <p>Educational, Action Figures</p>
+                    </div>
+                </div>
+                <a href="products.html?category=toys" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperToys">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackToys"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationToys"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextToys"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevToys"></div>
+            </div>
+        </div>
+
+        <!-- Automotive Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div>
+                        <h2>Automotive</h2>
+                        <p>Accessories, Parts, Care</p>
+                    </div>
+                </div>
+                <a href="products.html?category=automotive" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperAutomotive">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackAutomotive"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationAutomotive"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextAutomotive"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevAutomotive"></div>
+            </div>
+        </div>
+
+        <!-- Health Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-notes-medical"></i>
+                    </div>
+                    <div>
+                        <h2>Health</h2>
+                        <p>Supplements, Wellness, Medical</p>
+                    </div>
+                </div>
+                <a href="products.html?category=health" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperHealth">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackHealth"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationHealth"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextHealth"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevHealth"></div>
+            </div>
+        </div>
+
+        <!-- Jewelry Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div>
+                        <h2>Jewelry</h2>
+                        <p>Gold, Silver, Fashion Jewelry</p>
+                    </div>
+                </div>
+                <a href="products.html?category=jewelry" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperJewelry">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackJewelry"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationJewelry"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextJewelry"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevJewelry"></div>
+            </div>
+        </div>
+
+        <!-- Pets Category -->
+        <div class="home-category-product-category-wrapper">
+            <div class="home-category-product-category-header">
+                <div class="home-category-product-category-title">
+                    <div class="home-category-product-category-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <div>
+                        <h2>Pet Supplies</h2>
+                        <p>Pet Food, Soft Toys, Accessories</p>
+                    </div>
+                </div>
+                <a href="products.html?category=pets" class="home-category-product-view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperPets">
+                <div class="swiper-wrapper" id="homeCategoryProductTrackPets"></div>
+                <div class="swiper-pagination" id="homeCategoryProductPaginationPets"></div>
+                <div class="swiper-button-next" id="homeCategoryProductNextPets"></div>
+                <div class="swiper-button-prev" id="homeCategoryProductPrevPets"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script>
+    // ===================== ALL CATEGORY PRODUCT CAROUSELS WITH SWIPER =====================
+
+// Store swiper instances
+const homeCategoryProductSwipers = {};
+
+// Category list
+const homeCategoryProductCategories = [
+    'Electronics', 'Fashion', 'Home', 'Sports', 'Beauty', 'Books', 
+    'Grocery', 'Toys', 'Automotive', 'Health', 'Jewelry', 'Pets'
+];
+
+// Load products from JSON
+async function loadHomeCategoryProducts() {
+    try {
+        const response = await fetch('data/product.json?t=' + Date.now());
+        if (!response.ok) throw new Error('Failed to load products');
+        
+        const productData = await response.json();
+        const warehouseProducts = productData.warehouseProducts || [];
+        
+        if (warehouseProducts.length === 0) {
+            console.log('No products found');
+            return;
+        }
+        
+        // Render each category carousel with same products
+        homeCategoryProductCategories.forEach(category => {
+            renderHomeCategoryCarousel(category, warehouseProducts);
+        });
+        
+    } catch (error) {
+        console.error('Error loading products:', error);
+    }
+}
+
+// Render carousel for a category
+function renderHomeCategoryCarousel(categoryName, products) {
+    const trackId = `homeCategoryProductTrack${categoryName}`;
+    const container = document.getElementById(trackId);
+    
+    if (!container) return;
+    
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    
+    container.innerHTML = products.map(product => {
+        const productId = product.id;
+        const isWishlisted = wishlist.some(item => String(item.id) === String(productId));
+        const priceInPKR = (product.price * 280).toFixed(0);
+        const rating = (4 + Math.random()).toFixed(1);
+        const reviewCount = Math.floor(Math.random() * 50) + 10;
+        
+        return `
+            <div class="swiper-slide">
+                <div class="home-category-product-card" data-product-id="${productId}">
+                    <div class="home-category-product-image">
+                        <img src="${product.image}" alt="${product.name}" class="home-category-product-img"
+                             onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                        <div class="home-category-product-badge">${product.category || 'Featured'}</div>
+                        <div class="home-category-product-wishlist" data-id="${productId}">
+                            <i class="${isWishlisted ? 'fas' : 'far'} fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="home-category-product-info">
+                        <div class="home-category-product-category">${product.category || 'General'}</div>
+                        <h3 class="home-category-product-title">${product.name}</h3>
+                        <p class="home-category-product-store">
+                            <i class="fas fa-store"></i> ${product.shipperName || 'GlobalMart'}
+                        </p>
+                        <div class="home-category-product-rating">
+                            ${generateHomeCategoryStars(parseFloat(rating))}
+                            <span>(${reviewCount})</span>
+                        </div>
+                        <div class="home-category-product-price">
+                            <span class="home-category-product-current">Rs ${parseInt(priceInPKR).toLocaleString()}</span>
+                        </div>
+                        <button class="home-category-product-add-cart" 
+                                data-id="${productId}"
+                                data-name="${product.name}"
+                                data-price="${product.price}"
+                                data-image="${product.image}">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Destroy existing swiper if it exists
+    if (homeCategoryProductSwipers[categoryName]) {
+        homeCategoryProductSwipers[categoryName].destroy(true, true);
+    }
+    
+    // Initialize Swiper for this category
+    const swiperContainer = document.getElementById(`homeCategoryProductSwiper${categoryName}`);
+    if (swiperContainer) {
+        homeCategoryProductSwipers[categoryName] = new Swiper(swiperContainer, {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: `#homeCategoryProductPagination${categoryName}`,
+                clickable: true,
+            },
+            navigation: {
+                nextEl: `#homeCategoryProductNext${categoryName}`,
+                prevEl: `#homeCategoryProductPrev${categoryName}`,
+            },
+            breakpoints: {
+                480: {
+                    slidesPerView: 1,
+                    spaceBetween: 15,
+                },
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 25,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 25,
+                },
+            },
+        });
+    }
+    
+    // Add event listeners after rendering
+    setTimeout(() => {
+        addHomeCategoryCartListeners();
+        addHomeCategoryWishlistListeners();
+    }, 100);
+}
+
+// Generate star rating
+function generateHomeCategoryStars(rating) {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
+            stars += '<i class="fas fa-star"></i>';
+        } else if (i - rating < 1 && i - rating > 0) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        } else {
+            stars += '<i class="far fa-star"></i>';
+        }
+    }
+    return stars;
+}
+
+// Add cart event listeners
+function addHomeCategoryCartListeners() {
+    document.querySelectorAll('.home-category-product-add-cart').forEach(btn => {
+        btn.removeEventListener('click', handleHomeCategoryAddToCart);
+        btn.addEventListener('click', handleHomeCategoryAddToCart);
+    });
+}
+
+function handleHomeCategoryAddToCart(e) {
+    e.stopPropagation();
+    const product = {
+        id: this.dataset.id,
+        name: this.dataset.name,
+        price: parseFloat(this.dataset.price),
+        image: this.dataset.image,
+        quantity: 1
+    };
+    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingIndex = cart.findIndex(item => item.id == product.id);
+    
+    if (existingIndex !== -1) {
+        cart[existingIndex].quantity += 1;
+    } else {
+        cart.push(product);
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    showHomeCategoryToast(`${product.name} added to cart`);
+}
+
+// Add wishlist event listeners
+function addHomeCategoryWishlistListeners() {
+    document.querySelectorAll('.home-category-product-wishlist').forEach(btn => {
+        btn.removeEventListener('click', handleHomeCategoryWishlistClick);
+        btn.addEventListener('click', handleHomeCategoryWishlistClick);
+    });
+}
+
+function handleHomeCategoryWishlistClick(e) {
+    e.stopPropagation();
+    const productCard = this.closest('.home-category-product-card');
+    const icon = this.querySelector('i');
+    const product = {
+        id: this.dataset.id,
+        name: productCard.querySelector('.home-category-product-title').textContent,
+        price: parseFloat(productCard.querySelector('.home-category-product-add-cart').dataset.price),
+        image: productCard.querySelector('.home-category-product-img').src,
+        store: productCard.querySelector('.home-category-product-store').textContent.replace('Sold by:', '').trim(),
+        category: productCard.querySelector('.home-category-product-category').textContent
+    };
+    
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const existingIndex = wishlist.findIndex(item => String(item.id) === String(product.id));
+    
+    if (existingIndex > -1) {
+        wishlist.splice(existingIndex, 1);
+        showHomeCategoryToast(`${product.name} removed from wishlist`);
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+    } else {
+        wishlist.push({
+            id: String(product.id),
+            name: product.name,
+            price: product.price || 0,
+            image: product.image || '',
+            category: product.category || 'General',
+            store: product.store || 'GlobalMart',
+            addedAt: new Date().toISOString()
+        });
+        showHomeCategoryToast(`${product.name} added to wishlist`);
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+    }
+    
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    updateWishlistCount();
+}
+
+// Toast notification
+function showHomeCategoryToast(message) {
+    const existingToast = document.querySelector('.home-category-toast');
+    if (existingToast) existingToast.remove();
+    
+    const toast = document.createElement('div');
+    toast.className = 'home-category-toast';
+    toast.innerHTML = `<i class="fas fa-heart"></i><span>${message}</span>`;
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: white;
+        color: #333;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+        border-left: 4px solid #e05a00;
+        animation: slideInRight 0.3s ease;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.home-category-product-section')) {
+        loadHomeCategoryProducts();
+    }
+});
+</script>
+
     <!-- ===== SECTION: LIMITED TIME OFFERS ===== -->
     <section class="promo-section">
         <div class="container">
@@ -554,35 +1192,51 @@
         </div>
     </section>
 
+
+
+
     <!-- ===== SECTION 3: BRAND PARTNERS ===== -->
     <section class="brands-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Trusted By <span>Top Brands</span></h2>
-                <p>We partner with the world's leading brands</p>
-            </div>
-            <div class="brands-carousel">
-                <div class="brand-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Amazon">
-                </div>
-                <div class="brand-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png" alt="Samsung">
-                </div>
-                <div class="brand-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Nike_logo.svg/1280px-Nike_logo.svg.png" alt="Nike">
-                </div>
-                <div class="brand-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png" alt="Microsoft">
-                </div>
-                <div class="brand-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" alt="Adidas">
-                </div>
-                <div class="brand-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Apple_logo.svg/1024px-Apple_logo.svg.png" alt="Apple">
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Trusted By <span>Top Brands</span></h2>
+      <p>We partner with the world's leading brands</p>
+    </div>
+
+    <div class="brands-marquee">
+      <div class="brands-track">
+
+        <!-- ORIGINAL -->
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=OPoc3Wv99Ibz&format=png&color=000000" alt="Amazon"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=wGYgIlqPWdC2&format=png&color=000000" alt="Samsung"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=yLOQ68t1DdFF&format=png&color=000000" alt="Nike"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=22989&format=png&color=000000" alt="Microsoft"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=34552&format=png&color=000000" alt="Adidas"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=30840&format=png&color=000000" alt="Apple"></div>
+
+        <!-- DUPLICATE (IMPORTANT FOR SMOOTH LOOP) -->
+
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=OPoc3Wv99Ibz&format=png&color=000000" alt="Amazon"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=wGYgIlqPWdC2&format=png&color=000000" alt="Samsung"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=yLOQ68t1DdFF&format=png&color=000000" alt="Nike"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=22989&format=png&color=000000" alt="Microsoft"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=34552&format=png&color=000000" alt="Adidas"></div>
+        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=30840&format=png&color=000000" alt="Apple"></div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<script>
+    const mtrack = document.querySelector(".brands-track");
+
+// speed adjust (optional)
+let speed = 20; // seconds
+
+mtrack.style.animationDuration = speed + "s";
+</script>
 
     <!-- ===== SECTION 4: ENHANCED FEATURES ===== -->
     <section class="features-enhanced">
@@ -1248,151 +1902,183 @@
             toggleWishlist(product);
         }
 
-        function initializeWishlistButtons() {
-            document.querySelectorAll('.product-wishlist').forEach(button => {
-                button.removeEventListener('click', handleWishlistClick);
-                button.addEventListener('click', handleWishlistClick);
-            });
-        }
+       function initializeWishlistButtons() {
+    document.querySelectorAll('.product-wishlist').forEach(button => {
+        button.removeEventListener('click', handleWishlistClick);
+        button.addEventListener('click', handleWishlistClick);
+    });
+}
         
         async function loadProducts() {
-            document.getElementById('productsLoading').style.display = 'flex';
-            document.getElementById('noProducts').style.display = 'none';
-            
-            try {
-                const response = await fetch('data/product.json');
-                
-                if (!response.ok) {
-                    throw new Error('Failed to load products');
-                }
-                
-                const productData = await response.json();
-                
-                const warehouseProducts = productData.warehouseProducts || [];
-                const storeProducts = productData.storeProducts || [];
-                
-                const allProducts = [
-                    ...storeProducts,
-                    ...warehouseProducts.map(p => ({
-                        ...p,
-                        fromWarehouse: true,
-                        store: p.shipperName || 'Warehouse'
-                    }))
-                ];
-                
-                localStorage.setItem('warehouseProducts', JSON.stringify(warehouseProducts));
-                localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
-                
-                renderProducts(allProducts.slice(0, 8));
-                setTimeout(initializeWishlistButtons, 100);
-                
-            } catch (error) {
-                console.error('Error loading products:', error);
-                document.getElementById('noProducts').style.display = 'block';
-                document.getElementById('noProducts').innerHTML = `
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h3>Unable to Load Products</h3>
-                    <p>Please try refreshing the page</p>
-                `;
-            } finally {
-                document.getElementById('productsLoading').style.display = 'none';
-            }
+    // Show loading
+    const loadingElement = document.getElementById('productsLoading');
+    const noProductsElement = document.getElementById('noProducts');
+    
+    if (loadingElement) loadingElement.style.display = 'flex';
+    if (noProductsElement) noProductsElement.style.display = 'none';
+    
+    try {
+        // Load products from JSON file
+        const response = await fetch('data/product.json');
+        
+        if (!response.ok) {
+            throw new Error('Failed to load products');
         }
         
-        function renderProducts(products) {
-            const container = document.getElementById('productsGrid');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            
-            if (products.length === 0) {
-                document.getElementById('noProducts').style.display = 'block';
-                return;
-            }
-            
-            document.getElementById('noProducts').style.display = 'none';
-            
-            products.forEach(product => {
-                const productElement = document.createElement('div');
-                productElement.className = 'product-card';
-                
-                const hasDiscount = product.originalPrice && product.originalPrice > product.price;
-                const originalPrice = product.originalPrice || (product.price * 1.2);
-                const rating = product.rating || (4 + Math.random()).toFixed(1);
-                const reviewCount = Math.floor(Math.random() * 50) + 10;
-                
-                const priceInPKR = (product.price * 83 * 3.4).toFixed(0);
-                const originalInPKR = (originalPrice * 83 * 3.4).toFixed(0);
-                
-                const productId = product.id || `product-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-                
-                const isInWishlist = checkIfInWishlist(productId);
-                
-                productElement.innerHTML = `
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" 
-                             onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-                        ${product.fromWarehouse ? '<span class="product-badge">Warehouse</span>' : ''}
-                        <div class="product-wishlist" data-id="${productId}">
-                            <i class="${isInWishlist ? 'fas' : 'far'} fa-heart"></i>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">${product.category || 'Electronics'}</div>
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-store"><i class="fas fa-store"></i> Sold by: ${product.store || product.shipperName || 'GlobalMart'}</p>
-                        <div class="product-rating">
-                            <div class="product-stars">
-                                ${generateStarRating(parseFloat(rating))}
-                            </div>
-                            <span class="product-reviews">(${reviewCount} reviews)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="product-current">Rs ${priceInPKR}</span>
-                            ${hasDiscount ? `<span class="product-original">Rs ${originalInPKR}</span>` : ''}
-                        </div>
-                        <div class="product-actions">
-                            <button class="product-add-cart add-to-cart" 
-                                    data-id="${productId}" 
-                                    data-name="${product.name}" 
-                                    data-price="${product.price}" 
-                                    data-image="${product.image}">
-                                <i class="fas fa-shopping-cart"></i> Add
-                            </button>
-                            <a href="product-detail.html?id=${productId}" class="product-view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(productElement);
-            });
-            
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const product = {
-                        id: this.dataset.id,
-                        name: this.dataset.name,
-                        price: parseFloat(this.dataset.price),
-                        image: this.dataset.image,
-                        quantity: 1
-                    };
-                    
-                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    const existing = cart.find(item => item.id == product.id);
-                    if (existing) {
-                        existing.quantity += 1;
-                    } else {
-                        cart.push(product);
-                    }
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    
-                    updateCartCount();
-                    showToast(`${product.name} added to cart`);
-                });
-            });
+        const productData = await response.json();
+        
+        // Extract products from JSON structure
+        const warehouseProducts = productData.warehouseProducts || [];
+        const storeProducts = productData.storeProducts || [];
+        
+        // Combine all products for customers to view
+        const allProducts = [
+            ...storeProducts,
+            ...warehouseProducts.map(p => ({
+                ...p,
+                fromWarehouse: true,
+                store: p.shipperName || 'Warehouse'
+            }))
+        ];
+        
+        // Store in localStorage for other pages to use
+        localStorage.setItem('warehouseProducts', JSON.stringify(warehouseProducts));
+        localStorage.setItem('storeProducts', JSON.stringify(storeProducts));
+        
+        // Render products (only show first 8 on homepage)
+        renderProducts(allProducts.slice(0, 8));
+        
+    } catch (error) {
+        console.error('Error loading products:', error);
+        if (noProductsElement) {
+            noProductsElement.style.display = 'block';
+            noProductsElement.innerHTML = `
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Unable to Load Products</h3>
+                <p>Please try refreshing the page</p>
+            `;
         }
+    } finally {
+        // Hide loading
+        if (loadingElement) loadingElement.style.display = 'none';
+    }
+}
+        
+        function renderProducts(products) {
+    const container = document.getElementById('productsGrid');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    if (products.length === 0) {
+        const noProductsElement = document.getElementById('noProducts');
+        if (noProductsElement) noProductsElement.style.display = 'block';
+        return;
+    }
+    
+    const noProductsElement = document.getElementById('noProducts');
+    if (noProductsElement) noProductsElement.style.display = 'none';
+    
+    products.forEach(product => {
+        // Generate product ID if not exists
+        const productId = product.id || `product-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+        // Get wishlist
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        // Check if product is in wishlist
+        const isWishlisted = wishlist.some(item => String(item.id) === String(productId));
+
+        const hasDiscount = product.originalPrice && product.originalPrice > product.price;
+        const originalPrice = product.originalPrice || (product.price * 1.2);
+        const rating = product.rating || (4 + Math.random()).toFixed(1);
+        const reviewCount = Math.floor(Math.random() * 50) + 10;
+
+        // PKR Conversion - Using 280 like your working products page
+        const priceInPKR = (product.price * 280).toFixed(0);
+        const originalInPKR = (originalPrice * 280).toFixed(0);
+
+        const productElement = document.createElement('div');
+        productElement.className = 'product-card';
+
+        productElement.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}"
+                     onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                ${product.fromWarehouse ? '<span class="product-badge">Warehouse</span>' : ''}
+                <div class="product-wishlist" data-id="${productId}">
+                    <i class="${isWishlisted ? 'fas' : 'far'} fa-heart"></i>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-category">${product.category || 'Electronics'}</div>
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-store">
+                    <i class="fas fa-store"></i> 
+                    Sold by: ${product.store || product.shipperName || 'GlobalMart'}
+                </p>
+
+                <div class="product-rating">
+                    <div class="product-stars">
+                        ${generateStarRating(parseFloat(rating))}
+                    </div>
+                    <span class="product-reviews">(${reviewCount} reviews)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="product-current">Rs ${parseInt(priceInPKR).toLocaleString()}</span>
+                    ${hasDiscount ? `<span class="product-original">Rs ${parseInt(originalInPKR).toLocaleString()}</span>` : ''}
+                </div>
+
+                <div class="product-actions">
+                    <button class="product-add-cart add-to-cart"
+                            data-id="${productId}"
+                            data-name="${product.name}"
+                            data-price="${product.price}"
+                            data-image="${product.image}">
+                        <i class="fas fa-shopping-cart"></i> Add
+                    </button>
+
+                    <a href="product-detail.html?id=${productId}" class="product-view">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(productElement);
+    });
+    
+    // Add event listeners to cart buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const product = {
+                id: this.dataset.id,
+                name: this.dataset.name,
+                price: parseFloat(this.dataset.price),
+                image: this.dataset.image,
+                quantity: 1
+            };
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existing = cart.find(item => String(item.id) === String(product.id));
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            updateCartCount();
+            showToast(`${product.name} added to cart`);
+        });
+    });
+    
+    // Re-initialize wishlist buttons
+    initializeWishlistButtons();
+}
         
         function generateStarRating(rating) {
             let stars = '';

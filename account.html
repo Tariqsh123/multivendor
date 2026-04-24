@@ -595,7 +595,7 @@
                             <input type="password" id="confirmPassword" required>
                         </div>
                         
-                        <!-- Role Selection -->
+                        <!-- Role Selection - SHIPPER ROLE REMOVED -->
                         <div class="form-group">
                             <label>Select Your Role</label>
                             <div class="role-selection">
@@ -615,14 +615,7 @@
                                         <small>Create your own store</small>
                                     </label>
                                 </div>
-                                <div class="role-option">
-                                    <input type="radio" id="roleShipper" name="role" value="shipper">
-                                    <label for="roleShipper">
-                                        <i class="fas fa-shipping-fast"></i>
-                                        <span>Shipper</span>
-                                        <small>Upload products to warehouse</small>
-                                    </label>
-                                </div>
+                                <!-- Shipper role option completely removed -->
                             </div>
                         </div>
                         
@@ -647,19 +640,21 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>GlobalMart</h3>
-                    <p>Multi-vendor B2B and B2C marketplace connecting China to the world.</p>
+                    <p>India's fastest growing multi-vendor B2B and B2C marketplace connecting sellers to customers worldwide. We provide a seamless platform for buying and selling with trust and reliability.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
+                
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -671,26 +666,38 @@
                         <li><a href="account.html">Account</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-col">
-                    <h4>Support</h4>
+                    <h4>Customer Service</h4>
                     <ul>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="shipping-policy.html">Shipping Policy</a></li>
                         <li><a href="return-policy.html">Return Policy</a></li>
                         <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-col">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Shanghai, China</li>
-                        <li><i class="fas fa-phone"></i> +86 123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> info@globalmart.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Shanghai, China</li>
+                        <li><i class="fas fa-phone-alt"></i> +86 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> support@globalmart.com</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Customer Support</li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2023 GlobalMart. All rights reserved. | Designed for Educational Purposes</p>
+                <p>&copy; 2026 GlobalMart | All rights reserved</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-discover"></i>
+                </div>
             </div>
         </div>
     </footer>
@@ -844,7 +851,7 @@
             // Check for role parameter in URL
             const urlParams = new URLSearchParams(window.location.search);
             const role = urlParams.get('role');
-            if (role) {
+            if (role && (role === 'customer' || role === 'manager')) {
                 // Switch to signup tab
                 document.getElementById('signupTabBtn').click();
                 // Select the role

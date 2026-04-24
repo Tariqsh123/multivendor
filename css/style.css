@@ -1117,7 +1117,8 @@ a {
 }
 
 .team {
-    padding: 80px 0;
+    padding: 60px 0;
+    padding-top: 0;
     background-color: var(--gray);
 }
 
@@ -3402,37 +3403,31 @@ p,a,li,input,option,textarea{
         }
         
         .role-grid-modern {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 30px;
+            justify-content: center;
+            align-items: center;
         }
         
         .role-card-modern {
             background: white;
             border-radius: 30px;
             padding: 40px 30px;
+            width: 100%;
+            max-width: 450px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
             transition: all 0.4s ease;
-            border: 1px solid rgba(255,107,0,0.1);
+            border: 2px solid transparent;
+            background: linear-gradient(white, rgba(224, 90, 0, 0.192));
             position: relative;
             overflow: hidden;
         }
         
-        .role-card-modern::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,107,0,0.03) 0%, transparent 100%);
-            z-index: 0;
-        }
         
         .role-card-modern:hover {
             transform: translateY(-15px);
-            box-shadow: 0 40px 70px rgba(255,107,0,0.15);
             border-color: #ff6b00;
         }
         
@@ -3468,8 +3463,9 @@ p,a,li,input,option,textarea{
         }
         
         .role-card-modern h3 {
-            font-size: 1.8rem;
+            font-size: 25px;
             color: #333;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             margin-bottom: 15px;
             font-weight: 700;
             position: relative;
@@ -3753,7 +3749,6 @@ p,a,li,input,option,textarea{
         /* Responsive Design */
         @media (max-width: 992px) {
             .steps-grid,
-            .role-grid-modern,
             .trust-grid-modern,
             .promo-grid-modern {
                 grid-template-columns: repeat(2, 1fr);
@@ -3766,7 +3761,6 @@ p,a,li,input,option,textarea{
         
         @media (max-width: 768px) {
             .steps-grid,
-            .role-grid-modern,
             .promo-grid-modern {
                 grid-template-columns: 1fr;
             }
@@ -4932,86 +4926,7 @@ p,a,li,input,option,textarea{
         }
 
         /* Roles Section */
-        .roles {
-            padding: 60px 0;
-            background: #f8f9fa;
-        }
-
-        .role-grid-modern {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .role-card-modern {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            border: 1px solid #f0f0f0;
-        }
-
-        .role-card-modern:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255,140,51,0.15);
-            border-color: var(--primary);
-        }
-
-        .role-icon-3d {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 25px;
-            background: rgba(255,140,51,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        .role-card-modern:hover .role-icon-3d {
-            background: var(--primary);
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .role-icon-3d i {
-            font-size: 3rem;
-            color: var(--primary);
-        }
-
-        .role-card-modern:hover .role-icon-3d i {
-            color: white;
-        }
-
-        .role-card-modern h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .role-card-modern p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .role-btn-modern {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .role-btn-modern:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255,140,51,0.3);
-        }
+        
 
         /* Trust Section */
         .trust-section {
@@ -5148,27 +5063,19 @@ p,a,li,input,option,textarea{
         .footer {
             background: #0a0a0a;
             color: #fff;
+            border-radius: 20px 20px 0 0;
+            margin: 0 auto;
+            max-width: 1400px;
+            margin-top: 30px;
+            width: 99%;
+            border: 3px solid #e05a00;
+            border-bottom: none;
             padding: 70px 0 30px;
             position: relative;
             overflow: hidden;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), #ff6b00, var(--primary));
-            animation: gradientMove 3s infinite;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        
 
         .footer-grid {
             display: grid;
@@ -5670,8 +5577,7 @@ p,a,li,input,option,textarea{
                 grid-template-columns: repeat(3, 1fr);
             }
             
-            .steps-grid,
-            .role-grid-modern {
+            .steps-grid{
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -5765,8 +5671,7 @@ p,a,li,input,option,textarea{
                 grid-template-columns: 1fr;
             }
             
-            .steps-grid,
-            .role-grid-modern {
+            .steps-grid{
                 grid-template-columns: 1fr;
             }
             
@@ -6217,4 +6122,7 @@ p,a,li,input,option,textarea{
 
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
     display: none;
+}
+
+h1,h2,h3,h4,h5,h6{
 }

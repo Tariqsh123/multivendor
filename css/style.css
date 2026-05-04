@@ -5636,7 +5636,7 @@ p,a,li,input,option,textarea{
             }
             
             .category-card {
-                height: 150px;
+                height: fit-content;
             }
             
             .category-card h3 {
@@ -5722,7 +5722,8 @@ p,a,li,input,option,textarea{
             }
             
             .category-card {
-                height: 120px;
+                height: fit-content;
+                width: 160px;
             }
             
             .category-card .overlay {
@@ -6019,9 +6020,30 @@ p,a,li,input,option,textarea{
     color: #999;
     text-decoration: line-through;
 }
-
+.home-category-product-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.home-category-product-view{
+    width: 50%;
+    padding: 8px;
+    border: none;
+    background-color: #eee;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: auto;
+}
 .home-category-product-add-cart {
-    width: 100%;
+    width: 50%;
     padding: 8px;
     background: #e05a00;
     color: white;

@@ -955,40 +955,48 @@ function renderHomeCategoryCarousel(categoryName, products) {
         const reviewCount = Math.floor(Math.random() * 50) + 10;
         
         return `
-            <div class="swiper-slide">
-                <div class="home-category-product-card" data-product-id="${productId}">
-                    <div class="home-category-product-image">
-                        <img src="${product.image}" alt="${product.name}" class="home-category-product-img"
-                             onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-                        <div class="home-category-product-badge">${product.category || 'Featured'}</div>
-                        <div class="home-category-product-wishlist" data-id="${productId}">
-                            <i class="${isWishlisted ? 'fas' : 'far'} fa-heart"></i>
+                    <div class="swiper-slide">
+                        <div class="home-category-product-card" data-product-id="${productId}">
+                            <div class="home-category-product-image">
+                                <img src="${product.image}" alt="${product.name}" class="home-category-product-img"
+                                     onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                                <div class="home-category-product-badge">${product.category || 'Featured'}</div>
+                                <div class="home-category-product-wishlist" data-id="${productId}">
+                                    <i class="${isWishlisted ? 'fas' : 'far'} fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="home-category-product-info">
+                                <div class="home-category-product-category">${product.category || 'General'}</div>
+                                <h3 class="home-category-product-title">${product.name}</h3>
+                                <p class="home-category-product-store">
+                                    <i class="fas fa-store"></i> ${product.shipperName || 'GlobalMart'}
+                                </p>
+                                <div class="home-category-product-rating">
+                                    ${generateHomeCategoryStars(parseFloat(rating))}
+                                    <span>(${reviewCount})</span>
+                                </div>
+                                <div class="home-category-product-price">
+                                    <span class="home-category-product-current">Rs ${parseInt(priceInPKR).toLocaleString()}</span>
+                                </div>
+                                
+                                <!-- View + Add to Cart Buttons -->
+                                <div class="home-category-product-actions">
+                                    <button class="home-category-product-add-cart" 
+                                            data-id="${productId}"
+                                            data-name="${product.name}"
+                                            data-price="${product.price}"
+                                            data-image="${product.image}">
+                                        <i class="fas fa-shopping-cart"></i> Add 
+                                    </button>
+                                    
+                                    <a href="product-detail.html?id=${productId}" class="home-category-product-view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="home-category-product-info">
-                        <div class="home-category-product-category">${product.category || 'General'}</div>
-                        <h3 class="home-category-product-title">${product.name}</h3>
-                        <p class="home-category-product-store">
-                            <i class="fas fa-store"></i> ${product.shipperName || 'GlobalMart'}
-                        </p>
-                        <div class="home-category-product-rating">
-                            ${generateHomeCategoryStars(parseFloat(rating))}
-                            <span>(${reviewCount})</span>
-                        </div>
-                        <div class="home-category-product-price">
-                            <span class="home-category-product-current">Rs ${parseInt(priceInPKR).toLocaleString()}</span>
-                        </div>
-                        <button class="home-category-product-add-cart" 
-                                data-id="${productId}"
-                                data-name="${product.name}"
-                                data-price="${product.price}"
-                                data-image="${product.image}">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `;
+                `;
     }).join('');
     
     // Destroy existing swiper if it exists

@@ -79,13 +79,167 @@
             
             <div class="nav-menu" id="navMenu">
 
-                <div class="nav-input">
-                   <input type="text" placeholder="Search Here">
-                   <select>
-                    <option>Products</option>
-                    <option>Vendors</option>
-                   </select>
-                </div>
+                <!-- Updated Nav Search -->
+<div class="nav-input">
+    <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="mainSearchInput" placeholder="Search products or vendors..." autocomplete="off">
+        <select id="searchType">
+            <option value="products">Products</option>
+            <option value="vendors">Vendors</option>
+        </select>
+        <!-- <button id="searchBtn" class="search-btn">
+            <i class="fas fa-arrow-right"></i>
+        </button> -->
+    </div>
+
+    <!-- Search Results Dropdown -->
+    <div class="search-results" id="searchResults">
+        <div class="results-header">
+            <span id="resultsTitle">Results</span>
+            <!-- <button class="close-results" id="closeResults">×</button> -->
+        </div>
+        <div class="results-content" id="resultsContent"></div>
+    </div>
+</div>
+<script>
+// Enhanced Search Functionality with Vendor Store Support
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('mainSearchInput');
+    const searchType = document.getElementById('searchType');
+    const searchResults = document.getElementById('searchResults');
+    const resultsContent = document.getElementById('resultsContent');
+    const searchBtn = document.getElementById('searchBtn');
+
+    let products = [];
+    let vendors = [];
+
+    // Load products
+    async function loadProducts() {
+        try {
+            const res = await fetch('data/product.json?t=' + Date.now());
+            const data = await res.json();
+            products = [...(data.warehouseProducts || []), ...(data.storeProducts || [])];
+        } catch (e) {
+            console.error("Failed to load products", e);
+        }
+    }
+
+    // Sample Vendors - Add more as needed
+    vendors = [
+        { id: 1, name: "BrightHome Supplies", rating: 4.8, products: 245 },
+        { id: 2, name: "TechHub Store", rating: 4.6, products: 189 },
+        { id: 3, name: "FashionGalaxy", rating: 4.9, products: 320 },
+        { id: 4, name: "SportsArena", rating: 4.5, products: 98 },
+        { id: 5, name: "HomeEssentials PK", rating: 4.7, products: 156 }
+    ];
+
+    loadProducts();
+
+    function showResults(filteredItems, type) {
+        resultsContent.innerHTML = '';
+        
+        if (filteredItems.length === 0) {
+            resultsContent.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5;"></i>
+                    <p>No matching ${type} found</p>
+                </div>`;
+            searchResults.classList.add('active');
+            return;
+        }
+
+        filteredItems.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'search-result-item';
+
+            if (type === 'products') {
+                const pricePKR = Math.round((item.price || 0) * 280);
+                div.innerHTML = `
+                    <img src="${item.image || 'https://via.placeholder.com/50'}" alt="${item.name}">
+                    <div class="search-result-info">
+                        <h4>${item.name}</h4>
+                        <p>Rs ${pricePKR.toLocaleString()} • ${item.category || 'General'}</p>
+                    </div>
+                `;
+                div.onclick = () => {
+                    window.location.href = `product-detail.html?id=${item.id}`;
+                    searchResults.classList.remove('active');
+                };
+            } else {
+                // === VENDOR CLICK - Now opens store.html ===
+                div.innerHTML = `
+                    <div style="width:50px;height:50px;background:#f0f0f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#e05a00;">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="search-result-info">
+                        <h4>${item.name}</h4>
+                        <p>⭐ ${item.rating} • ${item.products} products</p>
+                    </div>
+                `;
+                div.onclick = () => {
+                    const vendorName = encodeURIComponent(item.name);
+                    window.location.href = `store.html?name=${vendorName}`;
+                    searchResults.classList.remove('active');
+                };
+            }
+            resultsContent.appendChild(div);
+        });
+
+        searchResults.classList.add('active');
+    }
+
+    // Perform Search
+    function performSearch() {
+        const query = searchInput.value.toLowerCase().trim();
+        if (!query) {
+            searchResults.classList.remove('active');
+            return;
+        }
+
+        const type = searchType.value;
+
+        if (type === 'products') {
+            const filtered = products.filter(p => 
+                (p.name && p.name.toLowerCase().includes(query)) ||
+                (p.category && p.category.toLowerCase().includes(query))
+            );
+            showResults(filtered, 'products');
+        } else {
+            const filtered = vendors.filter(v => 
+                v.name.toLowerCase().includes(query)
+            );
+            showResults(filtered, 'vendors');
+        }
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', performSearch);
+    searchType.addEventListener('change', performSearch);
+    searchBtn.addEventListener('click', performSearch);
+
+    // Enter key support
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') performSearch();
+    });
+
+    // Close results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && 
+            !searchResults.contains(e.target) && 
+            !searchBtn.contains(e.target)) {
+            searchResults.classList.remove('active');
+        }
+    });
+
+    // Close button
+    document.getElementById('closeResults').addEventListener('click', () => {
+        searchResults.classList.remove('active');
+    });
+});
+</script>
+
+
                 <!-- <a href="index.html" class="nav-link">Home</a> -->
                 <!-- <a href="about.html" class="nav-link active">About</a> -->
                 <a href="products.html" class="nav-link">Products</a>

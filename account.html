@@ -856,13 +856,14 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3>Your Cart</h3>
+            <h3>Your Shopping Cart</h3>
             <button class="close-cart" id="closeCart">&times;</button>
         </div>
         <div class="cart-items" id="cartItems">
             <div class="empty-cart">
                 <i class="fas fa-shopping-cart"></i>
                 <p>Your cart is empty</p>
+                <small>Add items to get started</small>
             </div>
         </div>
         <div class="cart-footer">
@@ -878,7 +879,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Wishlist Sidebar - Fixed to open on same page without redirect -->
     <div class="wishlist-sidebar" id="wishlistSidebar">
         <div class="wishlist-header">
-            <h3>Your Wishlist <i class="fas fa-heart" style="color: #ff4757;"></i></h3>
+            <h3>Your Wishlist</h3>
             <button class="close-wishlist" id="closeWishlist">&times;</button>
         </div>
         <div class="wishlist-items" id="wishlistItems">
@@ -894,7 +895,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <div class="mobile-bottom-nav">
         <div class="nav-items">
-            <a href="index.html" class="nav-item">
+            <a href="index.html" class="nav-item active">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
@@ -916,7 +917,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <span>Wishlist</span>
             </a>
-            <a href="account.html" class="nav-item active">
+            <a href="account.html" class="nav-item">
                 <i class="fas fa-user"></i>
                 <span>Account</span>
             </a>

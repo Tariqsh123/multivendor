@@ -3,50 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>GlobalMart | Admin Dashboard (enhanced)</title>
+    <title>Admin - Sino Pak Nova</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ----- YOUR EXACT ORIGINAL THEME — INTACT (no color changes) ----- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        :root {
-            --primary: #e05a00;
-            --primary-dark: #b34800;
-            --primary-light: #ff6b1a;
-            --secondary: #64748b;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --border: #e2e8f0;
-            --card-bg: #ffffff;
-            --sidebar-bg: #0f172a;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-light: #94a3b8;
-        }
-
-        body {
-            background: #f1f5f9;
-            color: var(--text-primary);
-        }
-
-        /* Layout */
         .admin-wrapper {
             display: flex;
             min-height: 100vh;
         }
-
         /* ---------- SIDEBAR (FULLY RESPONSIVE, MOBILE SLIDE) ---------- */
         .sidebar {
             width: 280px;
-            background: var(--sidebar-bg);
+            background: linear-gradient(to top , #153862,#0c90d8);
             color: white;
             position: fixed;
             height: 100vh;
@@ -83,19 +56,13 @@
         }
 
         .sidebar-header h2 {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: 600;
             color: white;
             letter-spacing: 0.5px;
         }
-
-        .sidebar-header h2 span {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
         .sidebar-header p {
-            color: var(--text-light);
+            color: white;
             font-size: 13px;
             margin-top: 4px;
         }
@@ -109,7 +76,7 @@
         .avatar {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(to top,#ca0705,#ff4538);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -121,13 +88,13 @@
         }
 
         .admin-profile h4 {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 4px;
         }
 
         .admin-profile p {
-            color: var(--text-light);
+            color: white;
             font-size: 13px;
         }
 
@@ -158,21 +125,21 @@
         }
 
         .nav-item.active {
-            background: rgba(224, 90, 0, 0.15);
-            color: var(--primary);
-            border-left-color: var(--primary);
+            background: rgb(202, 7, 5,0.15);
+            color: white;
+            border-left-color: #ca0705;
         }
 
         .nav-item.logout {
             margin-top: 32px;
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 20px;
-            color: var(--danger);
+            color: white;
         }
 
         .nav-item.logout:hover {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
+            background: rgb(202, 7, 5,0.15);
+            color: #ca0705;
         }
 
         /* ---------- MAIN CONTENT (fluid, mobile first) ---------- */
@@ -207,13 +174,13 @@
         }
 
         .page-title h1 {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: #17602b;
         }
 
         .page-title p {
-            color: var(--text-secondary);
+            color: black;
             font-size: 14px;
             margin-top: 4px;
         }
@@ -225,37 +192,7 @@
             flex-wrap: wrap;
         }
 
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: var(--light);
-            border-radius: 12px;
-            padding: 8px 16px;
-            border: 1px solid var(--border);
-        }
-
-        .search-box i {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        .search-box input {
-            border: none;
-            background: none;
-            padding: 8px 12px;
-            outline: none;
-            width: 250px;
-            font-size: 14px;
-        }
-
-        .search-box input::placeholder {
-            color: var(--text-light);
-        }
-
         @media (max-width: 600px) {
-            .search-box input {
-                width: 160px;
-            }
             .top-actions {
                 gap: 12px;
             }
@@ -275,7 +212,7 @@
             position: absolute;
             top: -8px;
             right: -8px;
-            background: var(--primary);
+            background: #ca0705;
             color: white;
             font-size: 11px;
             padding: 2px 6px;
@@ -325,17 +262,15 @@
         }
 
         .stat-header h3 {
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            color: #153862;
+            font-size:large;
+            font-weight: 600;
         }
 
         .stat-icon {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(to right,#17602b,#45b859);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -347,13 +282,13 @@
         .stat-number {
             font-size: 32px;
             font-weight: 700;
-            color: var(--text-primary);
+            color: #153862;
             margin-bottom: 4px;
         }
 
         .stat-change {
             font-size: 13px;
-            color: var(--text-secondary);
+            color: #ca0705;
         }
 
         /* Charts grid – adaptive */
@@ -384,12 +319,12 @@
         .chart-header h2 {
             font-size: 18px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: #153862;
         }
 
         .chart-period {
             padding: 6px 12px;
-            border: 1px solid var(--border);
+            border: 1px solid #17602b;
             border-radius: 8px;
             background: var(--light);
             font-size: 13px;
@@ -399,19 +334,19 @@
         .zero-state {
             text-align: center;
             padding: 48px 24px;
-            color: var(--text-secondary);
+            color: #ca0705;
         }
 
         .zero-state i {
             font-size: 48px;
-            color: var(--text-light);
+            color: #17602b;
             margin-bottom: 16px;
         }
 
         .zero-state h3 {
             font-size: 18px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: #153862;
             margin-bottom: 8px;
         }
 
@@ -435,9 +370,9 @@
         }
 
         .card-header h2 {
-            font-size: 18px;
+            font-size: 25px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: #153862;
         }
 
         .card-actions {
@@ -448,7 +383,7 @@
 
         /* buttons – original */
         .btn-primary {
-            background: var(--primary);
+            background: #ca0705;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -463,15 +398,13 @@
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
             transform: translateY(-1px);
-            box-shadow: 0 4px 6px -1px rgba(224, 90, 0, 0.3);
         }
 
         .btn-secondary {
-            background: var(--light);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            background: white;
+            color: #153862;
+            border: 1px solid gainsboro;
             padding: 10px 20px;
             border-radius: 12px;
             font-weight: 500;
@@ -485,11 +418,11 @@
 
         .btn-secondary:hover {
             background: white;
-            border-color: var(--primary);
+            border-color: #153862;
         }
 
         .btn-danger {
-            background: var(--danger);
+            background: #ca0705;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -502,7 +435,15 @@
             align-items: center;
             gap: 8px;
         }
-
+        .store-footer{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+        }
+        .store-footer .btn-secondary{
+            width: fit-content;
+        }
         /* tables */
         .table-container {
             overflow-x: auto;
@@ -519,8 +460,8 @@
         th {
             text-align: left;
             padding: 16px 12px;
-            background: var(--light);
-            color: var(--text-secondary);
+            background: #17602b;
+            color: white;
             font-weight: 600;
             font-size: 13px;
             text-transform: uppercase;
@@ -528,8 +469,8 @@
 
         td {
             padding: 16px 12px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-primary);
+            border-bottom: 1px solid gainsboro;
+            color: #153862;
             font-size: 14px;
         }
 
@@ -543,25 +484,25 @@
         }
 
         .badge-active {
-            background: #d1fae5;
-            color: #065f46;
+            background: #17602b;
+            color: white;
         }
 
         .badge-inactive {
-            background: #fee2e2;
-            color: #991b1b;
+            background: #ca0705;
+            color: white;
         }
 
         .badge-pending {
-            background: #fed7aa;
-            color: #92400e;
+            background: black;
+            color: #ddce00;
         }
 
         /* product image */
         .product-image {
             width: 48px;
             height: 48px;
-            background: var(--light);
+            background: white;
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -591,14 +532,14 @@
 
         .store-card, .shipper-card {
             background: white;
-            border: 1px solid var(--border);
+            border: 1px solid gainsboro;
             border-radius: 16px;
             padding: 20px;
             transition: all 0.2s;
         }
 
         .store-card:hover {
-            border-color: var(--primary);
+            border-color: #ca0705;
             box-shadow: 0 8px 12px -4px rgba(224, 90, 0, 0.1);
         }
 
@@ -612,7 +553,7 @@
         .store-logo {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(to right , #ca0705,#ff4538);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -626,35 +567,52 @@
             grid-template-columns: 1fr 1fr 1fr;
             gap: 12px;
             padding: 16px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-top: 1px solid gainsboro;
+            border-bottom: 1px solid gainsboro;
             margin-bottom: 16px;
         }
 
         .metric-value {
             font-size: 18px;
             font-weight: 600;
-            color: var(--text-primary);
+            color: #153862;
         }
 
         .metric-label {
             font-size: 11px;
-            color: var(--text-secondary);
+            color: #ca0705;
             text-transform: uppercase;
         }
 
         .shipper-avatar {
             width: 64px;
             height: 64px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(to right , #ca0705,#ff4538);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            margin-bottom: 10px;
             font-size: 24px;
         }
-
+        .shipper-details{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .shipper-details h4{
+            color: #153862;
+            font-size: 20px;
+        }
+        .shipper-details .location{
+            color: #17602b;
+        }
+        .shipper-details .rating{
+            color: gold;
+        }
         /* modal – fully responsive */
         .modal {
             display: none;
@@ -744,14 +702,6 @@
         .toast i { font-size: 20px; }
         @keyframes slideIn { from { transform: translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }
 
-        /* spinner */
-        .spinner {
-            display: inline-block; width: 20px; height: 20px;
-            border: 3px solid var(--border); border-top-color: var(--primary);
-            border-radius: 50%; animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
         /* mobile menu toggle (FAB) – your original */
         .menu-toggle {
             display: none;
@@ -760,7 +710,7 @@
             right: 15px;
             width: 56px;
             height: 56px;
-            background: var(--primary);
+            background: linear-gradient(to right,#ca0705,#ff4538);
             color: white;
             border: none;
             border-radius: 50%;
@@ -790,8 +740,8 @@
     <!-- SIDEBAR (exactly as yours) -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h2>Global<span>Mart</span></h2>
-            <p>Admin Dashboard</p>
+            <h2>Sino Pak Nova</h2>
+            <p>Admin Panel</p>
         </div>
         <div class="admin-profile">
             <div class="avatar"><i class="fas fa-user-shield"></i></div>
@@ -820,7 +770,6 @@
                 <p id="pageSubtitle">Welcome back, Admin. Here's what's happening today.</p>
             </div>
             <div class="top-actions">
-                <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="Search anything..." id="globalSearch"></div>
                 <div class="notification-icon"><i class="far fa-bell"></i><span class="badge">0</span></div>
                 <select class="currency-select" id="currencySelector">
                     <option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="GBP">GBP (£)</option><option value="PKR" selected>PKR (₨)</option><option value="CNY">CNY (¥)</option>
@@ -847,7 +796,17 @@
         </div>
 
         <!-- PRODUCTS TAB -->
-        <div class="admin-tab" id="products"><div class="content-card"><div class="card-header"><h2>Product Management</h2><div class="card-actions"><button class="btn-secondary" onclick="refreshProducts()"><i class="fas fa-sync-alt"></i> Refresh</button><button class="btn-primary" onclick="showAddProductModal()"><i class="fas fa-plus"></i> Add Product</button></div></div><div class="table-container"><table id="productsTable"><thead><tr><th>Product</th><th>Category</th><th>Price (PKR)</th><th>Store</th><th>Rating</th><th>Actions</th></tr></thead><tbody id="productsBody"><tr><td colspan="6" style="text-align:center;"><div class="spinner" style="margin-right:8px;"></div>Loading products...</td></tr></tbody></table></div></div></div>
+        <div class="admin-tab" id="products">
+            <div class="content-card">
+                <div class="card-header">
+                    <h2>Product Management</h2>
+                    <div class="card-actions">
+                        <button class="btn-secondary" onclick="refreshProducts()"><i class="fas fa-sync-alt"></i> Refresh</button>
+                        <button class="btn-primary" onclick="showAddProductModal()"><i class="fas fa-plus"></i> Add Product</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="productsTable"><thead><tr><th>Product</th><th>Category</th><th>Price (PKR)</th><th>Store</th><th>Rating</th><th>Actions</th></tr></thead><tbody id="productsBody"><tr><td colspan="6" style="text-align:center;"></td></tr></tbody></table></div></div></div>
 
         <!-- STORES TAB -->
         <div class="admin-tab" id="stores"><div class="content-card"><div class="card-header"><h2>Store Directory</h2><div class="card-actions"><button class="btn-secondary" onclick="refreshStores()"><i class="fas fa-sync-alt"></i> Refresh</button><button class="btn-primary" onclick="showAddStoreModal()"><i class="fas fa-plus"></i> Add Store</button></div></div><div class="store-grid" id="storesGrid"><div style="grid-column:1/-1; text-align:center; padding:40px;"><div class="spinner"></div><p>Loading stores...</p></div></div></div></div>
@@ -958,7 +917,7 @@
         if (!stores || stores.length === 0) {
             grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px;"><i class="fas fa-store" style="font-size:48px; color:var(--text-light);"></i><h3>No Stores Found</h3><p>Stores will appear here when managers register</p></div>`; return;
         }
-        grid.innerHTML = stores.map(store => `<div class="store-card"><div class="store-header"><div class="store-logo"><i class="fas fa-store"></i></div><div class="store-info"><h4>${store.storeName || store.name+"'s Store"}</h4><p>${store.name}</p></div></div><div class="store-metrics"><div class="metric"><div class="metric-value">0</div><div class="metric-label">Products</div></div><div class="metric"><div class="metric-value">0</div><div class="metric-label">Orders</div></div><div class="metric"><div class="metric-value">₨0</div><div class="metric-label">Revenue</div></div></div><div class="store-footer"><span class="badge-status badge-active">Active</span><button class="btn-secondary" style="flex:1;" onclick="manageStore('${store.id}')"><i class="fas fa-cog"></i> Manage</button><button class="btn-secondary" style="padding:6px 12px;" onclick="editStore('${store.id}')"><i class="fas fa-edit"></i></button></div></div>`).join('');
+        grid.innerHTML = stores.map(store => `<div class="store-card"><div class="store-header"><div class="store-logo"><i class="fas fa-store"></i></div><div class="store-info"><h4>${store.storeName || store.name+"'s Store"}</h4><p>${store.name}</p></div></div><div class="store-metrics"><div class="metric"><div class="metric-value">0</div><div class="metric-label">Products</div></div><div class="metric"><div class="metric-value">0</div><div class="metric-label">Orders</div></div><div class="metric"><div class="metric-value">₨0</div><div class="metric-label">Revenue</div></div></div><div class="store-footer"><span class="badge-status badge-active">Active</span><button class="btn-secondary" onclick="manageStore('${store.id}')"><i class="fas fa-cog"></i> Manage</button><button class="btn-secondary" style="padding:6px 12px;" onclick="editStore('${store.id}')"><i class="fas fa-edit"></i></button></div></div>`).join('');
     }
 
     function loadShippersGrid(shippers) {
@@ -974,7 +933,7 @@
         if (!users || users.length === 0) {
             tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:40px;"><i class="fas fa-users" style="font-size:24px; color:var(--text-light);"></i><p>No users found</p></td></tr>'; return;
         }
-        tbody.innerHTML = users.map(user => `<tr><td><div style="display:flex;align-items:center;gap:12px;"><div style="width:40px;height:40px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;"><i class="fas fa-user"></i></div><div><div style="font-weight:600;">${user.name||'Unknown'}</div><div style="font-size:12px;color:var(--text-secondary);">${user.email||''}</div></div></div></td><td><span class="badge-status" style="background:var(--light);color:var(--text-primary);text-transform:capitalize;">${user.role||'customer'}</span></td><td><span class="badge-status badge-active">Active</span></td><td>${user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}) : 'N/A'}</td><td><div style="display:flex;gap:8px;"><button class="btn-secondary" style="padding:6px 12px;" onclick="editUser('${user.id}')"><i class="fas fa-edit"></i></button><button class="btn-secondary" style="padding:6px 12px;" onclick="viewUserDetails('${user.id}')"><i class="fas fa-eye"></i></button>${user.role!=='admin'?`<button class="btn-danger" style="padding:6px 12px;" onclick="deleteUser('${user.id}')"><i class="fas fa-trash"></i></button>`:''}</div></td></tr>`).join('');
+        tbody.innerHTML = users.map(user => `<tr><td><div style="display:flex;align-items:center;gap:12px;"><div style="width:40px;height:40px;background:linear-gradient(to right,#ca0705,#ff4538);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;"><i class="fas fa-user"></i></div><div><div style="font-weight:600;">${user.name||'Unknown'}</div><div style="font-size:12px;color:var(--text-secondary);">${user.email||''}</div></div></div></td><td><span class="badge-status" style="background:var(--light);color:var(--text-primary);text-transform:capitalize;">${user.role||'customer'}</span></td><td><span class="badge-status badge-active">Active</span></td><td>${user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}) : 'N/A'}</td><td><div style="display:flex;gap:8px;"><button class="btn-secondary" style="padding:6px 12px;" onclick="editUser('${user.id}')"><i class="fas fa-edit"></i></button><button class="btn-secondary" style="padding:6px 12px;" onclick="viewUserDetails('${user.id}')"><i class="fas fa-eye"></i></button>${user.role!=='admin'?`<button class="btn-danger" style="padding:6px 12px;" onclick="deleteUser('${user.id}')"><i class="fas fa-trash"></i></button>`:''}</div></td></tr>`).join('');
     }
 
     function editUser(userId) { const users = JSON.parse(localStorage.getItem('users'))||[]; const user = users.find(u=>u.id==userId); if(user){ document.getElementById('editUserId').value = user.id; document.getElementById('editUserName').value = user.name||''; document.getElementById('editUserEmail').value = user.email||''; document.getElementById('editUserRole').value = user.role||'customer'; document.getElementById('editUserStatus').value = 'active'; openModal('editUserModal'); } }

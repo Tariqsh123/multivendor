@@ -2,660 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>FAQ - GlobalMart</title>
+
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Title -->
+    <title>Frequently Ask Questions - Sino Pak Nova</title>
+    <meta name="description" content="Find answers to common questions about Sino Pak Nova, including orders, payments, delivery, returns, and account support. Our FAQ section is here to help you quickly get the information you need for a smooth shopping experience.">
+    <meta name="keywords" content="Sino Pak Nova, online shopping Pakistan, ecommerce store Pakistan, buy online Pakistan, trusted online store, affordable online shopping, electronics online, fashion store online, home essentials Pakistan, mobile accessories online, best ecommerce website, online marketplace Pakistan, secure online shopping, fast delivery Pakistan, quality products online, shopping website Pakistan, gadgets and accessories, lifestyle products online, daily use products, online store Karachi,#SinoPakNova, #OnlineShoppingPakistan, #EcommerceStore, #BuyOnlinePakistan, #TrustedOnlineStore, #AffordableShopping, #ElectronicsOnline, #FashionStore, #HomeEssentials, #MobileAccessories, #BestEcommerceWebsite, #OnlineMarketplace, #SecureShopping, #FastDelivery, #QualityProducts, #ShoppingWebsite, #GadgetsAndAccessories, #LifestyleProducts, #DailyUseProducts, #KarachiStore,@sinopaknova, @onlineshoppingpk, @ecommercestore, @trustedstore, @pakistanonline, @shoppinghub, @electronicsstore, @fashiononline, @homeessentials, @mobileaccessories, @beststore, @marketplacepk, @securecheckout, @fastdeliverypk, @qualityhub, @shoppingwebsite, @lifestylehub, @dailyproducts, @karachistore">
+    <meta name="author" content="Sino Pak Nova">
+    <meta name="publisher" content="Sino Pak Nova">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="canonical" href="https://sinopaknova.com/faq.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sino Pak Nova">
+    <meta property="og:title" content="Frequently Ask Questions - Sino Pak Nova ">
+    <meta property="og:description" content="Find answers to common questions about Sino Pak Nova, including orders, payments, delivery, returns, and account support. Our FAQ section is here to help you quickly get the information you need for a smooth shopping experience.">
+    <meta property="og:url" content="https://sinopaknova.com/faq.html">
+    <meta property="og:image" content="assets/logo.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Frequently Ask Questions - Sino Pak Nova ">
+    <meta name="twitter:description" content="Find answers to common questions about Sino Pak Nova, including orders, payments, delivery, returns, and account support. Our FAQ section is here to help you quickly get the information you need for a smooth shopping experience.">
+    <meta name="twitter:image" content="assets/logo.png">
+
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #ff8c33;
-            --primary-dark: #e67a22;
-            --secondary: #ffb916;
-            --success: #00a650;
-            --text-dark: #212121;
-            --text-light: #757575;
-            --border: #f0f0f0;
-            --bg-light: #f5f5f5;
-            --white: #ffffff;
-            --shadow: 0 2px 8px rgba(0,0,0,0.08);
-            --shadow-hover: 0 5px 15px rgba(255,140,51,0.15);
-        }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://code.jquery.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-        .faq-container {
-            padding: 80px 0;
-        }
-        
-        .faq-hero {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .faq-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-        
-        .faq-hero h1 span {
-            color: var(--primary);
-        }
-        
-        .faq-hero p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .faq-categories {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .faq-category-btn {
-            padding: 12px 25px;
-            background: var(--white);
-            border: 2px solid var(--border);
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-dark);
-        }
-        
-        .faq-category-btn.active,
-        .faq-category-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-        
-        .faq-section {
-            margin-bottom: 50px;
-        }
-        
-        .faq-section h2 {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border);
-            color: var(--text-dark);
-            font-size: 1.8rem;
-        }
-        
-        .faq-section h2 i {
-            color: var(--primary);
-            margin-right: 10px;
-        }
-        
-        .faq-item {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: var(--transition);
-        }
-        
-        .faq-item:hover {
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary);
-        }
-        
-        .faq-question {
-            padding: 20px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--text-dark);
-        }
-        
-        .faq-question:hover {
-            background: rgba(255,140,51,0.05);
-        }
-        
-        .faq-question i {
-            color: var(--primary);
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-        
-        .faq-answer {
-            padding: 0 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-        
-        .faq-item.active .faq-answer {
-            padding: 0 25px 25px 25px;
-            max-height: 500px;
-        }
-        
-        .contact-support {
-            background: linear-gradient(135deg, var(--primary), #ff6b00);
-            padding: 50px;
-            border-radius: 16px;
-            text-align: center;
-            margin-top: 60px;
-            color: white;
-        }
-        
-        .contact-support h3 {
-            margin-bottom: 15px;
-            font-size: 2rem;
-        }
-        
-        .contact-support p {
-            margin-bottom: 25px;
-            opacity: 0.95;
-            font-size: 1.1rem;
-        }
-        
-        .contact-support .btn {
-            background: white;
-            color: var(--primary);
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .contact-support .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        
-        .contact-support .btn i {
-            margin-right: 10px;
-        }
-        
-        .contact-info-footer {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .contact-info-footer span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            font-size: 1rem;
-        }
-        
-        .contact-info-footer i {
-            font-size: 1.2rem;
-        }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sino Pak Nova",
+      "url": "https://sinopaknova.com/faq.html",
+      "logo": "assets/logo.png",
+      "sameAs": [
+        ""
+      ]
+    }
+    </script>
 
-        /* Wishlist Sidebar */
-        .wishlist-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .wishlist-sidebar.active {
-            right: 0;
-        }
-        
-        .wishlist-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1099;
-        }
-        
-        .wishlist-overlay.active {
-            display: block;
-        }
-
-        .wishlist-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .wishlist-header h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .close-wishlist {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .empty-wishlist {
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-        }
-
-        .empty-wishlist i {
-            font-size: 48px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .wishlist-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background: white;
-        }
-
-        .wishlist-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .wishlist-item-info {
-            flex: 1;
-        }
-
-        .wishlist-item-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0 0 5px 0;
-        }
-
-        .wishlist-item-price {
-            color: var(--primary);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .wishlist-item-store {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .wishlist-item-remove {
-            background: none;
-            border: none;
-            color: #ff4757;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
-        }
-
-        .wishlist-item-remove:hover {
-            color: #ff0000;
-        }
-
-        .wishlist-item-add-cart {
-            padding: 5px 10px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-            margin-top: 5px;
-        }
-
-        .wishlist-item-add-cart:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: white;
-            color: var(--text-dark);
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            z-index: 10000;
-            animation: slideIn 0.3s;
-            border-left: 4px solid var(--primary);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast i {
-            color: var(--primary);
-            font-size: 18px;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-        
-        /* Mobile Bottom Navigation Bar */
-        .mobile-bottom-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            z-index: 9999;
-            padding: 10px 0;
-            border-top: 1px solid #eee;
-        }
-
-        .mobile-bottom-nav .nav-items {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .mobile-bottom-nav .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #777;
-            font-size: 12px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .mobile-bottom-nav .nav-item i {
-            font-size: 22px;
-            margin-bottom: 4px;
-        }
-
-        .mobile-bottom-nav .nav-item.active {
-            color: var(--primary);
-        }
-
-        .mobile-bottom-nav .nav-item .badge {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background: var(--primary);
-            color: white;
-            font-size: 10px;
-            min-width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-        }
-
-        .mobile-bottom-nav .nav-item-wrapper {
-            position: relative;
-        }
-
-        /* Cart Sidebar */
-        .cart-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .cart-sidebar.active {
-            right: 0;
-        }
-        
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1099;
-        }
-        
-        .cart-overlay.active {
-            display: block;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-        }
-
-        .empty-cart i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .cart-footer {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border);
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .btn-block {
-            width: 100%;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: none !important;
-            }
-            
-            .nav-menu {
-                display: none !important;
-            }
-            
-            body {
-                padding-bottom: 70px;
-            }
-            
-            .mobile-bottom-nav {
-                display: block;
-            }
-            
-            .mobile-cart-floating-button,
-            .mobile-wishlist-floating-button {
-                display: none !important;
-            }
-            
-            .faq-categories {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .faq-category-btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .faq-hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .faq-hero p {
-                font-size: 1rem;
-                padding: 0 15px;
-            }
-            
-            .faq-section h2 {
-                font-size: 1.5rem;
-            }
-            
-            .faq-question {
-                padding: 15px 20px;
-                font-size: 1rem;
-            }
-            
-            .faq-answer {
-                font-size: 0.95rem;
-            }
-            
-            .faq-item.active .faq-answer {
-                padding: 0 20px 20px 20px;
-            }
-            
-            .contact-support {
-                padding: 30px 20px;
-            }
-            
-            .contact-support h3 {
-                font-size: 1.6rem;
-            }
-            
-            .contact-support p {
-                font-size: 1rem;
-            }
-            
-            .contact-info-footer {
-                flex-direction: column;
-                gap: 15px;
-                align-items: center;
-            }
-            
-            .toast {
-                left: 20px;
-                right: 20px;
-                bottom: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .faq-hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .faq-section h2 {
-                font-size: 1.3rem;
-            }
-            
-            .faq-question {
-                padding: 12px 15px;
-                font-size: 0.95rem;
-            }
-            
-            .contact-support .btn {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-        }
-
-        /* Hide hamburger on all devices */
-        .hamburger {
-            display: none !important;
-        }
-    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
+            <a href="index.html" class="logo" id="home" title="home">
+                <img src="assets/logo.png" id="logo" alt="logo" title="logo" loading="lazy"></a>
             
             <div class="nav-menu" id="navMenu">
 
-               <div class="nav-input">
+                <!-- Updated Nav Search -->
+<div class="nav-input">
     <div class="search-container">
         <i class="fas fa-search search-icon"></i>
         <input type="text" id="mainSearchInput" placeholder="Search products or vendors..." autocomplete="off">
@@ -813,10 +220,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-                <!-- <a href="index.html" class="nav-link">Home</a> -->
-                <!-- <a href="about.html" class="nav-link active">About</a> -->
-                <a href="products.html" class="nav-link">Products</a>
-                <a href="research-hub.html" class="nav-link">Research Hub</a>
+
+
+                <a href="products.html" class="nav-link" title="products">Products</a>
+                <a href="research-hub.html" class="nav-link" title="Research Hub">Research Hub</a>
                 <!-- <a href="news.html" class="nav-link">News</a>
                 <a href="faq.html" class="nav-link">FAQs</a> -->
                 <a href="account.html" class="nav-link">Account</a>
@@ -846,12 +253,11 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </nav>
 
-    <!-- wishlist cart mobile floating button -->
+    <!-- Mobile Floating Buttons (will be hidden on mobile) -->
     <div class="mobile-cart-floating-button">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">0</span>
     </div>
-
     <div class="mobile-wishlist-floating-button">
         <i class="fas fa-heart"></i>
         <span class="wishlist-count">0</span>
@@ -1063,29 +469,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             </div>
-            
-            <!-- Contact Support -->
-            <div class="contact-support">
-                <h3>Still Have Questions?</h3>
-                <p>Can't find the answer you're looking for? Our support team is here to help 24/7.</p>
-                <a href="contact-us.html" class="btn">
-                    <i class="fas fa-headset"></i> Contact Support
-                </a>
-                <div class="contact-info-footer">
-                    <span><i class="fas fa-phone"></i> +86 123 456 7890</span>
-                    <span><i class="fas fa-envelope"></i> support@globalmart.com</span>
-                    <span><i class="fas fa-clock"></i> 24/7 Support</span>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-     <footer class="footer">
+   <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3>GlobalMart</h3>
+                    <img src="assets/footer-logo.png" alt="footer-logo" title="footer-logo" loading="lazy">
                     <p>India's fastest growing multi-vendor B2B and B2C marketplace connecting sellers to customers worldwide. We provide a seamless platform for buying and selling with trust and reliability.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1122,16 +513,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="footer-col">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Shanghai, China</li>
+                        <li><i class="fas fa-map-marker-alt"></i> </li>
                         <li><i class="fas fa-phone-alt"></i> +86 123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> support@globalmart.com</li>
+                        <li><i class="fas fa-envelope"></i> support@sinopaknova.com</li>
                         <li><i class="fas fa-clock"></i> 24/7 Customer Support</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 GlobalMart | All rights reserved</p>
+                <p>&copy; 2026 Sino Pak Nova | All rights reserved</p>
                 <div class="payment-methods">
                     <i class="fab fa-cc-visa"></i>
                     <i class="fab fa-cc-mastercard"></i>
@@ -1213,285 +604,276 @@ document.addEventListener('DOMContentLoaded', function() {
             </a>
         </div>
     </div>
-
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/wishlist.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartCount();
-            updateWishlistCount();
-            checkUserLogin();
-            setupFAQ();
-            loadWishlistItems();
-            
-            // Wishlist Icon Click - Open sidebar instead of redirect
-            document.getElementById('wishlistIcon').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('wishlistSidebar').classList.add('active');
-                document.getElementById('wishlistOverlay').classList.add('active');
-                loadWishlistItems();
-            });
+   <script>
+document.addEventListener('DOMContentLoaded', function () {
 
-            // Mobile Wishlist Button Click
-            document.getElementById('mobileWishlistBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('wishlistSidebar').classList.add('active');
-                document.getElementById('wishlistOverlay').classList.add('active');
-                loadWishlistItems();
-            });
+    // ===================== INIT =====================
+    setupFAQ();
+    updateCartCount();
+    updateWishlistCount();
+    checkUserLogin();
+    loadWishlistItems();
+    setupUIEvents();
+    setupNavigation();
 
-            // Close wishlist when clicking overlay
-            document.getElementById('wishlistOverlay').addEventListener('click', function() {
-                document.getElementById('wishlistSidebar').classList.remove('active');
-                this.classList.remove('active');
-            });
+});
 
-            // Close wishlist with close button
-            document.getElementById('closeWishlist').addEventListener('click', function() {
-                document.getElementById('wishlistSidebar').classList.remove('active');
-                document.getElementById('wishlistOverlay').classList.remove('active');
-            });
-            
-            // Mobile cart button click
-            document.getElementById('mobileCartBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('cartSidebar').classList.add('active');
-                document.getElementById('cartOverlay').classList.add('active');
-            });
+// ===================== FAQ =====================
+function setupFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    const categoryButtons = document.querySelectorAll('.faq-category-btn');
+    const faqSections = document.querySelectorAll('.faq-section');
 
-            // Cart Icon Click
-            document.getElementById('cartIcon').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('cartSidebar').classList.add('active');
-                document.getElementById('cartOverlay').classList.add('active');
-            });
+    if (!faqItems.length) return;
 
-            // Close cart when clicking overlay
-            document.getElementById('cartOverlay').addEventListener('click', function() {
-                document.getElementById('cartSidebar').classList.remove('active');
-                this.classList.remove('active');
-            });
+    // Accordion
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (!question) return;
 
-            // Close cart with close button
-            document.getElementById('closeCart').addEventListener('click', function() {
-                document.getElementById('cartSidebar').classList.remove('active');
-                document.getElementById('cartOverlay').classList.remove('active');
+        question.addEventListener('click', () => {
+            faqItems.forEach(other => {
+                if (other !== item) other.classList.remove('active');
             });
+            item.classList.toggle('active');
+        });
+    });
 
-            // Update active state in bottom nav
-            const currentPage = window.location.pathname.split('/').pop() || 'faq.html';
-            document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
-                const href = item.getAttribute('href');
-                if (href === currentPage) {
-                    item.classList.add('active');
-                } else if (currentPage === '' && href === 'index.html') {
-                    // For home page
-                }
+    // Category filter
+    if (categoryButtons.length) {
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const selected = button.dataset.category;
+
+                faqSections.forEach(section => {
+                    if (selected === 'all') {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display =
+                            section.dataset.category === selected ? 'block' : 'none';
+                    }
+                });
+
+                faqItems.forEach(i => i.classList.remove('active'));
             });
         });
-        
-        function checkUserLogin() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            const dashboardLink = document.querySelector('.dashboard-link');
-            
-            if (currentUser) {
-                dashboardLink.style.display = 'block';
+    }
+}
+
+// ===================== UI EVENTS =====================
+function setupUIEvents() {
+
+    // Wishlist open
+    const wishlistIcon = document.getElementById('wishlistIcon');
+    const mobileWishlistBtn = document.getElementById('mobileWishlistBtn');
+    const wishlistSidebar = document.getElementById('wishlistSidebar');
+    const wishlistOverlay = document.getElementById('wishlistOverlay');
+    const closeWishlist = document.getElementById('closeWishlist');
+
+    function openWishlist() {
+        if (!wishlistSidebar || !wishlistOverlay) return;
+        wishlistSidebar.classList.add('active');
+        wishlistOverlay.classList.add('active');
+        loadWishlistItems();
+    }
+
+    if (wishlistIcon) wishlistIcon.addEventListener('click', e => {
+        e.preventDefault();
+        openWishlist();
+    });
+
+    if (mobileWishlistBtn) mobileWishlistBtn.addEventListener('click', e => {
+        e.preventDefault();
+        openWishlist();
+    });
+
+    if (wishlistOverlay) wishlistOverlay.addEventListener('click', function () {
+        wishlistSidebar?.classList.remove('active');
+        this.classList.remove('active');
+    });
+
+    if (closeWishlist) closeWishlist.addEventListener('click', function () {
+        wishlistSidebar?.classList.remove('active');
+        wishlistOverlay?.classList.remove('active');
+    });
+
+    // Cart open
+    const cartIcon = document.getElementById('cartIcon');
+    const mobileCartBtn = document.getElementById('mobileCartBtn');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const closeCart = document.getElementById('closeCart');
+
+    function openCart() {
+        if (!cartSidebar || !cartOverlay) return;
+        cartSidebar.classList.add('active');
+        cartOverlay.classList.add('active');
+    }
+
+    if (cartIcon) cartIcon.addEventListener('click', e => {
+        e.preventDefault();
+        openCart();
+    });
+
+    if (mobileCartBtn) mobileCartBtn.addEventListener('click', e => {
+        e.preventDefault();
+        openCart();
+    });
+
+    if (cartOverlay) cartOverlay.addEventListener('click', function () {
+        cartSidebar?.classList.remove('active');
+        this.classList.remove('active');
+    });
+
+    if (closeCart) closeCart.addEventListener('click', function () {
+        cartSidebar?.classList.remove('active');
+        cartOverlay?.classList.remove('active');
+    });
+}
+
+// ===================== NAVIGATION =====================
+function setupNavigation() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
+        const href = item.getAttribute('href');
+
+        if (href === currentPage) {
+            item.classList.add('active');
+        }
+    });
+
+    if (currentPage === 'about.html') {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === 'about.html') {
+                link.classList.add('active');
             }
-        }
-        
-        function setupFAQ() {
-            // FAQ accordion functionality
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    // Close all other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item && otherItem.classList.contains('active')) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
-            });
-            
-            // FAQ category filtering
-            const categoryButtons = document.querySelectorAll('.faq-category-btn');
-            const faqSections = document.querySelectorAll('.faq-section');
-            const allFaqItems = document.querySelectorAll('.faq-item');
-            
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update active button
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    
-                    const selectedCategory = button.dataset.category;
-                    
-                    // Show/hide FAQ items based on category
-                    if (selectedCategory === 'all') {
-                        // Show all items and sections
-                        faqSections.forEach(section => {
-                            section.style.display = 'block';
-                        });
-                        allFaqItems.forEach(item => {
-                            item.style.display = 'block';
-                        });
-                    } else {
-                        // Hide all sections first
-                        faqSections.forEach(section => {
-                            section.style.display = 'none';
-                        });
-                        
-                        // Show sections that have items in the selected category
-                        const sectionsToShow = document.querySelectorAll(`.faq-section[data-category="${selectedCategory}"]`);
-                        sectionsToShow.forEach(section => {
-                            section.style.display = 'block';
-                        });
-                        
-                        // Hide all items not in selected category
-                        allFaqItems.forEach(item => {
-                            if (item.dataset.category === selectedCategory) {
-                                item.style.display = 'block';
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        });
-                    }
-                    
-                    // Close all open items when changing category
-                    allFaqItems.forEach(item => {
-                        item.classList.remove('active');
-                    });
-                });
-            });
-        }
+        });
+    }
+}
 
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-            
-            document.querySelectorAll('.cart-count').forEach(el => {
-                el.textContent = count;
-            });
-        }
+// ===================== USER LOGIN =====================
+function checkUserLogin() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const dashboardLink = document.querySelector('.dashboard-link');
 
-        // Wishlist Functions
-        function updateWishlistCount() {
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const count = wishlist.length;
-            document.querySelectorAll('.wishlist-count').forEach(el => {
-                el.textContent = count;
-                el.style.display = count > 0 ? 'inline-block' : 'none';
-            });
-        }
+    if (dashboardLink && currentUser) {
+        dashboardLink.style.display = 'block';
+    }
+}
 
-        function loadWishlistItems() {
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const container = document.getElementById('wishlistItems');
-            
-            if (!container) return;
-            
-            if (wishlist.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-wishlist">
-                        <i class="fas fa-heart"></i>
-                        <p>Your wishlist is empty</p>
-                        <small>Click the heart icon on products to add them here</small>
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = '';
-            wishlist.forEach(item => {
-                const priceInPKR = (item.price * 280).toFixed(0);
-                html += `
-                    <div class="wishlist-item" data-id="${item.id}">
-                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
-                        <div class="wishlist-item-info">
-                            <h4 class="wishlist-item-title">${item.name}</h4>
-                            <div class="wishlist-item-price">Rs ${priceInPKR}</div>
-                            <div class="wishlist-item-store">${item.store}</div>
-                            <button class="wishlist-item-add-cart" onclick="addToCartFromWishlist('${item.id}')">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
-                            </button>
-                        </div>
-                        <button class="wishlist-item-remove" onclick="removeFromWishlist('${item.id}')">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
+// ===================== CART =====================
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
-        function removeFromWishlist(productId) {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            wishlist = wishlist.filter(item => String(item.id) !== String(productId));
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            
-            updateWishlistCount();
-            loadWishlistItems();
-            showToast('Product removed from wishlist');
-        }
+    document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+    });
+}
 
-        function addToCartFromWishlist(productId) {
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const product = wishlist.find(item => String(item.id) === String(productId));
-            
-            if (!product) return;
-            
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existing = cart.find(item => String(item.id) === String(product.id));
-            
-            if (existing) {
-                existing.quantity = (existing.quantity || 1) + 1;
-            } else {
-                cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    image: product.image,
-                    quantity: 1
-                });
-            }
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            showToast(`${product.name} added to cart`);
-        }
+// ===================== WISHLIST =====================
+function updateWishlistCount() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const count = wishlist.length;
 
-        function showToast(message) {
-            const existingToast = document.querySelector('.toast');
-            if (existingToast) existingToast.remove();
-            
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `
-                <i class="fas ${message.includes('added') ? 'fa-heart' : 'fa-times'}"></i>
-                <span>${message}</span>
-            `;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.animation = 'slideOut 0.3s';
-                setTimeout(() => {
-                    if (toast.parentNode) {
-                        toast.parentNode.removeChild(toast);
-                    }
-                }, 300);
-            }, 3000);
-        }
+    document.querySelectorAll('.wishlist-count').forEach(el => {
+        el.textContent = count;
+        el.style.display = count > 0 ? 'inline-block' : 'none';
+    });
+}
 
-        // Initialize wishlist count on page load
-        updateWishlistCount();
-    </script>
+function loadWishlistItems() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const container = document.getElementById('wishlistItems');
+
+    if (!container) return;
+
+    if (wishlist.length === 0) {
+        container.innerHTML = `
+            <div class="empty-wishlist">
+                <i class="fas fa-heart"></i>
+                <p>Your wishlist is empty</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = wishlist.map(item => {
+        const price = (item.price * 83 * 3.4).toFixed(0);
+
+        return `
+            <div class="wishlist-item" data-id="${item.id}">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="wishlist-item-info">
+                    <h4>${item.name}</h4>
+                    <div>Rs ${price}</div>
+                    <button onclick="addToCartFromWishlist('${item.id}')">
+                        Add to Cart
+                    </button>
+                </div>
+                <button onclick="removeFromWishlist('${item.id}')">X</button>
+            </div>
+        `;
+    }).join('');
+}
+
+// ===================== WISHLIST ACTIONS =====================
+function removeFromWishlist(productId) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    wishlist = wishlist.filter(item => String(item.id) !== String(productId));
+
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+    updateWishlistCount();
+    loadWishlistItems();
+    showToast('Removed from wishlist');
+}
+
+function addToCartFromWishlist(productId) {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const product = wishlist.find(item => String(item.id) === String(productId));
+
+    if (!product) return;
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existing = cart.find(item => String(item.id) === String(product.id));
+
+    if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    updateCartCount();
+    showToast('Added to cart');
+}
+
+// ===================== TOAST =====================
+function showToast(message) {
+    const old = document.querySelector('.toast');
+    if (old) old.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<span>${message}</span>`;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 2500);
+}
+</script>
 </body>
 </html>

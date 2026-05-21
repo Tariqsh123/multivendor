@@ -2,434 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>About Us - GlobalMart</title>
+
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Title -->
+    <title>About Us - Sino Pak Nova</title>
+    <meta name="description" content="Sino Pak Nova is a trusted online shopping store offering affordable electronics, fashion, home essentials, accessories, and more with secure payments, fast delivery, and a reliable shopping experience.">
+    <meta name="keywords" content="Sino Pak Nova, online shopping Pakistan, ecommerce store Pakistan, buy online Pakistan, trusted online store, affordable online shopping, electronics online, fashion store online, home essentials Pakistan, mobile accessories online, best ecommerce website, online marketplace Pakistan, secure online shopping, fast delivery Pakistan, quality products online, shopping website Pakistan, gadgets and accessories, lifestyle products online, daily use products, online store Karachi,#SinoPakNova, #OnlineShoppingPakistan, #EcommerceStore, #BuyOnlinePakistan, #TrustedOnlineStore, #AffordableShopping, #ElectronicsOnline, #FashionStore, #HomeEssentials, #MobileAccessories, #BestEcommerceWebsite, #OnlineMarketplace, #SecureShopping, #FastDelivery, #QualityProducts, #ShoppingWebsite, #GadgetsAndAccessories, #LifestyleProducts, #DailyUseProducts, #KarachiStore,@sinopaknova, @onlineshoppingpk, @ecommercestore, @trustedstore, @pakistanonline, @shoppinghub, @electronicsstore, @fashiononline, @homeessentials, @mobileaccessories, @beststore, @marketplacepk, @securecheckout, @fastdeliverypk, @qualityhub, @shoppingwebsite, @lifestylehub, @dailyproducts, @karachistore">
+    <meta name="author" content="Sino Pak Nova">
+    <meta name="publisher" content="Sino Pak Nova">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="canonical" href="https://sinopaknova.com/about.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sino Pak Nova">
+    <meta property="og:title" content="About Us - Sino Pak Nova ">
+    <meta property="og:description" content="Sino Pak Nova is a trusted online shopping store offering affordable electronics, fashion, home essentials, accessories, and more with secure payments, fast delivery, and a reliable shopping experience.">
+    <meta property="og:url" content="https://sinopaknova.com/about.html">
+    <meta property="og:image" content="assets/logo.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Us - Sino Pak Nova ">
+    <meta name="twitter:description" content="Sino Pak Nova is a trusted online shopping store offering affordable electronics, fashion, home essentials, accessories, and more with secure payments, fast delivery, and a reliable shopping experience.">
+    <meta name="twitter:image" content="assets/logo.png">
+
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Additional mobile app styles */
-        :root {
-            --primary: #ff8c33;
-            --primary-dark: #e67a22;
-            --border: #f0f0f0;
-        }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://code.jquery.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-        /* Wishlist Sidebar */
-        .wishlist-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .wishlist-sidebar.active {
-            right: 0;
-        }
-        
-        .wishlist-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1099;
-        }
-        
-        .wishlist-overlay.active {
-            display: block;
-        }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sino Pak Nova",
+      "url": "https://sinopaknova.com/about.html",
+      "logo": "assets/logo.png",
+      "sameAs": [
+        ""
+      ]
+    }
+    </script>
 
-        .wishlist-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .wishlist-header h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .close-wishlist {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .empty-wishlist {
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-        }
-
-        .empty-wishlist i {
-            font-size: 48px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .wishlist-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background: white;
-        }
-
-        .wishlist-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .wishlist-item-info {
-            flex: 1;
-        }
-
-        .wishlist-item-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0 0 5px 0;
-        }
-
-        .wishlist-item-price {
-            color: var(--primary);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .wishlist-item-store {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .wishlist-item-remove {
-            background: none;
-            border: none;
-            color: #ff4757;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
-        }
-
-        .wishlist-item-remove:hover {
-            color: #ff0000;
-        }
-
-        .wishlist-item-add-cart {
-            padding: 5px 10px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-            margin-top: 5px;
-        }
-
-        .wishlist-item-add-cart:hover {
-            background: var(--primary-dark);
-        }
-
-        .mobile-bottom-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            z-index: 9999;
-            padding: 10px 0;
-            border-top: 1px solid #eee;
-        }
-
-        .mobile-bottom-nav .nav-items {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .mobile-bottom-nav .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #777;
-            font-size: 12px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .mobile-bottom-nav .nav-item i {
-            font-size: 22px;
-            margin-bottom: 4px;
-        }
-
-        .mobile-bottom-nav .nav-item.active {
-            color: #ff8c33;
-        }
-
-        .mobile-bottom-nav .nav-item .badge {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background: #ff8c33;
-            color: white;
-            font-size: 10px;
-            min-width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-        }
-
-        .mobile-bottom-nav .nav-item-wrapper {
-            position: relative;
-        }
-
-        /* Cart Sidebar */
-        .cart-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .cart-sidebar.active {
-            right: 0;
-        }
-        
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1099;
-        }
-        
-        .cart-overlay.active {
-            display: block;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-        }
-
-        .empty-cart i {
-            font-size: 48px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .cart-footer {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border);
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .btn-block {
-            width: 100%;
-            padding: 12px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn-block:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: white;
-            color: var(--text-dark);
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            z-index: 10000;
-            animation: slideIn 0.3s;
-            border-left: 4px solid var(--primary);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast i {
-            color: var(--primary);
-            font-size: 18px;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-
-        /* Mobile responsive fixes */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: none !important;
-            }
-            
-            .nav-menu {
-                display: none !important;
-            }
-            
-            body {
-                padding-bottom: 70px;
-            }
-            
-            .mobile-bottom-nav {
-                display: block;
-            }
-            
-            .mobile-cart-floating-button,
-            .mobile-wishlist-floating-button {
-                display: none !important;
-            }
-            
-            .page-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .mission-cards,
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .toast {
-                left: 20px;
-                right: 20px;
-                bottom: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .page-hero p {
-                font-size: 0.9rem;
-            }
-            
-            .about-text h2 {
-                font-size: 1.5rem;
-            }
-            
-            .stat-item h3 {
-                font-size: 2rem;
-            }
-        }
-
-        /* Hide hamburger on all devices */
-        .hamburger {
-            display: none !important;
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><img src="assets/logo.png" id="logo" alt=""></a>
+            <a href="index.html" class="logo" id="home" title="home">
+                <img src="assets/logo.png" id="logo" alt="logo" title="logo" loading="lazy"></a>
             
             <div class="nav-menu" id="navMenu">
 
-               <div class="nav-input">
+                <!-- Updated Nav Search -->
+<div class="nav-input">
     <div class="search-container">
         <i class="fas fa-search search-icon"></i>
         <input type="text" id="mainSearchInput" placeholder="Search products or vendors..." autocomplete="off">
@@ -587,10 +221,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-                <!-- <a href="index.html" class="nav-link">Home</a> -->
-                <!-- <a href="about.html" class="nav-link active">About</a> -->
-                <a href="products.html" class="nav-link">Products</a>
-                <a href="research-hub.html" class="nav-link">Research Hub</a>
+
+
+                <a href="products.html" class="nav-link" title="products">Products</a>
+                <a href="research-hub.html" class="nav-link" title="Research Hub">Research Hub</a>
                 <!-- <a href="news.html" class="nav-link">News</a>
                 <a href="faq.html" class="nav-link">FAQs</a> -->
                 <a href="account.html" class="nav-link">Account</a>
@@ -620,21 +254,21 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </nav>
 
-    <!-- wishlist cart mobile floating button -->
+    <!-- Mobile Floating Buttons (will be hidden on mobile) -->
     <div class="mobile-cart-floating-button">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">0</span>
     </div>
-
     <div class="mobile-wishlist-floating-button">
         <i class="fas fa-heart"></i>
         <span class="wishlist-count">0</span>
     </div>
 
+
     <!-- About Hero -->
     <section class="page-hero">
         <div class="container">
-            <h1>About GlobalMart</h1>
+            <h1>About Sino Pak Nova</h1>
             <p>Connecting suppliers, store managers, and customers in a seamless global marketplace</p>
         </div>
     </section>
@@ -645,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="about-grid">
                 <div class="about-text">
                     <h2>Our Mission</h2>
-                    <p>GlobalMart is a research-driven multi-vendor e-commerce platform designed to bridge the gap between Chinese suppliers and global markets. We empower students, entrepreneurs, and businesses to participate in international trade with ease.</p>
+                    <p>Sino Pak Nova is a research-driven multi-vendor e-commerce platform designed to bridge the gap between Chinese suppliers and global markets. We empower students, entrepreneurs, and businesses to participate in international trade with ease.</p>
                     
                     <h2>Platform Overview</h2>
                     <p>Our unique three-tier model enables shippers to upload products to our warehouse, store managers to curate products for their stores, and customers to browse a wide selection from multiple vendors in one place.</p>
@@ -669,72 +303,123 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Global Marketplace">
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How <span>It Works</span></h2>
+                <p>Your journey to success starts here in three simple steps</p>
+            </div>
             
-            <div class="mission-section">
-                <h2 class="section-title">How It Works</h2>
-                <div class="mission-cards">
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-box-open"></i>
+            <!-- 3D Steps Cards -->
+            <div class="steps-grid">
+                <div class="step-card" id="step-1">
+                    <div class="step-icon-3d">
+                        <div class="step-icon-3d-inner">
+                            <div class="step-icon-front">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="step-icon-back">
+                                <i class="fas fa-check"></i>
+                            </div>
                         </div>
-                        <h3>Shippers Upload</h3>
-                        <p>Manufacturers and wholesalers upload products to the GlobalMart warehouse with pricing and descriptions.</p>
                     </div>
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <h3>Managers Curate</h3>
-                        <p>Store managers browse the warehouse and select products to feature in their own branded stores.</p>
+                    <h3>Create Account</h3>
+                    <p>Sign up in under 2 minutes as customer, store manager, or shipper with our simple registration process</p>
+                    <div class="step-features-modern">
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Free Registration</span>
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Instant Access</span>
                     </div>
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-shopping-cart"></i>
+                </div>
+                
+                <div class="step-card" id="step-2">
+                    <div class="step-icon-3d">
+                        <div class="step-icon-3d-inner">
+                            <div class="step-icon-front">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <div class="step-icon-back">
+                                <i class="fas fa-search"></i>
+                            </div>
                         </div>
-                        <h3>Customers Shop</h3>
-                        <p>Shoppers browse products from all stores, add to cart, and checkout seamlessly.</p>
+                    </div>
+                    <h3>Browse & Select</h3>
+                    <p>Explore millions of products from verified sellers across 1000+ categories at the best market prices</p>
+                    <div class="step-features-modern">
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> 1000+ Categories</span>
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Verified Sellers</span>
+                    </div>
+                </div>
+                
+                <div class="step-card" id="step-3">
+                    <div class="step-icon-3d">
+                        <div class="step-icon-3d-inner">
+                            <div class="step-icon-front">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="step-icon-back">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Order & Track</h3>
+                    <p>Place orders securely with multiple payment options and track delivery in real-time with our advanced logistics</p>
+                    <div class="step-features-modern">
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Secure Payments</span>
+                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Real-time Tracking</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team">
+       <section class="roles">
         <div class="container">
-            <h2 class="section-title">For All Users</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-image">
-                        <i class="fas fa-user-graduate"></i>
+            <div class="section-header">
+                <h2>Choose Your <span>Role</span></h2>
+                <p>Join Sino Pak Nova as a customer, seller, or delivery partner</p>
+            </div>
+            
+            <div class="role-grid-modern">
+                <!-- <div class="role-card-modern">
+                    <div class="role-icon-3d">
+                        <i class="fas fa-shipping-fast"></i>
                     </div>
-                    <h3>Students & Researchers</h3>
-                    <p>Study global e-commerce dynamics with our transparent platform. Perfect for market research and academic projects.</p>
+                    <h3>Shipper</h3>
+                    <p>Upload products to warehouse, set prices, earn commissions, and manage inventory efficiently with our smart tools.</p>
+                    <a href="account.html?role=shipper" class="role-btn-modern">Sign Up as Shipper</a>
+                </div> -->
+
+                <div class="role-card-modern">
+                    <div class="role-icon-3d">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Store Manager</h3>
+                    <p>Browse warehouse products, add to your store, and manage storefront and sales seamlessly with analytics.</p>
+                    <a href="account.html?role=manager" class="role-btn-modern">Sign Up as Manager</a>
                 </div>
-                <div class="team-card">
-                    <div class="team-image">
-                        <i class="fas fa-briefcase"></i>
+
+                <div class="role-card-modern">
+                    <div class="role-icon-3d">
+                        <i class="fas fa-user"></i>
                     </div>
-                    <h3>Entrepreneurs</h3>
-                    <p>Launch your store without inventory investment. Test products and markets with minimal risk.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-image">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <h3>Manufacturers</h3>
-                    <p>Reach global customers through our network of store managers. Focus on production while we handle distribution.</p>
+                    <h3>Customer</h3>
+                    <p>Browse all stores, add to cart, checkout securely, and track your orders effortlessly with our app.</p>
+                    <a href="account.html?role=customer" class="role-btn-modern">Sign Up as Customer</a>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer (same as index.html) -->
-     <footer class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3>GlobalMart</h3>
+                    <img src="assets/footer-logo.png" alt="footer-logo" title="footer-logo" loading="lazy">
                     <p>India's fastest growing multi-vendor B2B and B2C marketplace connecting sellers to customers worldwide. We provide a seamless platform for buying and selling with trust and reliability.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -771,16 +456,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="footer-col">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Shanghai, China</li>
+                        <li><i class="fas fa-map-marker-alt"></i> </li>
                         <li><i class="fas fa-phone-alt"></i> +86 123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> support@globalmart.com</li>
+                        <li><i class="fas fa-envelope"></i> support@sinopaknova.com</li>
                         <li><i class="fas fa-clock"></i> 24/7 Customer Support</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 GlobalMart | All rights reserved</p>
+                <p>&copy; 2026 Sino Pak Nova | All rights reserved</p>
                 <div class="payment-methods">
                     <i class="fab fa-cc-visa"></i>
                     <i class="fab fa-cc-mastercard"></i>

@@ -2,480 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Account - GlobalMart</title>
+
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Title -->
+    <title>Account - Sino Pak Nova</title>
+    <meta name="description" content="Create an account or log in to Sino Pak Nova to manage orders, track deliveries, save favorite products, and enjoy a secure and seamless shopping experience.">
+    <meta name="keywords" content="Sino Pak Nova, online shopping Pakistan, ecommerce store Pakistan, buy online Pakistan, trusted online store, affordable online shopping, electronics online, fashion store online, home essentials Pakistan, mobile accessories online, best ecommerce website, online marketplace Pakistan, secure online shopping, fast delivery Pakistan, quality products online, shopping website Pakistan, gadgets and accessories, lifestyle products online, daily use products, online store Karachi,#SinoPakNova, #OnlineShoppingPakistan, #EcommerceStore, #BuyOnlinePakistan, #TrustedOnlineStore, #AffordableShopping, #ElectronicsOnline, #FashionStore, #HomeEssentials, #MobileAccessories, #BestEcommerceWebsite, #OnlineMarketplace, #SecureShopping, #FastDelivery, #QualityProducts, #ShoppingWebsite, #GadgetsAndAccessories, #LifestyleProducts, #DailyUseProducts, #KarachiStore,@sinopaknova, @onlineshoppingpk, @ecommercestore, @trustedstore, @pakistanonline, @shoppinghub, @electronicsstore, @fashiononline, @homeessentials, @mobileaccessories, @beststore, @marketplacepk, @securecheckout, @fastdeliverypk, @qualityhub, @shoppingwebsite, @lifestylehub, @dailyproducts, @karachistore">
+    <meta name="author" content="Sino Pak Nova">
+    <meta name="publisher" content="Sino Pak Nova">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="canonical" href="https://sinopaknova.com/account.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sino Pak Nova">
+    <meta property="og:title" content="Account - Sino Pak Nova ">
+    <meta property="og:description" content="Create an account or log in to Sino Pak Nova to manage orders, track deliveries, save favorite products, and enjoy a secure and seamless shopping experience.">
+    <meta property="og:url" content="https://sinopaknova.com/account.html">
+    <meta property="og:image" content="assets/logo.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Account - Sino Pak Nova ">
+    <meta name="twitter:description" content="Create an account or log in to Sino Pak Nova to manage orders, track deliveries, save favorite products, and enjoy a secure and seamless shopping experience.">
+    <meta name="twitter:image" content="assets/logo.png">
+
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .star-rating {
-            display: flex;
-            gap: 2px;
-            margin: 8px 0;
-        }
-        .star-rating i {
-            color: #ffc107;
-            font-size: 14px;
-        }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://code.jquery.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-        /* Mobile Bottom Navigation Bar */
-        .mobile-bottom-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            z-index: 9999;
-            padding: 10px 0;
-            border-top: 1px solid #eee;
-        }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sino Pak Nova",
+      "url": "https://sinopaknova.com/account.html",
+      "logo": "assets/logo.png",
+      "sameAs": [
+        ""
+      ]
+    }
+    </script>
 
-        .mobile-bottom-nav .nav-items {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .mobile-bottom-nav .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #777;
-            font-size: 12px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .mobile-bottom-nav .nav-item i {
-            font-size: 22px;
-            margin-bottom: 4px;
-        }
-
-        .mobile-bottom-nav .nav-item.active {
-            color: #ff8c33;
-        }
-
-        .mobile-bottom-nav .nav-item .badge {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background: #ff8c33;
-            color: white;
-            font-size: 10px;
-            min-width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-        }
-
-        .mobile-bottom-nav .nav-item-wrapper {
-            position: relative;
-        }
-
-        /* Mobile Responsive Fixes */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: none !important;
-            }
-            
-            .nav-menu {
-                display: none !important;
-            }
-            
-            body {
-                padding-bottom: 70px;
-            }
-            
-            .mobile-bottom-nav {
-                display: block;
-            }
-            
-            .mobile-cart-floating-button,
-            .mobile-wishlist-floating-button {
-                display: none !important;
-            }
-            
-            .page-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .auth-form {
-                padding: 20px;
-            }
-            
-            .role-option label {
-                padding: 12px;
-            }
-            
-            .role-option label i {
-                font-size: 1.2rem;
-            }
-            
-            .role-option label span {
-                font-size: 1rem;
-            }
-            
-            .role-option label small {
-                font-size: 0.8rem;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .page-hero p {
-                font-size: 0.9rem;
-            }
-            
-            .tab-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-        }
-
-        /* Hide hamburger on all devices */
-        .hamburger {
-            display: none !important;
-        }
-
-        /* Form styling improvements */
-        .auth-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .role-selection {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .role-option {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .role-option input[type="radio"] {
-            display: none;
-        }
-
-        .role-option label {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            margin: 0;
-            transition: 0.3s;
-        }
-
-        .role-option label:hover {
-            background: rgba(255,140,51,0.05);
-        }
-
-        .role-option input[type="radio"]:checked + label {
-            background: rgba(255,140,51,0.1);
-            border-left: 4px solid #ff8c33;
-        }
-
-        .role-option label i {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: #ff8c33;
-        }
-
-        .role-option label span {
-            font-size: 1.1rem;
-            margin-right: 10px;
-            font-weight: 600;
-        }
-
-        .role-option label small {
-            color: #777;
-            font-weight: normal;
-        }
-
-        /* Wishlist Sidebar */
-        .wishlist-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .wishlist-sidebar.active {
-            right: 0;
-        }
-        
-        .wishlist-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1099;
-        }
-        
-        .wishlist-overlay.active {
-            display: block;
-        }
-
-        .wishlist-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .wishlist-header h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .close-wishlist {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .empty-wishlist {
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-        }
-
-        .empty-wishlist i {
-            font-size: 48px;
-            color: #ff8c33;
-            margin-bottom: 15px;
-        }
-
-        .wishlist-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background: white;
-        }
-
-        .wishlist-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .wishlist-item-info {
-            flex: 1;
-        }
-
-        .wishlist-item-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0 0 5px 0;
-        }
-
-        .wishlist-item-price {
-            color: #ff8c33;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .wishlist-item-store {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .wishlist-item-remove {
-            background: none;
-            border: none;
-            color: #ff4757;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
-        }
-
-        .wishlist-item-remove:hover {
-            color: #ff0000;
-        }
-
-        .wishlist-item-add-cart {
-            padding: 5px 10px;
-            background: #ff8c33;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-            margin-top: 5px;
-        }
-
-        .wishlist-item-add-cart:hover {
-            background: #e67a22;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: white;
-            color: #212121;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            z-index: 10000;
-            animation: slideIn 0.3s;
-            border-left: 4px solid #ff8c33;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast i {
-            color: #ff8c33;
-            font-size: 18px;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-
-        /* Cart Sidebar */
-        .cart-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            z-index: 1100;
-            transition: 0.3s;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-            padding: 20px;
-            overflow-y: auto;
-        }
-        
-        .cart-sidebar.active {
-            right: 0;
-        }
-        
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 1099;
-        }
-        
-        .cart-overlay.active {
-            display: block;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-        }
-
-        .empty-cart i {
-            font-size: 48px;
-            color: #ff8c33;
-            margin-bottom: 15px;
-        }
-
-        .cart-footer {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .btn-block {
-            width: 100%;
-            padding: 12px;
-            background: #ff8c33;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn-block:hover {
-            background: #e67a22;
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -791,11 +367,11 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
     <!-- Footer -->
-     <footer class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3>GlobalMart</h3>
+                    <img src="assets/footer-logo.png" alt="footer-logo" title="footer-logo" loading="lazy">
                     <p>India's fastest growing multi-vendor B2B and B2C marketplace connecting sellers to customers worldwide. We provide a seamless platform for buying and selling with trust and reliability.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -832,16 +408,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="footer-col">
                     <h4>Contact Info</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Shanghai, China</li>
+                        <li><i class="fas fa-map-marker-alt"></i> </li>
                         <li><i class="fas fa-phone-alt"></i> +86 123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> support@globalmart.com</li>
+                        <li><i class="fas fa-envelope"></i> support@sinopaknova.com</li>
                         <li><i class="fas fa-clock"></i> 24/7 Customer Support</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 GlobalMart | All rights reserved</p>
+                <p>&copy; 2026 Sino Pak Nova | All rights reserved</p>
                 <div class="payment-methods">
                     <i class="fab fa-cc-visa"></i>
                     <i class="fab fa-cc-mastercard"></i>
@@ -895,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <div class="mobile-bottom-nav">
         <div class="nav-items">
-            <a href="index.html" class="nav-item active">
+            <a href="index.html" class="nav-item">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
@@ -1020,14 +596,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (currentUser) {
                 dashboardLink.style.display = 'block';
-                // Don't redirect if on account page (user might want to login with different account)
-                // Comment out auto-redirect
-                // if (currentUser.email === 'admin@gmail.com') {
-                //     window.location.href = 'admin.html';
-                //     return true;
-                // }
-                // window.location.href = 'dashboard.html';
-                // return true;
             }
             return false;
         }
@@ -1174,6 +742,98 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            updateWishlistCount();
+            checkUserLogin();
+            loadWishlistItems();
+            
+            // Wishlist Icon Click - Open sidebar instead of redirect
+            document.getElementById('wishlistIcon').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('wishlistSidebar').classList.add('active');
+                document.getElementById('wishlistOverlay').classList.add('active');
+                loadWishlistItems();
+            });
+
+            // Mobile Wishlist Button Click
+            document.getElementById('mobileWishlistBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('wishlistSidebar').classList.add('active');
+                document.getElementById('wishlistOverlay').classList.add('active');
+                loadWishlistItems();
+            });
+
+            // Close wishlist when clicking overlay
+            document.getElementById('wishlistOverlay').addEventListener('click', function() {
+                document.getElementById('wishlistSidebar').classList.remove('active');
+                this.classList.remove('active');
+            });
+
+            // Close wishlist with close button
+            document.getElementById('closeWishlist').addEventListener('click', function() {
+                document.getElementById('wishlistSidebar').classList.remove('active');
+                document.getElementById('wishlistOverlay').classList.remove('active');
+            });
+
+            // Mobile cart button click
+            document.getElementById('mobileCartBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('cartSidebar').classList.add('active');
+                document.getElementById('cartOverlay').classList.add('active');
+            });
+
+            // Cart Icon Click
+            document.getElementById('cartIcon').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('cartSidebar').classList.add('active');
+                document.getElementById('cartOverlay').classList.add('active');
+            });
+
+            // Close cart when clicking overlay
+            document.getElementById('cartOverlay').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('active');
+                this.classList.remove('active');
+            });
+
+            // Close cart with close button
+            document.getElementById('closeCart').addEventListener('click', function() {
+                document.getElementById('cartSidebar').classList.remove('active');
+                document.getElementById('cartOverlay').classList.remove('active');
+            });
+
+            // Update active state in bottom nav
+            const currentPage = window.location.pathname.split('/').pop() || 'about.html';
+            document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
+                const href = item.getAttribute('href');
+                if (href === currentPage) {
+                    item.classList.add('active');
+                } else if (currentPage === '' && href === 'index.html') {
+                    // For home page
+                } else if (currentPage === 'about.html' && href === 'about.html') {
+                    item.classList.add('active');
+                }
+            });
+
+            // Make "About" active in desktop nav
+            if (currentPage === 'about.html') {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === 'about.html') {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+        
+        function checkUserLogin() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const dashboardLink = document.querySelector('.dashboard-link');
+            
+            if (currentUser) {
+                dashboardLink.style.display = 'block';
+            }
+        }
 
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -1184,7 +844,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Wishlist Functions
         function updateWishlistCount() {
             const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
             const count = wishlist.length;
@@ -1213,7 +872,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             let html = '';
             wishlist.forEach(item => {
-                const priceInPKR = (item.price * 280).toFixed(0);
+                // Convert to PKR using same formula as home page
+                const priceInPKR = (item.price * 83 * 3.4).toFixed(0);
                 html += `
                     <div class="wishlist-item" data-id="${item.id}">
                         <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'">
@@ -1295,6 +955,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize wishlist count on page load
         updateWishlistCount();
+
     </script>
 </body>
 </html>

@@ -1,0 +1,641 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-image: url(../images/vtuber-form-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* MAIN CONTAINER */
+.form-hero-section-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* WRAPPER */
+.form-hero-section-wrapper{
+    width: 100%;
+    max-width: 1200px;
+    height: fit-content;
+    text-align: center;
+    padding: 40px 20px;
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
+/* LOGO */
+.form-hero-section-logo{
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+/* TITLE */
+.form-hero-section-title{
+    font-size: 45px;
+    text-align: center;
+    font-weight: 600;
+    color: #007ed8;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.form-hero-section-text{
+    font-size: large;
+    color: white;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* BUTTON */
+.form-hero-section-btn{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 8px;
+     background: linear-gradient(90deg,#00b0ce,#007ed8);
+    font-weight: 600;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+/* NOTE */
+.form-hero-section-note {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.form-hero-section-note::before {
+    content: "⏲";
+    margin-right: 5px;
+}
+@media(max-width:600px){
+    .form-hero-section-title{
+        font-size: 35px;
+    }
+}
+.step {
+    display: none;
+    width: 95%;
+    max-width: 900px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.step.active{
+    display: block;
+}
+.form-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    gap: 10px;
+}
+.form-box h4{
+    font-size: 35px;
+    font-weight: 400;
+}
+.form-box input:not([type="file"]),
+.form-box textarea{
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    padding: 10px 5px;
+    font-size: 30px;
+    background: transparent;
+    margin: 15px 0;
+}
+.upload-box{
+    width: 100%;
+    border: 2px dashed #007ed852;
+    background-color: #007ed82a;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.upload-box:hover{
+    background-color: #007ed83a;
+    border-color: #007ed8;
+}
+
+/* ICON */
+.upload-icon{
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+}
+
+/* TEXT */
+.upload-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.upload-text .title{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.upload-text .limit{
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+/* HIDE DEFAULT INPUT */
+.file-input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.form-box span{
+    font-size: small;
+}
+.ok-btn{
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.contact-option{
+    width: 100%;
+}
+.contact-options{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-option input{
+    display: none;
+}
+
+.contact-option-box{
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    max-width: 350px;
+    width: 100%;
+    gap: 15px;
+    padding: 15px 30px;
+    background: #007ed852;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option-letter{
+    display: flex;
+    background: #007ed879;
+    border-radius: 50%;
+    justify-content: center;
+    padding: 5px 10px;
+    font-size: large;
+    align-items: center;
+    font-weight: bold;
+}
+
+.option-text{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.contact-option input:checked + .contact-option-box{
+    background: black;
+    color: white;
+}
+
+
+.fixed-nav{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.fixed-nav button{
+    width: 45px;
+    height: 45px;
+    background: #007ed8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: black;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fixed-nav button:hover{
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
+@media(max-width:600px){
+    .form-box h4 {
+        font-size: 25px;
+    }
+    .form-box input{
+        font-size: large;
+    }
+    .ok-btn{
+        font-size: medium;
+    }
+}
+
+.avatar-options{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.avatar-option input{
+    display: none;
+}
+
+.avatar-card{
+    border: 2px solid #007ed8;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    background: white;
+}
+
+.avatar-card img{
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.avatar-card span{
+    display: block;
+    font-weight: 600;
+}
+
+.avatar-option input:checked + .avatar-card{
+    background: black;
+    color: white;
+}
+.section10-options{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 in one row (PC) */
+    gap: 8px;
+    justify-items: center;
+    align-items: start;
+}
+
+/* each item */
+.section10-options .contact-option{
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MOBILE */
+@media (max-width: 600px){
+    .section10-options{
+        grid-template-columns: repeat(2, 1fr); /* 2 in one row (mobile) */
+    }
+
+    .section10-options .contact-option{
+        max-width: 150px;
+    }
+
+    .section10-options .contact-option-box{
+        padding: 10px;
+        font-size: x-small;
+    }
+
+    .section10-options .option-letter{
+        width: 20px;
+        height: 20px;
+        font-size: x-small;
+    }
+}
+@media(max-width: 600px){
+    .avatar-options{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .avatar-card img {
+    height: 120px;
+}
+
+.avatar-card span {
+    font-size: x-small;
+}}
+
+
+/* =========================
+   PAYMENT SCREEN
+========================= */
+
+.payment-screen{
+    width: 95%;
+    max-width: 1100px;
+    background: white;
+    border-radius: 20px;
+    display: none;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    padding: 20px;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* LEFT SIDE */
+.payment-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-left img{
+    width: 220px;
+}
+
+/* RIGHT SIDE */
+.payment-right h2{
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.payment-desc{
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.payment-price{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.payment-price span{
+    color: black;
+    font-weight: 700;
+}
+
+.stripe-text{
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+}
+
+/* FORM */
+.payment-form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-form input{
+    padding: 12px;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+}
+
+.payment-form .row{
+    display: flex;
+    gap: 10px;
+}
+
+.payment-form .row input{
+    width: 100%;
+}
+
+/* BUTTON */
+.pay-btn{
+    background: black;
+    color: white;
+    width: fit-content;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+
+/* MOBILE */
+@media(max-width:768px){
+    .payment-screen{
+        flex-direction: column;
+        text-align: center;
+        height: 95vh;
+    }
+    .payment-right h2 {
+    font-size: large;
+}
+    .pay-subtitle ,.pay-amount{
+    font-size: small !important;
+}
+.payment-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.card-form {
+    padding: 05px;
+    gap: 10px;
+    width: 100%;
+}
+.card-form .row{
+    flex-direction: column;
+    text-align: left;
+}
+.card-icons{
+    justify-content: center;
+    align-items: center;
+}
+.field label{
+    text-align: left;
+}
+    .payment-left{
+        display: none;
+    }
+    .payment-left img{
+        width: 160px;
+    }
+}/* =========================
+   STRIPE STYLE PAYMENT FORM
+========================= */
+
+.pay-title{
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.pay-subtitle{
+    font-size: 15px;
+    margin-bottom: 05px;
+    line-height: 1.5;
+}
+
+.pay-amount{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.stripe-badge{
+    font-size: 14px;
+    margin-bottom: 0px;
+    opacity: 0.7;
+}
+
+/* CARD BOX */
+.card-form{
+    background: #f3f3f3;
+    padding: 20px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* FIELD */
+.field{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label{
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* INPUTS */
+.field input,
+.field select{
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+    background: white;
+}
+
+.field input:focus,
+.field select:focus{
+    border-color: #007ed8;
+}
+
+/* ROW */
+.row{
+    display: flex;
+    gap: 10px;
+}
+
+.row .field{
+    flex: 1;
+}
+
+/* CARD ICONS */
+.card-icons{
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.card-icons img{
+    width: 30px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* BUTTON */
+.pay-btn{
+    background: black;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.pay-btn:hover{
+    background: #007ed8;
+    color: black;
+}
+
+/* HINT */
+.hint{
+    font-size: 12px;
+    opacity: 0.6;
+    text-align: center;
+}
+
+
+
+
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
+     font-family: 'Creato Display', sans-serif !important; 
+}
+section.faq-form .accordion .accordion-item .accordion-header button{
+     font-family: 'Creato Display', sans-serif !important; 
+     letter-spacing: 1px;;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+p,.p,a,span,li,section.faq-form form button{
+      font-family: "Roboto", sans-serif !important; 
+}
+p,.p,li span{
+    font-size: medium !important;
+
+}

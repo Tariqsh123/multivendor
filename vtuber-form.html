@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTuber Form</title>
+    <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+
+<!-- section 1 -->
+<div class="form-hero-section-container">
+    <div class="form-hero-section-wrapper">
+        <img src="images/logo.png" alt="Logo" class="form-hero-section-logo">
+
+        <h3 class="form-hero-section-title">
+            Answer a few short questions <br> about your avatar
+        </h3>
+
+        <p class="form-hero-section-text">
+            Then we'll either start creating your avatar right away or talk to you about your project.
+        </p>
+
+        <button class="form-hero-section-btn" id="startBtn">Start</button>
+
+        <span class="form-hero-section-note">Takes 3 minutes</span>
+    </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+    <div class="form-box">
+        <h4>What should we call you?</h4>
+        <input type="text" placeholder="Type your answer">
+        <button class="ok-btn">OK</button>
+    </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+    <div class="form-box">
+
+        <h4>What's the best way to reach you?</h4>
+
+        <p>Basically, this is where we'll discuss revisions and everything else about your project.</p>
+
+        <!-- FIX RADIO INPUTS -->
+
+<label class="contact-option">
+    <input type="radio" name="contact-method" value="discord">
+
+    <div class="contact-option-box">
+        <span class="option-letter">A</span>
+        <span class="option-text">Discord</span>
+    </div>
+</label>
+
+<label class="contact-option">
+    <input type="radio" name="contact-method" value="email">
+
+    <div class="contact-option-box">
+        <span class="option-letter">B</span>
+        <span class="option-text">E-mail</span>
+    </div>
+</label>
+        <button class="ok-btn">OK</button>
+    </div>
+</div>
+
+<!-- STEP 4 DISCORD -->
+<div class="step" id="discordStep">
+    <div class="form-box">
+
+        <h4>What's your Discord username?</h4>
+
+        <p>
+            Example: username#0000 (Case sensitive)
+            Please make sure that your friend requests are open. :)
+        </p>
+
+        <input type="text" placeholder="Type Your Answer Here">
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+<!-- STEP 5 EMAIL -->
+<div class="step" id="emailStep">
+    <div class="form-box">
+
+        <h4>What is your email address? (Double check it)*</h4>
+
+        <p>
+            We will never send you spam. This is important for revisions and the final delivery so make sure to add your main email address.
+        </p>
+
+        <input type="email" placeholder="Type Your Answer Here">
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+
+<!-- section 6 -->
+ <div class="step">
+    <div class="form-box">
+
+        <h4>
+            All right. What does your avatar look like?
+        </h4>
+
+        <p>
+            Try to be as detailed as possible and tell us what your avatar is all about. In case you're not sure right now, we'll definitely help you decide.
+        </p>
+
+        <textarea placeholder="Type your answer here..."></textarea>
+        <span>Shift ⇧ + Enter ↵ to make a line break</span>
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+<!-- section 7 -->
+ <!-- STEP: REFERENCE IMAGE -->
+<div class="step">
+    <div class="form-box">
+
+        <h4>Would you like to upload a reference image?*</h4>
+
+        <p>
+            Any sort of image of something similar to what you had in mind would be very useful for our talented artists.
+        </p>
+
+        <div class="contact-options">
+
+            <label class="contact-option">
+                <input type="radio" name="reference-image" value="yes">
+
+                <div class="contact-option-box">
+                    <span class="option-letter">Y</span>
+                    <span class="option-text">Yes</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="radio" name="reference-image" value="no">
+
+                <div class="contact-option-box">
+                    <span class="option-letter">N</span>
+                    <span class="option-text">No</span>
+                </div>
+            </label>
+
+        </div>
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+<!-- Section 8 -->
+ <div class="step">
+    <div class="form-box">
+
+        <h4>Nice, this will help a lot. Please upload a reference file.</h4>
+
+        <p>
+            In this section, you can only upload one file btw. But no worries,
+            you'll be able to send them all directly once we get in contact.
+        </p>
+
+        <div class="upload-box">
+
+    <img src="https://img.icons8.com/?size=100&id=42373&format=png&color=000000" class="upload-icon" alt="upload">
+
+    <div class="upload-text">
+        <span class="title">Choose file or drag here</span>
+        <span class="limit">Size limit: 10MB</span>
+        <span class="filename">File Name : <b id="fileName">No file chosen</b></span>
+    </div>
+
+    <input type="file" class="file-input" id="fileInput">
+
+</div>
+
+<script>
+    const fileInput = document.getElementById("fileInput");
+    const fileName = document.getElementById("fileName");
+
+    fileInput.addEventListener("change", function () {
+        if (fileInput.files.length > 0) {
+            fileName.textContent = fileInput.files[0].name;
+        } else {
+            fileName.textContent = "No file chosen";
+        }
+    });
+</script>
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+
+<!-- section 9  -->
+ <div class="step">
+    <div class="form-box">
+
+        <h4>
+            What type of avatar would you like? (All of them are $100 off this month only ^^ )
+        </h4>
+
+        <p>
+            The pricing includes the entire creation of your avatar. Basically, you'll have a ready-to-use model you can use in your videos and streams. ❤️
+        </p>
+
+        <div class="avatar-options">
+
+            <label class="avatar-option">
+                <input type="radio" name="avatar-type" value="chibi">
+
+                <div class="avatar-card">
+                    <img src="https://images.typeform.com/images/bJVfDHZBkp5B" />
+                    <span>A - Chibi ($445)</span>
+                </div>
+            </label>
+
+            <label class="avatar-option">
+                <input type="radio" name="avatar-type" value="chest">
+
+                <div class="avatar-card">
+                    <img src="https://images.typeform.com/images/Ype8H4HtRgdj" />
+                    <span>B - Chest-up ($695)</span>
+                </div>
+            </label>
+
+            <label class="avatar-option">
+                <input type="radio" name="avatar-type" value="half">
+
+                <div class="avatar-card">
+                    <img src="https://images.typeform.com/images/h9AkzJ2BD96e" />
+                    <span>C - Half-body ($795)</span>
+                </div>
+            </label>
+
+            <label class="avatar-option">
+                <input type="radio" name="avatar-type" value="full">
+
+                <div class="avatar-card">
+                    <img src="https://images.typeform.com/images/AmhFcdTnJwyf" />
+                    <span>D - Full-body ($895)</span>
+                </div>
+            </label>
+
+        </div>
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+
+<!-- section 10 -->
+ <!-- SECTION 10 -->
+<div class="step">
+    <div class="form-box">
+
+        <h4>Would you like to add other services?</h4>
+
+        <p>
+            Can help you look more professional online. <br>
+            Choose as many as you like
+        </p>
+
+        <div class="contact-options section10-options">
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="no_thanks">
+                <div class="contact-option-box">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">No thanks</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="reference_sheet">
+                <div class="contact-option-box">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">Reference Sheet (+$190)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="prop_asset">
+                <div class="contact-option-box">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">Prop / Asset for Avatar (+$50)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="custom_logo">
+                <div class="contact-option-box">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">Custom Logo (+$150)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="animated_overlay">
+                <div class="contact-option-box">
+                    <span class="option-letter">E</span>
+                    <span class="option-text">Animated Stream Overlay (+$180)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="emotes_pack_6">
+                <div class="contact-option-box">
+                    <span class="option-letter">F</span>
+                    <span class="option-text">6 Emotes Pack (+$150)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="stream_panels">
+                <div class="contact-option-box">
+                    <span class="option-letter">G</span>
+                    <span class="option-text">8 Streamer Panels (+$120)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="stream_screens">
+                <div class="contact-option-box">
+                    <span class="option-letter">H</span>
+                    <span class="option-text">3 Stream Screens (BRB etc) (+$190)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="checkbox" name="services" value="channel_banner">
+                <div class="contact-option-box">
+                    <span class="option-letter">I</span>
+                    <span class="option-text">Channel Banner (+$180)</span>
+                </div>
+            </label>
+
+        </div>
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+
+<!-- section 11 -->
+<!-- STEP 11 -->
+<div class="step">
+    <div class="form-box">
+        <h4>Do you have discount code?</h4>
+
+        <label class="contact-option">
+                <input type="checkbox" name="discount-code" value="yes">
+                <div class="contact-option-box">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">Yes</span>
+                </div>
+            </label>
+            <label class="contact-option">
+                <input type="checkbox" name="discount-code" value="no">
+                <div class="contact-option-box">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">No</span>
+                </div>
+            </label>
+
+        <!-- <label><input type="radio" name="discount-code" value="yes"> Yes</label>
+        <label><input type="radio" name="discount-code" value="no"> No</label> -->
+
+        <button class="ok-btn">OK</button>
+    </div>
+</div>
+
+<!-- 🔥 FIXED DISCOUNT INPUT (NOW NORMAL STEP) -->
+<div class="step">
+    <div class="form-box">
+        <h4>Enter discount code</h4>
+        <input type="text" placeholder="Type Your Answer Here">
+        <button class="ok-btn">OK</button>
+    </div>
+</div>
+
+<!-- STEP 11 (CHECKOUT) -->
+<div class="step">
+    <div class="form-box">
+
+        <h4>Would you like to checkout now or talk to a real person first?</h4>
+
+        <p>
+            In any case you will be in contact with a customer guide when we will create your avatar.  
+            Ordering now will guarantee you an open commission spot (which might fill up otherwise).
+        </p>
+
+        <div class="contact-options">
+
+            <label class="contact-option">
+                <input type="radio" name="checkout-choice" value="pay">
+                <div class="contact-option-box">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">Pay now (Guaranteed spot)</span>
+                </div>
+            </label>
+
+            <label class="contact-option">
+                <input type="radio" name="checkout-choice" value="talk">
+                <div class="contact-option-box">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">Talk to a real person first</span>
+                </div>
+            </label>
+
+        </div>
+
+        <button class="ok-btn">OK</button>
+
+    </div>
+</div>
+
+<div id="paymentScreen" class="payment-screen">
+
+    <!-- LEFT -->
+    <div class="payment-left">
+        <img src="images/logo.png" alt="Logo">
+    </div>
+
+    <!-- RIGHT -->
+    <div class="payment-right">
+
+    <h2 class="pay-title">
+        We will make this VTuber avatar absolutely amazing for you ❤️
+    </h2>
+
+    <p class="pay-subtitle">
+        This includes the entire creation of your 2D VTuber avatar. We also offer a 100% money-back guarantee.
+    </p>
+
+    <div class="pay-amount">
+        Your credit card will be charged: <b>$965.00</b>
+    </div>
+
+    <div class="stripe-badge">
+        🔒 Secured by <b>Stripe</b>
+    </div>
+
+    <!-- CARD FORM -->
+    <div class="card-form">
+
+        <!-- CARD NUMBER -->
+        <div class="field">
+            <label>Card number</label>
+            <input type="text" placeholder="1234 1234 1234 1234">
+            <div class="card-icons">
+                <img src="https://img.icons8.com/color/48/visa.png">
+                <img src="https://img.icons8.com/color/48/mastercard.png">
+                <img src="https://img.icons8.com/color/48/amex.png">
+                <img src="https://img.icons8.com/color/48/discover.png">
+            </div>
+        </div>
+
+        <!-- EXP + CVC -->
+        <div class="row">
+            <div class="field">
+                <label>Expiration date</label>
+                <input type="text" placeholder="MM / YY">
+            </div>
+
+            <div class="field">
+                <label>Security code</label>
+                <input type="text" placeholder="CVC">
+            </div>
+        </div>
+
+        <!-- COUNTRY -->
+        <div class="field">
+            <label>Country</label>
+            <select>
+                <option>Pakistan</option>
+                <option>United States</option>
+                <option>United Kingdom</option>
+                <option>Canada</option>
+            </select>
+        </div>
+
+        <!-- NAME -->
+        <div class="field">
+            <label>Name on card</label>
+            <input type="text" placeholder="Name on card">
+        </div>
+
+        <button id="paySubmit" class="pay-btn">Submit</button>
+    </div>
+
+</div>
+</div>
+<div id="thankYouScreen" style="display:none; text-align:center; padding:60px;">
+    <h1>Thank You ❤️</h1>
+    <p>Your request has been submitted successfully.</p>
+</div>
+
+
+<!-- NAV -->
+<div class="fixed-nav">
+    <button id="prev">⮜</button>
+    <button id="next">⮞</button>
+</div>
+
+<script>
+let current = -1;
+
+const hero = document.querySelector(".form-hero-section-container");
+const steps = document.querySelectorAll(".step");
+
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+
+const paymentScreen = document.getElementById("paymentScreen");
+const thankYouScreen = document.getElementById("thankYouScreen");
+const paySubmit = document.getElementById("paySubmit");
+
+let selectedMethod = "";
+let referenceChoice = "";
+let avatarType = "";
+let selectedServices = [];
+let discountChoice = "";
+let discountCode = "";
+let checkoutChoice = "";
+
+// Pricing
+const avatarPrices = {
+    chibi: 445,
+    chest: 695,
+    half: 795,
+    full: 895
+};
+
+const servicePrices = {
+    reference_sheet: 190,
+    prop_asset: 50,
+    custom_logo: 150,
+    animated_overlay: 180,
+    emotes_pack_6: 150,
+    stream_panels: 120,
+    stream_screens: 190,
+    channel_banner: 180
+};
+
+// STEP MAP (Important: Keep this in order of your HTML steps)
+const STEP = {
+    NAME: 0,
+    CONTACT: 1,
+    DISCORD: 2,
+    EMAIL: 3,
+    DESCRIPTION: 4,
+    REFERENCE: 5,
+    UPLOAD: 6,
+    AVATAR: 7,
+    SERVICES: 8,
+    DISCOUNT: 9,
+    DISCOUNT_INPUT: 10,
+    CHECKOUT: 11
+};
+
+// Calculate Total
+function calculateTotal() {
+    let total = avatarPrices[avatarType] || 0;
+    
+    selectedServices.forEach(service => {
+        if (service !== "no_thanks") {
+            total += servicePrices[service] || 0;
+        }
+    });
+
+    // You can add discount logic here later
+    return total;
+}
+
+// Update Payment Screen
+function updatePaymentScreen() {
+    const total = calculateTotal();
+    const amountEl = paymentScreen.querySelector(".pay-amount b");
+    if (amountEl) amountEl.textContent = `$${total.toFixed(2)}`;
+}
+
+// UI Update
+function updateUI() {
+    hero.style.display = "none";
+    steps.forEach(s => s.style.display = "none");
+    paymentScreen.style.display = "none";
+    thankYouScreen.style.display = "none";
+
+    if (current === -1) {
+        hero.style.display = "flex";
+    } else if (current === "payment") {
+        updatePaymentScreen();
+        paymentScreen.style.display = "flex";
+    } else if (current === "thankyou") {
+        thankYouScreen.style.display = "block";
+    } else {
+        if (steps[current]) steps[current].style.display = "block";
+    }
+
+    const isSpecial = current === "payment" || current === "thankyou";
+    prevBtn.style.display = (current === -1 || isSpecial) ? "none" : "flex";
+    nextBtn.style.display = (current === -1 || isSpecial) ? "none" : "flex";
+}
+
+// Start Button
+document.getElementById("startBtn").onclick = () => {
+    current = STEP.NAME;
+    updateUI();
+};
+
+// OK Buttons Logic
+document.querySelectorAll(".ok-btn").forEach(btn => {
+    btn.onclick = () => {
+        const stepEl = btn.closest(".step");
+        const stepIndex = Array.from(steps).indexOf(stepEl);
+        if (stepIndex === -1) return;
+
+        // Name Step
+        if (stepIndex === STEP.NAME) {
+            const input = stepEl.querySelector("input");
+            if (!input.value.trim()) return alert("Please enter your name");
+        }
+
+        // Contact Method
+        else if (stepIndex === STEP.CONTACT) {
+            const sel = document.querySelector('input[name="contact-method"]:checked');
+            if (!sel) return alert("Please select a contact method");
+            selectedMethod = sel.value;
+        }
+
+        // Discord / Email
+        else if (stepIndex === STEP.DISCORD || stepIndex === STEP.EMAIL) {
+            const input = stepEl.querySelector("input");
+            if (!input.value.trim()) return alert("Please fill this field");
+        }
+
+        // Description
+        else if (stepIndex === STEP.DESCRIPTION) {
+            const textarea = stepEl.querySelector("textarea");
+            if (!textarea.value.trim()) return alert("Please describe your avatar");
+        }
+
+        // Reference Choice
+        else if (stepIndex === STEP.REFERENCE) {
+            const sel = document.querySelector('input[name="reference-image"]:checked');
+            if (!sel) return alert("Please choose Yes or No");
+            referenceChoice = sel.value;
+        }
+
+        // Upload
+        else if (stepIndex === STEP.UPLOAD) {
+            const fileInput = stepEl.querySelector("input[type='file']");
+            if (!fileInput.files.length) return alert("Please upload a reference image");
+        }
+
+        // Avatar Type
+        else if (stepIndex === STEP.AVATAR) {
+            const sel = document.querySelector('input[name="avatar-type"]:checked');
+            if (!sel) return alert("Please select avatar type");
+            avatarType = sel.value;
+        }
+
+        // Services
+        else if (stepIndex === STEP.SERVICES) {
+            selectedServices = Array.from(
+                document.querySelectorAll('input[name="services"]:checked')
+            ).map(el => el.value);
+        }
+
+        // Discount Question
+        else if (stepIndex === STEP.DISCOUNT) {
+            const sel = document.querySelector('input[name="discount-code"]:checked');
+            if (!sel) return alert("Please select Yes or No");
+            discountChoice = sel.value;
+        }
+
+        // Discount Code Input
+        else if (stepIndex === STEP.DISCOUNT_INPUT) {
+            const input = stepEl.querySelector("input");
+            if (!input.value.trim()) return alert("Please enter discount code");
+            discountCode = input.value;
+        }
+
+        // Checkout Choice
+        else if (stepIndex === STEP.CHECKOUT) {
+            const sel = document.querySelector('input[name="checkout-choice"]:checked');
+            if (!sel) return alert("Please choose an option");
+            checkoutChoice = sel.value;
+
+            current = "payment";
+            updateUI();
+            return;
+        }
+
+        // Move to next step
+        if (stepIndex === STEP.CONTACT) {
+            current = selectedMethod === "discord" ? STEP.DISCORD : STEP.EMAIL;
+        } 
+        else if (stepIndex === STEP.REFERENCE) {
+            current = referenceChoice === "yes" ? STEP.UPLOAD : STEP.AVATAR;
+        } 
+        else if (stepIndex === STEP.DISCOUNT) {
+            current = discountChoice === "yes" ? STEP.DISCOUNT_INPUT : STEP.CHECKOUT;
+        } 
+        else {
+            current = stepIndex + 1;
+        }
+
+        updateUI();
+    };
+});
+
+// Payment Submit
+paySubmit.onclick = () => {
+    current = "thankyou";
+    updateUI();
+
+    setTimeout(() => {
+        alert("Thank you! Your order has been received ❤️");
+        // window.location.href = "index.html";
+    }, 3000);
+};
+
+// Navigation
+prevBtn.onclick = () => { if (current > 0) { current--; updateUI(); } };
+nextBtn.onclick = () => { updateUI(); };
+
+updateUI();
+</script>
+
+</body>
+</html>

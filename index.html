@@ -1,2073 +1,1552 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>V Tuber Model</title>
+        <style>
+            @font-face {
+    font-family: 'Creato Display';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 800;
+    src: local('Creato Display'),
+         url('fonts/CreatoDisplay-Black.otf') format('opentype');
+}
+        </style>
 
-    <!-- Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO Title -->
-    <title>Sino Pak Nova – Your Trusted Online Store</title>
-    <meta name="description" content="Sino Pak Nova is your trusted online store offering quality products at affordable prices. Shop electronics, fashion, home essentials, and more with secure payments, fast delivery, and a smooth, reliable shopping experience.">
-    <meta name="keywords" content="Sino Pak Nova, online shopping Pakistan, ecommerce store Pakistan, buy online Pakistan, trusted online store, affordable online shopping, electronics online, fashion store online, home essentials Pakistan, mobile accessories online, best ecommerce website, online marketplace Pakistan, secure online shopping, fast delivery Pakistan, quality products online, shopping website Pakistan, gadgets and accessories, lifestyle products online, daily use products, online store Karachi,#SinoPakNova, #OnlineShoppingPakistan, #EcommerceStore, #BuyOnlinePakistan, #TrustedOnlineStore, #AffordableShopping, #ElectronicsOnline, #FashionStore, #HomeEssentials, #MobileAccessories, #BestEcommerceWebsite, #OnlineMarketplace, #SecureShopping, #FastDelivery, #QualityProducts, #ShoppingWebsite, #GadgetsAndAccessories, #LifestyleProducts, #DailyUseProducts, #KarachiStore,@sinopaknova, @onlineshoppingpk, @ecommercestore, @trustedstore, @pakistanonline, @shoppinghub, @electronicsstore, @fashiononline, @homeessentials, @mobileaccessories, @beststore, @marketplacepk, @securecheckout, @fastdeliverypk, @qualityhub, @shoppingwebsite, @lifestylehub, @dailyproducts, @karachistore">
-    <meta name="author" content="Sino Pak Nova">
-    <meta name="publisher" content="Sino Pak Nova">
-    <meta name="robots" content="noindex, nofollow">
-
-    <link rel="canonical" href="https://sinopaknova.com/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Sino Pak Nova">
-    <meta property="og:title" content="Sino Pak Nova – Your Trusted Online Store">
-    <meta property="og:description" content="Sino Pak Nova is your trusted online store offering quality products at affordable prices. Shop electronics, fashion, home essentials, and more with secure payments, fast delivery, and a smooth, reliable shopping experience.">
-    <meta property="og:url" content="https://sinopaknova.com/">
-    <meta property="og:image" content="assets/logo.png">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sino Pak Nova – Your Trusted Online Store">
-    <meta name="twitter:description" content="Sino Pak Nova is your trusted online store offering quality products at affordable prices. Shop electronics, fashion, home essentials, and more with secure payments, fast delivery, and a smooth, reliable shopping experience.">
-    <meta name="twitter:image" content="assets/logo.png">
-
-    <link rel="icon" href="assets/logo.png" type="image/x-icon">
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="preconnect" href="https://code.jquery.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Sino Pak Nova",
-      "url": "https://sinopaknova.com/",
-      "logo": "assets/logo.png",
-      "sameAs": [
-        ""
-      ]
-    }
-    </script>
-
-</head>
-<body>
-    <!-- Navigation - White -->
-   <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo" id="home" title="home">
-                <img src="assets/logo.png" id="logo" alt="logo" title="logo" loading="lazy"></a>
-            
-            <div class="nav-menu" id="navMenu">
-
-                <!-- Updated Nav Search -->
-<div class="nav-input">
-    <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="mainSearchInput" placeholder="Search products or vendors..." autocomplete="off">
-        <select id="searchType">
-            <option value="products">Products</option>
-            <option value="vendors">Vendors</option>
-        </select>
-        <!-- <button id="searchBtn" class="search-btn">
-            <i class="fas fa-arrow-right"></i>
-        </button> -->
-    </div>
-
-    <!-- Search Results Dropdown -->
-    <div class="search-results" id="searchResults">
-        <div class="results-header">
-            <span id="resultsTitle">Results</span>
-            <!-- <button class="close-results" id="closeResults">×</button> -->
-        </div>
-        <div class="results-content" id="resultsContent"></div>
-    </div>
-</div>
-<script>
-// Enhanced Search Functionality with Vendor Store Support
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('mainSearchInput');
-    const searchType = document.getElementById('searchType');
-    const searchResults = document.getElementById('searchResults');
-    const resultsContent = document.getElementById('resultsContent');
-    const searchBtn = document.getElementById('searchBtn');
-
-    let products = [];
-    let vendors = [];
-
-    // Load products
-    async function loadProducts() {
-        try {
-            const res = await fetch('data/product.json?t=' + Date.now());
-            const data = await res.json();
-            products = [...(data.warehouseProducts || []), ...(data.storeProducts || [])];
-        } catch (e) {
-            console.error("Failed to load products", e);
-        }
-    }
-
-    // Sample Vendors - Add more as needed
-    vendors = [
-        { id: 1, name: "BrightHome Supplies", rating: 4.8, products: 245 },
-        { id: 2, name: "TechHub Store", rating: 4.6, products: 189 },
-        { id: 3, name: "FashionGalaxy", rating: 4.9, products: 320 },
-        { id: 4, name: "SportsArena", rating: 4.5, products: 98 },
-        { id: 5, name: "HomeEssentials PK", rating: 4.7, products: 156 }
-    ];
-
-    loadProducts();
-
-    function showResults(filteredItems, type) {
-        resultsContent.innerHTML = '';
         
-        if (filteredItems.length === 0) {
-            resultsContent.innerHTML = `
-                <div class="no-results">
-                    <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5;"></i>
-                    <p>No matching ${type} found</p>
-                </div>`;
-            searchResults.classList.add('active');
-            return;
-        }
 
-        filteredItems.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'search-result-item';
+        <link rel="stylesheet" href="css/home.css">
+    </head>
+    <body>
+        <header>
 
-            if (type === 'products') {
-                const pricePKR = Math.round((item.price || 0) * 280);
-                div.innerHTML = `
-                    <img src="${item.image || 'https://via.placeholder.com/50'}" alt="${item.name}">
-                    <div class="search-result-info">
-                        <h4>${item.name}</h4>
-                        <p>Rs ${pricePKR.toLocaleString()} • ${item.category || 'General'}</p>
-                    </div>
-                `;
-                div.onclick = () => {
-                    window.location.href = `product-detail.html?id=${item.id}`;
-                    searchResults.classList.remove('active');
-                };
-            } else {
-                // === VENDOR CLICK - Now opens store.html ===
-                div.innerHTML = `
-                    <div style="width:50px;height:50px;background:#f0f0f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#e05a00;">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <div class="search-result-info">
-                        <h4>${item.name}</h4>
-                        <p>⭐ ${item.rating} • ${item.products} products</p>
-                    </div>
-                `;
-                div.onclick = () => {
-                    const vendorName = encodeURIComponent(item.name);
-                    window.location.href = `store.html?name=${vendorName}`;
-                    searchResults.classList.remove('active');
-                };
-            }
-            resultsContent.appendChild(div);
-        });
+            
+                <section class="top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
 
-        searchResults.classList.add('active');
-    }
-
-    // Perform Search
-    function performSearch() {
-        const query = searchInput.value.toLowerCase().trim();
-        if (!query) {
-            searchResults.classList.remove('active');
-            return;
-        }
-
-        const type = searchType.value;
-
-        if (type === 'products') {
-            const filtered = products.filter(p => 
-                (p.name && p.name.toLowerCase().includes(query)) ||
-                (p.category && p.category.toLowerCase().includes(query))
-            );
-            showResults(filtered, 'products');
-        } else {
-            const filtered = vendors.filter(v => 
-                v.name.toLowerCase().includes(query)
-            );
-            showResults(filtered, 'vendors');
-        }
-    }
-
-    // Event Listeners
-    searchInput.addEventListener('input', performSearch);
-    searchType.addEventListener('change', performSearch);
-    searchBtn.addEventListener('click', performSearch);
-
-    // Enter key support
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') performSearch();
-    });
-
-    // Close results when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!searchInput.contains(e.target) && 
-            !searchResults.contains(e.target) && 
-            !searchBtn.contains(e.target)) {
-            searchResults.classList.remove('active');
-        }
-    });
-
-    // Close button
-    document.getElementById('closeResults').addEventListener('click', () => {
-        searchResults.classList.remove('active');
-    });
-});
-</script>
-
-
-                <a href="products.html" class="nav-link" title="products">Products</a>
-                <a href="research-hub.html" class="nav-link" title="Research Hub">Research Hub</a>
-                <!-- <a href="news.html" class="nav-link">News</a>
-                <a href="faq.html" class="nav-link">FAQs</a> -->
-                <a href="account.html" class="nav-link">Account</a>
-                <a href="dashboard.html" class="nav-link dashboard-link" style="display:none;">Dashboard</a>
-
-                <div id="wish-and-cart-menu">
-                    <!-- Wishlist Icon - Fixed to open sidebar instead of redirect -->
-                    <a href="#" class="nav-link wishlist-icon" id="wishlistIcon">
-                        <i class="fas fa-heart"></i>
-                        <span class="wishlist-count">0</span>
+                
+                    <a class="social-icons" href="#" title="Facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                        <span class="sr-only">Facebook</span>
                     </a>
 
-                    <!-- Cart Icon -->
-                    <a href="#" class="nav-link cart-icon" id="cartIcon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
+                
+                    <a class="social-icons" href="#" title="Instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span class="sr-only">Instagram</span>
                     </a>
+
+                
+                    <a class="social-icons" href="#" title="Pinterest" target="_blank">
+                        <i class="fab fa-pinterest-p"></i>
+                        <span class="sr-only">Pinterest</span>
+                    </a>
+
+                
+            </div>
+            <div class="col-12 col-md-8">
+                <ul>
+                    <li>
+                        <a href="#" title="Email">
+                            <i class="fas fa-envelope"></i>
+                            info@vtubermodel.co.uk
+                        </a>
+                    </li>
+                    <li>
+                        |
+                    </li>
+                    <li>
+                        <a href="#" title="Phone">
+                            <i class="fas fa-phone"></i>
+                            +44 12 1245 1245
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<nav class="navbar navbar-expand-lg navbar-light" aria-label="Book Cover Designers UK - Navigation">
+    <div class="container">
+        <a class="navbar-brand m-0" href="index.html" title="Logo" aria-current="page">
+            <img src="images/logo.png" class="img-fluid" alt="logo" title="logo" loading="lazy">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bookCoverDesignNavbar" aria-controls="bookCoverDesignNavbar" aria-expanded="false" aria-label="Toggle Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="bookCoverDesignNavbar">
+            <ul class="navbar-nav menu-bar">
+                <li class="nav-item">
+                    <a class="nav-link" title="About US" href="#">
+                        About us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Our Portfolio And Reviews" href="portfolio-and-reviews.html">
+                        Our Portfolio And Reviews
+                    </a>
+                </li>
+                
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dropdownServices" data-bs-toggle="dropdown" aria-expanded="false">
+                        Locations
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownServices">
+                        <li>
+                            <a class="dropdown-item " href="vtuber-usa.html"><img src="https://img.icons8.com/?size=100&id=15532&format=png&color=000000" alt="Vtuber USA" title="Vtuber USA" style="height: 20px;width: auto;" loading="lazy"> Vtuber USA </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="vtuber-canada.html"><img src="https://img.icons8.com/?size=100&id=15512&format=png&color=000000" alt="Vtuber Canada " title="Vtuber Canada " style="height: 20px;width: auto;" loading="lazy" > Vtuber Canada </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="vtuber-uk.html"><img src="https://img.icons8.com/?size=100&id=15534&format=png&color=000000" alt="Vtuber UK" title="Vtuber UK" style="height: 20px;width: auto;" loading="lazy"> Vtuber UK</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="vtuber-australia.html"><img src="https://img.icons8.com/?size=100&id=22557&format=png&color=000000" alt="Vtuber Australia" title="Vtuber Australia" style="height: 20px;width: auto;" loading="lazy"> Vtuber Australia</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="vtuber-germany.html"><img src="https://img.icons8.com/?size=100&id=15502&format=png&color=000000" alt="Vtuber Germany" title="Vtuber Germany" style="height: 20px;width: auto;" loading="lazy"> Vtuber Germany </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item " href="vtuber-italy.html"><img src="https://img.icons8.com/?size=100&id=15542&format=png&color=000000" alt="Vtuber Italy" title="Vtuber Italy" style="height: 20px;width: auto;" loading="lazy"> Vtuber Italy</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        Contact Us
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav menu-btn">
+                <li class="nav-item">
+                    <a class="btn btn-md btn-dual-shade" title="contact us" href="vtuber-form.html">
+                        Commission your Model
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+            
+        </header>
+
+        <div class="clearfix"></div>
+    <section class="home-banner">
+        <div class="container">
+            <div id="bannerSlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" data-bs-interval="2500">
+                        <div class="banner-image">
+                            <img src="images/hero-bg.png" class="img-fluid  slider-img" alt="Hero Image" title="Hero Image" width="1366" height="640" loading="lazy">
+                            <div class="row">
+                                <div class="col-12 col-lg-6 home-hero-text-container">
+                                    <h1 class="h1">Gaming VTuber – Custom VTuber Models & Live2D Rigging for Streamers</h1>
+                                    <span class="tag">
+                                        2D VTuber | 3D VTuber | Live2D Rigging | PNGTuber | VRChat Avatars
+                                    </span>
+                                    <p>Launch your virtual identity with professionally designed VTuber models crafted for gamers, streamers, creators, and virtual entertainers. From anime-style 2D avatars to fully rigged Live2D VTuber models, Gaming VTuber helps creators stand out on Twitch, YouTube, Kick, and TikTok.</p>
+                                    
+                                    <ul class="hero-ul">
+                                        <li>
+                                            Professional VTuber Artists
+                                        </li>
+                                        <li>
+                                            Custom Anime Character Designs
+                                        </li>
+                                        <li>
+                                            Smooth Face Tracking & Rigging
+                                        </li>
+                                        <li>
+                                            Twitch & YouTube Ready Models
+                                        </li>
+                                        <li>
+                                            Commercial Use Included
+                                        </li>
+                                    </ul>
+                                    <a href="#" class="btn-dual-shade">
+                                        See Our Portfolio and Reviews
+                                    </a>
+                                    <a href="vtuber-form.html" class="btn-dual-shade" style="background: white;color: black !important;">
+                                         Make My Vtuber Model
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
             </div>
-
-            
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
-    </nav>
+    </section>
+    <section class="content-area text-center">
+        <div class="container">
+            <h2 class="h2">Create Your Dream VTuber Identity With GamingVTuber.com</h2>
+            <hr class="hr-line">
+            <p>Gaming VTuber is a creative VTuber design studio specializing in custom VTuber models, Live2D rigging, anime avatars, and virtual streamer branding. Whether you’re starting your first Twitch stream or building a professional virtual creator brand, our team creates high-quality VTuber avatars designed to match your personality and audience.</p>
+            <p>We help creators transform their ideas into expressive virtual identities that engage viewers and build memorable online personas.</p>
+            <img src="images/home-after-hero-img.png" class="img-fluid  d-block mx-auto" alt="home-after-hero-img" title="home-after-hero-img" width="766" height="459" loading="lazy">
+            <!-- <a href="#" class="btn-dual-shade">
+                Get Your Book Cover Design Now
+            </a> -->
+        </div>
+    </section>
 
-    <!-- Mobile Floating Buttons (will be hidden on mobile) -->
-    <div class="mobile-cart-floating-button">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </div>
-    <div class="mobile-wishlist-floating-button">
-        <i class="fas fa-heart"></i>
-        <span class="wishlist-count">0</span>
-    </div>
+    <section class="services">
+  <div class="container">
 
-    <!-- Hero Section - Original Restored -->
-    <section class="hero">
-  <div class="hero-inner">
-
-    <!-- LEFT CATEGORY -->
-    <div class="category-box">
-      <h3>Categories</h3>
-      <ul>
-        <li><i class="fas fa-tv"></i> Electronics</li>
-        <li><i class="fas fa-tshirt"></i> Fashion</li>
-        <li><i class="fas fa-couch"></i> Home & Living</li>
-        <li><i class="fas fa-football-ball"></i> Sports</li>
-        <li><i class="fas fa-heart"></i> Beauty</li>
-        <li><i class="fas fa-book"></i> Books</li>
-        <li><i class="fas fa-apple-alt"></i> Grocery</li>
-        <li><i class="fas fa-gamepad"></i> Toys</li>
-        <li><i class="fas fa-car"></i> Automotive</li>
-        <li><i class="fas fa-notes-medical"></i> Health</li>
-        <li><i class="fas fa-gem"></i> Jewellery</li>
-        <li><i class="fas fa-paw"></i> Pet Supplies</li>
-      </ul>
+    <div class="services-heading">
+      <h2>Our VTuber Services</h2>
+      <p>
+        Professional VTuber solutions for streamers, creators, gamers, and virtual entertainers.
+      </p>
     </div>
 
-    <!-- RIGHT SLIDER -->
-    <div class="hero-slider">
-      <div class="track">
-        <div class="slide active" style="background-image:url('assets/banner-1.webp')"></div>
-        <div class="slide" style="background-image:url('assets/banner-2.webp')"></div>
-        <div class="slide" style="background-image:url('assets/banner-3.webp')"></div>
+    <div class="services-grid">
+
+      <div class="service-box">
+        <div class="service-image">
+          <img src="https://img.icons8.com/?size=100&id=bo6rRzvwKQA3&format=png&color=1A1A1A" alt="2D VTuber Models" title="2D VTuber Models" loading="lazy">
+        </div>
+        <h3>2D VTuber Models</h3>
+        <p>
+          Professional anime-style VTuber avatars designed for streaming and content creation.
+        </p>
       </div>
 
-      <!-- RIGHT ARROW -->
-      <button class="next">→</button>
-
-      <!-- DOTS -->
-      <div class="dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+      <div class="service-box">
+        <div class="service-image">
+          <img src="https://img.icons8.com/?size=100&id=I8LuLeWM8rtN&format=png&color=1A1A1A" alt="Live2D Rigging" title="Live2D Rigging" loading="lazy">
+        </div>
+        <h3>Live2D Rigging</h3>
+        <p>
+          Smooth facial tracking, realistic movement, blinking, physics, and professional animation rigging.
+        </p>
       </div>
+
+      <div class="service-box">
+        <div class="service-image">
+          <img src="https://img.icons8.com/?size=100&id=iBXheBH7blk1&format=png&color=1A1A1A" alt="3D VTuber Models" title="3D VTuber Models" loading="lazy">
+        </div>
+        <h3>3D VTuber Models</h3>
+        <p>
+          Custom 3D avatars for VRChat, VSeeFace, motion capture, and virtual streaming.
+        </p>
+      </div>
+
+      <div class="service-box">
+        <div class="service-image">
+          <img src="https://img.icons8.com/?size=100&id=55808&format=png&color=1A1A1A" alt="PNGTubers" title="PNGTubers" loading="lazy">
+        </div>
+        <h3>PNGTubers</h3>
+        <p>
+          Affordable animated PNG avatars perfect for beginner streamers and creators.
+        </p>
+      </div>
+
+      <div class="service-box">
+        <div class="service-image">
+          <img src="https://img.icons8.com/?size=100&id=TdLIndAhkbvL&format=png&color=1A1A1A" alt="VTuber Expressions" title="VTuber Expressions" loading="lazy">
+        </div>
+        <h3>VTuber Expressions & Toggles</h3>
+        <p>
+          Custom reactions, emotional expressions, outfit toggles, and interactive features.
+        </p>
+      </div>
+
+      <div class="service-box">
+        <div class="service-image">
+          <img src="https://img.icons8.com/?size=100&id=QNr7RXJBRIb2&format=png&color=1A1A1A" alt="VRChat Avatars" title="VRChat Avatars" loading="lazy">
+        </div>
+        <h3>VRChat Avatars</h3>
+        <p>
+          Immersive VR-ready avatars designed for VRChat and metaverse experiences.
+        </p>
+      </div>
+
     </div>
 
   </div>
 </section>
 
-    <script>
-        const track = document.querySelector(".track");
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
-const nextBtn = document.querySelector(".next");
-
-let index = 0;
-let startX = 0;
-let isDragging = false;
-
-/* UPDATE FUNCTION */
-function update(){
-  track.style.transform = `translateX(-${index * 100}%)`;
-
-  slides.forEach(s => s.classList.remove("active"));
-  slides[index].classList.add("active");
-
-  dots.forEach(d => d.classList.remove("active"));
-  dots[index].classList.add("active");
-}
-
-/* AUTO SLIDE */
-setInterval(()=>{
-  index = (index + 1) % slides.length;
-  update();
-},4000);
-
-/* NEXT BUTTON */
-nextBtn.addEventListener("click", ()=>{
-  index = (index + 1) % slides.length;
-  update();
-});
-
-/* DOT CLICK */
-dots.forEach((dot,i)=>{
-  dot.addEventListener("click", ()=>{
-    index = i;
-    update();
-  });
-});
-
-/* DRAG (MOUSE) */
-track.addEventListener("mousedown",(e)=>{
-  isDragging = true;
-  startX = e.pageX;
-  track.style.cursor = "grabbing";
-});
-
-track.addEventListener("mouseup",(e)=>{
-  if(!isDragging) return;
-
-  let diff = e.pageX - startX;
-
-  if(diff > 80) index--;
-  else if(diff < -80) index++;
-
-  index = Math.max(0, Math.min(index, slides.length - 1));
-
-  update();
-  isDragging = false;
-  track.style.cursor = "grab";
-});
-
-track.addEventListener("mouseleave",()=>{
-  isDragging = false;
-  track.style.cursor = "grab";
-});
-
-/* TOUCH SUPPORT */
-track.addEventListener("touchstart",(e)=>{
-  startX = e.touches[0].clientX;
-});
-
-track.addEventListener("touchend",(e)=>{
-  let diff = e.changedTouches[0].clientX - startX;
-
-  if(diff > 80) index--;
-  else if(diff < -80) index++;
-
-  index = Math.max(0, Math.min(index, slides.length - 1));
-
-  update();
-});
-    </script>
-
-    <!-- ===== SECTION 1: STATS COUNTER ===== -->
-    <!-- <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <div class="stat-number" id="statSellers">10K+</div>
-                    <div class="stat-label">Active Sellers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-box"></i>
-                    </div>
-                    <div class="stat-number" id="statProducts">1M+</div>
-                    <div class="stat-label">Products</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-number" id="statCustomers">500K+</div>
-                    <div class="stat-label">Happy Customers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <div class="stat-number" id="statDeliveries">50K+</div>
-                    <div class="stat-label">Daily Deliveries</div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- WOW Category Section - With Images and Overlay -->
-    <section class="category-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Shop by <span>Category</span></h2>
-                <p>Explore millions of products from trusted sellers across 1000+ categories</p>
-            </div>
-            <div class="category-grid">
-                <a href="products.html?category=electronics" class="category-card">
-                    <img src="assets/category-electronic-img.png" alt="Electronics">
-                    <div class="overlay">
-                        <h3>Electronics</h3>
-                        <p>Phones, Laptops , Headphones</p>
-                    </div>
-                </a>
-                <a href="products.html?category=fashion" class="category-card">
-                    <img src="assets/category-fashion-img.png" alt="Fashion">
-                    <div class="overlay">
-                        <h3>Fashion</h3>
-                        <p>Men, Women, Kids, Accessories</p>
-                    </div>
-                </a>
-                <a href="products.html?category=home" class="category-card">
-                    <img src="assets/category-home-img.png" alt="Home">
-                    <div class="overlay">
-                        <h3>Home & Living</h3>
-                        <p>Furniture, Decor, Kitchenware</p>
-                    </div>
-                </a>
-                <a href="products.html?category=sports" class="category-card">
-                    <img src="assets/category-sports-img.png" alt="Sports">
-                    <div class="overlay">
-                        <h3>Sports</h3>
-                        <p>Gym Equipment, Outdoor Gear</p>
-                    </div>
-                </a>
-                <a href="products.html?category=beauty" class="category-card">
-                    <img src="assets/category-beauty-img.png" alt="Beauty">
-                    <div class="overlay">
-                        <h3>Beauty</h3>
-                        <p>Makeup, Skincare, Haircare</p>
-                    </div>
-                </a>
-                <a href="products.html?category=books" class="category-card">
-                    <img src="assets/category-books-img.png" alt="Books">
-                    <div class="overlay">
-                        <h3>Books</h3>
-                        <p>Fiction, Academic, Bestsellers</p>
-                    </div>
-                </a>
-                <a href="products.html?category=grocery" class="category-card">
-                    <img src="assets/category-grocery-img.png" alt="Grocery">
-                    <div class="overlay">
-                        <h3>Grocery</h3>
-                        <p>Fresh Food, Staples, Snacks</p>
-                    </div>
-                </a>
-                <a href="products.html?category=toys" class="category-card">
-                    <img src="assets/category-toys-img.png" alt="Toys">
-                    <div class="overlay">
-                        <h3>Toys & Games</h3>
-                        <p>Educational, Action Figures</p>
-                    </div>
-                </a>
-                <a href="products.html?category=automotive" class="category-card">
-                    <img src="assets/category-automotive-img.png" alt="Automotive">
-                    <div class="overlay">
-                        <h3>Automotive</h3>
-                        <p>Accessories, Parts, Care</p>
-                    </div>
-                </a>
-                <a href="products.html?category=health" class="category-card">
-                    <img src="assets/category-health-img.png" alt="Health">
-                    <div class="overlay">
-                        <h3>Health</h3>
-                        <p>Supplements, Wellness, Medical</p>
-                    </div>
-                </a>
-                <a href="products.html?category=jewelry" class="category-card">
-                    <img src="assets/category-jewellery-img.png" alt="Jewelry">
-                    <div class="overlay">
-                        <h3>Jewelry</h3>
-                        <p>Gold, Silver, Fashion Jewelry</p>
-                    </div>
-                </a>
-                <a href="products.html?category=pets" class="category-card">
-                    <img src="assets/category-pets-img.png" alt="Pets">
-                    <div class="overlay">
-                        <h3>Pet Supplies</h3>
-                        <p>Pet Food, Soft Toys, Accessories</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Grid - MOVED AFTER CATEGORIES -->
-    <div class="section-header">
-        <h2>Latest <span>Products</span></h2>
+    <section class="portfolio">
+    <div class="container">
+        <h2 class="h2">Our VTuber Model Showcase</h2>
+        <hr class="hr-line">
+        <p>Explore our collection of custom-designed VTuber avatars created for Twitch streamers, YouTubers, gamers, and virtual entertainers. From cute anime girls to cyberpunk warriors and fantasy-inspired characters, we create unique VTuber identities tailored to every creator.</p>
     </div>
-    <section class="products-section">
-        <div class="container">
-            <div class="products-grid" id="productsGrid"></div>
-            <div class="loading" id="productsLoading">
-                <div class="spinner"></div>
-                <p>Loading products...</p>
-            </div>
-            <div class="no-products" id="noProducts" style="display: none;">
-                <i class="fas fa-search"></i>
-                <h3>No products found</h3>
-                <p>Try adjusting your search or filter criteria</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- ===== ENHANCED SECTION: DEALS OF THE DAY (6 STUNNING DEALS) ===== -->
-    <section class="deal-section">
-        <div class="container">
-            <div class="section-header">
-                <h2> <span>Deals</span> of the Day</h2>
-                <p>Limited time offers - Grab them before they're gone!</p>
-            </div>
-            
-            <div class="deal-showcase">
-                <!-- Featured Deal (Bigger and More Prominent) -->
-                <div class="featured-deal">
-                    <div class="featured-deal-image">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Featured Deal">
-                        <div class="featured-deal-timer">
-                            <i class="fas fa-clock"></i> 05:30:45
-                        </div>
-                    </div>
-                    <div class="featured-deal-content">
-                        <h2 class="featured-deal-title">
-                            Premium Wireless Headphones
-                            <span>with Active Noise Cancellation</span>
-                        </h2>
-                        <div class="featured-deal-price">
-                            <span class="featured-deal-current">Rs 8,999</span>
-                            <span class="featured-deal-original">Rs 29,999</span>
-                            <span class="featured-deal-discount">-70%</span>
-                        </div>
-                        <div class="featured-deal-progress">
-                            <div class="featured-deal-progress-bar">
-                                <div class="featured-deal-progress-fill" style="width: 80%"></div>
-                            </div>
-                            <div class="featured-deal-progress-text">
-                                <span>80 sold out of 100</span>
-                                <span>Only 20 left!</span>
+    <div class="container-fluid">
+        <div class="row m-t-30 d-flex align-items-center">
+            <div class="col-12">
+                <div id="portfolioSlider" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
+
+                    <div class="carousel-inner">
+
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active" data-bs-interval="2500">
+                            <div class="row g-3 justify-content-center">
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-1.jpeg" class="img-fluid" alt="VTuber Model 1" title="VTuber Model 1" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-2.jpeg" class="img-fluid" alt="VTuber Model 2" title="VTuber Model 2" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-3.jpeg" class="img-fluid" alt="VTuber Model 3" title="VTuber Model 3" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-4.jpeg" class="img-fluid" alt="VTuber Model 4" title="VTuber Model 4" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-5.jpeg" class="img-fluid" alt="VTuber Model 5" title="VTuber Model 5" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-6.jpeg" class="img-fluid" alt="VTuber Model 6" title="VTuber Model 6" width="325" height="515" loading="lazy">
+                                </div>
                             </div>
                         </div>
-                        <a href="products.html?deal=featured" class="featured-deal-btn">
-                            Grab This Deal <i class="fas fa-arrow-right"></i>
-                        </a>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item" data-bs-interval="2500">
+                            <div class="row g-3 justify-content-center">
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-7.jpeg" class="img-fluid" alt="VTuber Model 7" title="VTuber Model 7" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-1.jpeg" class="img-fluid" alt="VTuber Model 1" title="VTuber Model 1" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-2.jpeg" class="img-fluid" alt="VTuber Model 2" title="VTuber Model 2" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-3.jpeg" class="img-fluid" alt="VTuber Model 3" title="VTuber Model 3" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-4.jpeg" class="img-fluid" alt="VTuber Model 4" title="VTuber Model 4" width="325" height="515" loading="lazy">
+                                </div>
+                                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center">
+                                    <img src="images/slider-img-5.jpeg" class="img-fluid" alt="VTuber Model 5" title="VTuber Model 5" width="325" height="515" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
-                <!-- Regular Deals Grid (5 more deals) -->
-              
             </div>
-        </div>
-    </section>
 
-    <!-- All Category Product Carousels Section -->
-<section class="home-category-product-section">
-    <div class="home-category-product-container">
-        
-        <!-- Electronics Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-tv"></i>
-                    </div>
-                    <div>
-                        <h2>Electronics</h2>
-                        <p>Phones, Laptops, Headphones</p>
-                    </div>
-                </div>
-                <a href="products.html?category=electronics" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
+            <!-- View Full Portfolio Button -->
+            <div class="col-12 m-t-30 text-center">
+                <a href="portfolio-and-reviews.html" class="btn-dual-shade">
+                    View Full Portfolio
                 </a>
             </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperElectronics">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackElectronics"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationElectronics"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextElectronics"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevElectronics"></div>
-            </div>
         </div>
-
-        <!-- Fashion Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <div>
-                        <h2>Fashion</h2>
-                        <p>Men, Women, Kids, Accessories</p>
-                    </div>
-                </div>
-                <a href="products.html?category=fashion" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperFashion">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackFashion"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationFashion"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextFashion"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevFashion"></div>
-            </div>
-        </div>
-
-        <!-- Home & Living Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div>
-                        <h2>Home & Living</h2>
-                        <p>Furniture, Decor, Kitchenware</p>
-                    </div>
-                </div>
-                <a href="products.html?category=home" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperHome">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackHome"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationHome"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextHome"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevHome"></div>
-            </div>
-        </div>
-
-        <!-- Sports Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
-                    <div>
-                        <h2>Sports</h2>
-                        <p>Gym Equipment, Outdoor Gear</p>
-                    </div>
-                </div>
-                <a href="products.html?category=sports" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperSports">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackSports"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationSports"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextSports"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevSports"></div>
-            </div>
-        </div>
-
-        <!-- Beauty Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div>
-                        <h2>Beauty</h2>
-                        <p>Makeup, Skincare, Haircare</p>
-                    </div>
-                </div>
-                <a href="products.html?category=beauty" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperBeauty">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackBeauty"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationBeauty"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextBeauty"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevBeauty"></div>
-            </div>
-        </div>
-
-        <!-- Books Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div>
-                        <h2>Books</h2>
-                        <p>Fiction, Academic, Bestsellers</p>
-                    </div>
-                </div>
-                <a href="products.html?category=books" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperBooks">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackBooks"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationBooks"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextBooks"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevBooks"></div>
-            </div>
-        </div>
-
-        <!-- Grocery Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-apple-alt"></i>
-                    </div>
-                    <div>
-                        <h2>Grocery</h2>
-                        <p>Fresh Food, Staples, Snacks</p>
-                    </div>
-                </div>
-                <a href="products.html?category=grocery" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperGrocery">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackGrocery"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationGrocery"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextGrocery"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevGrocery"></div>
-            </div>
-        </div>
-
-        <!-- Toys Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <div>
-                        <h2>Toys & Games</h2>
-                        <p>Educational, Action Figures</p>
-                    </div>
-                </div>
-                <a href="products.html?category=toys" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperToys">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackToys"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationToys"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextToys"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevToys"></div>
-            </div>
-        </div>
-
-        <!-- Automotive Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div>
-                        <h2>Automotive</h2>
-                        <p>Accessories, Parts, Care</p>
-                    </div>
-                </div>
-                <a href="products.html?category=automotive" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperAutomotive">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackAutomotive"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationAutomotive"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextAutomotive"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevAutomotive"></div>
-            </div>
-        </div>
-
-        <!-- Health Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-notes-medical"></i>
-                    </div>
-                    <div>
-                        <h2>Health</h2>
-                        <p>Supplements, Wellness, Medical</p>
-                    </div>
-                </div>
-                <a href="products.html?category=health" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperHealth">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackHealth"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationHealth"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextHealth"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevHealth"></div>
-            </div>
-        </div>
-
-        <!-- Jewelry Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <div>
-                        <h2>Jewelry</h2>
-                        <p>Gold, Silver, Fashion Jewelry</p>
-                    </div>
-                </div>
-                <a href="products.html?category=jewelry" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperJewelry">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackJewelry"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationJewelry"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextJewelry"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevJewelry"></div>
-            </div>
-        </div>
-
-        <!-- Pets Category -->
-        <div class="home-category-product-category-wrapper">
-            <div class="home-category-product-category-header">
-                <div class="home-category-product-category-title">
-                    <div class="home-category-product-category-icon">
-                        <i class="fas fa-paw"></i>
-                    </div>
-                    <div>
-                        <h2>Pet Supplies</h2>
-                        <p>Pet Food, Soft Toys, Accessories</p>
-                    </div>
-                </div>
-                <a href="products.html?category=pets" class="home-category-product-view-all">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="swiper home-category-product-swiper" id="homeCategoryProductSwiperPets">
-                <div class="swiper-wrapper" id="homeCategoryProductTrackPets"></div>
-                <div class="swiper-pagination" id="homeCategoryProductPaginationPets"></div>
-                <div class="swiper-button-next" id="homeCategoryProductNextPets"></div>
-                <div class="swiper-button-prev" id="homeCategoryProductPrevPets"></div>
-            </div>
-        </div>
-
     </div>
 </section>
-<script>
-// ===================== ALL CATEGORY PRODUCT CAROUSELS WITH SWIPER =====================
-
-const homeCategoryProductSwipers = {};
-
-const homeCategoryProductCategories = [
-    'Electronics', 'Fashion', 'Home', 'Sports', 'Beauty', 'Books', 
-    'Grocery', 'Toys', 'Automotive', 'Health', 'Jewelry', 'Pets'
-];
-
-// Load products from JSON
-async function loadHomeCategoryProducts() {
-    try {
-        const response = await fetch('data/product.json?t=' + Date.now());
-        if (!response.ok) throw new Error('Failed to load products');
-        
-        const productData = await response.json();
-        const warehouseProducts = productData.warehouseProducts || [];
-        
-        if (warehouseProducts.length === 0) {
-            console.log('No products found');
-            return;
-        }
-        
-        homeCategoryProductCategories.forEach(category => {
-            renderHomeCategoryCarousel(category, warehouseProducts);
-        });
-        
-    } catch (error) {
-        console.error('Error loading products:', error);
-    }
-}
-
-// Updated: Now uses the same card design as main.js
-function renderHomeCategoryCarousel(categoryName, products) {
-    const trackId = `homeCategoryProductTrack${categoryName}`;
-    const container = document.getElementById(trackId);
-    
-    if (!container) return;
-    
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    
-    container.innerHTML = products.map(product => {
-        const productId = product.id;
-        const isWishlisted = wishlist.some(item => String(item.id) === String(productId));
-        
-        const priceInPKR = (product.price * 280).toFixed(0);
-        const rating = (4 + Math.random()).toFixed(1);
-        const reviewCount = Math.floor(Math.random() * 50) + 10;
-        
-        return `
-            <div class="swiper-slide">
-                <div class="product-card home-category-product-card" data-product-id="${productId}">
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" 
-                             onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
-                        <div class="product-badge">${product.category || 'Featured'}</div>
-                        <div class="product-wishlist" data-id="${productId}">
-                            <i class="${isWishlisted ? 'fas' : 'far'} fa-heart"></i>
+    <section class="how-order">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <img src="images/process-left-image.jpeg" class="img-fluid  d-block mx-auto" alt="process-left-image" title="process-left-image" width="565" height="536" loading="lazy">
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h2 class="h2 how-to-heading">How We Create Your VTuber Model</h2>
+                    <hr class="hr-line">
+                    <div class="row m-t-30 g-0">
+                        <div class="col-12 col-lg-2">
+                            <div class="text-num">
+                                1
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-10">
+                            <span class="h5">Share Your Character Idea</span>
+                            <p>Tell us about your character personality, style, colors, references, and streaming goals.</p>
                         </div>
                     </div>
-                    <div class="product-info">
-                        <div class="product-category">${product.category || 'General'}</div>
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-store">
-                            <i class="fas fa-store"></i> ${product.shipperName || 'Sino Pak Nova'}
-                        </p>
-                        <div class="product-rating">
-                            <div class="product-stars">${generateHomeCategoryStars(parseFloat(rating))}</div>
-                            <span class="product-reviews">(${reviewCount})</span>
+                    <hr>
+                    <div class="row m-t-20 g-0">
+                        <div class="col-12 col-lg-2">
+                            <div class="text-num">
+                                2
+                            </div>
                         </div>
-                        <div class="product-price">
-                            <span class="product-current">Rs ${parseInt(priceInPKR).toLocaleString()}</span>
+                        <div class="col-12 col-lg-10">
+                            <span class="h5">Character Sketch & Design</span>
+                            <p>Our Portfolio And Reviewss create a professional concept based on your vision and anime aesthetic.</p>
                         </div>
-                        
-                        <div class="product-actions">
-                            <button class="product-add-cart add-to-cart" 
-                                    data-id="${productId}"
-                                    data-name="${product.name}"
-                                    data-price="${product.price}"
-                                    data-image="${product.image}">
-                                <i class="fas fa-shopping-cart"></i> Add
+                    </div>
+                    <hr>
+                    <div class="row m-t-20 g-0">
+                        <div class="col-12 col-lg-2">
+                            <div class="text-num">
+                                3
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-10">
+                            <span class="h5">Model Illustration & Layering</span>
+                            <p>We prepare high-quality layered artwork optimized for Live2D rigging.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row m-t-20 g-0">
+                        <div class="col-12 col-lg-2">
+                            <div class="text-num">
+                                4
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-10">
+                            <span class="h5">Rigging & Animation</span>
+                            <p>Smooth facial expressions, eye tracking, physics, and animations are added professionally.</p>
+                        </div>
+                    </div>
+                    <div class="row m-t-20 g-0">
+                        <div class="col-12 col-lg-2">
+                            <div class="text-num">
+                                5
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-10">
+                            <span class="h5">Final Delivery</span>
+                            <p>Receive a fully prepared VTuber model ready for VTube Studio, Twitch, and YouTube streaming.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="streamer-choice">
+  <div class="container">
+
+    <div class="streamer-choice-title">
+      <p>WHY CHOOSE US</p>
+      <h2>Why Streamers Choose Gaming VTuber</h2>
+    </div>
+
+    <div class="streamer-choice-wrapper">
+
+      <div class="streamer-choice-card">
+        <h3>Professional VTuber Artists</h3>
+        <p>
+          Experienced anime artists and riggers dedicated to creating high-quality virtual avatars.
+        </p>
+      </div>
+
+      <div class="streamer-choice-card">
+        <h3>Stream-Ready Models</h3>
+        <p>
+          All VTuber models are optimized for VTube Studio, OBS, Twitch, and YouTube.
+        </p>
+      </div>
+
+      <div class="streamer-choice-card">
+        <h3>Custom Designs</h3>
+        <p>
+          Every avatar is uniquely designed according to your personality and brand style.
+        </p>
+      </div>
+
+      <div class="streamer-choice-card">
+        <h3>Smooth Live2D Rigging</h3>
+        <p>
+          Natural facial movement, realistic expressions, and fluid animations for professional streaming.
+        </p>
+      </div>
+
+      <div class="streamer-choice-card">
+        <h3>Fast Communication</h3>
+        <p>
+          Quick updates, revisions, and responsive support throughout the project.
+        </p>
+      </div>
+
+      <div class="streamer-choice-card">
+        <h3>Commercial Rights Included</h3>
+        <p>
+          Use your VTuber model for streaming, monetization, content creation, and branding.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- <section class="vtuber-packages">
+  <div class="container">
+
+    <div class="vtuber-packages-heading">
+      <h2>VTuber Packages</h2>
+      <p class="subtitle">Professional models & rigging to bring your avatar to life</p>
+    </div>
+
+    <div class="toggle-container">
+      <span class="toggle-text monthly active">Monthly</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="billing-toggle">
+        <span class="slider round"></span>
+      </label>
+      <span class="toggle-text yearly">Yearly <span class="save-badge">Save 20%</span></span>
+    </div>
+
+    <div class="vtuber-packages-grid">
+
+      <div class="vtuber-package-card">
+        <div class="plan-header">
+          <h3>Basic 2D VTuber Model</h3>
+          <p class="plan-subtitle">Ideal for beginners</p>
+        </div>
+        
+        <div class="price">
+          $<span class="amount" data-monthly="29" data-yearly="278">29</span>
+          <span class="period">/month</span>
+        </div>
+
+        <a href="#" class="select-btn">Select Plan</a>
+
+        <ul class="features">
+          <li><span>✓</span> Custom 2D VTuber Design</li>
+          <li><span>✓</span> Anime Style Artwork</li>
+          <li><span>✓</span> Layered PSD File</li>
+          <li><span>✓</span> Commercial Use</li>
+          <li><span>✓</span> Ready for Rigging</li>
+        </ul>
+
+        <div class="delivery">⧗ Delivery: 1 Week</div>
+      </div>
+
+      <div class="vtuber-package-card featured">
+        <div class="package-tag">Most Popular</div>
+        
+        <div class="plan-header">
+          <h3>2D VTuber Model + Rigging</h3>
+          <p class="plan-subtitle">For serious VTubers</p>
+        </div>
+        
+        <div class="price">
+          $<span class="amount" data-monthly="59" data-yearly="566">59</span>
+          <span class="period">/month</span>
+        </div>
+
+        <a href="#" class="select-btn">Select Plan</a>
+
+        <ul class="features">
+          <li><span>✓</span> Custom 2D VTuber Model</li>
+          <li><span>✓</span> Professional Live2D Rigging</li>
+          <li><span>✓</span> Face Tracking & Expressions</li>
+          <li><span>✓</span> Eye & Mouth Animation</li>
+          <li><span>✓</span> Stream Ready Setup</li>
+        </ul>
+
+        <div class="delivery">⧗ Delivery: 2 Weeks</div>
+      </div>
+
+      <div class="vtuber-package-card">
+        <div class="plan-header">
+          <h3>Premium VTuber Package</h3>
+          <p class="plan-subtitle">For professional streamers</p>
+        </div>
+        
+        <div class="price">
+          $<span class="amount" data-monthly="99" data-yearly="950">99</span>
+          <span class="period">/month</span>
+        </div>
+
+        <a href="#" class="select-btn">Select Plan</a>
+
+        <ul class="features">
+          <li><span>✓</span> Premium 2D VTuber Model</li>
+          <li><span>✓</span> Advanced Live2D Rigging</li>
+          <li><span>✓</span> 3 Expressions & Reactions</li>
+          <li><span>✓</span> 3 Toggles</li>
+          <li><span>✓</span> Physics & Advanced Animation</li>
+          <li><span>✓</span> Full Streaming Setup</li>
+        </ul>
+
+        <div class="delivery">⧗ Delivery: 3 Weeks</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggle = document.getElementById('billing-toggle');
+  const amounts = document.querySelectorAll('.amount');
+  const periods = document.querySelectorAll('.period');
+
+  toggle.addEventListener('change', () => {
+    if (toggle.checked) {
+      amounts.forEach(am => am.textContent = am.dataset.yearly);
+      periods.forEach(p => p.textContent = '/year');
+    } else {
+      amounts.forEach(am => am.textContent = am.dataset.monthly);
+      periods.forEach(p => p.textContent = '/month');
+    }
+  });
+</script> -->
+
+
+
+    <section class="cta-banner">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-12 col-lg-4 text-center">
+
+                <img src="images/cta-image.jpeg"
+                    class="img-fluid d-block mx-auto"
+                    alt="100% Satisfaction"
+                    title="100% Satisfaction"
+                    width="350"
+                    height="350"
+                    loading="lazy">
+
+            </div>
+
+            <div class="col-12 col-lg-8">
+
+                <h2 class="h2">
+                    Gaming VTuber Guarantees Premium Quality & Complete Satisfaction
+                </h2>
+
+                <hr class="hr-line">
+
+                <p>
+                    At Gaming VTuber, we focus on creating high-quality VTuber models,
+                    Live2D rigging, and custom virtual avatars tailored for streamers,
+                    gamers, and content creators. Our team ensures every project is
+                    polished, expressive, and stream-ready with unlimited support and
+                    revisions to match your vision perfectly.
+                </p>
+
+                <div class="row m-t-20">
+
+                    <div class="col-12 col-md-5 col-lg-4">
+                        <a href="vtuber-form.html" class="btn-dual-shade">
+                            Create My VTuber
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section class="book-design text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-10 mx-auto">
+                    <h2 class="h2 roadmap-heading">The Roadmap Towards Best-Selling Book Cover Designs For You</h2>
+                    <hr class="hr-line">
+                    <p>As one of the best book cover design services, we have adopted a simple roadmap towards our services.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 m-t-20">
+                    <span class="h4 mb-4">You Think of An Artwork</span>
+                    <img src="images/process-sketch.png" class="process-img img-fluid  d-block mx-auto" alt="Artwork" title="Artwork" width="303" height="358" loading="lazy">
+                </div>
+                <div class="col-12 col-md-4 m-t-20">
+                    <span class="h4 mb-4">We Breathe Soul Into It</span>
+                    <img src="images/process-draw.png" class="process-img img-fluid  d-block mx-auto" alt="Breathe Soul" title="Breathe Soul" width="303" height="358" loading="lazy">
+                </div>
+                <div class="col-12 col-md-4 m-t-20">
+                    <span class="h4 mb-4">Get Perfect Design In Action</span>
+                    <!-- <img src="https://www.bookcoverdesigners.co.uk/frontend/images/book-cover/cover-ready.webp" class="img-fluid  d-block mx-auto" alt="Get Perfect Design" title="Get Perfect Design" width="303" height="358" loading="lazy"> -->
+                     <video src="process-final.mp4" loop autoplay muted id="process-video"></video>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-banner cta-banner-two">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-12 col-lg-7">
+
+                <h3 class="h2">
+                    Over 1M+ Creators and Authors Trust Our Design Expertise
+                </h3>
+
+                <hr class="hr-line">
+
+                <p>
+                    Our expert team of creative book cover designers helps authors and brands stand out with powerful, high-impact cover designs. We focus on storytelling through visuals that instantly capture attention and increase engagement. Thousands of clients trust us to transform their ideas into bestselling visual identities after experiencing average results elsewhere. Explore our growing portfolio of successful projects and satisfied clients worldwide.
+                </p>
+
+                <div class="row m-t-20 mb-5 align-itmes-center justify-content-center">
+
+                    <div class="col-12 col-sm-6 col-md-5 col-lg-4 cta-banner-btn-container">
+
+                        <a href="#" class="live-chat">
+
+                            <!-- icon unchanged -->
+                             <svg xmlns="http://www.w3.org/2000/svg" width="37.202" height="37.184" viewBox="0 0 37.202 37.184">
+                                    <g transform="matrix(0.974, 0.225, -0.225, 0.974, -5619.225, -1723.919)">
+                                        <path d="M5893.136,445.116a15.531,15.531,0,0,1-5.746-1.48,30.966,30.966,0,0,1-12.488-9.926,27.868,27.868,0,0,1-4.375-8.2,12.356,12.356,0,0,1-.581-5.958,7.421,7.421,0,0,1,2.711-4.609,3.86,3.86,0,0,1,2.117-.747c.707-.072,1.423-.062,2.136-.08a.584.584,0,0,1,.6.409c1.071,2.642,2.132,5.289,3.231,7.919a1.721,1.721,0,0,1-.323,2c-.673.749-1.339,1.5-2.02,2.247a.7.7,0,0,0-.153.942,9.427,9.427,0,0,0,1.6,2.427,48.472,48.472,0,0,0,5.394,5.353,8.463,8.463,0,0,0,2.1,1.287.723.723,0,0,0,.887-.159c.748-.707,1.527-1.381,2.3-2.066a1.662,1.662,0,0,1,1.907-.308c2.653,1.1,5.322,2.168,7.976,3.269a.717.717,0,0,1,.376.5,8.789,8.789,0,0,1-.336,3.458,4.254,4.254,0,0,1-1.377,1.819A8.281,8.281,0,0,1,5893.136,445.116ZM5870.9,421.272c0,.124,0,.249,0,.373a15.577,15.577,0,0,0,1.621,5.959,30.284,30.284,0,0,0,13.887,14.356,17.268,17.268,0,0,0,6.4,2.027,7.185,7.185,0,0,0,5.095-1.249,3.462,3.462,0,0,0,1.667-2.3c.08-.628.1-1.262.158-1.893.017-.194-.071-.277-.241-.345-.484-.191-.958-.407-1.441-.6-2.015-.813-4.033-1.617-6.045-2.435a.635.635,0,0,0-.74.108c-.749.673-1.519,1.324-2.251,2.016a1.787,1.787,0,0,1-2.2.37,10.929,10.929,0,0,1-2.637-1.716,43.941,43.941,0,0,1-5.2-5.263,11.5,11.5,0,0,1-1.723-2.593,1.759,1.759,0,0,1,.378-2.193c.69-.732,1.345-1.5,2.015-2.253a.605.605,0,0,0,.116-.708c-1.032-2.513-2.048-5.032-3.081-7.544a.383.383,0,0,0-.292-.192c-.576.02-1.152.057-1.726.115a2.942,2.942,0,0,0-1.862.951A6.837,6.837,0,0,0,5870.9,421.272Z" fill="#007ed8"></path>
+                                        <path d="M5904.1,430.153c0,.124.006.317,0,.509a.559.559,0,0,1-.554.6c-.322,0-.526-.231-.534-.614a11.309,11.309,0,0,0-1.2-5.078,11.678,11.678,0,0,0-10.3-6.665c-.08-.005-.158,0-.238-.006-.4-.015-.631-.223-.624-.558a.543.543,0,0,1,.653-.527,18.975,18.975,0,0,1,2.261.226,12.885,12.885,0,0,1,10.387,10.724C5904.018,429.2,5904.044,429.645,5904.1,430.153Z" transform="translate(-5.878 -1.043)" fill="#007ed8"></path>
+                                        <path d="M5901.184,431.506c0,.1,0,.2,0,.306a.543.543,0,0,1-.558.591c-.31,0-.5-.224-.536-.58a16.381,16.381,0,0,0-.268-2.082,8.883,8.883,0,0,0-8.476-6.783c-.438-.009-.664-.164-.7-.483-.039-.359.219-.612.64-.607a9.622,9.622,0,0,1,5.436,1.68A9.917,9.917,0,0,1,5901.184,431.506Z" transform="translate(-5.877 -2.186)" fill="#007ed8"></path>
+                                        <path d="M5891.429,426.329a6.824,6.824,0,0,1,6.552,6.644c0,.418-.2.681-.531.692s-.544-.23-.56-.659a5.7,5.7,0,0,0-5.516-5.575c-.462-.014-.736-.262-.729-.568C5890.655,426.5,5890.917,426.316,5891.429,426.329Z" transform="translate(-5.877 -3.443)" fill="#333"></path>
+                                    </g>
+                                </svg>
+
+                            <div class="chat-text">
+                                <span>+44 12 1245 1245</span>
+                                <span class="font-light">24/7 Support Available</span>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-5 col-lg-8">
+
+                        <button role="button" type="button" class="live-chat">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35.052" height="30.535" viewBox="0 0 35.052 30.535">
+                                    <path d="M6701.662,162.836l-1.259,1.291q-.64.655-1.284,1.309a.577.577,0,0,1-.7.195.617.617,0,0,1-.338-.634c.007-.921,0-1.843,0-2.765v-.247c-.323-.034-.623-.04-.913-.1a2.682,2.682,0,0,1-2.117-2.6q-.015-4.815,0-9.631a2.664,2.664,0,0,1,2.649-2.671q7.64,0,15.283,0a2.665,2.665,0,0,1,2.61,2.634c.009.6,0,1.2,0,1.8v.27h10.974a3.533,3.533,0,0,1,3.515,3.543q.018,6.713,0,13.426a3.549,3.549,0,0,1-3.582,3.625h-.655c-.006.072-.017.131-.017.191,0,1.453,0,2.905,0,4.358a.6.6,0,0,1-.337.632.589.589,0,0,1-.7-.193q-2.361-2.415-4.726-4.825a.5.5,0,0,0-.4-.168q-7.2.006-14.41,0a3.536,3.536,0,0,1-3.578-3.185,11.492,11.492,0,0,1-.025-1.428q0-2.261,0-4.523Zm22.966,12.709.084-.057v-.223c0-1.148,0-2.3,0-3.444,0-.469.2-.675.656-.68.39,0,.781,0,1.171,0a2.44,2.44,0,0,0,2.434-2.436q0-6.689,0-13.379a2.412,2.412,0,0,0-2.436-2.493H6705.19a2.422,2.422,0,0,0-2.414,2.471q0,2.518,0,5.037,0,4.193,0,8.388a2.384,2.384,0,0,0,2.208,2.385c1.385.048,2.771.025,4.158.026q5.444,0,10.891,0a.749.749,0,0,1,.573.24q1.848,1.893,3.7,3.781C6724.427,175.274,6724.521,175.414,6724.627,175.545Zm-25.419-11.9.089.053a1.414,1.414,0,0,1,.145-.21c.674-.693,1.349-1.385,2.033-2.069a.6.6,0,0,0,.192-.468c-.007-1.874-.005-3.749-.005-5.623a3.544,3.544,0,0,1,3.562-3.639h9.263c0-.681,0-1.328,0-1.975a1.571,1.571,0,0,0-1.58-1.6c-.414,0-.828,0-1.241,0l-13.856,0a1.581,1.581,0,0,0-1.639,1.681c.006,1.28,0,2.561,0,3.842,0,1.859,0,3.717,0,5.576a1.552,1.552,0,0,0,1.55,1.6c.283.007.567,0,.85,0a.575.575,0,0,1,.633.633c.006.359,0,.718,0,1.078S6699.208,163.27,6699.208,163.643Z" transform="translate(-6695.046 -146.979)" fill="#007ed8"></path>
+                                </svg>
+                                <div class="chat-text">
+                                    <span class="font-bold">Live Chat</span>
+                                    <span class="font-light">To Make Something</span>
+                                </div>
                             </button>
-                            
-                            <a href="product-detail.html?id=${productId}" class="product-view">
-                                <i class="fas fa-eye"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-5">
+                <img src="images/icon-collage.png"
+                     class="img-fluid d-block mx-auto"
+                     alt="Client Success Stories"
+                     title="Client Success Stories"
+                     width="377"
+                     height="354"
+                     loading="lazy">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- <section class="reviews">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 col-md-10 mx-auto">
+
+                                    <h3 class="h2">What VTubers Say About Gaming VTuber</h3>
+            <hr class="hr-line">
+                
+            </div>
+        </div>
+        <div class="row align-items-center m-t-50">
+            <div class="col-12 col-lg-3">
+
+                <img src="https://www.bookcoverdesigners.co.uk/frontend/images/icons/client-rating.webp" class="img-fluid  d-block mx-auto" alt="Book Cover Designers UK" title="Book Cover Designers UK" width="205" height="194" loading="lazy">
+
+            </div>
+            <div class="col-12 col-lg-9">
+                <div id="trustpilot" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active" data-bs-interval="5000">
+                            <div class="reviews-box">
+
+                                <img src="https://www.bookcoverdesigners.co.uk/frontend/images/icons/stars.webp" class="img-fluid  d-block mx-auto" alt="Book Cover Designers UK" title="Book Cover Designers UK" width="200" height="38" loading="lazy">
+            <span class="h5">Finest Designs</span>
+            <p>The model quality was amazing and the rigging felt incredibly smooth during streams.</p>
+            <div class="review-days">2 Weeks Ago</div>
+
+                            </div>
+                            <div class="reviews-box">
+
+                                <img src="https://www.bookcoverdesigners.co.uk/frontend/images/icons/stars.webp" class="img-fluid  d-block mx-auto" alt="Book Cover Designers UK" title="Book Cover Designers UK" width="200" height="38" loading="lazy">
+            <span class="h5">Beyond Expectations</span>
+            <p>Gaming VTuber perfectly captured my character idea and made it look professional.</p>
+            <div class="review-days">4 Days Ago</div>
+
+                            </div>
+                            <div class="reviews-box">
+
+                                <img src="https://www.bookcoverdesigners.co.uk/frontend/images/icons/stars.webp" class="img-fluid  d-block mx-auto" alt="Book Cover Designers UK" title="Book Cover Designers UK" width="200" height="38" loading="lazy">
+            <span class="h5">I'd Say – Cheap!</span>
+            <p>My Twitch engagement increased after switching to my custom VTuber avatar.</p>
+            <div class="review-days">6 Weeks Ago</div>
+
+                            </div>
+                        </div>
+
+                        
+                            <div class="carousel-item" data-bs-interval="5000">
+
+                                
+                                    <div class="reviews-box">
+
+                                <img src="https://www.bookcoverdesigners.co.uk/frontend/images/icons/stars.webp" class="img-fluid  d-block mx-auto" alt="Book Cover Designers UK" title="Book Cover Designers UK" width="200" height="38" loading="lazy">
+            <span class="h5">Finest Designs</span>
+            <p>The model quality was amazing and the rigging felt incredibly smooth during streams.</p>
+            <div class="review-days">2 Weeks Ago</div>
+
+                            </div>
+                            <div class="reviews-box">
+
+                                <img src="https://www.bookcoverdesigners.co.uk/frontend/images/icons/stars.webp" class="img-fluid  d-block mx-auto" alt="Book Cover Designers UK" title="Book Cover Designers UK" width="200" height="38" loading="lazy">
+            <span class="h5">Beyond Expectations</span>
+            <p>Gaming VTuber perfectly captured my character idea and made it look professional.</p>
+            <div class="review-days">4 Days Ago</div>
+
+                            </div>
+                            <div class="reviews-box">
+
+                                <img src="https://www.bookcoverdesigners.co.uk/frontend/images/icons/stars.webp" class="img-fluid  d-block mx-auto" alt="Book Cover Designers UK" title="Book Cover Designers UK" width="200" height="38" loading="lazy">
+            <span class="h5">I'd Say – Cheap!</span>
+            <p>My Twitch engagement increased after switching to my custom VTuber avatar.</p>
+            <div class="review-days">6 Weeks Ago</div>
+
+                            </div>
+
+                                
+                            </div>
+
+                                                
+                    </div>
+                    <a class="carousel-control-prev bg-transparent w-aut" href="#trustpilot" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">
+                            Previous
+                        </span>
+                    </a>
+                    <a class="carousel-control-next bg-transparent w-aut" href="#trustpilot" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">
+                            Next
+                        </span>
+                    </a>
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#trustpilot" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+
+                        
+                            <button type="button" data-bs-target="#trustpilot" data-bs-slide-to="1" aria-label="Slide 2"></button>
+
+                                                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+    <!-- New Review Section -->
+<section class="new-review-section">
+    <div class="review-container">
+
+        <div class="review-heading">
+            <h2>See what VTubers say about us</h2>
+            <p>
+                Take a look at what these featured content creators say about the VTuber
+                model commissions we’ve done for them.
+            </p>
+        </div>
+
+        <div class="review-grid">
+
+            <!-- Box 1 -->
+            <div class="review-box">
+                <img src="https://cdn.prod.website-files.com/63d514cad353ff313aa22295/63dc3c4ecb4f496f69702f1d_vtuber-example-JJerico_.jpg" alt="review">
+                
+                <div class="review-content">
+                    <div class="review-top">
+                        <h3>JJerico_</h3>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+                    </div>
+
+                    <p>
+                        “Luna was very helpful and patient when I didn’t understand some things”
+                    </p>
+                </div>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="review-box">
+                <img src="https://cdn.prod.website-files.com/63d514cad353ff313aa22295/63dc35c9d0a3f818cc782962_vtuber-example-RinGyo.jpg" alt="review">
+                
+                <div class="review-content">
+                    <div class="review-top">
+                        <h3>RinGyo</h3>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+                    </div>
+
+                    <p>
+                        “Amazing experience from start to finish. The model quality was incredible.”
+                    </p>
+                </div>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="review-box">
+                <img src="https://cdn.prod.website-files.com/63d514cad353ff313aa22295/63dc29321d4a7950e7eb4c27_vtuber-example-Hzope-100.jpg" alt="review">
+                
+                <div class="review-content">
+                    <div class="review-top">
+                        <h3>Hzope</h3>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+                    </div>
+
+                    <p>
+                        “The artist understood exactly what I wanted and delivered beyond expectations.”
+                    </p>
+                </div>
+            </div>
+
+            <!-- Box 4 -->
+            <div class="review-box">
+                <img src="https://cdn.prod.website-files.com/63d514cad353ff313aa22295/63e22c16fc264b2c9cb4a9d0_vtuber-example-eye.jpg" alt="review">
+                
+                <div class="review-content">
+                    <div class="review-top">
+                        <h3>Eye</h3>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+                    </div>
+
+                    <p>
+                        “Very smooth communication and the final VTuber model looked stunning.”
+                    </p>
+                </div>
+            </div>
+
+            <!-- Box 5 -->
+            <div class="review-box">
+                <img src="https://cdn.prod.website-files.com/63d514cad353ff313aa22295/63dc3142e4b0a5026e9c1274_vtuber-example-lukanenv.jpg" alt="review">
+                
+                <div class="review-content">
+                    <div class="review-top">
+                        <h3>Lukanenv</h3>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+                    </div>
+
+                    <p>
+                        “Everything was handled professionally and the animations felt super natural.”
+                    </p>
+                </div>
+            </div>
+
+            <!-- Box 6 -->
+            <div class="review-box">
+                <img src="https://cdn.prod.website-files.com/63d514cad353ff313aa22295/63dc455f8f7a074e8c4c6e5e_vtuber-example-AP.jpg" alt="review">
+                
+                <div class="review-content">
+                    <div class="review-top">
+                        <h3>AP</h3>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+                    </div>
+
+                    <p>
+                        “Fast delivery, beautiful art style and excellent support throughout the project.”
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+    <section class="why-choose">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="row mb-3">
+                        <div class="col-12 col-sm-6">
+                            <div class="choose-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="47.811" height="53.202" viewBox="0 0 47.811 53.202">
+                                    <g transform="translate(-1275.723 1036.071)">
+                                        <path d="M1309.9-1019.723l5.212-4.041q3.508-2.719,7.016-5.436a.836.836,0,0,1,1.223.088.835.835,0,0,1-.2,1.228l-11.385,8.823c-.656.509-1.311,1.02-2.014,1.568l-1.072-1.2a8.448,8.448,0,0,0-1.537,2.03,12.286,12.286,0,0,0-1.42,4.6c-.123,1.141-.153,2.294-.194,3.442a2.077,2.077,0,0,1-1.539,1.951q-6.618,2.047-13.234,4.1c-1.4.435-2.8.866-4.2,1.31a1.87,1.87,0,0,0-.4.25,3.779,3.779,0,0,1-.369.236,54.993,54.993,0,0,0-6.028,3.294,9.98,9.98,0,0,0-2.078,1.668,1.938,1.938,0,0,0-.158.206,1.648,1.648,0,0,0-.087.171,1.33,1.33,0,0,0,.966.391,10.955,10.955,0,0,0,1.983-.133c1.674-.339,3.331-.761,5-1.126a20.707,20.707,0,0,1,4.667-.62,7.789,7.789,0,0,1,1.617.181,2.125,2.125,0,0,1,1.51,3.166,4.821,4.821,0,0,1-1.268,1.558c-.41.359-.832.7-1.233,1.074a2.964,2.964,0,0,0-.816,1.334c-.111.36-.045.531.293.7a4.051,4.051,0,0,0,1.7.311,18.663,18.663,0,0,0,3.72-.289c2.187-.374,4.365-.8,6.552-1.178a37.007,37.007,0,0,1,6.919-.591,14.492,14.492,0,0,1,4.669.722,5.262,5.262,0,0,1,3.058,2.42,4.912,4.912,0,0,1,.511,2.842,9.276,9.276,0,0,1-.153,1.025.847.847,0,0,1-1.015.755.857.857,0,0,1-.619-1.108,4.437,4.437,0,0,0,.07-1.979,3.111,3.111,0,0,0-1.893-2.19,8.746,8.746,0,0,0-2.926-.733,28.919,28.919,0,0,0-6.24.191c-2.312.263-4.584.754-6.868,1.18a27.232,27.232,0,0,1-5.847.6,5.785,5.785,0,0,1-2.323-.463,2.106,2.106,0,0,1-1.2-2.7,5.552,5.552,0,0,1,2.018-2.73,10.492,10.492,0,0,0,1-.906,2.093,2.093,0,0,0,.4-.625c.18-.421.064-.659-.385-.771a3.3,3.3,0,0,0-1.021-.139,26.624,26.624,0,0,0-3.063.331c-1.77.343-3.52.788-5.281,1.175a14.178,14.178,0,0,1-3.126.43,3.685,3.685,0,0,1-2.294-.68,1.655,1.655,0,0,1-.437-2.414,7.153,7.153,0,0,1,1.256-1.333,27.316,27.316,0,0,1,4.615-2.928c.654-.353,1.324-.677,1.978-1.029a.549.549,0,0,0,.245-.293q2.391-8,4.767-16.008.462-1.552.926-3.1a1.908,1.908,0,0,1,1.815-1.334,22.322,22.322,0,0,0,3.778-.212,12.654,12.654,0,0,0,6.128-2.476c.067-.053.13-.11.2-.17l-1.017-.982c.578-.7,1.12-1.362,1.664-2.021q3.031-3.674,6.063-7.348a.847.847,0,0,1,1.435-.018.834.834,0,0,1-.1,1.03q-1.1,1.345-2.213,2.684l-4.557,5.521Zm-7.149-4.212c-.045.035-.1.076-.153.118a12.975,12.975,0,0,1-4.529,2.289,20.293,20.293,0,0,1-6.13.737c-.423-.009-.443.008-.561.406l-3.687,12.41q-.511,1.721-1.024,3.442l.093.082c.2-.236.385-.491.608-.706q4.433-4.286,8.877-8.559a.226.226,0,0,0,.055-.309,1.958,1.958,0,0,1,.261-2.144,1.982,1.982,0,0,1,2.084-.732,2.084,2.084,0,0,1,1.595,2.335,2.069,2.069,0,0,1-2.312,1.746.422.422,0,0,0-.308.1q-4.3,4.137-8.6,8.288c-.311.3-.591.634-.864.929l2.075-.645q6.628-2.057,13.257-4.11a.448.448,0,0,0,.366-.5,22.027,22.027,0,0,1,.356-4.493,13.106,13.106,0,0,1,2.159-5.308c.246-.341.521-.66.789-1Z" transform="translate(0)" fill="#adf71a"></path>
+                                        <path d="M1489.557-1005.749a.82.82,0,0,1,.756.5.808.808,0,0,1-.181.93c-.687.694-1.379,1.382-2.069,2.073-.415.416-.827.835-1.248,1.244a.8.8,0,0,1-.932.17.768.768,0,0,1-.477-.813,1.048,1.048,0,0,1,.254-.545c1.069-1.093,2.155-2.169,3.235-3.252A.883.883,0,0,1,1489.557-1005.749Z" transform="translate(-178.074 -25.752)" fill="#adf71a"></path>
+                                        <path d="M1499.046-985.167a1.84,1.84,0,0,1,.268-.479q1.624-1.657,3.275-3.287a.824.824,0,0,1,1.436.379.725.725,0,0,1-.2.739q-1.667,1.687-3.354,3.353a.745.745,0,0,1-.882.159A.929.929,0,0,1,1499.046-985.167Z" transform="translate(-189.665 -39.789)" fill="#adf71a"></path>
+                                    </g>
+                                </svg>
+                                <span class="h5">Enthusiast Designers</span>
+                                <p>Our designers' enthusiasm and restless passion is the biggest strength that makes your audience captivate the book at a glance.</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="choose-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="47.847" height="45.667" viewBox="0 0 47.847 45.667">
+                                    <g transform="translate(391.054 -567.302)">
+                                        <path d="M-346.335,615.121h6.975v1.491h-6.975Z" transform="translate(-29.332 -31.365)" fill="#adf71a"></path>
+                                        <path d="M-346.335,624.48h12.4v1.49h-12.4Z" transform="translate(-29.332 -37.504)" fill="#adf71a"></path>
+                                        <path d="M-349.377,595.5a.975.975,0,0,0-1.192.715,19.407,19.407,0,0,1-8.943,11.983,19.326,19.326,0,0,1-14.844,2.146,19.633,19.633,0,0,1-14.188-23.787,19.655,19.655,0,0,1,22.654-14.428l-.716,2.862,7.691-2.146-5.724-5.544-.715,2.921a21.546,21.546,0,0,0-25.039,15.858,21.655,21.655,0,0,0,15.62,26.232,20.528,20.528,0,0,0,5.306.656,21.512,21.512,0,0,0,11.029-3.04,21.408,21.408,0,0,0,9.9-13.235,1.148,1.148,0,0,0-.835-1.193Z" transform="translate(0)" fill="#adf71a"></path>
+                                        <path d="M-323.717,592.274a3.465,3.465,0,0,0-4.829-.357l-.238.238-.358.3-1.371,1.192-.179.119-6.319,5.544-.358.3v-3.875a1.045,1.045,0,0,0-1.013-1.013H-359.01a1.045,1.045,0,0,0-1.013,1.013v24.443a1.045,1.045,0,0,0,1.013,1.013h20.627a1.045,1.045,0,0,0,1.013-1.013V608.669l2.325-2.027,1.312-1.132,1.908-1.669,1.311-1.133.656-.6,3.577-3.1,1.49-1.252.656-.6.119-.119a3.329,3.329,0,0,0,.3-4.77Zm-15.62,26.947h-18.6V596.8h18.6v4.65l-4.173,3.637-1.67,1.431v-.834h-10.135v1.491h9.36l-2.027,1.788h-7.333v1.491h6.439l-1.073,1.967-.119.179-1.609,3.1-.119.179a.785.785,0,0,0,.179.716.9.9,0,0,0,.656.238h.06l.238-.06,6.915-2.5c.119-.06.179-.119.238-.119l4.233-3.637v8.7Zm-7.511-8.465a6.547,6.547,0,0,1,.954.895,5.316,5.316,0,0,1,.775,1.073,3.5,3.5,0,0,0,.238.477l-2.742,1.014-1.073-1.193,1.371-2.563a1.3,1.3,0,0,1,.477.3Zm17.408-10.791-2.146,1.848-3.279,2.861-1.312,1.132-1.192,1.073-1.967,1.729-4.352,3.815a1.49,1.49,0,0,0-.239-.417,7.981,7.981,0,0,0-.954-1.312c-.06-.119-.179-.179-.238-.3a11.361,11.361,0,0,0-.895-.834,1.242,1.242,0,0,0-.357-.238l.417-.417,4.233-3.7,2.325-2.027.238-.179.834-.716.954-.834,2.444-2.146.477-.417.3-.3,2.325-2.027a5.815,5.815,0,0,1,2.742,2.981Zm.834-.715a5.921,5.921,0,0,0-2.742-2.981l.418-.357a5.453,5.453,0,0,1,2.683,3.04Zm3.7-3.16-.6.477-.357.358-.716.6-.3.239-.656.6-.238.179a6.049,6.049,0,0,0-2.683-3.04l.119-.119,1.073-.954,1.312-1.192.179-.119.119-.119a2.053,2.053,0,0,1,2.861.179,2.065,2.065,0,0,1-.119,2.92Z" transform="translate(-20.354 -15.612)" fill="#adf71a"></path>
+                                    </g>
+                                </svg>
+                                <span class="h5">Transparent Process</span>
+                                <p>We are an honest book cover design agency – and we keep everything clear between the client and us. You'd know every move of the designer.</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="choose-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="78" height="52.425" viewBox="0 0 78 52.425">
+                                    <g transform="translate(-786.894 -100.942)">
+                                        <g transform="translate(822.728 100.942)">
+                                            <path d="M894.414,142.589l-.848-.4.146-.431.1-.3c.073-.22.146-.439.224-.658a97.358,97.358,0,0,1,6.282-14.09A67.788,67.788,0,0,1,911.6,111.079a35.837,35.837,0,0,1,11.42-8.008,26.4,26.4,0,0,1,11.425-2.109c.133.005.265.015.39.028a.646.646,0,0,1,.286.108c.022.013.053.032.1.058l.515.288-.358.469a19.919,19.919,0,0,1-8.8,6.47l.168-.012c.757-.058,1.5-.188,2.292-.326.344-.06.7-.122,1.056-.177l.88-.137-.326.829a8.7,8.7,0,0,1-1.969,2.919,14.84,14.84,0,0,1-7.682,3.965q-.2.045-.409.085a23.219,23.219,0,0,0,5.4.1l.836-.121-.281.8c-.026.075-.049.147-.072.218a3.4,3.4,0,0,1-.192.507,9.559,9.559,0,0,1-4.015,3.871,27.51,27.51,0,0,1-7.557,2.721,18.833,18.833,0,0,0-1.9.581,27.2,27.2,0,0,0,6.455.57l1.15-.074-.718.9c-.056.07-.106.135-.153.2-.1.127-.19.246-.293.361a16.307,16.307,0,0,1-8.993,5.024,22.308,22.308,0,0,1-6.239.392,1.172,1.172,0,0,0-1.156.521c-1.958,2.485-3.976,4.988-5.927,7.409q-.967,1.2-1.932,2.4c-.074.092-.152.182-.229.272l-.1.118Zm38.994-40.624a25.4,25.4,0,0,0-9.991,2.047,34.84,34.84,0,0,0-11.1,7.788,66.783,66.783,0,0,0-11.108,15.4,96.521,96.521,0,0,0-5.639,12.353l.56-.7c1.95-2.419,3.966-4.92,5.92-7.4a2.162,2.162,0,0,1,2.023-.908,21.324,21.324,0,0,0,5.956-.371,15.424,15.424,0,0,0,8.125-4.356,34.077,34.077,0,0,1-5.822-.669l-.136-.024a1.371,1.371,0,0,1-.617-.326c-.05-.039-.1-.077-.136-.1l-.567-.368.509-.445c.033-.029.072-.07.114-.113a1.377,1.377,0,0,1,.537-.393l.177-.062a21.91,21.91,0,0,1,2.257-.7,26.571,26.571,0,0,0,7.278-2.612,8.77,8.77,0,0,0,3.532-3.29c-2.462.16-6.431-.19-7.51-.847l-1.166-.709,1.345-.231c.3-.051.6-.1.9-.146.636-.1,1.293-.206,1.925-.344a13.857,13.857,0,0,0,7.172-3.684,8.511,8.511,0,0,0,1.336-1.723l-.072.012c-.779.136-1.584.276-2.389.338s-1.632.048-2.425.033c-.34-.006-.691-.013-1.034-.013h-3.868l3.735-1a20.492,20.492,0,0,0,10.786-6.434Q933.711,101.965,933.407,101.965Z" transform="translate(-893.566 -100.942)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(786.894 108.524)">
+                                            <path d="M835.846,129.74c0-.42.008-.839,0-1.259a3.673,3.673,0,0,0-3.563-3.627,3.569,3.569,0,0,0-3.71,3.394c-.091,2.841-.037,5.687-.045,8.53,0,.182,0,.365,0,.595h2.051a1.512,1.512,0,0,1-2.133,1.266,5.735,5.735,0,0,1-1.247,4.827v-1.357q0-6.743,0-13.487a5.045,5.045,0,0,1,1.06-3.184c.122-.157.232-.322.422-.586h-.69q-12.951,0-25.9,0a5.016,5.016,0,0,0-5.209,5.22q0,16.373.011,32.747a5.7,5.7,0,0,1-1.268,3.885,3.179,3.179,0,0,0-.183.282c.189.017.327.04.465.04q13.078,0,26.157,0a4.993,4.993,0,0,0,5.134-5.136c.011-2.111.013-4.223-.006-6.335a1.537,1.537,0,0,1,.423-1.2,9.332,9.332,0,0,1,.915-.948v.579q0,4.011,0,8.021a6.306,6.306,0,0,1-6.322,6.343q-15.147.013-30.295,0a4.944,4.944,0,0,1-5-4.939c-.025-3.116-.009-6.233-.008-9.349,0-.674.214-.893.882-.894q3.55-.008,7.1,0h.657c0-.245,0-.428,0-.612q0-11.214,0-22.428a6.362,6.362,0,0,1,6.594-6.611q14.968,0,29.937,0a4.955,4.955,0,0,1,5.054,4.339,1.146,1.146,0,0,1-.192.735c-.285.419-.64.79-.966,1.181Zm-40.306,24.8h-7.285c-.009.192-.022.357-.022.523,0,2.723-.006,5.447,0,8.17a3.653,3.653,0,1,0,7.3,0q.009-4.059,0-8.119C795.54,154.945,795.54,154.777,795.54,154.539Z" transform="translate(-786.894 -123.512)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.849 129.849)">
+                                            <path d="M835.323,186.991h11.838c.119,0,.238.012.357.017a.556.556,0,0,1,.578.633c-.033.239-.3.474-.519.648-.107.086-.329.037-.5.037H823.53a2.423,2.423,0,0,1-.459-.016.63.63,0,0,1-.587-.706.619.619,0,0,1,.632-.61,1.971,1.971,0,0,1,.2,0l11.6.009h.408Z" transform="translate(-822.482 -186.991)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.849 126.107)">
+                                            <path d="M835.318,177.181h-11.8a4.02,4.02,0,0,1-.459-.009.6.6,0,0,1-.58-.6.616.616,0,0,1,.493-.682,1.936,1.936,0,0,1,.507-.033H847.13c.1,0,.2,0,.306,0a.643.643,0,0,1,.68.677.621.621,0,0,1-.7.651c-.749.006-1.5,0-2.247,0h-9.856Z" transform="translate(-822.481 -175.852)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.851 144.75)">
+                                            <path d="M835.317,231.365h11.748c.17,0,.383-.054.5.027a1.3,1.3,0,0,1,.536.582.554.554,0,0,1-.459.685,2.157,2.157,0,0,1-.556.042q-11.774,0-23.547,0c-.119,0-.239,0-.357,0-.41-.029-.679-.219-.694-.658-.013-.412.253-.669.723-.672,1.311-.01,2.622,0,3.933,0Z" transform="translate(-822.488 -231.348)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.849 122.388)">
+                                            <path d="M835.318,166.112h-11.8a2.672,2.672,0,0,1-.459-.01.626.626,0,0,1-.579-.663.611.611,0,0,1,.592-.646,3.059,3.059,0,0,1,.408-.008h23.8c.544.009.851.25.847.666s-.323.66-.859.66Q841.292,166.114,835.318,166.112Z" transform="translate(-822.483 -164.781)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.852 133.565)">
+                                            <path d="M835.319,198.057h11.644c.153,0,.307-.005.46,0a.645.645,0,0,1,.7.659.628.628,0,0,1-.68.67c-.136.007-.272,0-.409,0H823.541c-.136,0-.273.005-.409-.007a.616.616,0,0,1-.643-.649.629.629,0,0,1,.624-.673,3.486,3.486,0,0,1,.459-.007Z" transform="translate(-822.49 -198.054)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.881 148.481)">
+                                            <path d="M835.379,243.8h-11.8c-.17,0-.386.055-.5-.027-.212-.154-.489-.382-.5-.594s.225-.488.424-.646c.133-.105.391-.067.593-.067q11.773,0,23.545,0a3.178,3.178,0,0,1,.408.009.637.637,0,0,1,.633.671.625.625,0,0,1-.646.651c-.152.013-.306.006-.46.006Z" transform="translate(-822.577 -242.455)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.848 137.308)">
+                                            <path d="M846.938,209.2c-.166.43-.276.769-.429,1.087a.614.614,0,0,1-.327.241,1.053,1.053,0,0,1-.354.009H823.571c-.782,0-1.091-.193-1.092-.678s.3-.658,1.1-.658h23.358Z" transform="translate(-822.479 -209.195)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(798.877 141.025)">
+                                            <path d="M845.551,220.284l-.179,1.286c-.147.01-.326.032-.5.032q-10.7,0-21.4,0c-.152,0-.351.039-.447-.039-.193-.158-.445-.376-.459-.583a.988.988,0,0,1,.382-.634c.114-.1.355-.078.539-.079q10.8-.006,21.6,0C845.237,220.261,845.387,220.275,845.551,220.284Z" transform="translate(-822.565 -220.261)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(807.321 117.361)">
+                                            <path d="M853.029,151.159q-2.142,0-4.284,0a2.337,2.337,0,0,1-.507-.03.622.622,0,0,1-.533-.7.608.608,0,0,1,.584-.6,2.469,2.469,0,0,1,.356-.012h8.773a2.568,2.568,0,0,1,.407.017c.349.056.606.29.542.617a1.386,1.386,0,0,1-.506.662c-.1.087-.327.042-.5.042Q855.2,151.161,853.029,151.159Z" transform="translate(-847.703 -149.818)" fill="#adf71a"></path>
+                                        </g>
+                                        <g transform="translate(809.542 114.113)">
+                                            <path d="M857.477,140.152c.764,0,1.527-.005,2.291,0,.5.005.8.267.794.663s-.314.655-.807.657q-2.317.009-4.633,0c-.511,0-.8-.242-.808-.645-.01-.433.274-.674.821-.678.781-.005,1.561,0,2.342,0Z" transform="translate(-854.313 -140.149)" fill="#adf71a"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="h5">Affordable Help</span>
+                                <p>Low-priced book cover designs are no longer scary! With us, you get the UK's most professional and cheap book cover design services.</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="choose-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="51.923" height="52.356" viewBox="0 0 51.923 52.356">
+                                    <g transform="translate(-1165.591 -86.75)">
+                                        <path d="M1180.871,140.123a3.931,3.931,0,0,0,1.625-1.026c.5-.516,1.018-1.007,1.515-1.522a3.16,3.16,0,0,0,.809-3.561,1.088,1.088,0,0,1,.333-1.378c1.028-.97,2.016-1.984,3.006-2.994a2.118,2.118,0,0,1,1.507-.63c1.416-.067,2.822.212,4.236.075a.613.613,0,0,1,.5.226c1.248,1.234,2.484,2.479,3.726,3.72a.68.68,0,0,1,.173.789,3.354,3.354,0,0,0,.984,3.847c.493.472.961.967,1.449,1.442a3.291,3.291,0,0,0,4.87-.01q5.426-5.419,10.845-10.844a3.289,3.289,0,0,0,.024-4.833c-.523-.538-1.058-1.064-1.59-1.592a3.4,3.4,0,0,0-3.712-.853.694.694,0,0,1-.788-.175c-.93-.925-1.853-1.858-2.786-2.781a.561.561,0,0,1-.062-.852,3.7,3.7,0,0,0,.654-1.147,3.386,3.386,0,0,0-2.01-4.3.714.714,0,0,1-.548-.9,3.287,3.287,0,0,0-2.2-3.624.64.64,0,0,1-.477-.8,3.356,3.356,0,0,0-2.2-3.693c-.352-.149-.552-.32-.5-.757a3.358,3.358,0,0,0-3.142-3.93,33.413,33.413,0,0,1-3.326-.519c-1.647-.274-3.276-.647-4.928-.9a2.836,2.836,0,0,0-2.058.4,1.119,1.119,0,0,1-.964.171,3.437,3.437,0,0,0-3.991,2.452,4.189,4.189,0,0,0-.061,1.473.538.538,0,0,1-.393.653,3.4,3.4,0,0,0-2.321,3.854.6.6,0,0,1-.465.683,3.434,3.434,0,0,0-1.924,4.742c.248.535.24.551-.261.828a3.363,3.363,0,0,0-.994,5.327.523.523,0,0,1-.015.834q-1.4,1.387-2.784,2.783a.8.8,0,0,1-.886.2,3.323,3.323,0,0,0-3.508.922c-.547.537-1.094,1.075-1.626,1.627a3.288,3.288,0,0,0,.038,4.8q.956.96,1.916,1.916a2.321,2.321,0,0,0,.382.339.934.934,0,0,0,1.208-.155.838.838,0,0,0-.048-1.119c-.119-.145-.258-.272-.39-.4-.6-.605-1.225-1.185-1.8-1.816a1.5,1.5,0,0,1,.036-2.3c.558-.574,1.124-1.142,1.7-1.7a1.455,1.455,0,0,1,1.952-.13,6.023,6.023,0,0,1,.77.67q4.77,4.773,9.545,9.542c.338.336.64.7.985,1.035a1.358,1.358,0,0,1,.011,1.825,26.035,26.035,0,0,1-2.06,2.059,1.333,1.333,0,0,1-1.7.11,3.879,3.879,0,0,1-.755-.607c-.6-.6-1.192-1.219-1.813-1.8a.84.84,0,0,0-1.2-.056.871.871,0,0,0-.058,1.245c1.165,1.106,2.078,2.506,3.64,3.155.1.042.235.083.2.246h1.329C1180.507,140.144,1180.729,140.17,1180.871,140.123Zm30.479-16.992a1.369,1.369,0,0,1,2.082.009c.563.545,1.108,1.107,1.667,1.657a1.5,1.5,0,0,1,.482,1.017,1.468,1.468,0,0,1-.457,1.065q-5.458,5.453-10.919,10.9a1.36,1.36,0,0,1-2.077-.009c-.576-.556-1.145-1.119-1.7-1.7a1.356,1.356,0,0,1,.006-2.041Q1205.884,128.575,1211.35,123.131Zm-22.837-24.62c1.72.288,3.435.607,5.276.936-.908.907-1.727,1.72-2.539,2.541a.244.244,0,0,1-.35.046,6.81,6.81,0,0,1-2.811-3C1187.868,98.531,1187.955,98.417,1188.514,98.511Zm-4.654,1.252a1.5,1.5,0,0,1,1.715-.684.714.714,0,0,1,.525.481,8.192,8.192,0,0,0,4.532,4.59.982.982,0,0,1,.669,1,1.515,1.515,0,0,1-2.616,1.033q-2.281-2.272-4.554-4.551A1.492,1.492,0,0,1,1183.859,99.764Zm-2.462,4.191a1.487,1.487,0,0,1,2.149.022q1.88,1.835,3.719,3.71a1.442,1.442,0,0,1,.3,1.694,1.412,1.412,0,0,1-1.376.868,1.464,1.464,0,0,1-1.094-.466c-1.228-1.225-2.462-2.443-3.676-3.681A1.484,1.484,0,0,1,1181.4,103.955Zm-2.688,4.482a1.432,1.432,0,0,1,1.95-.116c1.081,1.007,2.109,2.071,3.143,3.128a1.094,1.094,0,0,1,.3.763,1.487,1.487,0,0,1-.8,1.457,1.348,1.348,0,0,1-1.583-.116,36.652,36.652,0,0,1-3.169-3.172A1.424,1.424,0,0,1,1178.71,108.437Zm-1.877,5.487a1.432,1.432,0,0,1,1.846-.327,6.041,6.041,0,0,1,1.651,1.64,1.116,1.116,0,0,1,.182.731,1.452,1.452,0,0,1-.823,1.309,1.361,1.361,0,0,1-1.54-.115,10.594,10.594,0,0,1-1.378-1.357A1.476,1.476,0,0,1,1176.833,113.924Zm6.144,17.6q-4.437-4.454-8.9-8.883c-.221-.22-.275-.342-.018-.59.957-.921,1.892-1.865,2.823-2.814a.411.411,0,0,1,.562-.1,3.53,3.53,0,0,0,5.1-2.906c.03-.284.152-.313.378-.343a3.476,3.476,0,0,0,3.219-3.261c.031-.234.11-.3.339-.333a3.464,3.464,0,0,0,3.257-3.222c.039-.279.132-.349.4-.374a3.535,3.535,0,0,0,2.89-5.014.521.521,0,0,1,.139-.723c.82-.794,1.619-1.61,2.428-2.415a1.531,1.531,0,1,1,2.153,2.127c-.554.554-1.114,1.1-1.663,1.661a1.035,1.035,0,1,0,1.448,1.462c.32-.307.621-.632.944-.935a1.5,1.5,0,0,1,2.116-.028,1.477,1.477,0,0,1,.049,2.11c-.59.638-1.224,1.234-1.833,1.853a1.041,1.041,0,1,0,1.453,1.457c.317-.309.617-.636.947-.931a1.5,1.5,0,0,1,2.125,2.123c-.543.588-1.126,1.138-1.688,1.708a1.061,1.061,0,0,0-.13,1.575,1.047,1.047,0,0,0,1.575-.115c.256-.249.5-.516.762-.756a1.512,1.512,0,0,1,2.156-.01,1.494,1.494,0,0,1-.036,2.153c-.745.772-1.521,1.515-2.269,2.285a1.022,1.022,0,0,0-.167,1.265,1.046,1.046,0,0,0,1.15.461,1.6,1.6,0,0,0,.661-.463c.493-.492.5-.49.979-.007.856.855,1.705,1.716,2.574,2.558.215.21.248.32.013.554q-4.48,4.446-8.933,8.922c-.241.242-.363.225-.589-.007-1.01-1.036-2.04-2.054-3.082-3.1a13.74,13.74,0,0,0,1.463-1.364,1.034,1.034,0,0,0,.086-1.574,1.054,1.054,0,0,0-1.54.12,3.847,3.847,0,0,0-.36.363,3.3,3.3,0,0,1-2.862,1.172c-.851-.018-1.7-.07-2.552-.127a8,8,0,0,0-1.581.056,3.3,3.3,0,0,0-1.977.968c-1.135,1.153-2.3,2.282-3.427,3.44C1183.333,131.767,1183.211,131.756,1182.977,131.522Z" transform="translate(0 -1.29)" fill="#adf71a"></path>
+                                        <path d="M1194.882,86.938a1.806,1.806,0,0,0-.527,1.621c.02,1.053.005,2.106.005,3.159,0,.153,0,.306,0,.459.032.656.361,1.046.877,1.043s.857-.4.862-1.048c.011-1.376,0-2.751,0-4.128a1.193,1.193,0,0,0-.4-1c-.089-.073-.191-.15-.162-.294h-.614A.184.184,0,0,1,1194.882,86.938Z" transform="translate(-3.784)" fill="#adf71a"></path>
+                                        <path d="M1194.179,88.131c.034,1.358.007,2.718.011,4.077,0,.73.414,1.192,1.038,1.188s1.014-.454,1.015-1.2c0-1.359-.022-2.719.012-4.077a1.313,1.313,0,0,0-.737-1.368c-.029.143.074.221.162.294a1.193,1.193,0,0,1,.4,1c0,1.376.007,2.752,0,4.128-.005.65-.344,1.044-.862,1.048s-.845-.387-.877-1.043c-.008-.153,0-.306,0-.459,0-1.053.015-2.107-.005-3.159a1.806,1.806,0,0,1,.527-1.621.183.183,0,0,0,.045-.188A1.383,1.383,0,0,0,1194.179,88.131Z" transform="translate(-3.761)" fill="#adf71a"></path>
+                                        <path d="M1177.5,88.146c-.289-.288-.57-.588-.881-.849a.941.941,0,0,0-1.1-.1.969.969,0,0,0-.539.95,1.034,1.034,0,0,0,.376.767q1.79,1.783,3.577,3.569a1.1,1.1,0,0,0,.552.345.989.989,0,0,0,1.14-.464,1.013,1.013,0,0,0-.2-1.3C1179.455,90.088,1178.475,89.118,1177.5,88.146Z" transform="translate(-1.235 -0.042)" fill="#adf71a"></path>
+                                        <path d="M1213.085,87.453c-1.21,1.2-2.409,2.4-3.613,3.6a1,1,0,0,0-.356.747.983.983,0,0,0,.616.984,1.013,1.013,0,0,0,1.17-.248c1.216-1.213,2.435-2.424,3.643-3.645a1.03,1.03,0,1,0-1.46-1.442Z" transform="translate(-5.726 -0.043)" fill="#adf71a"></path>
+                                        <path d="M1173.434,139.451a1,1,0,0,0,1.017-1.035,1.023,1.023,0,0,0-2.045.01A1.009,1.009,0,0,0,1173.434,139.451Z" transform="translate(-0.897 -6.663)" fill="#adf71a"></path>
+                                        <path d="M1205.525,127.9a1.032,1.032,0,0,0,1.036-1.031,1.057,1.057,0,0,0-1.057-1.02,1.033,1.033,0,0,0-1,1.017A1,1,0,0,0,1205.525,127.9Z" transform="translate(-5.119 -5.144)" fill="#adf71a"></path>
+                                    </g>
+                                </svg>
+                                <span class="h5">Fully Personalized</span>
+                                <p>A cover design sold once is never sold again – and that's a promise. For each client, the team begins working from a clean slate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h2 class="h2">What Keeps Book Cover Designers Ahead of The Curve?</h2>
+                    <hr class="hr-line">
+                    <p>No myths – no castles in the air; as a highly professional book cover design service in the UK, we work with a well-thought and human-mentality approach. This means that the excellent art covers we designed are not produced incidentally. Instead, the team masters the client's target audience and only then produces a hype-worthy piece of art.</p>
+                    <p>Another thing that keeps us one step ahead of other global book cover design companies is our deep emphasis on customer experience. The client's preference is taken into great consideration, and we do not stop working until the client has a broad smile on their face. The team is always on hot to trot to serve the buyers with the best possible results.</p>
+                    <div class="row m-t-30">
+                        <div class="col-12 col-sm-6 col-lg-5">
+                            <a href="#" class="btn-w btn-dual-shade">
+                                Start Live Chat
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-5">
+                            <a href="vtuber-form.html">
+                            <button role="button" type="button" class="btn-w btn-white-shade">
+                                Submit Your Idea
+                            </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row m-t-30">
+                        <div class="col-12 col-sm-6">
+                            <a href="#" class="email-phone text-center">
+                                Email: info@vtubermodel.co.uk
+                                 
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <a href="#" class="email-phone">
+                                Phone No: +44 12 1245 1245
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        `;
-    }).join('');
-    
-    // Destroy existing swiper
-    if (homeCategoryProductSwipers[categoryName]) {
-        homeCategoryProductSwipers[categoryName].destroy(true, true);
-    }
-    
-    // Initialize Swiper
-    const swiperContainer = document.getElementById(`homeCategoryProductSwiper${categoryName}`);
-    if (swiperContainer) {
-        homeCategoryProductSwipers[categoryName] = new Swiper(swiperContainer, {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: { delay: 3000, disableOnInteraction: false },
-            pagination: { el: `#homeCategoryProductPagination${categoryName}`, clickable: true },
-            navigation: {
-                nextEl: `#homeCategoryProductNext${categoryName}`,
-                prevEl: `#homeCategoryProductPrev${categoryName}`,
-            },
-            breakpoints: {
-                480: { slidesPerView: 1 },
-                640: { slidesPerView: 2 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-                1200: { slidesPerView: 4 },
-            },
-        });
-    }
-    
-    setTimeout(() => {
-        addHomeCategoryEventListeners();
-    }, 100);
-}
-
-function generateHomeCategoryStars(rating) {
-    let stars = '';
-    for (let i = 1; i <= 5; i++) {
-        if (i <= Math.floor(rating)) stars += '<i class="fas fa-star"></i>';
-        else if (i - rating < 1) stars += '<i class="fas fa-star-half-alt"></i>';
-        else stars += '<i class="far fa-star"></i>';
-    }
-    return stars;
-}
-
-// Unified event listeners (reuses functions from main.js where possible)
-function addHomeCategoryEventListeners() {
-    // Cart
-    document.querySelectorAll('.home-category-product-card .add-to-cart').forEach(btn => {
-        btn.removeEventListener('click', handleHomeCategoryAddToCart);
-        btn.addEventListener('click', handleHomeCategoryAddToCart);
-    });
-
-    // Wishlist
-    document.querySelectorAll('.home-category-product-card .product-wishlist').forEach(btn => {
-        btn.removeEventListener('click', handleHomeCategoryWishlistClick);
-        btn.addEventListener('click', handleHomeCategoryWishlistClick);
-    });
-}
-
-function handleHomeCategoryAddToCart(e) {
-    e.stopPropagation();
-    const product = {
-        id: this.dataset.id,
-        name: this.dataset.name,
-        price: parseFloat(this.dataset.price),
-        image: this.dataset.image,
-        quantity: 1
-    };
-    addToCart(product);           // Reuse function from main.js
-    showToast(`${product.name} added to cart`);
-}
-
-function handleHomeCategoryWishlistClick(e) {
-    e.stopPropagation();
-    const card = this.closest('.product-card');
-    const icon = this.querySelector('i');
-    
-    const product = {
-        id: this.dataset.id,
-        name: card.querySelector('.product-title').textContent,
-        price: parseFloat(card.querySelector('.add-to-cart').dataset.price),
-        image: card.querySelector('img').src,
-        store: card.querySelector('.product-store').textContent.replace('Sold by:', '').trim(),
-        category: card.querySelector('.product-category').textContent
-    };
-    
-    toggleWishlist(product, icon);   // Reuse function from main.js
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.querySelector('.home-category-product-section')) {
-        loadHomeCategoryProducts();
-    }
-});
-</script>
-
-    <!-- ===== SECTION: LIMITED TIME OFFERS ===== -->
-    <section class="promo-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Limited Time <span>Offers</span></h2>
-                <p>Grab these deals before they're gone - Up to 70% off + Extra 10% off on first order</p>
-            </div>
-            <div class="promo-grid-modern">
-                <div class="promo-card-modern">
-                    <span class="promo-badge">HOT DEAL</span>
-                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1600086827875-a63b01f1335c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay-modern">
-                        <div class="promo-discount-modern">70% OFF</div>
-                        <div class="promo-product-modern">Electronics</div>
-                        <div class="promo-desc-modern">Smartphones, Laptops, Accessories</div>
-                    </div>
-                </div>
-                <div class="promo-card-modern">
-                    <span class="promo-badge">TRENDING</span>
-                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay-modern">
-                        <div class="promo-discount-modern">50% OFF</div>
-                        <div class="promo-product-modern">Fashion</div>
-                        <div class="promo-desc-modern">Men, Women, Kids Collection</div>
-                    </div>
-                </div>
-                <div class="promo-card-modern">
-                    <span class="promo-badge">BESTSELLER</span>
-                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay-modern">
-                        <div class="promo-discount-modern">60% OFF</div>
-                        <div class="promo-product-modern">Home Decor</div>
-                        <div class="promo-desc-modern">Furniture, Kitchen, Garden</div>
-                    </div>
-                </div>
-                <div class="promo-card-modern">
-                    <span class="promo-badge">WEEKEND</span>
-                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay-modern">
-                        <div class="promo-discount-modern">40% OFF</div>
-                        <div class="promo-product-modern">Beauty</div>
-                        <div class="promo-desc-modern">Makeup, Skincare, Haircare</div>
-                    </div>
-                </div>
-                <div class="promo-card-modern">
-                    <span class="promo-badge">FLASH SALE</span>
-                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay-modern">
-                        <div class="promo-discount-modern">55% OFF</div>
-                        <div class="promo-product-modern">Sports</div>
-                        <div class="promo-desc-modern">Gym, Outdoor, Cycling</div>
-                    </div>
-                </div>
-                <div class="promo-card-modern">
-                    <span class="promo-badge">LIMITED</span>
-                    <div class="promo-img-modern" style="background-image: url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="promo-overlay-modern">
-                        <div class="promo-discount-modern">30% OFF</div>
-                        <div class="promo-product-modern">Books</div>
-                        <div class="promo-desc-modern">Bestsellers, Academic, Fiction</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
+    <section class="book-publisher">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12">
+
+                <span class="h2">Bring Your VTuber Model To Life…</span>
+
+                <hr class="hr-line">
+
+                <p>A professionally designed VTuber model can instantly elevate your online presence and make your content unforgettable. From expressive avatars to unique character identities, a high-quality VTuber model helps streamers, gamers, creators, and influencers connect deeply with their audience.</p>
+
+                <img src="images/why-right-image.jpeg" class="img-fluid show-mobile d-block mx-auto mb-3 m-t-30" alt="VTuber Model" title="VTuber Model" width="535" height="483" loading="lazy">
+
+            </div>
+        </div>
+
+        <div class="row m-t-30">
+
+            <div class="col-12 col-lg-6">
+
+                <h2 class="h4">Custom VTuber Models Designed To Match Your Personality</h2>
+
+                <p>VTuber Model aims to create avatars that truly reflect your personality, niche, and streaming style. Whether you want a cute anime-inspired character, a futuristic cyber avatar, or a fantasy-themed personality, every design is crafted with originality and attention to detail.</p>
+
+                <p>We carefully study your vision, audience, and content goals before starting the design process. This allows us to create models that not only look visually stunning but also help you stand out in the highly competitive VTubing industry.</p>
+
+                <h2 class="h4">Creative VTuber Avatars That Build Strong Viewer Engagement</h2>
+
+                <p>Great VTuber models are more than just visuals — they create emotional connections with viewers. Our creative team designs expressive avatars with unique facial expressions, smooth rigging compatibility, and memorable aesthetics that keep audiences engaged during streams and videos.</p>
+
+                <p>From gaming channels and live streaming to YouTube content and virtual performances, our VTuber model services are tailored for creators who want to build a powerful online identity and grow their community.</p>
+
+                <h2 class="h4">Professional VTuber Designers With Industry Experience</h2>
+
+                <p>Our talented VTuber artists and illustrators have years of experience in anime art, digital illustration, Live2D preparation, and character concept design. We combine creativity with technical precision to deliver models that are visually impressive and streaming-ready.</p>
+
+                <p>Over the years, VTuber Model has helped streamers, gamers, influencers, and content creators launch unique VTuber personas that attract attention across platforms like Twitch, YouTube, TikTok, and Discord.</p>
+
+                <h2 class="h4">VTuber Model Services Available Worldwide</h2>
+
+                <p>Whether you are located in the UK, USA, Canada, UAE, Australia, or anywhere else in the world, our VTuber model services are accessible globally. We collaborate with creators remotely and ensure smooth communication throughout the project.</p>
+
+                <p>From concept sketches to final avatar delivery, our team ensures every client receives personalized support, premium-quality artwork, and a VTuber model that feels truly unique and original.</p>
+
+            </div>
+
+            <div class="col-12 col-lg-6">
+
+                <img src="images/why-right-image.jpeg"
+                    class="img-fluid show-desktop d-block mb-3"
+                    alt="VTuber Model"
+                    title="VTuber Model"
+                    width="535"
+                    height="483"
+                    loading="lazy">
+
+                <h2 class="h4">High-Quality VTuber Models Tailored For Every Creator</h2>
+
+                <p>Every creator has a unique story, and our mission is to transform that vision into a captivating VTuber character. We create personalized avatars designed specifically for your branding, audience preferences, and content style.</p>
+
+                <p>Before beginning the project, our team brainstorms ideas, explores creative concepts, and develops a visual direction that perfectly matches your personality. The final result is a VTuber model crafted with passion, creativity, and precision.</p>
+
+                <h2 class="h4">VTuber Model Services With Exceptional Client Satisfaction</h2>
+
+                <p>Our VTuber model design service is trusted by creators who value quality, creativity, and professionalism. Clients choose VTuber Model because we focus on delivering eye-catching avatars that enhance content quality and improve audience engagement.</p>
+
+                <p>By combining artistic creativity, anime aesthetics, and modern design techniques, we deliver VTuber models that help creators stand out in the digital world. Most of our clients return for additional designs, outfits, expressions, and future upgrades because of the exceptional experience we provide.</p>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="form-hero-section-container">
+    <div class="form-hero-section-wrapper">
+        <img src="images/logo.png" alt="Logo" class="form-hero-section-logo">
+
+        <h3 class="form-hero-section-title">
+            Answer a few short questions <br> about your avatar
+        </h3>
+
+        <p class="form-hero-section-text">
+            Then we'll either start creating your avatar right away or talk to you about your project.
+        </p>
+<a href="vtuber-form.html">
+        <button class="form-hero-section-btn" id="startBtn">Start</button>
+</a>
+        <span class="form-hero-section-note">Takes 3 minutes</span>
+    </div>
+</div>
 
 
+    <section class="faq-form">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-12 col-lg-6"> -->
 
+                <span class="h2">Frequently Asked Questions</span>
 
-    <!-- ===== SECTION 3: BRAND PARTNERS ===== -->
-    <!-- <section class="brands-section">
-  <div class="container">
+                <hr class="hr-line">
+                <div class="accordion" id="faqs">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                                What do I need before ordering?
+                            </button>
+                        </h3>
+                        <div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#faqs">
+                            <div class="accordion-body">
+                                You only need a character idea or reference images. Our team handles the design and rigging process.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                                Which software do your models support?
+                            </button>
+                        </h3>
+                        <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="heading-2" data-bs-parent="#faqs">
+                            <div class="accordion-body">
+                                Our VTuber models support VTube Studio, OBS, Twitch, YouTube, VSeeFace, and VRChat.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                                Can I use the model commercially?
+                            </button>
+                        </h3>
+                        <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="heading-3" data-bs-parent="#faqs">
+                            <div class="accordion-body">
+                                Yes, all packages include commercial usage rights.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                                Do you provide revisions?
+                            </button>
+                        </h3>
+                        <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="heading-4" data-bs-parent="#faqs">
+                            <div class="accordion-body">
+                                Yes, revisions are included during the design process depending on the selected package.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                                Do you create male and female VTubers?
+                            </button>
+                        </h3>
+                        <div id="collapse-5" class="accordion-collapse collapse" aria-labelledby="heading-5" data-bs-parent="#faqs">
+                            <div class="accordion-body">
+                                Yes, we create male, female, fantasy, furry, cyberpunk, and custom anime characters.
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            <!-- </div> -->
+            <!-- <div class="col-12 col-lg-6">
 
-    <div class="section-header">
-      <h2>Trusted By <span>Top Brands</span></h2>
-      <p>We partner with the world's leading brands</p>
+                <span class="h2">Ready To Commission for a Custom VTuber Model?</span>
+                <p style="color: #ccc;">Build your unique virtual identity with professional VTuber artists and Live2D rigging experts.</p>
+
+                <hr class="hr-line">
+
+               <form id="form" action="#">
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <label for="name" class="form-label">Name:</label>
+            <input id="name" type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <label for="email" class="form-label">Email:</label>
+            <input id="email" type="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <label for="contact" class="form-label">Contact:</label>
+            <input id="contact" type="text" name="contact" class="form-control" required>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <label for="discord" class="form-label">Discord Username:</label>
+            <input id="discord" type="text" name="discord" class="form-control" required>
+        </div>
+
+        <div class="col-md-12 mb-4">
+            <label for="streaming-platform" class="form-label">Streaming Platform:</label>
+            <input id="streaming-platform" type="text" name="streaming_platform" class="form-control" required>
+        </div>
+
+        <div class="col-md-12 mb-4">
+            <select class="form-control form-select" name="vtuber_style" id="vtuber-style" required>
+                <option value="">Select VTuber Style</option>
+                <option value="Anime VTuber">Anime VTuber</option>
+                <option value="Cyberpunk VTuber">Cyberpunk VTuber</option>
+                <option value="Fantasy VTuber">Fantasy VTuber</option>
+                <option value="Furry VTuber">Furry VTuber</option>
+                <option value="Cute/Kawaii VTuber">Cute/Kawaii VTuber</option>
+                <option value="Custom VTuber">Custom VTuber</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
     </div>
 
-    <div class="brands-marquee">
-      <div class="brands-track">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <label>Select Services:</label>
+        </div>
 
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=OPoc3Wv99Ibz&format=png&color=000000" alt="Amazon"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=wGYgIlqPWdC2&format=png&color=000000" alt="Samsung"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=yLOQ68t1DdFF&format=png&color=000000" alt="Nike"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=22989&format=png&color=000000" alt="Microsoft"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=34552&format=png&color=000000" alt="Adidas"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=30840&format=png&color=000000" alt="Apple"></div>
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="2D VTuber Model" id="2d-vtuber-model">
+                <label class="form-check-label" for="2d-vtuber-model">
+                    2D VTuber Model
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="3D VTuber Model" id="3d-vtuber-model">
+                <label class="form-check-label" for="3d-vtuber-model">
+                    3D VTuber Model
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="Live2D Rigging" id="live2d-rigging">
+                <label class="form-check-label" for="live2d-rigging">
+                    Live2D Rigging
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="PNGTuber Design" id="pngtuber-design">
+                <label class="form-check-label" for="pngtuber-design">
+                    PNGTuber Design
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="VRChat Avatar" id="vrchat-avatar">
+                <label class="form-check-label" for="vrchat-avatar">
+                    VRChat Avatar
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="VTuber Expressions & Toggles" id="vtuber-expressions">
+                <label class="form-check-label" for="vtuber-expressions">
+                    VTuber Expressions & Toggles
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="VTuber Animation" id="vtuber-animation">
+                <label class="form-check-label" for="vtuber-animation">
+                    VTuber Animation
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="VTube Studio Setup" id="vtube-studio-setup">
+                <label class="form-check-label" for="vtube-studio-setup">
+                    VTube Studio Setup
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="Stream Overlay Design" id="stream-overlay-design">
+                <label class="form-check-label" for="stream-overlay-design">
+                    Stream Overlay Design
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="Custom Character Design" id="custom-character-design">
+                <label class="form-check-label" for="custom-character-design">
+                    Custom Character Design
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-4">
+            <div class="form-check">
+                <input class="form-check-input" name="services[]" type="checkbox" value="Other Services" id="other-services">
+                <label class="form-check-label" for="other-services">
+                    Other Services
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
+            <input type="file" name="files[]" class="form-control" multiple>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <textarea 
+            class="form-control" 
+            name="details" 
+            rows="5" 
+            placeholder="Character personality, colors, outfit, references, expressions, etc."
+        ></textarea>
+    </div>
+
+    <button class="btn-dual-shade" type="submit">
+        Let’s Create Your VTuber Model!
+    </button>
+
+</form>
+
+            </div> -->
+        </div>
+    </div>
+</section>
 
 
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=OPoc3Wv99Ibz&format=png&color=000000" alt="Amazon"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=wGYgIlqPWdC2&format=png&color=000000" alt="Samsung"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=yLOQ68t1DdFF&format=png&color=000000" alt="Nike"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=22989&format=png&color=000000" alt="Microsoft"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=34552&format=png&color=000000" alt="Adidas"></div>
-        <div class="brand-item"><img src="https://img.icons8.com/?size=100&id=30840&format=png&color=000000" alt="Apple"></div>
 
+        <footer class="vt-footer">
+  <div class="footer-container">
+
+    <!-- Column 1: Logo + About + Social -->
+    <div class="footer-col">
+      <img src="images/logo.png" alt="Logo" class="footer-logo" title="logo" loading="lazy">
+
+      <p class="footer-desc">
+        GamingVTuber.com is a professional VTuber design studio providing custom 2D VTuber models, Live2D rigging, PNGTubers, and 3D VTuber avatars for streamers and content creators worldwide.
+      </p>
+
+      <div class="social-icons">
+        <a href="#" title="social link"><img src="https://img.icons8.com/?size=100&id=118467&format=png&color=1A1A1A" alt="facebook" title="facebook" loading="lazy"></a>
+        <a href="#" title="social link"><img src="https://img.icons8.com/?size=100&id=32309&format=png&color=1A1A1A" alt="instagram" title="instagram" loading="lazy"></a>
+        <a href="#" title="social link"><img src="https://img.icons8.com/?size=100&id=11101&format=png&color=1A1A1A" alt="youtube" title="youtube" loading="lazy"></a>
       </div>
     </div>
 
+    <!-- Column 2: Company -->
+    <div class="footer-col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="index.html" title="Home">Home</a></li>
+        <li><a href="#" title="About">About</a></li>
+        <li><a href="portfolio-and-reviews.html" title="Our Portfolio And Reviews">Our Portfolio And Reviews</a></li>
+        <li><a href="vtuber-form.html" title="Form">Form</a></li>
+        <li><a href="#" title="Sitemap">Sitemap</a></li>
+        <li><a href="#" title="Contact">Contact Us</a></li>
+        <li><a href="#" title="Get">Get Started</a></li>
+        <li><a href="#" title="Terms">Terms and Conditions</a></li>
+        <li><a href="#" title="Privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Locations -->
+    <div class="footer-col">
+      <h3>Locations</h3>
+      <ul>
+        <li><a href="vtuber-usa.html" title="Vtuber USA">Vtuber USA</a></li>
+        <li><a href="vtuber-uk.html" title="Vtuber UK">Vtuber UK</a></li>
+        <li><a href="vtuber-germany.html" title="Vtuber Germany">Vtuber Germany</a></li>
+        <li><a href="vtuber-italy.html" title="Vtuber Italy">Vtuber Italy</a></li>
+        <li><a href="vtuber-canada.html" title="Vtuber Canada">Vtuber Canada</a></li>
+        <li><a href="vtuber-australia.html" title="Vtuber Australia">Vtuber Australia</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Services -->
+    <!-- <div class="footer-col">
+      <h3>Services</h3>
+      <ul>
+        <li><a href="#" title="2D VTuber" >2D VTuber Model</a></li>
+        <li><a href="#" title="3D VTuber" >3D VTuber Model</a></li>
+        <li><a href="#" title="Live2D Rigging" >Live2D Rigging</a></li>
+        <li><a href="#" title="PNGTuber Design" >PNGTuber Design</a></li>
+        <li><a href="#" title="VRChat Avatar" >VRChat Avatar</a></li>
+        <li><a href="#" title="VTuber Expressions & Toggles" >VTuber Expressions & Toggles</a></li>
+        <li><a href="#" title="VTuber Animation">VTuber Animation</a></li>
+        <li><a href="#" title="VTube Studio Setup">VTube Studio Setup</a></li>
+        <li><a href="#" title="Stream Overlay Design">Stream Overlay Design</a></li>
+        <li><a href="#" title="Custom Character Design">Custom Character Design</a></li>
+      </ul>
+    </div> -->
+
   </div>
-</section>
-<script>
-    const mtrack = document.querySelector(".brands-track");
 
-// speed adjust (optional)
-let speed = 20; // seconds
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <p>© 2026 GamingVTuber.com. All Rights Reserved.</p>
+  </div>
+</footer>
 
-mtrack.style.animationDuration = speed + "s";
-</script> -->
 
-    <!-- ===== SECTION 4: ENHANCED FEATURES ===== -->
-    <section class="features-enhanced">
-        <div class="container">
-            <div class="section-header">
-                <h2>Amazing <span>Features</span></h2>
-                <p>Everything you need for seamless shopping</p>
-            </div>
-            <div class="features-grid-enhanced">
-                <div class="feature-card-enhanced">
-                    <div class="feature-icon-enhanced">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Fast Delivery</h3>
-                    <p>Lightning-fast shipping with real-time tracking</p>
-                </div>
-                <div class="feature-card-enhanced">
-                    <div class="feature-icon-enhanced">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Secure Payments</h3>
-                    <p>100% secure transactions with buyer protection</p>
-                </div>
-                <div class="feature-card-enhanced">
-                    <div class="feature-icon-enhanced">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Support</h3>
-                    <p>Round-the-clock customer service</p>
-                </div>
-                <div class="feature-card-enhanced">
-                    <div class="feature-icon-enhanced">
-                        <i class="fas fa-undo-alt"></i>
-                    </div>
-                    <h3>Easy Returns</h3>
-                    <p>Hassle-free 14-day return policy</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        
 
-    <!-- Features Section - Original -->
-    <section class="why-choose-us-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose <span>Sino Pak Nova?</span></h2>
-                <p>A powerful ecosystem built for customers, sellers, and delivery partners</p>
-            </div>
-            <div class="why-choose-us-grid">
-                <a href="research-and-market-intelligence.html" class="why-choose-us-card">
-                    <div class="why-choose-us-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Market Intelligence</h3>
-                    <p>Data-driven insights on global demand, pricing trends, and consumer behavior to help you make informed decisions.</p>
-                    <span class="learn-more-btn">Learn More →</span>
-                </a>
-                <a href="smart-sourcing-and-supply-chain.html" class="why-choose-us-card">
-                    <div class="why-choose-us-icon"><i class="fas fa-industry"></i></div>
-                    <h3>Smart Sourcing</h3>
-                    <p>Direct sourcing from China and Pakistan with verified suppliers, quality assurance, and private-label support.</p>
-                    <span class="learn-more-btn">Learn More →</span>
-                </a>
-                <a href="global-commerce-and-logistics.html" class="why-choose-us-card">
-                    <div class="why-choose-us-icon"><i class="fas fa-globe"></i></div>
-                    <h3>Global Logistics</h3>
-                    <p>Sell worldwide with dual delivery models, cross-border logistics, and market-specific fulfillment centers.</p>
-                    <span class="learn-more-btn">Learn More →</span>
-                </a>
-                <a href="education-and-seller-enablement.html" class="why-choose-us-card">
-                    <div class="why-choose-us-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>Seller Education</h3>
-                    <p>Step-by-step training, expert guidance, and research support to turn beginners into successful entrepreneurs.</p>
-                    <span class="learn-more-btn">Learn More →</span>
-                </a>
-            </div>
-        </div>
-    </section>
+        <script defer="" src="js/bootstrap.js"></script>
 
-    <!-- Enhanced How It Works Section -->
-    <section class="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>How <span>It Works</span></h2>
-                <p>Your journey to success starts here in three simple steps</p>
-            </div>
-            
-            <!-- 3D Steps Cards -->
-            <div class="steps-grid">
-                <div class="step-card" id="step-1">
-                    <div class="step-icon-3d">
-                        <div class="step-icon-3d-inner">
-                            <div class="step-icon-front">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <div class="step-icon-back">
-                                <i class="fas fa-check"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3>Create Account</h3>
-                    <p>Sign up in under 2 minutes as customer, store manager, or shipper with our simple registration process</p>
-                    <div class="step-features-modern">
-                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Free Registration</span>
-                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Instant Access</span>
-                    </div>
-                </div>
-                
-                <div class="step-card" id="step-2">
-                    <div class="step-icon-3d">
-                        <div class="step-icon-3d-inner">
-                            <div class="step-icon-front">
-                                <i class="fas fa-boxes"></i>
-                            </div>
-                            <div class="step-icon-back">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3>Browse & Select</h3>
-                    <p>Explore millions of products from verified sellers across 1000+ categories at the best market prices</p>
-                    <div class="step-features-modern">
-                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> 1000+ Categories</span>
-                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Verified Sellers</span>
-                    </div>
-                </div>
-                
-                <div class="step-card" id="step-3">
-                    <div class="step-icon-3d">
-                        <div class="step-icon-3d-inner">
-                            <div class="step-icon-front">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="step-icon-back">
-                                <i class="fas fa-truck"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3>Order & Track</h3>
-                    <p>Place orders securely with multiple payment options and track delivery in real-time with our advanced logistics</p>
-                    <div class="step-features-modern">
-                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Secure Payments</span>
-                        <span class="step-feature-modern"><i class="fas fa-check-circle"></i> Real-time Tracking</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Enhanced Role Section -->
-    <section class="roles">
-        <div class="container">
-            <div class="section-header">
-                <h2>Choose Your <span>Role</span></h2>
-                <p>Join Sino Pak Nova as a customer, seller, or delivery partner</p>
-            </div>
-            
-            <div class="role-grid-modern">
-                <!-- <div class="role-card-modern">
-                    <div class="role-icon-3d">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3>Shipper</h3>
-                    <p>Upload products to warehouse, set prices, earn commissions, and manage inventory efficiently with our smart tools.</p>
-                    <a href="account.html?role=shipper" class="role-btn-modern">Sign Up as Shipper</a>
-                </div> -->
 
-                <div class="role-card-modern">
-                    <div class="role-icon-3d">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h3>Store Manager</h3>
-                    <p>Browse warehouse products, add to your store, and manage storefront and sales seamlessly with analytics.</p>
-                    <a href="account.html?role=manager" class="role-btn-modern">Sign Up as Manager</a>
-                </div>
+        
 
-                <div class="role-card-modern">
-                    <div class="role-icon-3d">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>Customer</h3>
-                    <p>Browse all stores, add to cart, checkout securely, and track your orders effortlessly with our app.</p>
-                    <a href="account.html?role=customer" class="role-btn-modern">Sign Up as Customer</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
-    <!-- Enhanced Trust Section -->
-    <section class="trust-section">
-        <div class="container">
-            <div class="trust-grid-modern">
-                <div class="trust-item-modern">
-                    <div class="trust-icon-wrapper">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h4>100% Secure Payments</h4>
-                    <p>SSL encrypted transactions</p>
-                </div>
-                <div class="trust-item-modern">
-                    <div class="trust-icon-wrapper">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h4>Free Shipping</h4>
-                    <p>On orders over Rs 5000</p>
-                </div>
-                <div class="trust-item-modern">
-                    <div class="trust-icon-wrapper">
-                        <i class="fas fa-undo-alt"></i>
-                    </div>
-                    <h4>14-Day Returns</h4>
-                    <p>Easy return policy</p>
-                </div>
-                <div class="trust-item-modern">
-                    <div class="trust-icon-wrapper">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h4>24/7 Support</h4>
-                    <p>Dedicated customer service</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SECTION 5: NEWSLETTER ===== -->
-    <section class="newsletter-section">
-        <div class="container">
-            <div class="newsletter-wrapper">
-                <h2>Subscribe to Our <span>Newsletter</span></h2>
-                <p>Join 50,000+ subscribers and get exclusive deals directly in your inbox!</p>
-                <form class="newsletter-form" id="newsletterForm">
-                    <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
-                </form>
-                <div class="newsletter-benefits">
-                    <span><i class="fas fa-check-circle"></i> Weekly Deals</span>
-                    <span><i class="fas fa-check-circle"></i> No Spam</span>
-                    <span><i class="fas fa-check-circle"></i> Unsubscribe Anytime</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <img src="assets/footer-logo.png" alt="footer-logo" title="footer-logo" loading="lazy">
-                    <p>India's fastest growing multi-vendor B2B and B2C marketplace connecting sellers to customers worldwide. We provide a seamless platform for buying and selling with trust and reliability.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="research-hub.html">Research Hub</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="account.html">Account</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
-                        <li><a href="return-policy.html">Return Policy</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
-                        
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Contact Info</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> </li>
-                        <li><i class="fas fa-phone-alt"></i> +86 123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> support@sinopaknova.com</li>
-                        <li><i class="fas fa-clock"></i> 24/7 Customer Support</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2026 Sino Pak Nova | All rights reserved</p>
-                <div class="payment-methods">
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-cc-amex"></i>
-                    <i class="fab fa-cc-paypal"></i>
-                    <i class="fab fa-cc-discover"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Your Shopping Cart</h3>
-            <button class="close-cart" id="closeCart">&times;</button>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
-                <p>Your cart is empty</p>
-                <small>Add items to get started</small>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span class="total-price">Rs 0</span>
-            </div>
-            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
-        </div>
-    </div>
-    <div class="cart-overlay" id="cartOverlay"></div>
-
-    <!-- Wishlist Sidebar - Fixed to open on same page without redirect -->
-    <div class="wishlist-sidebar" id="wishlistSidebar">
-        <div class="wishlist-header">
-            <h3>Your Wishlist</h3>
-            <button class="close-wishlist" id="closeWishlist">&times;</button>
-        </div>
-        <div class="wishlist-items" id="wishlistItems">
-            <div class="empty-wishlist">
-                <i class="fas fa-heart"></i>
-                <p>Your wishlist is empty</p>
-                <small>Click the heart icon on products to add them here</small>
-            </div>
-        </div>
-    </div>
-    <div class="wishlist-overlay" id="wishlistOverlay"></div>
-
-    <!-- MOBILE BOTTOM NAVIGATION BAR -->
-    <div class="mobile-bottom-nav">
-        <div class="nav-items">
-            <a href="index.html" class="nav-item active">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="products.html" class="nav-item">
-                <i class="fas fa-search"></i>
-                <span>Products</span>
-            </a>
-            <a href="#" class="nav-item" id="mobileCartBtn">
-                <div class="nav-item-wrapper">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="badge cart-count">0</span>
-                </div>
-                <span>Cart</span>
-            </a>
-            <a href="#" class="nav-item" id="mobileWishlistBtn">
-                <div class="nav-item-wrapper">
-                    <i class="fas fa-heart"></i>
-                    <span class="badge wishlist-count">0</span>
-                </div>
-                <span>Wishlist</span>
-            </a>
-            <a href="account.html" class="nav-item">
-                <i class="fas fa-user"></i>
-                <span>Account</span>
-            </a>
-        </div>
-    </div>
-
-    <script src="js/main.js"></script>
-    <script src="js/wishlist.js"></script>
-    <script src="js/cart.js"></script>
-<script>
-// ===================== GLOBAL STATE =====================
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-// ===================== INITIALIZATION =====================
-document.addEventListener('DOMContentLoaded', () => {
-
-    updateCartCount();
-    updateWishlistCount();
-    checkUserLoginOnPageLoad();
-
-    // Setup UI
-    setupMobileMenu();
-    setupCartSidebarListeners();
-    setupWishlistSidebarListeners();
-    setupMobileCartListener();
-    setupMobileWishlistListener();
-
-    // Newsletter
-    const newsletterForm = document.getElementById('newsletterForm');
-
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            showToast('Thank you for subscribing!');
-            this.reset();
-        });
-    }
-
-    // Search
-    setupSearch();
-});
-
-// ===================== MOBILE MENU =====================
-function setupMobileMenu() {
-
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-
-    if (!hamburger || !navMenu) return;
-
-    hamburger.addEventListener('click', () => {
-
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-
-        link.addEventListener('click', () => {
-
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-}
-
-// ===================== SEARCH =====================
-function setupSearch() {
-
-    const searchInput = document.getElementById('searchInput');
-    const searchButton = document.getElementById('searchButton');
-    const searchType = document.getElementById('searchType');
-
-    if (!searchInput || !searchButton) return;
-
-    function performSearch() {
-
-        const query = searchInput.value.trim();
-
-        if (!query) return;
-
-        const type = searchType ? searchType.value : 'products';
-
-        if (type === 'products') {
-
-            window.location.href =
-                `products.html?search=${encodeURIComponent(query)}`;
-
-        } else {
-
-            window.location.href =
-                `sellers.html?search=${encodeURIComponent(query)}`;
-        }
-    }
-
-    searchButton.addEventListener('click', performSearch);
-
-    searchInput.addEventListener('keypress', function (e) {
-
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-}
-
-// ===================== CART =====================
-function addToCart(product) {
-
-    const existingIndex =
-        cart.findIndex(item => item.id == product.id);
-
-    if (existingIndex !== -1) {
-
-        cart[existingIndex].quantity += 1;
-
-    } else {
-
-        cart.push(product);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    updateCartCount();
-    renderCartSidebar();
-
-    showToast(`${product.name} added to cart`);
-}
-
-function removeFromCart(id) {
-
-    cart = cart.filter(item => item.id != id);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    updateCartCount();
-    renderCartSidebar();
-}
-
-function updateCartCount() {
-
-    const count =
-        cart.reduce((sum, item) =>
-            sum + (item.quantity || 1), 0);
-
-    document.querySelectorAll('.cart-count').forEach(el => {
-        el.textContent = count;
-    });
-}
-
-function renderCartSidebar() {
-
-    const container = document.getElementById('cartItems');
-    const totalEl = document.querySelector('.total-price');
-
-    if (!container) return;
-
-    if (cart.length === 0) {
-
-        container.innerHTML = `
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
-                <p>Your cart is empty</p>
-            </div>
-        `;
-
-        if (totalEl) totalEl.textContent = 'Rs 0';
-
-        return;
-    }
-
-    container.innerHTML = '';
-
-    let total = 0;
-
-    cart.forEach(item => {
-
-        const itemTotal = item.price * item.quantity;
-
-        total += itemTotal;
-
-        const priceInPKR =
-            (item.price * 280).toFixed(0);
-
-        const div = document.createElement('div');
-
-        div.className = 'cart-item';
-
-        div.innerHTML = `
-            <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}">
-            </div>
-
-            <div class="cart-item-details">
-
-                <h4>${item.name}</h4>
-
-                <p>
-                    Rs ${parseInt(priceInPKR).toLocaleString()}
-                    × ${item.quantity}
-                </p>
-
-                <button class="remove-cart-item"
-                    data-id="${item.id}">
-                    Remove
-                </button>
-
-            </div>
-        `;
-
-        container.appendChild(div);
-    });
-
-    if (totalEl) {
-        totalEl.textContent =
-            'Rs ' + (total * 280).toFixed(0);
-    }
-
-    document.querySelectorAll('.remove-cart-item').forEach(btn => {
-
-        btn.addEventListener('click', () => {
-            removeFromCart(btn.dataset.id);
-        });
-    });
-}
-
-// ===================== WISHLIST =====================
-function updateWishlistCount() {
-
-    const count = wishlist.length;
-
-    document.querySelectorAll('.wishlist-count').forEach(el => {
-
-        el.textContent = count;
-
-        el.style.display =
-            count > 0
-                ? 'inline-block'
-                : 'none';
-    });
-}
-
-function renderWishlistSidebar() {
-
-    const container = document.getElementById('wishlistItems');
-
-    if (!container) return;
-
-    if (wishlist.length === 0) {
-
-        container.innerHTML = `
-            <div class="empty-wishlist">
-                <i class="fas fa-heart"></i>
-                <p>Your wishlist is empty</p>
-            </div>
-        `;
-
-        return;
-    }
-
-    let html = '';
-
-    wishlist.forEach(item => {
-
-        const priceInPKR =
-            (item.price * 280).toFixed(0);
-
-        html += `
-            <div class="wishlist-item">
-
-                <img src="${item.image}" alt="${item.name}">
-
-                <div class="wishlist-item-info">
-
-                    <h4>${item.name}</h4>
-
-                    <div class="wishlist-item-price">
-                        Rs ${parseInt(priceInPKR).toLocaleString()}
-                    </div>
-
-                    <div class="wishlist-item-store">
-                        ${item.store}
-                    </div>
-
-                </div>
-
-            </div>
-        `;
-    });
-
-    container.innerHTML = html;
-}
-
-// ===================== SIDEBARS =====================
-function setupCartSidebarListeners() {
-
-    const cartIcon = document.getElementById('cartIcon');
-    const mobileCartBtn = document.getElementById('mobileCartBtn');
-
-    const cartSidebar = document.getElementById('cartSidebar');
-    const cartOverlay = document.getElementById('cartOverlay');
-
-    const closeCart = document.getElementById('closeCart');
-
-    const openCart = () => {
-
-        cartSidebar.classList.add('active');
-        cartOverlay.classList.add('active');
-
-        renderCartSidebar();
-    };
-
-    if (cartIcon) {
-
-        cartIcon.addEventListener('click', e => {
-
-            e.preventDefault();
-            openCart();
-        });
-    }
-
-    if (mobileCartBtn) {
-
-        mobileCartBtn.addEventListener('click', e => {
-
-            e.preventDefault();
-            openCart();
-        });
-    }
-
-    if (closeCart) {
-
-        closeCart.addEventListener('click', () => {
-
-            cartSidebar.classList.remove('active');
-            cartOverlay.classList.remove('active');
-        });
-    }
-
-    if (cartOverlay) {
-
-        cartOverlay.addEventListener('click', () => {
-
-            cartSidebar.classList.remove('active');
-            cartOverlay.classList.remove('active');
-        });
-    }
-}
-
-function setupWishlistSidebarListeners() {
-
-    const wishlistIcon = document.getElementById('wishlistIcon');
-    const mobileWishlistBtn = document.getElementById('mobileWishlistBtn');
-
-    const wishlistSidebar = document.getElementById('wishlistSidebar');
-    const wishlistOverlay = document.getElementById('wishlistOverlay');
-
-    const closeWishlist = document.getElementById('closeWishlist');
-
-    const openWishlist = () => {
-
-        wishlistSidebar.classList.add('active');
-        wishlistOverlay.classList.add('active');
-
-        renderWishlistSidebar();
-    };
-
-    if (wishlistIcon) {
-
-        wishlistIcon.addEventListener('click', e => {
-
-            e.preventDefault();
-            openWishlist();
-        });
-    }
-
-    if (mobileWishlistBtn) {
-
-        mobileWishlistBtn.addEventListener('click', e => {
-
-            e.preventDefault();
-            openWishlist();
-        });
-    }
-
-    if (closeWishlist) {
-
-        closeWishlist.addEventListener('click', () => {
-
-            wishlistSidebar.classList.remove('active');
-            wishlistOverlay.classList.remove('active');
-        });
-    }
-
-    if (wishlistOverlay) {
-
-        wishlistOverlay.addEventListener('click', () => {
-
-            wishlistSidebar.classList.remove('active');
-            wishlistOverlay.classList.remove('active');
-        });
-    }
-}
-
-// ===================== MOBILE FLOATING BUTTONS =====================
-function setupMobileCartListener() {
-
-    const mobileBtn =
-        document.querySelector('.mobile-cart-floating-button');
-
-    const cartSidebar =
-        document.getElementById('cartSidebar');
-
-    const overlay =
-        document.getElementById('cartOverlay');
-
-    if (!mobileBtn || !cartSidebar || !overlay) return;
-
-    mobileBtn.addEventListener('click', () => {
-
-        cartSidebar.classList.add('active');
-        overlay.classList.add('active');
-
-        renderCartSidebar();
-    });
-}
-
-function setupMobileWishlistListener() {
-
-    const mobileBtn =
-        document.querySelector('.mobile-wishlist-floating-button');
-
-    if (!mobileBtn) return;
-
-    mobileBtn.addEventListener('click', () => {
-
-        const currentUser =
-            JSON.parse(localStorage.getItem('currentUser'));
-
-        if (currentUser) {
-
-            window.location.href = 'dashboard.html#wishlist';
-
-        } else {
-
-            window.location.href = 'account.html';
-        }
-    });
-}
-
-// ===================== TOAST =====================
-function showToast(message) {
-
-    const existing =
-        document.querySelector('.toast');
-
-    if (existing) existing.remove();
-
-    const toast = document.createElement('div');
-
-    toast.className = 'toast';
-
-    toast.innerHTML = `
-        <i class="fas fa-heart"></i>
-        <span>${message}</span>
-    `;
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-
-        toast.style.animation = 'slideOut 0.3s forwards';
-
-        setTimeout(() => {
-
-            if (toast.parentNode) {
-                toast.remove();
-            }
-
-        }, 300);
-
-    }, 2500);
-}
-
-// ===================== USER LOGIN =====================
-function checkUserLoginOnPageLoad() {
-
-    const currentUser =
-        JSON.parse(localStorage.getItem('currentUser'));
-
-    const dashboardLink =
-        document.querySelector('.dashboard-link');
-
-    if (currentUser && dashboardLink) {
-        dashboardLink.style.display = 'block';
-    }
-
-    const protectedPages = [
-        'dashboard.html',
-        'checkout.html'
-    ];
-
-    const currentPage =
-        window.location.pathname.split('/').pop();
-
-    if (
-        protectedPages.includes(currentPage) &&
-        !currentUser
-    ) {
-        window.location.href = 'account.html';
-    }
-}
-</script>
-</body>
-</html>
+</body></html>
